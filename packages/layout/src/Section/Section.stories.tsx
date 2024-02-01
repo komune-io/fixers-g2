@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import { Section as AruiSection, SectionBasicProps } from './Section'
 import { Meta, StoryFn } from '@storybook/react'
-import { Filters, useFilters, FiltersField } from '@smartb/g2-forms'
-import { Action, Button } from '@smartb/g2-components'
+import { Filters, useFilters, FiltersField } from '@komune-io/g2-forms'
+import { Action, Button } from '@komune-io/g2-components'
 import { Box, Typography } from '@mui/material'
 import { Header, HeaderProps } from '../Header'
 

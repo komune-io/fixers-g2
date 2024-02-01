@@ -5,12 +5,12 @@ import {
   DialogContent,
   DialogProps
 } from '@mui/material'
-import { Action, Actions } from '@smartb/g2-components'
+import { Action, Actions } from '@komune-io/g2-components'
 import {
   MergeMuiElementProps,
   BasicProps,
   makeG2STyles
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { CloseRounded } from '@mui/icons-material'
 
 const useStyles = makeG2STyles()((theme) => ({

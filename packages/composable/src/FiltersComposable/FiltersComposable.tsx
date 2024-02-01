@@ -4,14 +4,14 @@ import { cx } from '@emotion/css'
 import { Box, Divider, Stack, StackProps } from '@mui/material'
 import { FormikProvider, useFormik } from 'formik'
 import { useFilterRenderProps, FilterComposableField } from './type'
-import { MergeReactElementProps, useIsOverflowing } from '@smartb/g2-utils'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { MergeReactElementProps, useIsOverflowing } from '@komune-io/g2-utils'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import {
   Action,
   ActionsWrapper,
   ActionsWrapperProps
-} from '@smartb/g2-components'
-import { FilterButton, FilterButtonProps } from '@smartb/g2-forms'
+} from '@komune-io/g2-components'
+import { FilterButton, FilterButtonProps } from '@komune-io/g2-forms'
 import { DefaultRenderer } from './factories/FormElementsRenderer'
 import {
   ResponsiveFiltersComposable,

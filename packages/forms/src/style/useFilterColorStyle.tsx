@@ -1,4 +1,4 @@
-import { useTheme } from '@smartb/g2-themes'
+import { useTheme } from '@komune-io/g2-themes'
 import { useMemo } from 'react'
 import tinycolor from 'tinycolor2'
 

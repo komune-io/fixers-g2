@@ -2,7 +2,7 @@ import React from 'react'
 import { KeycloakProvider as AruiKeycloakProvider } from './KeycloakProvider'
 import { Meta, StoryFn } from '@storybook/react'
 import { useAuth, KeycloackService, AuthedUser } from './useAuth'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 import { Typography } from '@mui/material'
 import {
   ArgsTable,
@@ -11,7 +11,7 @@ import {
   Primary,
   Description
 } from '@storybook/addon-docs'
-import { CodeHighlighter } from '@smartb/g2-documentation'
+import { CodeHighlighter } from '@komune-io/g2-documentation'
 import {
   localUseAuth,
   staticUseAuth,

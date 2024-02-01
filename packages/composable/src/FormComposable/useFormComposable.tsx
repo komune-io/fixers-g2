@@ -1,6 +1,6 @@
 import { FormikConfig, FormikHelpers, useFormik, getIn, setIn } from 'formik'
-import { FormAction, ValidatorFnc } from '@smartb/g2-forms'
-import { useActionFeedback } from '@smartb/g2-components'
+import { FormAction, ValidatorFnc } from '@komune-io/g2-forms'
+import { useActionFeedback } from '@komune-io/g2-components'
 import { FormComposableState } from './type'
 import { useCallback, useRef } from 'react'
 

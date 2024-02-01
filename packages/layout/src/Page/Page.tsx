@@ -1,11 +1,11 @@
 import { Box, BoxProps, useTheme, useMediaQuery } from '@mui/material'
-import { Actions, ActionsProps } from '@smartb/g2-components'
+import { Actions, ActionsProps } from '@komune-io/g2-components'
 import React, { useContext, useMemo, useState } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
   ThemeContext
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { Header, HeaderContent, HeaderProps } from '../Header'
 import { cx } from '@emotion/css'
 import {

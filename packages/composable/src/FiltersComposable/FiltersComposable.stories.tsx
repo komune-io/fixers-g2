@@ -12,11 +12,11 @@ import {
   FiltersComposable
 } from './FiltersComposable'
 import { useFiltersComposable, FilterComposableField } from './.'
-import { Action, Button } from '@smartb/g2-components'
+import { Action, Button } from '@komune-io/g2-components'
 import {
   Router as AruiRouter,
   AppProvider as AruiAppProvider
-} from '@smartb/g2-providers'
+} from '@komune-io/g2-providers'
 import { Typography } from '@mui/material'
 import { Route } from 'react-router-dom'
 import { QueryClient } from '@tanstack/react-query'

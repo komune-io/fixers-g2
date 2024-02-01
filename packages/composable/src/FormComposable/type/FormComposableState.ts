@@ -1,4 +1,4 @@
-import { FormAction, PotentialError } from '@smartb/g2-forms'
+import { FormAction, PotentialError } from '@komune-io/g2-forms'
 import { useFormik } from 'formik'
 
 export type FormComposableState = Omit<

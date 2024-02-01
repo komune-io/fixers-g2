@@ -2,7 +2,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
 import React, { forwardRef, useCallback, useMemo, useState } from 'react'
 import { CloseRounded } from '@mui/icons-material'

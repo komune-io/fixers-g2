@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useAuth } from '@smartb/g2-providers'
+import { useAuth } from '@komune-io/g2-providers'
 import { AutomatedUserFactory, AutomatedUserFactoryProps } from '../UserFactory'
 
 export const MyProfile = (props: AutomatedUserFactoryProps) => {

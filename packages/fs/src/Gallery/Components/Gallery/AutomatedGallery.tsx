@@ -1,9 +1,9 @@
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React from 'react'
 import { Gallery, GalleryProps } from './Gallery'
 import { DirectoryPath } from '../../Domain'
 import { GetGalleryOptions, useGetGallery } from '../..'
-import { fsConfig } from '@smartb/g2-providers'
+import { fsConfig } from '@komune-io/g2-providers'
 
 export interface AutomatedGalleryBasicProps {
   /**

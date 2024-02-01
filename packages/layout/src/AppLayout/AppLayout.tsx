@@ -10,7 +10,7 @@ import {
   AppStylePropsBase,
   AppStyleProps
 } from '../AppStyleProps'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
 
 const useStyles = makeG2STyles<{

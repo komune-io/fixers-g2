@@ -10,8 +10,8 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material'
-import { MenuItem } from '@smartb/g2-components'
-import { ThemeContext } from '@smartb/g2-themes'
+import { MenuItem } from '@komune-io/g2-components'
+import { ThemeContext } from '@komune-io/g2-themes'
 import React, { useContext, useMemo } from 'react'
 import { AppLogoProps, AppMenu } from '../AppMenu'
 import { UserMenu, UserMenuProps } from '../UserMenu'

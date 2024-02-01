@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
-import { useAuth } from '@smartb/g2-providers'
+import { useAuth } from '@komune-io/g2-providers'
 import {
   AutomatedOrganizationFactory,
   AutomatedOrganizationFactoryProps
 } from '../OrganizationFactory'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Typography } from '@mui/material'
 
 export interface MyOrganizationBasicProps {

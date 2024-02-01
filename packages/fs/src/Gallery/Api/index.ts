@@ -5,7 +5,7 @@ import {
   useQuery,
   UseQueryOptions
 } from '@tanstack/react-query'
-import { request } from '@smartb/g2-utils'
+import { request } from '@komune-io/g2-utils'
 import {
   DirectoryPath,
   FileDeleteCommand,

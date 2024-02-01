@@ -7,7 +7,7 @@ import {
   UserUpdatePasswordResult
 } from '../Domain'
 import { useCallback } from 'react'
-import { request } from '@smartb/g2-utils'
+import { request } from '@komune-io/g2-utils'
 import {
   QueryFunctionContext,
   useMutation,

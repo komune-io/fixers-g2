@@ -1,7 +1,7 @@
 import { Box, LinearProgress, BoxProps } from '@mui/material'
 import { cx } from '@emotion/css'
 import React from 'react'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 
 interface LoadingClasses {
   iconContainer?: string

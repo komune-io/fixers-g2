@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import { Link as G2Link, Chip } from '@smartb/g2-components'
+import { Link as G2Link, Chip } from '@komune-io/g2-components'
 import React, { useMemo } from 'react'
 import { InputFormProps } from './InputForm'
 import { Link, LinkProps } from 'react-router-dom'

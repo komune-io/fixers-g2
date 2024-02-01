@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Marker } from 'react-leaflet'
 import { LatLngLiteral, Marker as LeafletMarker, Map } from 'leaflet'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 import GeoJSON, { Feature, Point } from 'geojson'
 import { useTranslation } from 'react-i18next'
 

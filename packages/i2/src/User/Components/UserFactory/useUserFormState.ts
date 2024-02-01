@@ -3,7 +3,7 @@ import {
   Option,
   useFormWithPartialFields,
   ValidatorFnc
-} from '@smartb/g2-forms'
+} from '@komune-io/g2-forms'
 import { useCallback, useMemo, useState } from 'react'
 import {
   requiredString,

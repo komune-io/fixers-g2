@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css'
-import { Form, FormField, Option } from '@smartb/g2-forms'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { Form, FormField, Option } from '@komune-io/g2-forms'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useEffect, useMemo } from 'react'
 import { FlatUser, User } from '../../Domain'
 import { AdressValidationStrings, useAdressFields } from '../../../Commons'

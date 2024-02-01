@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@mantine/hooks'
-import { Base64ToFile, fileToBase64 } from '@smartb/g2-utils'
+import { Base64ToFile, fileToBase64 } from '@komune-io/g2-utils'
 import { useCallback, useState } from 'react'
 import { DocumentHandlerProps } from './DocumentHandler'
 

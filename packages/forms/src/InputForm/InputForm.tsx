@@ -27,7 +27,7 @@ import {
   DatePickerProps
 } from '../DatePicker'
 import { useInputStyles } from '../style'
-import { BasicProps } from '@smartb/g2-themes'
+import { BasicProps } from '@komune-io/g2-themes'
 import {
   RadioChoicesClasses,
   RadioChoicesProps,

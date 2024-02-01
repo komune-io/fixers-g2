@@ -1,4 +1,7 @@
-import { FormComposableField, FormComposableState } from '@smartb/g2-composable'
+import {
+  FormComposableField,
+  FormComposableState
+} from '@komune-io/g2-composable'
 import { useMemo, useCallback, useState } from 'react'
 import {
   AdressFieldsName,
@@ -7,7 +10,7 @@ import {
 } from '../../../Commons'
 import { Organization, organizationToFlatOrganization } from '../../Domain'
 import { siretValidation } from '../../Validation/siret'
-import { validators } from '@smartb/g2-utils'
+import { validators } from '@komune-io/g2-utils'
 import { useTranslation } from 'react-i18next'
 
 export type organizationFieldsName =

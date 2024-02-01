@@ -1,8 +1,8 @@
 {
-  "name": "@smartb/g2-components",
-  "version": "1.0.0-alpha.186",
+  "name": "@komune-io/g2-components",
+  "version": "0.5.0-alpha.1",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
-  "author": "Adrien Poupard <adrien@smartb.city>",
+  "author": "Adrien Poupard <adrien@komune-io.city>",
   "license": "Apache-2.0",
   "description": "React components library",
   "private": false,
@@ -28,7 +28,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@smartb/g2-forms": "1.0.0-alpha.186",
+    "@komune-io/g2-forms": "0.5.0-alpha.1",
     "@types/react": "^18.0.28",
     "@types/react-dropzone": "^5.1.0"
   },
@@ -39,20 +39,20 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@komune-io/g2-notifications": "0.5.0-alpha.1",
+    "@komune-io/g2-themes": "0.5.0-alpha.1",
+    "@komune-io/g2-utils": "0.5.0-alpha.1",
     "@mantine/core": "^4.2.12",
     "@mantine/dropzone": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "5.0.0-alpha.122",
-    "@smartb/g2-notifications": "1.0.0-alpha.186",
-    "@smartb/g2-themes": "1.0.0-alpha.186",
-    "@smartb/g2-utils": "1.0.0-alpha.186",
     "react-dropzone": "^11.3.2",
     "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.2"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
   "publishConfig": {
-    "@smartb:registry": "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/"
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

@@ -1,5 +1,9 @@
 import React, { ReactElement, useMemo } from 'react'
-import { SelectProps, InputForm, InputFormBasicProps } from '@smartb/g2-forms'
+import {
+  SelectProps,
+  InputForm,
+  InputFormBasicProps
+} from '@komune-io/g2-forms'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'

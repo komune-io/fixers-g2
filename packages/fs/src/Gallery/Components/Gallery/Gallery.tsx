@@ -2,8 +2,8 @@ import { ImageList, ImageListItem, Stack } from '@mui/material'
 import React, { useMemo } from 'react'
 import { FsFile } from '../../Domain'
 import { cx } from '@emotion/css'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { AutoCompleteProps } from '@smartb/g2-forms'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { AutoCompleteProps } from '@komune-io/g2-forms'
 import { ImageListProps } from '@mui/material/ImageList/ImageList'
 
 export interface GalleryClasses {

@@ -10,7 +10,7 @@ import { ArgsTable, Title, Primary, Stories } from '@storybook/addon-docs'
 import { styles, classes, Action } from './types'
 import { Box, Typography } from '@mui/material'
 import imageHolder from '../assets/imageHolder.jpg'
-import { Action as PopUpAtion, Button } from '@smartb/g2-components'
+import { Action as PopUpAtion, Button } from '@komune-io/g2-components'
 
 export default {
   title: 'Layout/PopUp',

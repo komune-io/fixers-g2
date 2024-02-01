@@ -7,7 +7,7 @@ import {
 } from 'notistack'
 import { Alert, AlertProps } from '../Alert/Alert'
 import { Grow } from '@mui/material'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 
 const useSytles = makeG2STyles()({
   alert: {

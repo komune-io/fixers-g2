@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { Menu, MenuProps, MenuItem } from '@smartb/g2-components'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { Menu, MenuProps, MenuItem } from '@komune-io/g2-components'
 import clsx from 'clsx'
 
 export interface AppLogoProps {

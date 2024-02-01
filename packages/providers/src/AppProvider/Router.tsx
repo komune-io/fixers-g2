@@ -1,4 +1,4 @@
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React from 'react'
 import { Route, Routes, RoutesProps } from 'react-router-dom'
 import { NoMatchPage, NoMatchPageProps } from './NoMatchPage'

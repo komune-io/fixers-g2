@@ -1,4 +1,4 @@
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useCallback, useMemo } from 'react'
 import { Organization } from '../../Domain'
 import {
@@ -15,7 +15,7 @@ import {
   useGetOrganization,
   useUpdateOrganization
 } from '../../Api'
-import { useAuth, i2Config } from '@smartb/g2-providers'
+import { useAuth, i2Config } from '@komune-io/g2-providers'
 import { useQueryClient } from '@tanstack/react-query'
 
 export type ReadOnlyOrgFieldsPerState = {

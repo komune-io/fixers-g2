@@ -1,4 +1,4 @@
-import { Theme } from "@smartb/g2-themes";
+import { Theme } from "@komune-io/g2-themes";
 
 const round = (value: number) => {
   return Math.round(value * 100) / 100;
@@ -52,4 +52,3 @@ export const getTheme = (): Theme => ({
   },
   shadows: getShadows(localStorage.getItem("shadows")),
 });
-

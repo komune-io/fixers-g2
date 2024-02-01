@@ -7,7 +7,7 @@ import {
   Map,
   MapProps,
   MapPlugin
-} from '@smartb/g2-forms'
+} from '@komune-io/g2-forms'
 
 export type MapPropsWithLimitedPlugins = Omit<
   MapProps,

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { CodeHighlighter } from '../CodeHighlighter'
 import 'github-markdown-css'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import gfm from 'remark-gfm'
 import raw from 'rehype-raw'
 

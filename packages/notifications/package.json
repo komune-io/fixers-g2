@@ -1,8 +1,8 @@
 {
-  "name": "@smartb/g2-notifications",
-  "version": "1.0.0-alpha.186",
+  "name": "@komune-io/g2-notifications",
+  "version": "0.5.0-alpha.1",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
-  "author": "Adrien Poupard <adrien@smartb.city>",
+  "author": "Adrien Poupard <adrien@komune-io.city>",
   "license": "Apache-2.0",
   "description": "React notifications library",
   "private": false,
@@ -28,8 +28,8 @@
     "dist"
   ],
   "devDependencies": {
-    "@smartb/g2-components": "1.0.0-alpha.186",
-    "@smartb/g2-forms": "1.0.0-alpha.186",
+    "@komune-io/g2-components": "0.5.0-alpha.1",
+    "@komune-io/g2-forms": "0.5.0-alpha.1",
     "@types/react": "^18.0.28"
   },
   "peerDependencies": {
@@ -39,13 +39,13 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@komune-io/g2-themes": "0.5.0-alpha.1",
+    "@komune-io/g2-utils": "0.5.0-alpha.1",
     "@mui/icons-material": "^5.11.11",
-    "@smartb/g2-themes": "1.0.0-alpha.186",
-    "@smartb/g2-utils": "1.0.0-alpha.186",
     "notistack": "3.0.1"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
   "publishConfig": {
-    "@smartb:registry": "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/"
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

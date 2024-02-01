@@ -14,9 +14,9 @@ import { Route } from 'react-router-dom'
 import {
   Router as AruiRouter,
   AppProvider as AruiAppProvider
-} from '@smartb/g2-providers'
+} from '@komune-io/g2-providers'
 import { QueryClient } from '@tanstack/react-query'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 
 export default {
   title: 'Forms/EnhancedFilters',

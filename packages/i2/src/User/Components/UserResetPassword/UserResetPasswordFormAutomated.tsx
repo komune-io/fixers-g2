@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { UserId, UserUpdatePasswordCommand } from '../../Domain'
 import {
   UserResetPasswordForm,
   UserResetPasswordFormProps
 } from './UserResetPasswordForm'
 import { useUserUpdatePassword, UserUpdatePasswordOptions } from '../..'
-import { i2Config, useAuth } from '@smartb/g2-providers'
+import { i2Config, useAuth } from '@komune-io/g2-providers'
 
 export interface UserResetPasswordFormAutomatedBasicProps extends BasicProps {
   /**

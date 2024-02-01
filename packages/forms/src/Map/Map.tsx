@@ -20,10 +20,10 @@ import {
   DraggableMarkerNeeds
 } from './DraggableMarker'
 import 'leaflet/dist/leaflet.css'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 import { CloseRounded } from '@mui/icons-material'
 import L from 'leaflet'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
 import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 import { useTranslation } from 'react-i18next'

@@ -5,10 +5,10 @@ import {
   AutomatedUserFactoryBasicProps as AutomatedUserFactoryProps
 } from './AutomatedUserFactory'
 
-import { g2Config, KeycloakProvider } from '@smartb/g2-providers'
+import { g2Config, KeycloakProvider } from '@komune-io/g2-providers'
 import { Typography } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 
 export default {
   title: 'I2/AutomatedUserFactory',

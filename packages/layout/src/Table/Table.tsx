@@ -8,8 +8,8 @@ import {
   usePagination
 } from 'react-table'
 import React, { useEffect, useMemo, useCallback } from 'react'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { CheckBox } from '@smartb/g2-forms'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { CheckBox } from '@komune-io/g2-forms'
 import { Arrow } from '../icons'
 import {
   CompleteTableOptions,
@@ -24,7 +24,7 @@ import { GroundedBase } from './GroundedBase'
 import { ElevatedBase } from './ElevatedBase'
 import { ElevatedLoading } from './ElevatedLoading'
 import { GroundedLoading } from './GroundedLoading'
-import { Pagination } from '@smartb/g2-components'
+import { Pagination } from '@komune-io/g2-components'
 import { LinkProps } from 'react-router-dom'
 
 export interface TableClasses {

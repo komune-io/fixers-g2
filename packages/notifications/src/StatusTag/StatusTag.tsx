@@ -1,6 +1,10 @@
 import { cx } from '@emotion/css'
 import { Chip, ChipProps } from '@mui/material'
-import { BasicProps, MergeMuiElementProps, useTheme } from '@smartb/g2-themes'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  useTheme
+} from '@komune-io/g2-themes'
 import React, { forwardRef, useMemo } from 'react'
 
 export interface StatusTagBasicProps extends BasicProps {

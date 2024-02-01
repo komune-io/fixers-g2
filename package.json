@@ -1,7 +1,7 @@
 {
-  "name": "@smartb/g2",
+  "name": "@komune-io/g2",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
-  "author": "Adrien Poupard <adrien@smartb.city>",
+  "author": "Adrien Poupard <adrien@komune-io.city>",
   "license": "Apache-2.0",
   "type": "module",
   "private": true,
@@ -88,6 +88,6 @@
     "publishWorkspaces:npm": "VERSION=${VERSION} yarn workspaces run publish:npm"
   },
   "publishConfig": {
-    "@smartb:registry": "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/"
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

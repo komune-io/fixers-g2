@@ -1,6 +1,6 @@
 import { Box, List, ListItem, ListItemText } from '@mui/material'
 import React from 'react'
-import { BasicProps, makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
 
 const useStyles = makeG2STyles()({
   drawerSpacer: {

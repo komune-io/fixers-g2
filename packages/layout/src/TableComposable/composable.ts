@@ -1,4 +1,4 @@
-import { getIn } from '@smartb/g2-utils'
+import { getIn } from '@komune-io/g2-utils'
 import { ColumnFactory, ColumnGenerators } from '../ColumnFactory'
 import { G2ColumnDef } from '../TableV2'
 import { ColumnProperties } from './columns'

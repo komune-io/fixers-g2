@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import { LimitedList, LimitedListProps } from '../../LimitedList'
-import { Option, SmartKey } from '@smartb/g2-forms'
-import { Chip } from '@smartb/g2-components'
-import { StatusTag } from '@smartb/g2-notifications'
+import { Option, SmartKey } from '@komune-io/g2-forms'
+import { Chip } from '@komune-io/g2-components'
+import { StatusTag } from '@komune-io/g2-notifications'
 
 export interface TableCellTagProps
   extends Omit<LimitedListProps<{}>, 'listedComponent' | 'values'> {

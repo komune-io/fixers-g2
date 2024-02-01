@@ -7,8 +7,8 @@ import {
   AccordionSummary,
   Box
 } from '@mui/material'
-import { Menu, MenuItem, Presentation } from '@smartb/g2-components'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { Menu, MenuItem, Presentation } from '@komune-io/g2-components'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React from 'react'
 
 interface UserMenuClasses {

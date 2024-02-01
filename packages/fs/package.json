@@ -1,9 +1,9 @@
 {
-  "name": "@smartb/g2-fs",
+  "name": "@komune-io/g2-fs",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
-  "author": "Adrien Poupard <adrien@smartb.city>",
+  "author": "Adrien Poupard <adrien@komune-io.city>",
   "license": "Apache-2.0",
-  "version": "1.0.0-alpha.186",
+  "version": "0.5.0-alpha.1",
   "description": "React i2 components library",
   "private": false,
   "main": "dist/index.js",
@@ -35,15 +35,15 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@komune-io/g2-components": "0.5.0-alpha.1",
+    "@komune-io/g2-forms": "0.5.0-alpha.1",
+    "@komune-io/g2-providers": "0.5.0-alpha.1",
+    "@komune-io/g2-themes": "0.5.0-alpha.1",
+    "@komune-io/g2-utils": "0.5.0-alpha.1",
     "@mantine/core": "^4.2.12",
     "@mantine/dropzone": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
     "@mui/icons-material": "^5.11.11",
-    "@smartb/g2-components": "1.0.0-alpha.186",
-    "@smartb/g2-forms": "1.0.0-alpha.186",
-    "@smartb/g2-providers": "1.0.0-alpha.186",
-    "@smartb/g2-themes": "1.0.0-alpha.186",
-    "@smartb/g2-utils": "1.0.0-alpha.186",
     "@tanstack/react-query": "^4.32.5",
     "react-dropzone": "^11.3.2",
     "react-i18next": "^12.2.0",
@@ -54,6 +54,6 @@
     "@types/uuid": "^8.3.4"
   },
   "publishConfig": {
-    "@smartb:registry": "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/"
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

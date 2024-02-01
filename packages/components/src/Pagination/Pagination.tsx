@@ -4,7 +4,7 @@ import {
   Pagination as MuiPagination,
   PaginationProps as MuiPaginationProps
 } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
 
 interface PaginationClasses {

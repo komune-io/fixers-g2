@@ -7,10 +7,10 @@ import {
   Typography
 } from '@mui/material'
 import { CloseRounded } from '@mui/icons-material'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useCallback, useMemo } from 'react'
 import { FiltersComposable, FiltersComposableProps } from './FiltersComposable'
-import { Action, Actions } from '@smartb/g2-components'
+import { Action, Actions } from '@komune-io/g2-components'
 
 export interface ResponsiveFiltersComposableBasicProps {
   openDrawer: boolean

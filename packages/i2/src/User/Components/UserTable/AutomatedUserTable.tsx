@@ -1,8 +1,8 @@
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useState } from 'react'
 import { UserTable, UserTableProps } from './UserTable'
 import { GetUsersOptions, useGetUsers } from '../../Api'
-import { i2Config, useAuth } from '@smartb/g2-providers'
+import { i2Config, useAuth } from '@komune-io/g2-providers'
 import { User } from '../../Domain'
 
 // TODO Automated should be without getUsers and organizationsRefs

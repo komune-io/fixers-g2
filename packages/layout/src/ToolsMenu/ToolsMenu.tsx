@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { MenuItems } from '@smartb/g2-components'
+import { MenuItems } from '@komune-io/g2-components'
 import { IconButton, Menu as MuiMenu } from '@mui/material'
 import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
-import { BasicProps, makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
 
 const useStyles = makeG2STyles()({
   menu: {

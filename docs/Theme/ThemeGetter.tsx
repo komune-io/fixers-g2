@@ -1,5 +1,5 @@
 import React from "react";
-import { Theme } from "@smartb/g2-themes";
+import { Theme } from "@komune-io/g2-themes";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Button, ButtonProps } from '../Buttons'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Stack, StackProps } from '@mui/material'
 import { cx } from '@emotion/css'
 

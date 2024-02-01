@@ -11,8 +11,7 @@ import { AutoForm, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
 import json from './autoForm.json'
 import { autoFormFormatter } from './autoFormFormatter'
-import { Button } from '@smartb/g2-components'
-import { CodeHighlighter } from '@smartb/g2-documentation'
+import { Button } from '@komune-io/g2-components'
 
 export default {
   title: 'Composable/AutoForm',

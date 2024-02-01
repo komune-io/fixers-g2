@@ -1,5 +1,5 @@
 import { Drawer, DrawerProps } from '@mui/material'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React from 'react'
 import { Stepper, StepperProps } from './Stepper'
 

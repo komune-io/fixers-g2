@@ -14,7 +14,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { fr, enUS } from 'date-fns/locale/index.js'
 import { CustomActionBar } from './CustomActionBar'
 import { useTranslation } from 'react-i18next'

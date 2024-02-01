@@ -10,7 +10,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import {
   InputAdornment,
   InputLabelProps,

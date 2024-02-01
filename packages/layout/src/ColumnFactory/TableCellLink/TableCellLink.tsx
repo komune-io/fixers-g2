@@ -1,4 +1,4 @@
-import { Link as G2Link } from '@smartb/g2-components'
+import { Link as G2Link } from '@komune-io/g2-components'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { Typography } from '@mui/material'

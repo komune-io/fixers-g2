@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import React, { useCallback, useMemo } from 'react'
 import SyntaxHighlighter, {
   SyntaxHighlighterProps

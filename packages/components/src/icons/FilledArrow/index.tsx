@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent } from './filledArrow.svg'
-import { MergeReactElementProps } from '@smartb/g2-utils'
+import { MergeReactElementProps } from '@komune-io/g2-utils'
 
 interface FilledArrowProps {
   color?: string

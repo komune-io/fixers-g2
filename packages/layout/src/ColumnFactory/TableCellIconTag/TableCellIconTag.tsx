@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Box, Stack, StackProps, Typography } from '@mui/material'
-import { Option, SmartKey } from '@smartb/g2-forms'
+import { Option, SmartKey } from '@komune-io/g2-forms'
 
 export interface TableCellIconTagProps extends StackProps {
   value?: SmartKey

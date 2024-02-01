@@ -1,13 +1,13 @@
 import React from 'react'
-import { MenuItems } from '@smartb/g2-components'
+import { MenuItems } from '@komune-io/g2-components'
 import {
   MenuItem as MuiMenuItem,
   Typography,
   ListItemIcon,
   Grid
 } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@smartb/g2-themes'
-import { MergeReactElementProps } from '@smartb/g2-utils'
+import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { MergeReactElementProps } from '@komune-io/g2-utils'
 
 const useStyles = makeG2STyles()({
   gridContainer: {

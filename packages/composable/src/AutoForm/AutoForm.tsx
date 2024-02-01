@@ -10,7 +10,7 @@ import {
 } from '../FormComposable'
 import { SectionCondition, evalCondition } from '../Conditions'
 import { FormikHelpers } from 'formik'
-import { CommandWithFile } from '@smartb/g2-utils'
+import { CommandWithFile } from '@komune-io/g2-utils'
 
 export type FormSection = {
   /**

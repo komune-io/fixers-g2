@@ -8,7 +8,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 
 const useStyles = makeG2STyles()((theme) => ({

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Form, FormField, FormProps } from '@smartb/g2-forms'
+import { Form, FormField, FormProps } from '@komune-io/g2-forms'
 import { styled, Typography } from '@mui/material'
-import { Popover } from '@smartb/g2-notifications'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { Popover } from '@komune-io/g2-notifications'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
 import {
   FlatOrganization,

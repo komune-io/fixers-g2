@@ -1,5 +1,5 @@
 import { Box, Stack, useMediaQuery, useTheme } from '@mui/material'
-import { BasicProps } from '@smartb/g2-themes'
+import { BasicProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
 import React from 'react'
 

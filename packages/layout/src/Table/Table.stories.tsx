@@ -11,7 +11,7 @@ import {
   Primary,
   Stories
 } from '@storybook/addon-docs'
-import { CodeHighlighter } from '@smartb/g2-documentation'
+import { CodeHighlighter } from '@komune-io/g2-documentation'
 import { customCellExample, classes, styles, Column, CellProps } from './types'
 import { Info } from '@mui/icons-material'
 import { BrowserRouter } from 'react-router-dom'

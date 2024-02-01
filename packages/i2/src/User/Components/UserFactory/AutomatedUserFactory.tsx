@@ -1,4 +1,4 @@
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useCallback, useMemo } from 'react'
 import { OrganizationId } from '../../../Organization'
 import { User } from '../../Domain'
@@ -14,7 +14,7 @@ import {
   useUpdateUser,
   useUserUpdateEmail
 } from '../../Api'
-import { i2Config, useAuth } from '@smartb/g2-providers'
+import { i2Config, useAuth } from '@komune-io/g2-providers'
 import { useQueryClient } from '@tanstack/react-query'
 import {
   ChoicedResetPassword,

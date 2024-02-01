@@ -4,7 +4,7 @@ import {
   AutomatedOrganizationFactory,
   AutomatedOrganizationFactoryBasicProps as AutomatedOrganizationFactoryProps
 } from './AutomatedOrganizationFactory'
-import { g2Config, KeycloakProvider } from '@smartb/g2-providers'
+import { g2Config, KeycloakProvider } from '@komune-io/g2-providers'
 import { Typography } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 

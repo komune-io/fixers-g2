@@ -1,4 +1,4 @@
-import { FilterTextField, FilterTextFieldProps } from '@smartb/g2-forms'
+import { FilterTextField, FilterTextFieldProps } from '@komune-io/g2-forms'
 import React from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'

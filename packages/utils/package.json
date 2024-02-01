@@ -1,9 +1,9 @@
 {
-  "name": "@smartb/g2-utils",
+  "name": "@komune-io/g2-utils",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
   "author": "SmartB",
   "license": "Apache-2.0",
-  "version": "1.0.0-alpha.186",
+  "version": "0.5.0-alpha.1",
   "description": "Utility package used in the g2 packages.",
   "private": false,
   "main": "dist/index.js",
@@ -44,6 +44,6 @@
     "lodash": "^4.17.21"
   },
   "publishConfig": {
-    "@smartb:registry": "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/"
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

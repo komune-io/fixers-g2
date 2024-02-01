@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Typography } from '@mui/material'
 import { PopUp, PopUpProps } from './PopUp'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { TextField } from '@smartb/g2-forms'
-import { Action } from '@smartb/g2-components'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { TextField } from '@komune-io/g2-forms'
+import { Action } from '@komune-io/g2-components'
 import { cx } from '@emotion/css'
 
 interface ConfirmationPopUpClasses {

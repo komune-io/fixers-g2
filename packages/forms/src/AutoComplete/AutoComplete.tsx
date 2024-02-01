@@ -16,10 +16,10 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { TextField, TextFieldProps } from '../TextField'
 import { CheckBox } from '../CheckBox'
-import { Chip, ChipProps } from '@smartb/g2-components'
+import { Chip, ChipProps } from '@komune-io/g2-components'
 
 const useStyles = makeG2STyles()({
   list: {
