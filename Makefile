@@ -10,7 +10,7 @@ package-storybook:
 	@docker push ${STORYBOOK_IMG}
 
 package-libs:
-	@yarn install
+	@yarn install --frozen-lockfile
 	@yarn workspace @smartb/g2-utils run build
 	@yarn workspace @smartb/g2-themes run build
 	@yarn workspace @smartb/g2-notifications run build

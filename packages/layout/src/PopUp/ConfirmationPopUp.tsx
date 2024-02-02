@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Typography } from '@mui/material'
-import { PopUp, PopUpProps, Action } from './PopUp'
+import { PopUp, PopUpProps } from './PopUp'
+import { Action } from '@smartb/g2-components'
 import {
   BasicProps,
   makeG2STyles,
