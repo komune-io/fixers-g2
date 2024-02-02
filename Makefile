@@ -9,8 +9,13 @@ package-storybook:
 	@docker build --no-cache=true -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
+clean:
+	-rm -fr node_modules
+	-find ./packages/*/ -name "node_modules" -type d -exec rm -rf {} \;
+	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
+
 package-libs:
-	@yarn install
+	@yarn install --frozen-lockfile
 	@yarn workspace @smartb/g2-utils run build
 	@yarn workspace @smartb/g2-themes run build
 	@yarn workspace @smartb/g2-notifications run build
