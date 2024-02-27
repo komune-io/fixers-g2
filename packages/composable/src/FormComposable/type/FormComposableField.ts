@@ -18,7 +18,7 @@ export type FormComposableField<
    */
   key?: string
   /**
-   * the name of the field used to define it in the returned values
+   * the name of the field used to define it in the state values
    */
   name: Name
   /**
@@ -26,7 +26,9 @@ export type FormComposableField<
    */
   label?: string
   /**
-   * the default value of the field
+   * the default value of the field.
+   * ⚠️ Only works at the first render it can't be computed values afterwards.
+   * If you need delayed computed values use `initialValues` in the useFormComposable
    */
   defaultValue?: any
   /**
@@ -36,6 +38,9 @@ export type FormComposableField<
   /**
    * You can conditionate the display or the validation of the field with it.
    * The conditions of the component will replace the prop `validator` if used.
+   * It is based on the [SpEL](https://docs.spring.io/spring-framework/docs/3.0.x/reference/expressions.html) expression language.
+   *
+   * The property `type` describe the effect and the property `expression` conditions the effect.
    */
   conditions?: Condition[]
   /**
