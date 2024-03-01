@@ -20,10 +20,7 @@ import {
 import { Typography } from '@mui/material'
 import { requiredField, requiredTrue } from './validator'
 import { BrowserRouter } from 'react-router-dom'
-
-const FormField = (props: FormComposableField) => {
-  return <></>
-}
+import { FormField } from './docs'
 
 export default {
   title: 'Composable/FormComposable',
@@ -40,7 +37,7 @@ export default {
             This components is made to display a form using
             [Formik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgsTable components={{ FormComposable: FormComposable }} />
           <Description>
             The form fields have common props describe below
           </Description>

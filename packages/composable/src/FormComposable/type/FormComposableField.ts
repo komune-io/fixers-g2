@@ -9,10 +9,7 @@ import { Condition } from '../../Conditions'
 
 export type FieldValidatorFnc = (value?: any, values?: any) => PotentialError
 
-export type FormComposableField<
-  Name extends string = string,
-  ELEMENT_PARAMS extends ElementRenderersConfig = {}
-> = {
+export interface CommonFieldProps<Name extends string = string> {
   /**
    * the unique key of the field by default the name
    */
@@ -69,4 +66,10 @@ export type FormComposableField<
    * @default false
    */
   required?: boolean
-} & (FieldRenderType | ComposableElementRendererProps<ELEMENT_PARAMS>)
+}
+
+export type FormComposableField<
+  Name extends string = string,
+  ELEMENT_PARAMS extends ElementRenderersConfig = {}
+> = CommonFieldProps<Name> &
+  (FieldRenderType | ComposableElementRendererProps<ELEMENT_PARAMS>)
