@@ -110,7 +110,7 @@ export const AutomatedGalleryFactory = (
       onSuccess: (data, varaibles, context) => {
         if (data) {
           const galleryCopy = !!gallery.data?.items
-            ? [...gallery.data?.items]
+            ? [...gallery.data.items]
             : []
           data.forEach((event) => {
             galleryCopy.push(event)
@@ -136,7 +136,6 @@ export const AutomatedGalleryFactory = (
 
     if (filesToSave.length > 0) {
       await uploadFiles.mutateAsync(filesToSave)
-      filesToSave
     }
     if (deleteCommands.length > 0) {
       await deleteFiles.mutateAsync(deleteCommands)
