@@ -45,7 +45,7 @@ export interface FieldRender {
   emptyValueInReadOnly?: any
 }
 
-const useFormProps = (
+const getFormProps = (
   field: FormComposableField,
   props: FormComposableProps<any>,
   index: number
@@ -142,7 +142,7 @@ export const useFieldRenderProps = (
     let gridIndex = 0
     return fields.map((field: FormComposableField) => {
       gridIndex += field.fullRow ? props.gridColumnNumber ?? 2 : 1
-      const formProps = useFormProps(
+      const formProps = getFormProps(
         field,
         props,
         Math.ceil(gridIndex / (props.gridColumnNumber ?? 2))

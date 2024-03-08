@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   Drawer,
   Theme as MuiTheme,
@@ -212,6 +212,15 @@ export const AppLayout = (props: AppLayoutProps) => {
   )
   const defaultStyles = useStyles(stylesDependencies)
 
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter' && onToggle) {
+        onToggle()
+      }
+    },
+    [onToggle]
+  )
+
   return (
     <>
       <AppBarLayout
@@ -263,6 +272,7 @@ export const AppLayout = (props: AppLayoutProps) => {
               window.innerWidth < 768 && open && showDrawer ? 'block' : 'none'
           }}
           onClick={onToggle}
+          onKeyDown={handleKeyDown}
         />
         {children}
       </main>

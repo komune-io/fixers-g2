@@ -22,7 +22,7 @@ export interface FieldRender {
   style: any
 }
 
-const useFormProps = (
+const getFormProps = (
   field: FilterComposableField,
   props: FiltersComposableProps<any>
 ): FieldRender => {
@@ -53,7 +53,7 @@ export const useFilterRenderProps = (
   } = props
   const memo = useMemo<FieldRenderProps<string, any>[]>(() => {
     return fields.map((field: FilterComposableField) => {
-      const formProps = useFormProps(field, props)
+      const formProps = getFormProps(field, props)
       return {
         basicProps: formProps,
         formState: formState,

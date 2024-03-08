@@ -204,6 +204,15 @@ const DropPictureBase = (
     [onPictureDropped]
   )
 
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter' && onRemovePicture) {
+        onRemovePicture()
+      }
+    },
+    [onRemovePicture]
+  )
+
   const onReject = useCallback(
     (fileRejections: FileRejection[]) => {
       const code = fileRejections[0].errors[0].code as DropPictureError
@@ -324,6 +333,7 @@ const DropPictureBase = (
         style={style}
         id={id}
         onClick={onRemovePicture}
+        onKeyDown={handleKeyDown}
       >
         <img
           src={pictureUrl}
