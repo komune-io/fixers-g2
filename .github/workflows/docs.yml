@@ -23,13 +23,37 @@ jobs:
         with:
           name: storybook-static
           path: ./storybook-static
+
+  deploy-chromatic-page:
+    runs-on: ubuntu-latest
+    name: Deploy Chromatic
+    needs: [build-storybook]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-static
+          path: ./storybook-static
+
       - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
-  deploy:
+      - name: Chromatic Footer
+        shell: bash
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "Deploy to Chromatic  ${{ steps.chromatic.outputs.buildUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "The Storybook preview URL  ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+
+  deploy-github-page:
     runs-on: ubuntu-latest
+    name: Github Page
     permissions:
       pages: write
       id-token: write
