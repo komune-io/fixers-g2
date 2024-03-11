@@ -23,10 +23,10 @@ jobs:
         with:
           name: storybook-static
           path: ./storybook-static
-      - uses: chromaui/action@v1
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #      - uses: chromaui/action@v1
+  #        with:
+  #          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+  #          token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
