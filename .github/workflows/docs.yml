@@ -50,7 +50,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: [build]
+    needs: [build-storybook]
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
