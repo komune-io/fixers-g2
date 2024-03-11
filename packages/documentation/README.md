@@ -27,4 +27,4 @@ class Example extends Component {
 
 ## License
 
-&quot;&quot; © [SmartB](https://github.com/SmartB)
+&quot;&quot; © [Komune](https://github.com/komune-io)

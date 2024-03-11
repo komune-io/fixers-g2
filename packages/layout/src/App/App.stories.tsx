@@ -181,7 +181,7 @@ App.args = {
       icon: <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
     }
   ],
-  title: 'SmartB',
+  title: 'Komune',
   logo: {
     src: defaultLogo,
     onClick: () => window.alert('g2.Going somewhere')

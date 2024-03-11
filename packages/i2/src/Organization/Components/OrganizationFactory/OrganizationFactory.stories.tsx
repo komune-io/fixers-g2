@@ -66,7 +66,7 @@ export const OrganizationFactoryStory: StoryFn<OrganizationFactoryProps> = (
     <>
       <OrganizationFactory
         {...args}
-        organization={{ roles: ['Manager'], name: 'SmartB' }}
+        organization={{ roles: ['Manager'], name: 'Komune' }}
         SubmitButtonRef={ref}
         readOnly
       />

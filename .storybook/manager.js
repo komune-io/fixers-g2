@@ -1,6 +1,6 @@
 import { addons } from "@storybook/addons";
-import SmartBTheme from "./SmartBTheme";
+import theme from "./theme";
 
 addons.setConfig({
-  theme: SmartBTheme,
+  theme: theme,
 });

@@ -2,9 +2,9 @@ import { create } from "@storybook/theming";
 
 export default create({
   base: "light",
-  brandTitle: "SmartB G2",
-  brandUrl: "https://docs.smartb.city/g2",
-  brandImage: "/smartb.png",
+  brandTitle: "Komune G2",
+  brandUrl: "https://docs.komune.io/g2",
+  brandImage: "/",
   brandTarget: "_self",
   appBg: "#FFFEFB",
   fontBase: '"Montserrat", sans-serif',
