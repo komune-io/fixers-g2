@@ -74,6 +74,7 @@ export const UseCompleteTable = <Data extends object>(
 ): CompleteTableInstance<Data> => {
   //@ts-ignore
   return useTable(
+    //@ts-ignore
     options,
     ...plugins,
     variant === 'elevated' ? useFlexLayout : undefined
