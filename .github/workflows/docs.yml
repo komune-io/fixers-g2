@@ -58,4 +58,4 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
           echo ""  >> $GITHUB_STEP_SUMMARY
-          echo "Update Me" >> $GITHUB_STEP_SUMMARY
+          echo "Deploy to ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
