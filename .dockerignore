@@ -1,0 +1,19 @@
+# Node.js modules
+node_modules/
+
+# npm debug log file
+npm-debug.log
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+
+# Development dependencies
+devDependencies/
+
+# Tests and test data
+__tests__/
+test/
+spec/
+tests/

@@ -62,20 +62,4 @@ jobs:
           key: ${{ runner.os }}-dist-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build Libs
-        run: make package-libs
-
-      - name: Build Storybook
-        run: make package-storybook
-
-  build-storybook:
-    name: Build storybook
-    runs-on: ubuntu-latest
-    needs: build-packages
-    steps:
-      - name: Setup Node.js environment ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        run: make build-libs
