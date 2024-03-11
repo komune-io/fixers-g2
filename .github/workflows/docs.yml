@@ -1,6 +1,4 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-name: Node.js Package
+name: Docs Storybook
 
 on: [push]
 #on:
@@ -9,19 +7,6 @@ on: [push]
 
 jobs:
   build-storybook:
-    name: Build storybook
-    runs-on: ubuntu-latest
-    needs: build-packages
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Setup Node.js environment ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "yarn"
-
-  storybook:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
