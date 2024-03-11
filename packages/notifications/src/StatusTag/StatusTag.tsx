@@ -59,8 +59,6 @@ export const StatusTagBase = (
           color: colorSelection,
           WebkitLineClamp: 2,
           lineClamp: '2',
-          display: 'box',
-          //@ts-ignore
           display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           textOverflow: 'ellipsis',

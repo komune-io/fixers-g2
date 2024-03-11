@@ -27,16 +27,18 @@ export const KeycloakProvider = (props: KeycloakProviderProps) => {
       loadingComponent={LoadingProviders}
       authenticatingComponent={LoadingProviders}
       callbackSuccessComponent={LoadingProviders}
-      sessionLostComponent={() => {
-        useEffect(() => {
-          OidcClient.get('default')?.loginAsync()
-        }, [])
-
-        return <></>
-      }}
+      sessionLostComponent={SessionLostComponent}
       {...others}
     >
       {children}
     </OidcProvider>
   )
+}
+
+const SessionLostComponent = () => {
+  useEffect(() => {
+    OidcClient.get('default')?.loginAsync()
+  }, [])
+
+  return <></>
 }

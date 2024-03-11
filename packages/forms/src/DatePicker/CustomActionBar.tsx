@@ -12,10 +12,6 @@ export const CustomActionBar = (props: PickersActionBarProps) => {
   const actionsArray =
     typeof actions === 'function' ? actions(wrapperVariant) : actions
 
-  if (actionsArray == null || actionsArray.length === 0) {
-    return null
-  }
-
   const actionsDisplay = useMemo(
     () =>
       actionsArray?.map((actionType): Action => {
@@ -51,6 +47,10 @@ export const CustomActionBar = (props: PickersActionBarProps) => {
       }),
     [actionsArray, t]
   )
+
+  if (actionsArray == null || actionsArray.length === 0) {
+    return null
+  }
 
   return <Actions padding={1} actions={actionsDisplay} />
 }

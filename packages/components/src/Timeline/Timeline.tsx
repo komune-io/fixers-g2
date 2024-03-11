@@ -240,10 +240,18 @@ const TimelineBase = (
           }
         }
         const isSelected = !!selectedCellId && selectedCellId === line.id
+
+        const handleKeyDown = (event) => {
+          if (event.key === 'Enter' && onSelectCell && !line.disabled) {
+            onSelectCell(line)
+          }
+        }
+
         return (
           <div
             key={line.id}
             onClick={() => onSelectCell && !line.disabled && onSelectCell(line)}
+            onKeyDown={handleKeyDown}
             className={defaultStyles.cx(
               onSelectCell &&
                 !line.disabled &&

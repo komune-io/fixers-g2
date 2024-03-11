@@ -383,8 +383,6 @@ export const DropzoneChildren = (props: DropzoneChildrenProps) => {
             lineBreak: 'anywhere',
             WebkitLineClamp: 2,
             lineClamp: '2',
-            display: 'box',
-            //@ts-ignore
             display: '-webkit-box',
             WebkitBoxOrient: 'vertical',
             textOverflow: 'ellipsis',
