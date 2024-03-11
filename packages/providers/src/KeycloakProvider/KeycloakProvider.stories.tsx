@@ -3,7 +3,7 @@ import { KeycloakProvider as AruiKeycloakProvider } from './KeycloakProvider'
 import { Meta, StoryFn } from '@storybook/react'
 import { useAuth, KeycloackService, AuthedUser } from './useAuth'
 import { Button } from '@smartb/g2-components'
-import { Link, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import {
   ArgsTable,
   PRIMARY_STORY,
@@ -15,7 +15,8 @@ import { CodeHighlighter } from '@smartb/g2-documentation'
 import {
   localUseAuth,
   staticUseAuth,
-  keycloakConfig,
+  reactOidcTrustedDomains,
+  reactOidcConfig,
   informRoles,
   checkRoles
 } from './docs'
@@ -29,22 +30,28 @@ export default {
         <>
           <Primary />
           <ArgsTable story={PRIMARY_STORY} />
-          <Subtitle>References</Subtitle>
-          <Typography
-            variant='body2'
-            style={{ margin: '5px', marginBottom: '20px' }}
-          >
-            -{' '}
-            <Link
-              color='#0000ee'
-              href='https://github.com/keycloak/keycloak-documentation/blob/master/securing_apps/topics/oidc/javascript-adapter.adoc'
-            >
-              Keycloak init options
-            </Link>
-          </Typography>
+          <Description>
+            The provider is based on the
+            [react-oidc](https://github.com/AxaFrance/oidc-client) library from
+            Axa.
+          </Description>
+          <Description>
+            If you want to have the service worker from it in your project add
+            @axa-fr/oidc-client in your project depedencies and install it in
+            the root of your react project. The service worker will be added in
+            the public directory as well as the `OidcTrustedDomains.js` file
+            that you just fill up like this:
+          </Description>
+          <CodeHighlighter code={reactOidcTrustedDomains} />
+          <Description>
+            Here is the basic react oidc config for the provider you can find
+            the details of the complete config here:
+            https://github.com/AxaFrance/oidc-client/blob/main/packages/react-oidc/README.md#application-startup
+          </Description>
+          <CodeHighlighter code={reactOidcConfig} />
           <Subtitle>The hook useAuth</Subtitle>
           <Description>
-            This hook allow you to have access of the keyclaok instance and
+            This hook allow you to have access of the react oidc instance and
             utility functions. You can statically extends the autService like
             so:
           </Description>
@@ -74,16 +81,6 @@ export default {
         </>
       )
     }
-  },
-  argTypes: {
-    config: {
-      table: {
-        type: {
-          summary: 'KeycloakConfig',
-          detail: keycloakConfig
-        }
-      }
-    }
   }
 } as Meta
 
@@ -104,7 +101,7 @@ type StaticServices = {
 }
 
 const staticServices: KeycloackService<StaticServices, Roles> = {
-  getRoles: (keycloak) => {
+  getRoles: (keycloak, services) => {
     return keycloak.tokenParsed?.realm_access?.roles
   }
 }

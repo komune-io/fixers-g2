@@ -5,7 +5,8 @@ import {
   PRIMARY_STORY,
   Primary,
   Description,
-  Stories
+  Stories,
+  Title
 } from '@storybook/addon-docs'
 import { FormComposable, FormComposableProps } from './FormComposable'
 import { useFormComposable } from './useFormComposable'
@@ -19,20 +20,51 @@ import {
 import { Typography } from '@mui/material'
 import { requiredField, requiredTrue } from './validator'
 import { BrowserRouter } from 'react-router-dom'
+import { FormField } from './docs'
 
 export default {
   title: 'Composable/FormComposable',
   component: FormComposable,
+  subcomponents: {
+    FormField: FormField
+  },
   parameters: {
     docs: {
       page: () => (
         <>
           <Primary />
           <Description>
-            This components is made to display a simple form using
+            This components is made to display a form using
             [Formik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgsTable components={{ FormComposable: FormComposable }} />
+          <Description>
+            The form fields have common props describe below
+          </Description>
+          <ArgsTable components={{ FormField: FormField }} />
+          <Title>Documenthandler</Title>
+          <Description>
+            {
+              ' The document handler has a special behavior. To be able to spot the uploaded document you need to store it in the initialValues of the formState, it has to be under the key: `"${fieldName}Uploaded"`'
+            }
+          </Description>
+          <Description>
+            {
+              "If it has and uploaded document and the state of the component is empty it's that the uploaded document weren't replaced by the user."
+            }
+          </Description>
+          <Description>
+            {
+              " If at the submit none of the `${fieldName}Uploaded` or `${fieldName}` are in the form state it's that the user suppressed the uploaded document and didn't upload a new one"
+            }
+          </Description>
+          <Title>Map</Title>
+          <Description>
+            The map field is plugin based. Each plugin has one state if you only
+            have one plugin on the map the field state will be the plugin one.
+            But if you have multiple plugins the state of the map will contain
+            subStates for each plugin with its key
+          </Description>
           <Stories />
         </>
       )
