@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemeContextProvider } from "@smartb/g2-themes";
-import { StorybookCanvas } from "@smartb/g2-storybook-documentation";
+import { ThemeContextProvider } from "@komune-io/g2-themes";
+import { StorybookCanvas } from "@komune-io/g2-storybook-documentation";
 import { G2ConfigBuilder, initI18next } from "../packages/providers/src";
 import { I18nextProvider } from "react-i18next";
 

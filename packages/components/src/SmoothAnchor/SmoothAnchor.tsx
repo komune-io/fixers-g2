@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css'
-import { BasicProps } from '@smartb/g2-themes'
-import { MergeReactElementProps } from '@smartb/g2-utils'
+import { BasicProps } from '@komune-io/g2-themes'
+import { MergeReactElementProps } from '@komune-io/g2-utils'
 import React, { useLayoutEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 

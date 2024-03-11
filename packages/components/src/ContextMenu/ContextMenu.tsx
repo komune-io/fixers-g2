@@ -10,7 +10,7 @@ import {
   PopperProps,
   styled
 } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, {
   forwardRef,
   useCallback,

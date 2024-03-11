@@ -1,4 +1,8 @@
-import { BasicProps, MergeMuiElementProps, useTheme } from '@smartb/g2-themes'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  useTheme
+} from '@komune-io/g2-themes'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Dropzone, DropzoneProps, MIME_TYPES } from '@mantine/dropzone'
 import { FileRejection } from 'react-dropzone'

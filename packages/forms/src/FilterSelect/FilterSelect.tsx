@@ -17,11 +17,11 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import { Option, SmartKey } from '../Select'
-import { extractNumberOrBooleanFromString } from '@smartb/g2-utils'
+import { extractNumberOrBooleanFromString } from '@komune-io/g2-utils'
 
 export interface FilterSelectClasses {
   label?: string

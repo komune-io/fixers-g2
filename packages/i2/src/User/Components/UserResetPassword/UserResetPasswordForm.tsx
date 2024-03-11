@@ -5,8 +5,8 @@ import {
   FormField,
   FormPartialField,
   useFormWithPartialFields
-} from '@smartb/g2-forms'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+} from '@komune-io/g2-forms'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { UserId, UserUpdatePasswordCommand } from '../../Domain'
 import { FormikHelpers } from 'formik'

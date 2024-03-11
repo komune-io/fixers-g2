@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { FormField, FormPartialField } from '@smartb/g2-forms'
+import { FormField, FormPartialField } from '@komune-io/g2-forms'
 
 export interface DeletableFormParams<
   T extends FormField | FormPartialField = FormField

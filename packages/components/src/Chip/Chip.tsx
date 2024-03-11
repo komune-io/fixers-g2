@@ -1,4 +1,4 @@
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Chip as MuiChip, ChipProps as MuiChipProps } from '@mui/material'
 import React, { forwardRef } from 'react'
 import { ClearRounded } from '@mui/icons-material'

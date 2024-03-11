@@ -5,7 +5,7 @@ import { OrganizationTable, OrganizationTableProps } from './OrganizationTable'
 import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import { Stack, Typography } from '@mui/material'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 import { Organization } from '../OrganizationFactory'
 
 export default {

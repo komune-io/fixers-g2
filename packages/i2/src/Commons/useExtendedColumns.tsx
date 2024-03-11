@@ -1,6 +1,6 @@
 import React from 'react'
-import { MenuItem, MoreOptions } from '@smartb/g2-components'
-import { CellProps, Column } from '@smartb/g2-layout'
+import { MenuItem, MoreOptions } from '@komune-io/g2-components'
+import { CellProps, Column } from '@komune-io/g2-layout'
 import { useMemo } from 'react'
 
 export interface ExtandedColumnsParams<T extends object> {

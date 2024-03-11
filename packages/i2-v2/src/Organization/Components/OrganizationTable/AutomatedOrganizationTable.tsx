@@ -1,4 +1,4 @@
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useState } from 'react'
 import { OrganizationTable, OrganizationTableProps } from './OrganizationTable'
 import { useGetOrganizations } from '../../Api'
@@ -7,7 +7,7 @@ import {
   useOrganizationTableState,
   useOrganizationTableStateParams
 } from './useOrganizationTableState'
-import { QueryOptions } from '@smartb/g2-utils'
+import { QueryOptions } from '@komune-io/g2-utils'
 
 export interface AutomatedOrganizationTableBasicProps<T extends Organization>
   extends BasicProps {

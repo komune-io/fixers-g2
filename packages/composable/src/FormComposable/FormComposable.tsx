@@ -8,9 +8,9 @@ import {
   FormComposableState,
   useFieldRenderProps
 } from './type'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
-import { ActionsWrapper, ActionsWrapperProps } from '@smartb/g2-components'
-import { FormAction } from '@smartb/g2-forms'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
+import { ActionsWrapper, ActionsWrapperProps } from '@komune-io/g2-components'
+import { FormAction } from '@komune-io/g2-forms'
 import { DefaultRenderer } from './factories/FormElementsRenderer'
 import { MUIStyledCommonProps } from '@mui/system'
 import { evalDisplayConditions } from '../Conditions'

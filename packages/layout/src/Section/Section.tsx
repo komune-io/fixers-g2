@@ -1,7 +1,7 @@
 import { Box, Paper, PaperProps, useTheme } from '@mui/material'
-import { Actions, ActionsProps } from '@smartb/g2-components'
+import { Actions, ActionsProps } from '@komune-io/g2-components'
 import React, { useMemo } from 'react'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Header, HeaderProps } from '../Header'
 import { cx } from '@emotion/css'
 

@@ -11,7 +11,7 @@ import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 import { TssCacheProvider } from 'tss-react'
 import { mergeDeepRight } from 'ramda'
-import { DeepPartial } from '@smartb/g2-utils'
+import { DeepPartial } from '@komune-io/g2-utils'
 import { useDidUpdate } from '@mantine/hooks'
 
 //@ts-ignore

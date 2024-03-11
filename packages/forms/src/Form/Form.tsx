@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Action, Actions } from '@smartb/g2-components'
+import { Action, Actions } from '@komune-io/g2-components'
 import { InputForm, InputFormBasicProps } from '../InputForm'
 import { SelectProps } from '../Select'
 import { TextFieldProps } from '../TextField'
@@ -9,7 +9,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { StackProps, Stack, styled, SxProps, Theme } from '@mui/material'
 import { cx } from '@emotion/css'
 import { FormState } from './useForm'

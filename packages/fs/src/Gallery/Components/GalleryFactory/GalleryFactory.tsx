@@ -16,9 +16,9 @@ import {
   DropzoneProps
 } from '@mantine/dropzone'
 import { FileRejection } from 'react-dropzone'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { StackProps } from '@mantine/core'
-import { DropError } from '@smartb/g2-components'
+import { DropError } from '@komune-io/g2-components'
 import { useTranslation } from 'react-i18next'
 
 export interface GalleryFactoryClasses {

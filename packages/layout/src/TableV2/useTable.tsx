@@ -1,5 +1,5 @@
 import { Box, IconButton } from '@mui/material'
-import { CheckBox } from '@smartb/g2-forms'
+import { CheckBox } from '@komune-io/g2-forms'
 import {
   getCoreRowModel,
   getExpandedRowModel,

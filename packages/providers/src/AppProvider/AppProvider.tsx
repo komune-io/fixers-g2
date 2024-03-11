@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next'
 import { BrowserRouter } from 'react-router-dom'
 import initI18next from './i18n'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { DeepPartial } from '@smartb/g2-utils'
+import { DeepPartial } from '@komune-io/g2-utils'
 import { G2Translations } from './G2Translations'
 import { LoadingProviders } from '../LoadingProviders'
 

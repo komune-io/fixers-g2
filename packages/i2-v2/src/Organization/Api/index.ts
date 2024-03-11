@@ -7,8 +7,8 @@ import {
   useCommandRequest,
   useCommandWithFileRequest,
   useQueryRequest
-} from '@smartb/g2-utils'
-import { useAuthenticatedRequest } from '@smartb/g2-providers'
+} from '@komune-io/g2-utils'
+import { useAuthenticatedRequest } from '@komune-io/g2-providers'
 export * from './GetOrganizationRefsQuery'
 
 export const useGetOrganizations = <T extends Organization = Organization>(

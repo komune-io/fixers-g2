@@ -1,5 +1,5 @@
-import { Loading } from '@smartb/g2-components'
-import { useTheme } from '@smartb/g2-themes'
+import { Loading } from '@komune-io/g2-components'
+import { useTheme } from '@komune-io/g2-themes'
 import { Box } from '@mui/material'
 import React from 'react'
 

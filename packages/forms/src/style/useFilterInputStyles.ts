@@ -1,4 +1,4 @@
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 
 const darkGrey = '#BDBDBD'
 

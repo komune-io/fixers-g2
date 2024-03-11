@@ -10,7 +10,7 @@ import {
 } from '@storybook/addon-docs'
 import { FormComposable, FormComposableProps } from './FormComposable'
 import { useFormComposable } from './useFormComposable'
-import { FormAction } from '@smartb/g2-forms'
+import { FormAction } from '@komune-io/g2-forms'
 import { FieldRenderProps, FormComposableField } from './type'
 import {
   ElementParams,

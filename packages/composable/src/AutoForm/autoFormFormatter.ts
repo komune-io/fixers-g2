@@ -1,4 +1,4 @@
-import { Option } from '@smartb/g2-forms'
+import { Option } from '@komune-io/g2-forms'
 import { Condition, SectionCondition } from '../Conditions'
 import { AutoFormData } from './AutoForm'
 

@@ -7,7 +7,7 @@ import {
   BasicProps,
   MergeMuiElementProps,
   makeG2STyles
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 
 const useStyles = makeG2STyles()({
   root: {

@@ -1,7 +1,7 @@
 import { Avatar, AvatarProps, Typography } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
-import { stringToAvatarAttributs } from '@smartb/g2-utils'
+import { stringToAvatarAttributs } from '@komune-io/g2-utils'
 
 export interface UserAvatarBasicProps extends BasicProps {
   /**
@@ -21,11 +21,17 @@ export type UserAvatarProps = MergeMuiElementProps<
 >
 
 export const UserAvatar = (props: UserAvatarProps) => {
-  const { name = "", size = 'small', sx, ...other } = props
+  const { name = '', size = 'small', sx, ...other } = props
 
   const nameTrimmed = useMemo(() => name.trim(), [name])
 
-  const attr = useMemo(() => nameTrimmed ? stringToAvatarAttributs(name) : {color: "#6768791A", label: ""}, [name])
+  const attr = useMemo(
+    () =>
+      nameTrimmed
+        ? stringToAvatarAttributs(name)
+        : { color: '#6768791A', label: '' },
+    [name]
+  )
   const sizeNumber =
     size === 'small' ? '40px' : size === 'medium' ? '60px' : '100px'
 

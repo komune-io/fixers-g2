@@ -6,8 +6,8 @@ import {
   BasicProps,
   MergeMuiElementProps,
   makeG2STyles
-} from '@smartb/g2-themes'
-import { Tooltip } from '@smartb/g2-notifications'
+} from '@komune-io/g2-themes'
+import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
 const useStyles = makeG2STyles<{ height: string }>()((theme, { height }) => ({

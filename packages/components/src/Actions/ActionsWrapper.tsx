@@ -6,8 +6,8 @@ import {
   ActionsStyles,
   Action
 } from './Actions'
-import { BasicProps } from '@smartb/g2-themes/src'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps } from '@komune-io/g2-themes/src'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 
 export interface ActionWrapperClasses extends ActionsClasses {
   actions?: string

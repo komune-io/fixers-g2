@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import { Box, Stack, Typography } from '@mui/material'
-import { StatusTag } from '@smartb/g2-notifications'
+import { StatusTag } from '@komune-io/g2-notifications'
 import { InputFormClasses, InputFormStyles } from './docs'
 import { Option } from '../Select'
 

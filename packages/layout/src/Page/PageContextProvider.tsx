@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { HeaderProps } from '../Header'
-import { ActionsProps } from '@smartb/g2-components'
+import { ActionsProps } from '@komune-io/g2-components'
 
 export interface PageContextProps {
   /**

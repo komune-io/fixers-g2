@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuItems } from '@smartb/g2-components'
+import { MenuItems } from '@komune-io/g2-components'
 import { ExpandMore } from '@mui/icons-material'
 import {
   Accordion,
@@ -10,7 +10,7 @@ import {
   ListItem,
   List
 } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
 
 const useStyles = makeG2STyles()({
   profile: {

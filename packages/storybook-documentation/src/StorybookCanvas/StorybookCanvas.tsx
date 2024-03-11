@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import { DocsContainer } from '@storybook/addon-docs'
 
 const useStyles = makeG2STyles()({

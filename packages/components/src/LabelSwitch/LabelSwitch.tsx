@@ -1,6 +1,6 @@
 import { Tab, Tabs, TabsProps } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import React, { forwardRef, useCallback, useMemo } from 'react'
 
 const useStyles = makeG2STyles()((theme) => ({

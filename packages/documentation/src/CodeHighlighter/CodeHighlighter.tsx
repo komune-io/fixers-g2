@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css'
 import { Box, Typography } from '@mui/material'
-import { BasicProps } from '@smartb/g2-themes'
+import { BasicProps } from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 import SyntaxHighlighter, {
   SyntaxHighlighterProps

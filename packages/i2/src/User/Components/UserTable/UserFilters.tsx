@@ -5,8 +5,8 @@ import {
   useFilters,
   FiltersProps,
   Option
-} from '@smartb/g2-forms'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+} from '@komune-io/g2-forms'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 import { OrganizationId, OrganizationRef } from '../../../Organization'
 

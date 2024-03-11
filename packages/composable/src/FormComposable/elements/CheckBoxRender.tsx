@@ -1,4 +1,4 @@
-import { CheckBox, CheckBoxProps } from '@smartb/g2-forms'
+import { CheckBox, CheckBoxProps } from '@komune-io/g2-forms'
 import React, { useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'

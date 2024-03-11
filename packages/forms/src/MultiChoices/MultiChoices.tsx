@@ -6,7 +6,7 @@ import {
   FormGroup
 } from '@mui/material'
 import { useInputStyles } from '../style'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Option, SmartKey } from '../Select'
 import { CheckBox } from '../CheckBox'
 

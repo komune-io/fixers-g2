@@ -1,7 +1,7 @@
 import { ReduxProvider as AruiReduxProvider } from './ReduxProvider'
 import { Meta, StoryFn } from '@storybook/react'
 import { ArgsTable, Title, Primary, Description } from '@storybook/addon-docs'
-import { CodeHighlighter } from '@smartb/g2-documentation'
+import { CodeHighlighter } from '@komune-io/g2-documentation'
 import initRedux from './store'
 import { redux } from './docs'
 

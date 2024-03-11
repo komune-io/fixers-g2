@@ -3,7 +3,7 @@ import { AlertHub as AruiAlertHub, AlertHubProps } from './AlertHub'
 import { Meta, StoryFn } from '@storybook/react'
 
 import { useAlertHub } from './useAlertHub'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 
 export default {
   title: 'Notifications/AlertHub',

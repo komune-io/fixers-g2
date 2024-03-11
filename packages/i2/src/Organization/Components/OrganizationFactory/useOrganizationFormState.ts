@@ -2,8 +2,8 @@ import {
   FormPartialField,
   Option,
   useFormWithPartialFields
-} from '@smartb/g2-forms'
-import { ValidatorFnc } from '@smartb/g2-forms'
+} from '@komune-io/g2-forms'
+import { ValidatorFnc } from '@komune-io/g2-forms'
 import { useCallback, useMemo } from 'react'
 import { requiredString, useAdressFields } from '../../../Commons'
 import { useDeletableForm } from '../../../Commons/useDeletableForm'

@@ -1,4 +1,4 @@
-import { FormField, FormPartialField, ValidatorFnc } from '@smartb/g2-forms'
+import { FormField, FormPartialField, ValidatorFnc } from '@komune-io/g2-forms'
 import { useMemo } from 'react'
 import { Address, addressValidation, AdressValidationStrings } from '.'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent } from './clipboard-icon.svg'
-import { MergeReactElementProps } from '@smartb/g2-utils'
-import { useTheme } from '@smartb/g2-themes'
+import { MergeReactElementProps } from '@komune-io/g2-utils'
+import { useTheme } from '@komune-io/g2-themes'
 
 interface ClipboardBasicProps {
   color?: string

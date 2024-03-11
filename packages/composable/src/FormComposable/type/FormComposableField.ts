@@ -4,7 +4,7 @@ import {
   ElementRenderersConfig
 } from '../../ComposableRender'
 import { ReactNode } from 'react'
-import { PotentialError } from '@smartb/g2-forms'
+import { PotentialError } from '@komune-io/g2-forms'
 import { Condition } from '../../Conditions'
 
 export type FieldValidatorFnc = (value?: any, values?: any) => PotentialError

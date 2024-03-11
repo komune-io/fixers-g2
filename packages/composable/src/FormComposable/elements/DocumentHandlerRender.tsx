@@ -1,4 +1,4 @@
-import { DocumentHandlerProps, DocumentHandler } from '@smartb/g2-components'
+import { DocumentHandlerProps, DocumentHandler } from '@komune-io/g2-components'
 import React from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'

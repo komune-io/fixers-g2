@@ -9,7 +9,7 @@ import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes } from './docs'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 import { Page } from '../Page'
 
 export default {

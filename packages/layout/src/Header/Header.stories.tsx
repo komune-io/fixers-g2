@@ -4,8 +4,8 @@ import { Meta, StoryFn } from '@storybook/react'
 import { IconButton, Stack, Typography } from '@mui/material'
 import { Edit, Delete } from '@mui/icons-material'
 import { styles, classes } from './docs'
-import { BackButton, Button } from '@smartb/g2-components'
-import { StatusTag } from '@smartb/g2-notifications'
+import { BackButton, Button } from '@komune-io/g2-components'
+import { StatusTag } from '@komune-io/g2-notifications'
 
 export default {
   title: 'Layout/Header',

@@ -5,8 +5,8 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
-import { Button } from '@smartb/g2-components'
+} from '@komune-io/g2-themes'
+import { Button } from '@komune-io/g2-components'
 import { Link, LinkProps } from 'react-router-dom'
 
 const useStyles = makeG2STyles()((theme) => ({

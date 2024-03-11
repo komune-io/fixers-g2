@@ -1,5 +1,5 @@
 // TODO This should probably merged with styles
-import { PartialDeep } from '@smartb/g2-utils'
+import { PartialDeep } from '@komune-io/g2-utils'
 
 export interface AppBarProps {
   height: number

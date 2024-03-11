@@ -1,4 +1,4 @@
-import { FilterSelect, FilterSelectProps } from '@smartb/g2-forms'
+import { FilterSelect, FilterSelectProps } from '@komune-io/g2-forms'
 import React from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'

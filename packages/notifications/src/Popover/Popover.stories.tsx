@@ -2,10 +2,10 @@ import { useMemo, useRef, useState } from 'react'
 import { Popover as AruiPopover, PopoverBasicProps } from './Popover'
 import { Meta, StoryFn } from '@storybook/react'
 import { Box, Typography } from '@mui/material'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 
 import { classes, styles } from './docs'
-import { InputForm } from '@smartb/g2-forms'
+import { InputForm } from '@komune-io/g2-forms'
 
 export default {
   title: 'Notifications/Popover',

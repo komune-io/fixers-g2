@@ -1,4 +1,4 @@
-import { fileToBase64 } from '@smartb/g2-utils'
+import { fileToBase64 } from '@komune-io/g2-utils'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { DirectoryPath, FsFile, TrackedFsFile } from '../../Domain'
 import { v4 as uuidv4 } from 'uuid'

@@ -1,10 +1,10 @@
 import { IconButton, IconButtonProps } from '@mui/material'
 import { CheckRounded } from '@mui/icons-material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 import React, { forwardRef, useCallback, useState } from 'react'
 import { Clipboard } from '../icons'
-import { Tooltip } from '@smartb/g2-notifications'
+import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
 const useStyles = makeG2STyles()((theme) => ({

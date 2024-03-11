@@ -9,7 +9,7 @@ import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import { Stack, Typography } from '@mui/material'
 import { styles, classes } from '../../Domain'
-import { Button } from '@smartb/g2-components'
+import { Button } from '@komune-io/g2-components'
 
 export default {
   title: 'I2/OrganizationFactory',

@@ -3,7 +3,7 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import React, { forwardRef } from 'react'
 
 const useStyles = makeG2STyles()((theme) => ({

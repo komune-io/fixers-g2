@@ -18,9 +18,9 @@ import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
-import { extractNumberOrBooleanFromString } from '@smartb/g2-utils'
+import { extractNumberOrBooleanFromString } from '@komune-io/g2-utils'
 
 export type SmartKey = string | number | boolean
 

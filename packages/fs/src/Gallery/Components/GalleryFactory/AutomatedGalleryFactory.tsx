@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
-import { Button } from '@smartb/g2-components'
-import { fsConfig } from '@smartb/g2-providers'
-import { MergeMuiElementProps } from '@smartb/g2-themes'
+import { Button } from '@komune-io/g2-components'
+import { fsConfig } from '@komune-io/g2-providers'
+import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useCallback, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import {

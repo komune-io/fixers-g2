@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { DropPictureError } from '@smartb/g2-components'
-import { fileToBase64 } from '@smartb/g2-utils'
+import { DropPictureError } from '@komune-io/g2-components'
+import { fileToBase64 } from '@komune-io/g2-utils'
 
 export interface DropZonePictureActions {
   errorMessage?: string

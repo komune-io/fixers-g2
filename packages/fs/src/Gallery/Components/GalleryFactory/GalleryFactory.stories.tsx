@@ -2,7 +2,7 @@ import { Meta, StoryFn } from '@storybook/react'
 import React from 'react'
 import { GalleryFactory, GalleryFactoryProps } from './GalleryFactory'
 import { useState } from '@storybook/addons'
-import { fileToBase64 } from '@smartb/g2-utils'
+import { fileToBase64 } from '@komune-io/g2-utils'
 import { FsFile } from '../../Domain'
 
 export default {

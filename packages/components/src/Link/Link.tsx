@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
-import { makeG2STyles } from '@smartb/g2-themes'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { makeG2STyles } from '@komune-io/g2-themes'
 
 const useStyles = makeG2STyles()({
   link: {
@@ -46,8 +46,15 @@ export type LinkProps<T extends object = {}> = MergeMuiElementProps<
 >
 
 export const Link = <T extends object = {}>(props: LinkProps<T>) => {
-  const { href, className, component, componentProps, disabled, variant = "body1", ...other } =
-    props
+  const {
+    href,
+    className,
+    component,
+    componentProps,
+    disabled,
+    variant = 'body1',
+    ...other
+  } = props
   const { classes, cx } = useStyles()
   if (component)
     return (

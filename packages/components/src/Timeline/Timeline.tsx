@@ -15,7 +15,7 @@ import {
   makeG2STyles,
   BasicProps,
   useTheme
-} from '@smartb/g2-themes'
+} from '@komune-io/g2-themes'
 import { FilledArrow } from '../icons'
 
 const useStyles = makeG2STyles()((theme) => ({

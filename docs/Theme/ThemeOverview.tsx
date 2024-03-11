@@ -3,7 +3,11 @@ import { Typography } from "@mui/material";
 import { SBButton, Panel, Card } from "../../packages/components/src";
 import { getShadows } from "./Theme";
 import ThemeGetter from "./ThemeGetter";
-import { ThemeColors, useThemeContext, makeG2STyles } from "@smartb/g2-themes";
+import {
+  ThemeColors,
+  useThemeContext,
+  makeG2STyles,
+} from "@komune-io/g2-themes";
 
 const useStyles = makeG2STyles()(() => ({
   card: {

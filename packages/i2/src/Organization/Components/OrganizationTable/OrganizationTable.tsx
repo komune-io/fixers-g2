@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
-import { Link, MenuItem, Presentation } from '@smartb/g2-components'
-import { Column, Table, TableProps, CellProps } from '@smartb/g2-layout'
-import { BasicProps, MergeMuiElementProps } from '@smartb/g2-themes'
+import { Link, MenuItem, Presentation } from '@komune-io/g2-components'
+import { Column, Table, TableProps, CellProps } from '@komune-io/g2-layout'
+import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 import {
   ExtandedColumnsParams,
