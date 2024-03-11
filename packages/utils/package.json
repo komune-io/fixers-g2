@@ -1,7 +1,7 @@
 {
   "name": "@komune-io/g2-utils",
   "repository": "https://gitlab.smartb.city/fixers/g2.git",
-  "author": "SmartB",
+  "author": "Komune",
   "license": "Apache-2.0",
   "version": "0.5.0-alpha.1",
   "description": "Utility package used in the g2 packages.",

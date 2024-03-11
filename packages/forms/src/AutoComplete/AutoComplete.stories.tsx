@@ -22,7 +22,7 @@ interface Book {
 }
 
 const books: Book[] = [
-  { title: 'SmartB Potter', author: 'JK Blockchain', id: 'b1' },
+  { title: 'Komune Potter', author: 'JK C2', id: 'b1' },
   { title: 'The Lord of the Bs', author: 'S.S.M. Tolkien', id: 'b2' },
   { title: 'Impact Wars', author: 'Carbon Lucas', id: 'b3' },
   { title: 'Blockchainator', author: 'A strange guy', id: 'b4' },
