@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     #    permissions:
     #      pages: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    #    environment:
+    #      name: github-pages
+    #      url: ${{ steps.deployment.outputs.page_url }}
     needs: [build-storybook]
     steps:
       - name: Download artifacts
