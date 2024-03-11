@@ -12,7 +12,7 @@ import {
   StepConnector,
   styled
 } from '@mui/material'
-import { MergeMuiElementProps } from '@smartb/g2'
+import { MergeMuiElementProps } from '@smartb/g2-themes'
 import React, { useMemo } from 'react'
 
 export type StepItem = {
