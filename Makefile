@@ -21,7 +21,7 @@ clean:
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
 
 build-libs:
-	@yarn install --frozen-lockfile
+	@yarn install --frozen-lockfile --ignore-scripts
 	@yarn workspace @komune-io/g2-utils run build
 	@yarn workspace @komune-io/g2-themes run build
 	@yarn workspace @komune-io/g2-notifications run build

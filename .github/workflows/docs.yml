@@ -41,6 +41,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: storybook-static
+          path: ./storybook-static
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -49,8 +51,8 @@ jobs:
         with:
           path: storybook-static
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      #      - name: Deploy to GitHub Pages
+      #        uses: actions/deploy-pages@v4
 
       - name: Print footer
         shell: bash

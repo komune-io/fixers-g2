@@ -1,0 +1,5 @@
+services:
+  grafana:
+    image: ghcr.io/smartbcity/g2-storybook:0.5.0-snapshot
+    ports:
+      - "80:80"
