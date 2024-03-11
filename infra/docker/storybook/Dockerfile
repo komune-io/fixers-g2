@@ -1,16 +1,17 @@
 #### Stage 1: Build the react application
-FROM node:18.19.1-alpine3.19 as build
+FROM node:21.7-alpine3.19 as build
 
 WORKDIR /app
 
 COPY . ./
 
 # Install Alpine Dependencies
+#RUN apk update && apk upgrade && \
+#    apk add --no-cache python3 make g++
 RUN apk update && apk upgrade && \
-    apk add --no-cache python3 make g++
+    apk add --no-cache make
 
-RUN yarn install --frozen-lockfile
-RUN make package-libs
+RUN make build-libs
 ENV PATH /app/node_modules/.bin:$PATH
 
 RUN yarn build-storybook
