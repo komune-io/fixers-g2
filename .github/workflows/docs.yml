@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 21
           cache: "yarn"
       - run: yarn
       - name: Build StoryBook
@@ -30,11 +30,11 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    #    permissions:
-    #      pages: write
-    #    environment:
-    #      name: github-pages
-    #      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: [build-storybook]
     steps:
       - name: Download artifacts
@@ -43,16 +43,16 @@ jobs:
           name: storybook-static
           path: ./storybook-static
 
-      #      - name: Setup Pages
-      #        uses: actions/configure-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      #      - name: Package and upload Pages artifact
-      #        uses: actions/upload-pages-artifact@v3
-      #        with:
-      #          path: storybook-static
+      - name: Package and upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
 
-      #      - name: Deploy to GitHub Pages
-      #        uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 
       - name: Print footer
         shell: bash

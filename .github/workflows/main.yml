@@ -29,15 +29,11 @@ jobs:
     name: Build packages
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18]
-
     steps:
       - name: Setup Node.js environment ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 21
 
       - name: Checkout repository
         uses: actions/checkout@v4
