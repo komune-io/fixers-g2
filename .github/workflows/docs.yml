@@ -7,6 +7,7 @@ on: [push]
 
 jobs:
   build-storybook:
+    name: Package Storybook
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +19,6 @@ jobs:
           cache: "yarn"
       - name: Lint
         run: make lint-docker-storybook
-      - run: yarn
       - name: Build StoryBook
         run: make build-storybook
       - uses: actions/upload-artifact@v4
@@ -28,7 +28,7 @@ jobs:
 
   publish-docker:
     runs-on: ubuntu-latest
-    name: Deploy Chromatic
+    name: Publish Docker
     needs: [build-storybook]
     steps:
       - uses: actions/checkout@v4
@@ -42,9 +42,9 @@ jobs:
       - name: Build Docker
         run: make docker-storybook
 
-  publish-chromatic-page:
+  publish-chromatic:
     runs-on: ubuntu-latest
-    name: Deploy Chromatic
+    name: Publish Chromatic
     needs: [build-storybook]
     steps:
       - uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
 
   publish-github-page:
     runs-on: ubuntu-latest
-    name: Deploy Github Page
+    name: Publish Github Page
     permissions:
       pages: write
       id-token: write
