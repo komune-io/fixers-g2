@@ -15,6 +15,9 @@ docker-storybook:
 	@docker build --platform=linux/amd64 -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
+lint-docker-storybook:
+	@docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < ${STORYBOOK_DOCKERFILE}
+
 clean:
 	-rm -fr node_modules
 	-find ./packages/*/ -name "node_modules" -type d -exec rm -rf {} \;

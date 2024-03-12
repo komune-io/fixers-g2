@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 21
           cache: "yarn"
+      - name: Lint
+        run: make lint-docker-storybook
       - run: yarn
       - name: Build StoryBook
         run: make build-storybook
@@ -24,17 +26,35 @@ jobs:
           name: storybook-static
           path: ./storybook-static
 
-  deploy-chromatic-page:
+  publish-docker:
     runs-on: ubuntu-latest
     name: Deploy Chromatic
     needs: [build-storybook]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: storybook-static
           path: ./storybook-static
+      - name: Build Docker
+        run: make docker-storybook
 
+  publish-chromatic-page:
+    runs-on: ubuntu-latest
+    name: Deploy Chromatic
+    needs: [build-storybook]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-static
+          path: ./storybook-static
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
@@ -51,9 +71,9 @@ jobs:
           echo ""  >> $GITHUB_STEP_SUMMARY
           echo "The Storybook preview URL  ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
 
-  deploy-github-page:
+  publish-github-page:
     runs-on: ubuntu-latest
-    name: Github Page
+    name: Deploy Github Page
     permissions:
       pages: write
       id-token: write
