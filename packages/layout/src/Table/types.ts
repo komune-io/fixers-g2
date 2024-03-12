@@ -72,13 +72,13 @@ export const UseCompleteTable = <Data extends object>(
   },
   ...plugins: PluginHook<Data>[]
 ): CompleteTableInstance<Data> => {
-  //@ts-ignore
-  return useTable(
+  if (variant === 'grounded') {
     //@ts-ignore
-    options,
-    ...plugins,
-    variant === 'elevated' ? useFlexLayout : undefined
-  )
+    return useTable(options, ...plugins)
+  } else {
+    //@ts-ignore
+    return useTable(options, ...plugins, useFlexLayout)
+  }
 }
 
 export const customCellExample = `
