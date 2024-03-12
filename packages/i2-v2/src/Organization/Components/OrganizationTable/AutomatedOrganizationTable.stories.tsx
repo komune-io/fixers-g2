@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Meta, StoryFn } from '@storybook/react'
 import {
   AutomatedOrganizationTable,
   AutomatedOrganizationTableBasicProps as AutomatedOrganizationTableProps
 } from './AutomatedOrganizationTable'
 
-import { g2Config, KeycloakProvider, useAuth } from '@komune-io/g2-providers'
-import { Typography } from '@mui/material'
+import { KeycloakProvider, OidcSecure, useAuth } from '@komune-io/g2-providers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Organization } from '../OrganizationFactory'
+import { Organization } from '../../Domain'
 
 export default {
   title: 'I2V2/AutomatedOrganizationTable',
@@ -28,12 +27,10 @@ export const AutomatedOrganizationTableStory: StoryFn<
 > = (args: AutomatedOrganizationTableProps<Organization>) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <KeycloakProvider
-        config={g2Config().keycloak}
-        loadingComponent={<Typography>Loading...</Typography>}
-        initOptions={{ onLoad: 'login-required' }}
-      >
-        <Following {...args} />
+      <KeycloakProvider>
+        <OidcSecure>
+          <Following {...args} />
+        </OidcSecure>
       </KeycloakProvider>
     </QueryClientProvider>
   )
@@ -42,7 +39,7 @@ export const AutomatedOrganizationTableStory: StoryFn<
 const Following = (args: AutomatedOrganizationTableProps<Organization>) => {
   const { keycloak } = useAuth()
 
-  if (!keycloak.authenticated) return <></>
+  if (!keycloak.isAuthenticated) return <></>
   return <AutomatedOrganizationTable {...args} />
 }
 
