@@ -1,6 +1,12 @@
-import { CommonFieldProps } from './type'
+import { CommonFieldProps, FormComposableField } from './type'
 import React from 'react'
 
-export const FormField = (props: CommonFieldProps<string>) => {
+const inputTypes = {} as FormComposableField
+
+export interface InputTypes {
+  type: typeof inputTypes.type
+}
+
+export const FormField = (props: InputTypes & CommonFieldProps) => {
   return <></>
 }
