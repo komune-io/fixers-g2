@@ -5,13 +5,16 @@ import {
   PRIMARY_STORY,
   Primary,
   Description,
-  Title
+  Title,
+  Subtitle
 } from '@storybook/addon-docs'
 import { AutoForm, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
 import json from './autoForm.json'
 import { autoFormFormatter } from './autoFormFormatter'
 import { Button } from '@komune-io/g2-components'
+import { Box, Typography } from '@mui/material'
+import LinkTo from '@storybook/addon-links/react'
 
 export default {
   title: 'Composable/AutoForm',
@@ -28,6 +31,15 @@ export default {
           </Description>
           <Primary />
           <ArgsTable story={PRIMARY_STORY} />
+          <Subtitle>References</Subtitle>
+          <Box display='flex' flexDirection='column'>
+            <Typography variant='body2' style={{ marginBottom: '5px' }}>
+              -{' '}
+              <LinkTo kind='Composable' story='FormComposable'>
+                FormComposable
+              </LinkTo>
+            </Typography>
+          </Box>
           <Description>
             The function `autoFormFormatter` is an utilitary that can format the
             backend autoForm object to the frontend requirements.

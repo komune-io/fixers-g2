@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react'
 import { Meta, StoryFn } from '@storybook/react'
 import {
   ArgsTable,
-  PRIMARY_STORY,
   Primary,
   Description,
   Stories,
@@ -42,6 +41,10 @@ export default {
             The form fields have common props describe below
           </Description>
           <ArgsTable components={{ FormField: FormField }} />
+          <Description>
+            the separated props of each fields are describe in the components
+            documentation pages
+          </Description>
           <Title>Documenthandler</Title>
           <Description>
             {
