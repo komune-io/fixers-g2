@@ -1,1 +1,1 @@
-export * from "./UserSummary"
+export * from './UserSummary'

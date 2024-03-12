@@ -1,133 +1,65 @@
-import { FormField, FormPartialField, ValidatorFnc } from '@komune-io/g2-forms'
+import { FormComposableField } from '@komune-io/g2-composable'
 import { useMemo } from 'react'
-import { Address, addressValidation, AdressValidationStrings } from '.'
+import { Address, mergeFields } from '.'
+import { validators } from '@komune-io/g2-utils'
+import { useTranslation } from 'react-i18next'
 
-export interface AdressStrings extends AdressValidationStrings {
-  /**
-   * @default "Addresse (facultatif)"
-   */
-  street?: string
-  /**
-   * @default "Code postal (facultatif)"
-   */
-  postalCode?: string
-  /**
-   * @default "Ville (facultatif)"
-   */
-  city?: string
-}
+export type AdressFieldsName = 'street' | 'postalCode' | 'city'
 
 export type AdressReadOnlyFields = {
   [k in keyof Address]?: boolean
 }
 
+export type AdressFieldsOverride = Partial<
+  Record<AdressFieldsName, Partial<FormComposableField<AdressFieldsName>>>
+>
+
 export interface useAdressFieldsParams {
   /**
-   * The default address to use in the form
+   * use This prop to override the fields
    */
-  address?: Address
-  /**
-   * The prop to use to add custom translation to the component
-   */
-  strings?: AdressStrings
-  /**
-   * The prop to use to put the fields in readOnly
-   */
-  readOnly?: boolean
-  /**
-   * An object containing the additional validators. The key should be the name of the field
-   */
-  additionalValidators?: { [key: string]: ValidatorFnc }
+  fieldsOverride?: AdressFieldsOverride
 }
 
 export const useAdressFields = (params?: useAdressFieldsParams) => {
-  const {
-    address,
-    strings = {},
-    readOnly = false,
-    additionalValidators
-  } = params || {}
+  const { fieldsOverride } = params || {}
 
-  const addressPartialFields = useMemo(
-    () => ({
-      street: {
-        name: 'street',
-        defaultValue: address?.street,
-        validator: readOnly
-          ? undefined
-          : (value: any, values: any) =>
-              addressValidation.street(
-                value,
-                values,
-                strings,
-                additionalValidators
-              )
-      } as FormPartialField,
-      postalCode: {
-        name: 'postalCode',
-        defaultValue: address?.postalCode,
-        validator: readOnly
-          ? undefined
-          : (value: any, values: any) =>
-              addressValidation.postalCode(
-                value,
-                values,
-                strings,
-                additionalValidators
-              )
-      } as FormPartialField,
-      city: {
-        name: 'city',
-        defaultValue: address?.city,
-        validator: readOnly
-          ? undefined
-          : (value: any, values: any) =>
-              addressValidation.city(
-                value,
-                values,
-                strings,
-                additionalValidators
-              )
-      } as FormPartialField
-    }),
-    [address, strings, readOnly]
-  )
+  const { t } = useTranslation()
 
   const addressFields = useMemo(
     () => ({
-      street: {
-        key: 'street',
-        name: 'street',
-        type: 'textfield',
-        label: strings?.street ?? 'Addresse (facultatif)',
-        textFieldProps: {
-          readOnly: readOnly
-        }
-      } as FormField,
-      postalCode: {
-        key: 'postalCode',
-        name: 'postalCode',
-        type: 'textfield',
-        label: strings?.postalCode ?? 'Code postal (facultatif)',
-        textFieldProps: {
-          readOnly: readOnly
-        }
-      } as FormField,
-      city: {
-        key: 'city',
-        name: 'city',
-        type: 'textfield',
-        label: strings?.city ?? 'Ville (facultatif)',
-        textFieldProps: {
-          readOnly: readOnly
-        }
-      } as FormField
+      street: mergeFields<FormComposableField<AdressFieldsName>>(
+        {
+          name: 'street',
+          type: 'textField',
+          label: t('g2.facultativeField', { label: t('g2.address') }),
+          validator: validators.street(t)
+        },
+        fieldsOverride?.street
+      ),
+      postalCode: mergeFields<FormComposableField<AdressFieldsName>>(
+        {
+          name: 'postalCode',
+          type: 'textField',
+          label: t('g2.facultativeField', { label: t('g2.postalCode') }),
+          validator: validators.postalCode(t)
+        },
+        fieldsOverride?.postalCode
+      ),
+      city: mergeFields<FormComposableField<AdressFieldsName>>(
+        {
+          name: 'city',
+          type: 'textField',
+          label: t('g2.facultativeField', { label: t('g2.city') }),
+          validator: validators.city(t)
+        },
+        fieldsOverride?.city
+      )
     }),
-    [readOnly, strings]
+    [t, fieldsOverride]
   )
 
   return {
-    addressFields,
-    addressPartialFields
+    addressFields
   }
 }

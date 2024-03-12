@@ -1,52 +1,67 @@
-import {
-  FormPartialField,
-  Option,
-  useFormWithPartialFields
-} from '@komune-io/g2-forms'
-import { ValidatorFnc } from '@komune-io/g2-forms'
+import { i2Config, useAuth } from '@komune-io/g2-providers'
 import { useCallback, useMemo } from 'react'
-import { requiredString, useAdressFields } from '../../../Commons'
-import { useDeletableForm } from '../../../Commons/useDeletableForm'
 import {
   FlatOrganization,
   flatOrganizationToOrganization,
-  Organization
+  Organization,
+  OrganizationId,
+  organizationToFlatOrganization
 } from '../../Domain'
-import { siretValidation } from '../../Validation/siret'
+import { useQueryClient } from '@tanstack/react-query'
 import {
-  OrganizationFactoryStrings,
-  ReadOnlyFields
-} from './OrganizationFactory'
+  getInseeOrganization,
+  useCreateOrganization,
+  useGetOrganization,
+  useOrganizationUploadLogo,
+  useUpdateOrganization
+} from '../../Api'
+import { FormikFormParams, useFormComposable } from '@komune-io/g2-composable'
+import {
+  CommandOptions,
+  CommandWithFile,
+  QueryOptions
+} from '@komune-io/g2-utils'
 
-export interface useOrganizationFormStateProps<T extends Organization> {
+export interface useOrganizationFormStateProps<
+  T extends Organization = Organization
+> {
   /**
-   * The additional fields to add to the form
+   * The organization id to provide if it's an updation
    */
-  additionalFields?: FormPartialField[]
+  organizationId?: string
   /**
-   * The name of the field you want to block in the form state
+   * The getOrganization hook options
    */
-  blockedFields?: string[]
+  getOrganizationOptions?: QueryOptions<{ id: OrganizationId }, { item: T }>
   /**
-   * An object containing the additional validators. The key should be the name of the field
+   * The updateOrganization hook options
    */
-  additionalValidators?: { [key: string]: ValidatorFnc }
+  updateOrganizationOptions?: CommandOptions<T, { id: OrganizationId }>
   /**
-   * The prop to use to add custom translation to the component
+   * The uploadLogo hook options
    */
-  strings?: OrganizationFactoryStrings
+  uploadLogoOptions?: CommandOptions<
+    CommandWithFile<{ id: OrganizationId }>,
+    { id: OrganizationId }
+  >
   /**
-   * The initial organization
+   * The createOrganization hook options
    */
-  organization?: Partial<Organization>
+  createOrganizationOptions?: CommandOptions<T, { id: OrganizationId }>
+  /**a
+   * Define whether the object is updated or created
+   * @default false
+   */
+  update?: boolean
   /**
-   * Use this prop if you want only some fields to be readOnly
+   * The roles used to attributs the default roles
    */
-  readOnlyFields?: ReadOnlyFields
+  defaultRoles?: string[]
   /**
-   * The roles options needed to make the roles select.
+   * to use the current user organization
+   * @default  false
    */
-  rolesOptions?: Option[]
+  myOrganization?: boolean
   /**
    * Allow the organization to have multipe roles
    *
@@ -54,125 +69,172 @@ export interface useOrganizationFormStateProps<T extends Organization> {
    */
   multipleRoles?: boolean
   /**
-   * The submit event
-   * @param organization the complete organization object after form Validation
-   * @returns true if the Api call has been successfull
+   * use this param to access the formComposable config
    */
-  onSubmit?: (organization: T) => void
+  formComposableParams?: Partial<FormikFormParams<any>>
+  /**
+   * provide this function to extend the initialValues passes to the formComposable
+   */
+  extendInitialValues?: (organization?: T) => any
 }
 
 export const useOrganizationFormState = <T extends Organization = Organization>(
   params?: useOrganizationFormStateProps<T>
 ) => {
   const {
-    additionalFields = [],
-    additionalValidators,
-    blockedFields,
-    strings,
-    organization,
-    readOnlyFields,
-    rolesOptions,
+    createOrganizationOptions,
+    getOrganizationOptions,
+    organizationId,
+    update,
+    updateOrganizationOptions,
+    defaultRoles,
     multipleRoles = true,
-    onSubmit
+    myOrganization = false,
+    uploadLogoOptions,
+    formComposableParams,
+    extendInitialValues
   } = params ?? {}
 
-  const defaultRoles = useMemo(() => {
-    const givenRoles = rolesOptions?.map((it) => it.key)
-    const roles = organization?.roles?.filter((it) => givenRoles?.includes(it))
-    return multipleRoles ? roles : roles?.[0]
-  }, [rolesOptions, organization?.roles, multipleRoles])
+  const { keycloak, service } = useAuth()
+  const queryClient = useQueryClient()
 
-  const { addressPartialFields } = useAdressFields({
-    address: organization?.address,
-    strings,
-    additionalValidators,
-    readOnly: readOnlyFields?.address
+  const user = useMemo(() => {
+    return service.getUser()
+  }, [service.getUser])
+
+  const getOrganization = useGetOrganization<T>({
+    query: {
+      id: (myOrganization ? user?.memberOf : organizationId) ?? ''
+    },
+    options: {
+      ...getOrganizationOptions,
+      enabled: !!organizationId
+    }
   })
 
-  const initialFields = useMemo(
-    (): FormPartialField[] => [
-      {
-        name: 'siret',
-        defaultValue: organization?.siret,
-        validator: (value: any, values: any) =>
-          siretValidation(value, values, readOnlyFields, additionalValidators)
-      },
-      addressPartialFields.street,
-      addressPartialFields.postalCode,
-      addressPartialFields.city,
-      {
-        name: 'name',
-        defaultValue: organization?.name,
-        validator: (value?: string, values?: any) =>
-          requiredString(
-            'name',
-            strings?.requiredField,
-            value,
-            values,
-            readOnlyFields,
-            additionalValidators
-          )
-      },
-      {
-        name: 'description',
-        defaultValue: organization?.description,
-        validator:
-          !readOnlyFields?.description && additionalValidators?.description
-            ? additionalValidators?.description
-            : undefined
-      },
-      {
-        name: 'website',
-        defaultValue: organization?.website,
-        validator:
-          !readOnlyFields?.website && additionalValidators?.website
-            ? additionalValidators?.website
-            : undefined
-      },
-      {
-        name: 'roles',
-        defaultValue: defaultRoles,
-        validator:
-          !readOnlyFields?.roles && additionalValidators?.roles
-            ? additionalValidators?.roles
-            : undefined
-      }
-    ],
-    [
-      organization,
-      rolesOptions,
-      readOnlyFields,
-      strings,
-      defaultRoles,
-      additionalValidators,
-      addressPartialFields
-    ]
+  const organization = useMemo(
+    () => getOrganization.data?.item,
+    [getOrganization.data?.item]
   )
 
-  const fields = useDeletableForm<FormPartialField>({
-    initialFields,
-    additionalFields,
-    blockedFields
+  const updateOrganizationOptionsMemo = useMemo(
+    () => ({
+      ...updateOrganizationOptions,
+      onSuccess: (data, variables, context) => {
+        getOrganization.refetch()
+        queryClient.invalidateQueries({ queryKey: ['organizationRefs'] })
+        queryClient.invalidateQueries({ queryKey: ['organizations'] })
+        updateOrganizationOptions?.onSuccess &&
+          updateOrganizationOptions.onSuccess(data, variables, context)
+      }
+    }),
+    [updateOrganizationOptions, getOrganization, queryClient.invalidateQueries]
+  )
+
+  const createOrganizationOptionsMemo = useMemo(
+    () => ({
+      ...createOrganizationOptions,
+      onSuccess: (data, variables, context) => {
+        queryClient.invalidateQueries({ queryKey: ['organizationRefs'] })
+        queryClient.invalidateQueries({ queryKey: ['organizations'] })
+        createOrganizationOptions?.onSuccess &&
+          createOrganizationOptions.onSuccess(data, variables, context)
+      }
+    }),
+    [createOrganizationOptions, queryClient.invalidateQueries]
+  )
+
+  const updateOrganization = useUpdateOrganization({
+    options: updateOrganizationOptionsMemo
   })
+
+  const uploadLogo = useOrganizationUploadLogo({
+    options: uploadLogoOptions
+  })
+
+  const createOrganization = useCreateOrganization({
+    options: createOrganizationOptionsMemo
+  })
+
+  const updateOrganizationMemoized = useCallback(
+    async (organization: Organization) => {
+      organization.logo &&
+        (await uploadLogo.mutateAsync({
+          //@ts-ignore
+          file: organization.logo,
+          id: organization.id
+        }))
+      delete organization.logo
+      await updateOrganization.mutateAsync(organization)
+    },
+    [updateOrganization.mutateAsync, uploadLogo.mutateAsync]
+  )
+
+  const createOrganizationMemoized = useCallback(
+    async (organization: Organization) => {
+      await createOrganization.mutateAsync(organization)
+    },
+    [createOrganization.mutateAsync]
+  )
 
   const onSubmitMemoized = useCallback(
     async (values: FlatOrganization) => {
-      if (onSubmit) {
-        onSubmit({
-          ...values,
-          ...flatOrganizationToOrganization(values, multipleRoles),
-          id: organization?.id ?? ''
-        } as T)
-      }
+      const onSubmit = update
+        ? updateOrganizationMemoized
+        : createOrganizationMemoized
+      await onSubmit({
+        ...values,
+        ...flatOrganizationToOrganization(values, multipleRoles),
+        id: organization?.id ?? ''
+      })
     },
-    [onSubmit, organization, multipleRoles]
+    [
+      organization,
+      multipleRoles,
+      update,
+      updateOrganizationMemoized,
+      createOrganizationMemoized
+    ]
   )
 
-  return useFormWithPartialFields({
-    fields: fields,
+  const initialRoles = useMemo(() => {
+    const roles = organization?.roles ?? defaultRoles
+    return multipleRoles ? roles : roles?.[0]
+  }, [defaultRoles, organization?.roles, multipleRoles])
+
+  const initialValues = useMemo(
+    () => ({
+      ...(!!organization
+        ? //@ts-ignore
+          organizationToFlatOrganization(organization)
+        : undefined),
+      //@ts-ignore
+      roles: initialRoles,
+      ...(extendInitialValues ? extendInitialValues(organization) : undefined)
+    }),
+    [initialRoles, organization, extendInitialValues]
+  )
+
+  const formState = useFormComposable({
+    ...formComposableParams,
     onSubmit: onSubmitMemoized,
     formikConfig: {
-      enableReinitialize: true
+      initialValues: initialValues
     }
   })
+
+  const getInseeOrganizationMemoized = useCallback(
+    async (siret: string) => {
+      return getInseeOrganization(siret, i2Config().url, keycloak.token)
+    },
+    [keycloak.token]
+  )
+
+  return {
+    formState,
+    organization: organization,
+    isLoading: getOrganization.isInitialLoading,
+    getOrganization: getOrganization,
+    getInseeOrganization: getInseeOrganizationMemoized
+  }
 }

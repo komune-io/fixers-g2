@@ -2,7 +2,7 @@ export {
   User,
   UserPageQuery,
   UserPageResult,
-  FlatUserToUser,
+  flatUserToUser,
   userToFlatUser,
   UserResetPasswordCommand,
   UserUpdateEmailCommand,
@@ -18,19 +18,24 @@ export * from './Api'
 export {
   UserFactory,
   UserFactoryProps,
-  AutomatedUserFactory,
-  AutomatedUserFactoryProps,
-  ReadOnlyUserFieldsPerState,
-  useUserFormState,
-  UserFactoryStrings,
-  ReadOnlyFields as UserReadOnlyFields
+  userFieldsName,
+  UseUserFormStateProps,
+  UseUserFormFieldsProps,
+  UserFactoryFieldsOverride,
+  useUserFormFields,
+  useUserFormState
 } from './Components/UserFactory'
 
 export {
   AutomatedUserTable,
   AutomatedUserTableProps,
   UserTable,
-  UserTableProps
+  UserTableProps,
+  useUserTableState,
+  useUserTableStateParams,
+  userTableColumns,
+  useUserColumns,
+  useUserColumnsParams
 } from './Components/UserTable'
 
 export {
@@ -41,7 +46,5 @@ export {
   UserResetPasswordFormClasses,
   UserResetPasswordFormStyles
 } from './Components/UserResetPassword'
-
-export { MyProfile } from './Components/MyProfile'
 
 export { UserSummary, UserSummaryProps } from './Components/UserSummary'

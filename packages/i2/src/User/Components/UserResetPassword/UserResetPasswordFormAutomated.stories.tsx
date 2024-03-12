@@ -1,7 +1,6 @@
 import React from 'react'
 import { Meta, StoryFn } from '@storybook/react'
-import { g2Config, KeycloakProvider } from '@komune-io/g2-providers'
-import { Typography } from '@mui/material'
+import { KeycloakProvider, OidcSecure } from '@komune-io/g2-providers'
 import {
   UserResetPasswordFormAutomated,
   UserResetPasswordFormAutomatedProps
@@ -9,7 +8,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export default {
-  title: 'I2/UserResetPasswordForm',
+  title: 'I2V2/UserResetPasswordForm',
   component: UserResetPasswordFormAutomated
 } as Meta
 
@@ -20,12 +19,10 @@ export const UserResetPasswordFormAutomatedStory: StoryFn<
 > = (args: UserResetPasswordFormAutomatedProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <KeycloakProvider
-        config={g2Config().keycloak}
-        loadingComponent={<Typography>Loading...</Typography>}
-        initOptions={{ onLoad: 'login-required' }}
-      >
-        <Following {...args} />
+      <KeycloakProvider>
+        <OidcSecure>
+          <Following {...args} />
+        </OidcSecure>
       </KeycloakProvider>
     </QueryClientProvider>
   )
