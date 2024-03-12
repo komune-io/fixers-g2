@@ -1,21 +1,28 @@
 export * from './Api'
 
 export {
-  AutomatedOrganizationFactory,
-  AutomatedOrganizationFactoryProps,
+  OrganizationFactoryFieldsOverride,
+  OrganizationFactoryClasses,
+  OrganizationFactoryStyles,
+  useOrganizationFormFields,
+  useOrganizationFormFieldsProps,
+  useOrganizationFormStateProps,
   OrganizationFactory,
   OrganizationFactoryProps,
-  ReadOnlyOrgFieldsPerState,
   useOrganizationFormState,
-  OrganizationFactoryStrings,
-  ReadOnlyFields as OrganizationReadOnlyFields
+  organizationFieldsName
 } from './Components/OrganizationFactory'
 
 export {
   AutomatedOrganizationTable,
   OrganizationTable,
   AutomatedOrganizationTableProps,
-  OrganizationTableProps
+  OrganizationTableProps,
+  useOrganizationTableState,
+  useOrganizationTableStateParams,
+  useOrganizationColumns,
+  useOrganizationColumnsParams,
+  OrganizationTableColumns
 } from './Components/OrganizationTable'
 
 export {
@@ -33,4 +40,4 @@ export {
   OrganizationUpdateCommand
 } from './Domain'
 
-export { MyOrganization } from './Components/MyOrganization'
+export { siretValidation } from './Validation/siret'

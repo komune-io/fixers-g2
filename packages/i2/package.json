@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@komune-io/g2-components": "0.5.0-alpha.1",
+    "@komune-io/g2-composable": "0.5.0-alpha.1",
     "@komune-io/g2-forms": "0.5.0-alpha.1",
     "@komune-io/g2-layout": "0.5.0-alpha.1",
     "@komune-io/g2-notifications": "0.5.0-alpha.1",
@@ -47,6 +48,7 @@
     "@komune-io/g2-utils": "0.5.0-alpha.1",
     "@mantine/hooks": "^4.2.12",
     "@mui/icons-material": "^5.11.11",
+    "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.2"
   },
   "publishConfig": {

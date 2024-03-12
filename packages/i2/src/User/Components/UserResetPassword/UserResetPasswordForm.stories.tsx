@@ -8,7 +8,7 @@ import {
 import { styles, classes } from '../../Domain'
 
 export default {
-  title: 'I2/UserResetPasswordForm',
+  title: 'I2V2/UserResetPasswordForm',
   component: UserResetPasswordForm,
   argTypes: {
     classes: {

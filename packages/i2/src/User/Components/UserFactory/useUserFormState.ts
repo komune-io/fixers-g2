@@ -1,51 +1,58 @@
-import {
-  FormPartialField,
-  Option,
-  useFormWithPartialFields,
-  ValidatorFnc
-} from '@komune-io/g2-forms'
-import { useCallback, useMemo, useState } from 'react'
-import {
-  requiredString,
-  useAdressFields,
-  validatePhone
-} from '../../../Commons'
-import { useDeletableForm } from '../../../Commons/useDeletableForm'
+import { FormikFormParams, useFormComposable } from '@komune-io/g2-composable'
+import { i2Config, useAuth } from '@komune-io/g2-providers'
+import { useCallback, useMemo } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { OrganizationId } from '../../../Organization'
-import { FlatUser, FlatUserToUser, User } from '../../Domain'
-import { UserFactoryStrings, ReadOnlyFields } from './UserFactory'
+import {
+  useCreateUser,
+  useGetUser,
+  userExistsByEmail,
+  useUpdateUser,
+  useUserUpdateEmail
+} from '../../Api'
+import {
+  FlatUser,
+  flatUserToUser,
+  User,
+  userToFlatUser,
+  UserUpdatedEmailEvent,
+  UserUpdateEmailCommand
+} from '../../Domain'
+import { CommandOptions, QueryOptions } from '@komune-io/g2-utils'
 
-const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
-
-export interface UseUserFormStateProps<T extends User> {
+export interface UseUserFormStateProps<T extends User = User> {
   /**
-   * The additional fields to add to the form
+   * The getUser hook options
    */
-  additionalFields?: FormPartialField[]
+  getUserOptions?: QueryOptions<{ id: string }, { item: T }>
   /**
-   * The name of the field you want to block in the form state
+   * The updateUser hook options
    */
-  blockedFields?: string[]
+  updateUserOptions?: CommandOptions<T, { id: string }>
   /**
-   * An object containing the additional validators. The key should be the name of the field
+   * The createUser hook options
    */
-  additionalValidators?: { [key: string]: ValidatorFnc }
+  createUserOptions?: CommandOptions<T, { id: string }>
   /**
-   * The prop to use to add custom translation to the component
+   * The userUpdateEmail hook options
    */
-  strings?: UserFactoryStrings
+  userUpdateEmailOptions?: CommandOptions<
+    UserUpdateEmailCommand,
+    UserUpdatedEmailEvent
+  >
   /**
-   * The initial user
+   * The organizationId of the user.⚠️ You have to provide it if `update` is false and the organization module is activated
    */
-  user?: Partial<User>
+  organizationId?: OrganizationId
   /**
-   * Use this prop if you want only some fields to be readOnly
+   * Define whether the object is updated or created
+   * @default false
    */
-  readOnlyFields?: ReadOnlyFields
+  update?: boolean
   /**
-   * The roles options needed to make the roles select.
+   * The user id to provide if it's an updation
    */
-  rolesOptions?: Option[]
+  userId?: string
   /**
    * Allow the user to have multipe roles
    *
@@ -53,220 +60,193 @@ export interface UseUserFormStateProps<T extends User> {
    */
   multipleRoles?: boolean
   /**
-   * The event called to check if the email is available
+   * to use the current user
+   * @default  false
    */
-  checkEmailValidity?: (email: string) => Promise<boolean | undefined>
+  myProfile?: boolean
   /**
-   * The submit event
-   * @param user the complete user object after form Validation
-   * @returns true if the Api call has been successfull
+   * The roles used by default in the form
    */
-  onSubmit?: (user: T) => void
+  defaultRoles?: string[]
   /**
-   * Indicates if it's an update
-   * @default false
+   * use this param to access the formComposable config
    */
-  isUpdate?: boolean
+  formComposableParams?: Partial<FormikFormParams<any>>
   /**
-   * To activate ReadOnly view
-   * @default false
+   * provide this function to extend the initialValues passes to the formComposable
    */
-  readOnly?: boolean
-  /**
-   * The organizationId of the user. Needed if you want to preSelect it when you are creating a user
-   */
-  organizationId?: OrganizationId
-  /**
-   * The r of the user. Needed if you want to preSelect it when you are creating a user
-   */
-  roles?: string[]
+  extendInitialValues?: (user?: T) => any
 }
 
 export const useUserFormState = <T extends User = User>(
   params?: UseUserFormStateProps<T>
 ) => {
   const {
-    additionalFields = [],
-    additionalValidators,
-    blockedFields,
-    strings,
-    user,
-    readOnlyFields,
-    rolesOptions,
     multipleRoles = true,
-    onSubmit,
-    checkEmailValidity,
-    isUpdate = false,
-    readOnly = false,
     organizationId,
-    roles = []
+    defaultRoles = [],
+    createUserOptions,
+    getUserOptions,
+    updateUserOptions,
+    userUpdateEmailOptions,
+    update = false,
+    myProfile = false,
+    userId,
+    formComposableParams,
+    extendInitialValues
   } = params ?? {}
 
-  const [emailValid, setEmailValid] = useState(false)
-  const [emailLoading, setEmailLoading] = useState(false)
+  const { keycloak, service } = useAuth()
+  const queryClient = useQueryClient()
 
-  const onCheckEmail = useCallback(
-    async (email: string): Promise<string | undefined> => {
-      if (user?.email !== email && checkEmailValidity) {
-        setEmailLoading(true)
-        const isTaken = await checkEmailValidity(email)
-        setEmailLoading(false)
-        if (isTaken === true) {
-          setEmailValid(false)
-          return strings?.emailAlreadyUsed ?? 'Cet email est déjà utilisé'
-        } else if (isTaken === false) {
-          setEmailValid(true)
-        }
-      }
-      return undefined
+  const keycloakUser = useMemo(() => {
+    return service.getUser()
+  }, [service.getUser])
+
+  const getUser = useGetUser<T>({
+    query: {
+      id: (myProfile && keycloakUser ? keycloakUser.id : userId) ?? ''
     },
-    [user?.email, checkEmailValidity]
-  )
-
-  const { addressPartialFields } = useAdressFields({
-    address: user?.address,
-    strings,
-    additionalValidators,
-    readOnly: readOnlyFields?.address
+    options: {
+      ...getUserOptions,
+      enabled: !!userId
+    }
   })
 
-  const initialFields = useMemo(
-    (): FormPartialField[] => [
-      {
-        name: 'givenName',
-        defaultValue: user?.givenName,
-        validator: (value?: string, values?: any) =>
-          requiredString(
-            'givenName',
-            strings?.requiredField,
-            value,
-            values,
-            readOnlyFields,
-            additionalValidators
-          )
-      },
-      {
-        name: 'familyName',
-        defaultValue: user?.familyName,
-        validator: (value?: string, values?: any) =>
-          requiredString(
-            'familyName',
-            strings?.requiredField,
-            value,
-            values,
-            readOnlyFields,
-            additionalValidators
-          )
-      },
-      addressPartialFields.street,
-      addressPartialFields.postalCode,
-      addressPartialFields.city,
-      {
-        name: 'email',
-        defaultValue: user?.email,
-        validator: async (value?: string) => {
-          if (readOnlyFields?.email) return undefined
-          const trimmed = (value ?? '').trim()
-          if (!trimmed)
-            return (
-              strings?.completeTheEmail ??
-              ('Vous devez renseigner le mail' as string)
-            )
-          if (!emailRegex.test(trimmed))
-            return (
-              strings?.enterAValidEmail ?? "L'email renseigné n'est pas correct"
-            )
-          return await onCheckEmail(trimmed)
-        }
-      },
-      {
-        name: 'phone',
-        defaultValue: user?.phone,
-        validator: (value?: string, values?: any) => {
-          if (readOnlyFields?.phone) return undefined
-          const res = validatePhone(value, strings?.enterAValidPhone)
-          if (res) return res
-          return additionalValidators?.phone
-            ? additionalValidators?.phone(value, values)
-            : undefined
-        }
-      },
-      {
-        name: 'roles',
-        defaultValue: multipleRoles
-          ? user?.roles?.assignedRoles || roles
-          : user?.roles?.assignedRoles[0] || roles[0],
-        validator:
-          !readOnlyFields?.roles && additionalValidators?.roles
-            ? additionalValidators?.roles
-            : undefined
-      },
-      {
-        name: 'memberOf',
-        defaultValue: user?.memberOf?.id ?? organizationId,
-        validator:
-          !readOnlyFields?.memberOf && additionalValidators?.memberOf
-            ? additionalValidators?.memberOf
-            : undefined
-      },
-      ...(!isUpdate && !readOnly
-        ? [
-            {
-              name: 'sendEmailLink',
-              defaultValue: true,
-              validator:
-                readOnlyFields?.sendEmailLink &&
-                additionalValidators?.sendEmailLink
-                  ? additionalValidators?.sendEmailLink
-                  : undefined
-            }
-          ]
-        : [])
-    ],
-    [
-      user,
-      isUpdate,
-      rolesOptions,
-      readOnly,
-      organizationId,
-      readOnlyFields,
-      strings,
-      multipleRoles,
-      onCheckEmail,
-      addressPartialFields
-    ]
+  const user = useMemo(() => getUser.data?.item, [getUser.data])
+
+  const updateUserOptionsMemo = useMemo(
+    () => ({
+      ...updateUserOptions,
+      onSuccess: (data, variables, context) => {
+        getUser.refetch()
+        queryClient.invalidateQueries({ queryKey: ['users'] })
+        updateUserOptions?.onSuccess &&
+          updateUserOptions.onSuccess(data, variables, context)
+      }
+    }),
+    [updateUserOptions, getUser, queryClient.invalidateQueries]
   )
 
-  const fields = useDeletableForm<FormPartialField>({
-    initialFields,
-    additionalFields,
-    blockedFields
+  const createUserOptionsMemo = useMemo(
+    () => ({
+      ...createUserOptions,
+      onSuccess: (data, variables, context) => {
+        queryClient.invalidateQueries({ queryKey: ['users'] })
+        createUserOptions?.onSuccess &&
+          createUserOptions.onSuccess(data, variables, context)
+      }
+    }),
+    [createUserOptions, queryClient.invalidateQueries]
+  )
+
+  const updateUser = useUpdateUser({
+    options: updateUserOptionsMemo
   })
+
+  const createUser = useCreateUser({
+    options: createUserOptionsMemo
+  })
+
+  const updateEmail = useUserUpdateEmail({
+    options: userUpdateEmailOptions
+  })
+
+  const updateUserMemoized = useCallback(
+    async (user: User) => {
+      const results: Promise<any>[] = []
+      //@ts-ignore
+      results.push(
+        updateUser.mutateAsync({ ...user, memberOf: user.memberOf?.id })
+      )
+      if (getUser.data?.item.email !== user.email) {
+        results.push(
+          updateEmail.mutateAsync({
+            email: user.email,
+            id: user.id
+          })
+        )
+      }
+      const res = await Promise.all(results)
+      for (let it in res) {
+        const result = res[it]
+        if (!result) return false
+      }
+      return true
+    },
+    [updateUser.mutateAsync, updateEmail.mutateAsync, getUser.data?.item.email]
+  )
+
+  const createUserMemoized = useCallback(
+    async (user: User) => {
+      //@ts-ignore
+      const res = await createUser.mutateAsync({
+        ...user,
+        memberOf: user.memberOf?.id ?? organizationId
+      })
+      if (res) {
+        return true
+      } else {
+        return false
+      }
+    },
+    [createUser.mutateAsync]
+  )
+
+  const checkEmailValidity = useCallback(
+    async (email: string) => {
+      return userExistsByEmail(email, i2Config().url, keycloak.token)
+    },
+    [keycloak.token]
+  )
 
   const onSubmitMemoized = useCallback(
     async (values: FlatUser) => {
+      const onSubmit = update ? updateUserMemoized : createUserMemoized
       if (onSubmit) {
-        onSubmit({
+        await onSubmit({
           ...values,
-          ...FlatUserToUser(values, multipleRoles),
-          id: user?.id ?? ''
+          ...flatUserToUser(values, multipleRoles),
+          id: user?.id ?? '',
+          phone: values.phone?.replaceAll(' ', '')
         } as T)
       }
     },
-    [onSubmit, user, multipleRoles]
+    [user, multipleRoles, update, updateUserMemoized, createUserMemoized]
   )
 
-  const formState = useFormWithPartialFields({
-    fields: fields,
+  const initialValues = useMemo(
+    () => ({
+      //@ts-ignore
+      memberOf: organizationId,
+      sendVerifyEmail: true,
+      sendResetPassword: true,
+      //@ts-ignore
+      ...(!!user ? userToFlatUser(user) : undefined),
+      roles: multipleRoles
+        ? user?.roles || defaultRoles
+        : // @ts-ignore
+        user?.roles && user?.roles?.length > 0
+        ? user?.roles[0]
+        : defaultRoles[0],
+      ...(extendInitialValues ? extendInitialValues(user) : undefined)
+    }),
+    [user, multipleRoles, defaultRoles, extendInitialValues]
+  )
+
+  const formState = useFormComposable({
+    ...formComposableParams,
     onSubmit: onSubmitMemoized,
     formikConfig: {
-      enableReinitialize: true
+      initialValues: initialValues
     }
   })
 
   return {
     formState,
-    emailLoading,
-    emailValid
+    checkEmailValidity,
+    user: user,
+    isLoading: getUser.isInitialLoading,
+    getUser: getUser
   }
 }

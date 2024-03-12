@@ -1,4 +1,4 @@
-import { Address, RoleType } from '../../Commons'
+import { Address, Roles, RoleType } from '../../Commons'
 
 export const classes = `interface OrgCreationClasses {
   siretForm?: string
@@ -31,10 +31,11 @@ export interface Organization {
   siret?: string
   name: string
   roles?: RoleType[]
+  rolesComposites?: Roles
   description?: string
   website?: string
   address?: Address
-  image?: string
+  logo?: string
 }
 
 export interface FlatOrganization {
@@ -44,7 +45,8 @@ export interface FlatOrganization {
   roles?: string[]
   description?: string
   website?: string
-  image?: string
+  logo?: string
+  logoUploaded?: string
   street?: string
   postalCode?: string
   city?: string
@@ -81,8 +83,10 @@ export const organizationToFlatOrganization = (
     street: org.address?.street,
     city: org.address?.city,
     postalCode: org.address?.postalCode,
-    roles: org.roles
+    logo: undefined,
+    logoUploaded: org.logo
   }
+  if (!org.roles || org.roles.length <= 0) delete flat.roles
   delete flat.address
   return flat
 }
