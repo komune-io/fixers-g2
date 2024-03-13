@@ -8,6 +8,9 @@ on: [push]
 jobs:
   package-storybook:
     uses: komune-io/fixers-g2/.github/workflows/docs-workflow.yml@feat/DocCi
+    permissions:
+      contents: read
+      packages: write
     with:
       make-file: "docs.mk"
 
