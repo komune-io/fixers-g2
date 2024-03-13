@@ -73,7 +73,7 @@ These classes allows you to override the default css properties from a static cs
 - Build
 
 ```
-make package-libs
+make build-libs
 ```
 
 - Run Storybook
