@@ -1,10 +1,10 @@
 import { G2ColumnDef, UseTableOptions, useTable } from '@komune-io/g2-layout'
 import { User } from '../../Domain'
-import { useUserColumns, useUserColumnsParams } from './useUserColumns'
+import { useUserColumns, UseUserColumnsParams } from './useUserColumns'
 
-export interface useUserTableStateParams<T extends User>
+export interface UseUserTableStateParams<T extends User>
   extends Partial<UseTableOptions<T>>,
-    useUserColumnsParams<T> {
+    UseUserColumnsParams<T> {
   /**
    * The columns
    */
@@ -16,7 +16,7 @@ export interface useUserTableStateParams<T extends User>
 }
 
 export const useUserTableState = <T extends User = User>(
-  params?: useUserTableStateParams<T>
+  params?: UseUserTableStateParams<T>
 ) => {
   const {
     columns,

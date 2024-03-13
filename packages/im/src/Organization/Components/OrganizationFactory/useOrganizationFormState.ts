@@ -22,7 +22,7 @@ import {
   QueryOptions
 } from '@komune-io/g2-utils'
 
-export interface useOrganizationFormStateProps<
+export interface UseOrganizationFormStateProps<
   T extends Organization = Organization
 > {
   /**
@@ -79,7 +79,7 @@ export interface useOrganizationFormStateProps<
 }
 
 export const useOrganizationFormState = <T extends Organization = Organization>(
-  params?: useOrganizationFormStateProps<T>
+  params?: UseOrganizationFormStateProps<T>
 ) => {
   const {
     createOrganizationOptions,

@@ -29,7 +29,7 @@ export type OrganizationFactoryFieldsOverride = Partial<
   >
 >
 
-export interface useOrganizationFormFieldsProps {
+export interface UseOrganizationFormFieldsProps {
   /**
    * The event called after the research on the siret field
    * that should fill as much as it can the organization type
@@ -56,7 +56,7 @@ export interface useOrganizationFormFieldsProps {
 }
 
 export const useOrganizationFormFields = (
-  params?: useOrganizationFormFieldsProps
+  params?: UseOrganizationFormFieldsProps
 ) => {
   const {
     formState,

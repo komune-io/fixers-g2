@@ -5,8 +5,8 @@ export {
   OrganizationFactoryClasses,
   OrganizationFactoryStyles,
   useOrganizationFormFields,
-  useOrganizationFormFieldsProps,
-  useOrganizationFormStateProps,
+  UseOrganizationFormFieldsProps,
+  UseOrganizationFormStateProps,
   OrganizationFactory,
   OrganizationFactoryProps,
   useOrganizationFormState,
@@ -19,9 +19,9 @@ export {
   AutomatedOrganizationTableProps,
   OrganizationTableProps,
   useOrganizationTableState,
-  useOrganizationTableStateParams,
+  UseOrganizationTableStateParams,
   useOrganizationColumns,
-  useOrganizationColumnsParams,
+  UseOrganizationColumnsParams,
   OrganizationTableColumns
 } from './Components/OrganizationTable'
 

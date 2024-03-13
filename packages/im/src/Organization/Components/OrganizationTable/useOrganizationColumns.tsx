@@ -11,7 +11,7 @@ import {
 
 export type OrganizationTableColumns = 'name' | 'address' | 'website'
 
-export interface useOrganizationColumnsParams<T extends Organization> {
+export interface UseOrganizationColumnsParams<T extends Organization> {
   /**
    * The actions available on a organization
    */
@@ -19,7 +19,7 @@ export interface useOrganizationColumnsParams<T extends Organization> {
 }
 
 export const useOrganizationColumns = <T extends Organization = Organization>(
-  params?: useOrganizationColumnsParams<T>
+  params?: UseOrganizationColumnsParams<T>
 ) => {
   const { getActions } = params ?? {}
   const { t } = useTranslation()

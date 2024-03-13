@@ -2,12 +2,12 @@ import { Organization } from '../../Domain'
 import { UseTableOptions, useTable, G2ColumnDef } from '@komune-io/g2-layout'
 import {
   useOrganizationColumns,
-  useOrganizationColumnsParams
+  UseOrganizationColumnsParams
 } from './useOrganizationColumns'
 
-export interface useOrganizationTableStateParams<T extends Organization>
+export interface UseOrganizationTableStateParams<T extends Organization>
   extends Partial<UseTableOptions<T>>,
-    useOrganizationColumnsParams<T> {
+    UseOrganizationColumnsParams<T> {
   /**
    * The columns
    */
@@ -21,7 +21,7 @@ export interface useOrganizationTableStateParams<T extends Organization>
 export const useOrganizationTableState = <
   T extends Organization = Organization
 >(
-  params?: useOrganizationTableStateParams<T>
+  params?: UseOrganizationTableStateParams<T>
 ) => {
   const { columns, organizations = [], getActions, ...other } = params ?? {}
 

@@ -12,7 +12,7 @@ import { OrganizationId } from '../../../Organization'
 
 export type userTableColumns = 'givenName' | 'address' | 'email' | 'memberOf'
 
-export interface useUserColumnsParams<T extends User> {
+export interface UseUserColumnsParams<T extends User> {
   /**
    * The actions available on a organization
    */
@@ -34,7 +34,7 @@ export interface useUserColumnsParams<T extends User> {
 }
 
 export const useUserColumns = <T extends User = User>(
-  params?: useUserColumnsParams<T>
+  params?: UseUserColumnsParams<T>
 ) => {
   const { getActions, getOrganizationUrl, hasOrganizations, users } =
     params ?? {}

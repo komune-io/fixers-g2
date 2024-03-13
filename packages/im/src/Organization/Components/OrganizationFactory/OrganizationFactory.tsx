@@ -14,7 +14,7 @@ import {
 import {
   organizationFieldsName,
   useOrganizationFormFields,
-  useOrganizationFormFieldsProps
+  UseOrganizationFormFieldsProps
 } from './useOrganizationFormFields'
 import { useTranslation } from 'react-i18next'
 
@@ -36,7 +36,7 @@ export interface OrganizationFactoryStyles {
 
 export interface OrganizationFactoryBasicProps
   extends BasicProps,
-    useOrganizationFormFieldsProps {
+    UseOrganizationFormFieldsProps {
   /**
    * The base organization. If it's given the component should be considered as an updater of the object
    */

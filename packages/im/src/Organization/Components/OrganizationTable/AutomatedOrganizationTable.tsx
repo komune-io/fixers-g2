@@ -5,7 +5,7 @@ import { useGetOrganizations } from '../../Api'
 import { Organization, OrganizationId } from '../../Domain'
 import {
   useOrganizationTableState,
-  useOrganizationTableStateParams
+  UseOrganizationTableStateParams
 } from './useOrganizationTableState'
 import { QueryOptions } from '@komune-io/g2-utils'
 
@@ -33,14 +33,14 @@ export interface AutomatedOrganizationTableBasicProps<T extends Organization>
   /**
    * the table state params
    */
-  tableStateParams?: Partial<useOrganizationTableStateParams<T>>
+  tableStateParams?: Partial<UseOrganizationTableStateParams<T>>
 }
 
 export type AutomatedOrganizationTableProps<
   T extends Organization = Organization
 > = MergeMuiElementProps<
   Omit<
-    OrganizationTableProps<T> & useOrganizationTableStateParams<T>,
+    OrganizationTableProps<T> & UseOrganizationTableStateParams<T>,
     | 'organizations'
     | 'onFetchOrganizations'
     | 'totalPages'
@@ -65,7 +65,7 @@ export const AutomatedOrganizationTable = <
     ...other
   } = props
 
-  const [localPage, localSetPage] = useState<number>(1)
+  const [localPage, setLocalSetPage] = useState<number>(1)
 
   const getOrganizations = useGetOrganizations<T>({
     query: {
@@ -90,7 +90,7 @@ export const AutomatedOrganizationTable = <
       tableState={tableState}
       totalPages={total && total > 1 ? total : undefined}
       page={page ?? localPage}
-      setPage={setPage ?? localSetPage}
+      setPage={setPage ?? setLocalSetPage}
       {...other}
     />
   )

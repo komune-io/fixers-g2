@@ -5,7 +5,7 @@ import { CommandParams, useCommandRequest } from '@komune-io/g2-utils'
 export interface OrganizationDisableCommand {
   id: OrganizationId
   disabledBy?: string
-  anonymize: Boolean
+  anonymize: boolean
   attributes?: Record<string, string>
   userAttributes?: Record<string, string>
 }

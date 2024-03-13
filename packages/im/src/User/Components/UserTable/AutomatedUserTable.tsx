@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { UserTable, UserTableProps } from './UserTable'
 import { useGetUsers } from '../../Api'
 import { User } from '../../Domain'
-import { useUserTableState, useUserTableStateParams } from './useUserTableState'
+import { useUserTableState, UseUserTableStateParams } from './useUserTableState'
 import { QueryOptions } from '@komune-io/g2-utils'
 
 // TODO Automated should be without getUsers and organizationsRefs
@@ -31,13 +31,13 @@ export interface AutomatedUserTableBasicProps<T extends User = User>
   /**
    * the table state params
    */
-  tableStateParams?: Partial<useUserTableStateParams<T>>
+  tableStateParams?: Partial<UseUserTableStateParams<T>>
 }
 
 export type AutomatedUserTableProps<T extends User = User> =
   MergeMuiElementProps<
     Omit<
-      UserTableProps<T> & useUserTableStateParams<T>,
+      UserTableProps<T> & UseUserTableStateParams<T>,
       | 'users'
       | 'onFiltersChanged'
       | 'totalPages'
@@ -62,7 +62,7 @@ export const AutomatedUserTable = <T extends User = User>(
     ...other
   } = props
 
-  const [localPage, localSetPage] = useState<number>(1)
+  const [localPage, setLocalSetPage] = useState<number>(1)
 
   const getUsers = useGetUsers<T>({
     query: {
@@ -84,7 +84,7 @@ export const AutomatedUserTable = <T extends User = User>(
   return (
     <UserTable<T>
       page={page ?? localPage}
-      setPage={setPage ?? localSetPage}
+      setPage={setPage ?? setLocalSetPage}
       isLoading={!getUsers.isSuccess}
       tableState={tableState}
       totalPages={total && total > 1 ? total : undefined}

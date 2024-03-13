@@ -32,10 +32,10 @@ export {
   UserTable,
   UserTableProps,
   useUserTableState,
-  useUserTableStateParams,
+  UseUserTableStateParams,
   userTableColumns,
   useUserColumns,
-  useUserColumnsParams
+  UseUserColumnsParams
 } from './Components/UserTable'
 
 export {
