@@ -83,6 +83,7 @@ jobs:
   publish-github-page:
     runs-on: ubuntu-latest
     name: Publish Github Page
+    if: github.ref == 'refs/heads/main'
     permissions:
       pages: write
       id-token: write
