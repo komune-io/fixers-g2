@@ -34,7 +34,7 @@ jobs:
   publish-docker:
     runs-on: ubuntu-latest
     name: Publish Docker
-    needs: [build-storybook]
+    needs: [package-storybook]
     permissions:
       contents: read
       packages: write
@@ -59,7 +59,7 @@ jobs:
   publish-chromatic:
     runs-on: ubuntu-latest
     name: Publish Chromatic
-    needs: [build-storybook]
+    needs: [package-storybook]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -95,7 +95,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: [build-storybook]
+    needs: [package-storybook]
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
