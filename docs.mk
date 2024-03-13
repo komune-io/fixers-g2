@@ -6,12 +6,17 @@ STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
 STORYBOOK_LATEST		:= ${STORYBOOK_NAME}:latest
 
 lint: lint-docker-storybook
-build: build-storybook:
+
+build: build-storybook
+
 test:
+	echo 'No Test'
+
 package: docker-storybook
 
 # Storybook
-build-storybook: build-libs
+build-storybook:
+	@make build-libs
 	@yarn build-storybook
 
 docker-storybook:
