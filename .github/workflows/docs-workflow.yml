@@ -59,7 +59,7 @@ jobs:
         run: make -f ${{ inputs.make-file }} ${{inputs.make-build-task}}
       - name: Test
         run: make -f ${{ inputs.make-file }} ${{inputs.make-test-task}}
-      - if: inputs.artifact-name != '' && inputs.some-other-input != ''
+      - if: inputs.artifact-name != '' && inputs.artifact-path != ''
         name: Keep artifact ${{ inputs.artifact-path }}
         uses: actions/upload-artifact@v4
         with:
