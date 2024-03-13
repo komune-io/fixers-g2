@@ -28,6 +28,14 @@ on:
         required: false
         type: "string"
         default: "test"
+      artifact-name:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+      artifact-path:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
 
 jobs:
   release:
@@ -51,6 +59,12 @@ jobs:
         run: make -f ${{ inputs.make-file }} ${{inputs.make-build-task}}
       - name: Test
         run: make -f ${{ inputs.make-file }} ${{inputs.make-test-task}}
+      - if: inputs.artifact-name != '' && inputs.some-other-input != ''
+        name: Keep artifact ${{ inputs.artifact-path }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-path }}
       - name: Version
         run: |
           VERSION=$(cat VERSION)
