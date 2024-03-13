@@ -12,16 +12,17 @@ build: build-storybook
 test:
 	echo 'No Test'
 
-package: docker-storybook
+package: package-storybook
 
 # Storybook
 build-storybook:
 	@make build-libs
 	@yarn build-storybook
 
-docker-storybook:
+lint-docker-storybook:
+	@docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < ${STORYBOOK_DOCKERFILE}
+
+package-storybook:
 	@docker build --platform=linux/amd64 -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
-lint-docker-storybook:
-	@docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < ${STORYBOOK_DOCKERFILE}
