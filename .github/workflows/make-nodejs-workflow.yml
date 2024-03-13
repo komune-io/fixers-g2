@@ -53,11 +53,11 @@ jobs:
       PKG_MAVEN_TOKEN: ${{ secrets.PKG_MAVEN_TOKEN }}
     steps:
       - name: Init NodeJs
-        uses: komune-io/fixers-g2/.github/actions/nodejs.yml@feat/libsCi
+        uses: komune-io/fixers-g2/.github/actions/nodejs/action.yml@feat/libsCi
         with:
           node-version: ${{ inputs.node-version }}
       - name: Run Make Commands and Upload Artifact
-        uses: komune-io/fixers-g2/.github/actions/make-package.yml@feat/libsCi
+        uses: komune-io/fixers-g2/.github/actions/make-package/action.yml@feat/libsCi
         with:
           make-file: ${{ inputs.make-file }}
           make-lint-task: ${{ inputs.make-lint-task }}
