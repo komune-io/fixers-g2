@@ -13,37 +13,78 @@ jobs:
       packages: write
     with:
       make-file: "Makefile"
-#  build-packages:
-#    name: Build packages
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Setup Node.js
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 21
-#
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#
-#      - name: Set output
-#        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-#
-#      - uses: actions/cache@v4
-#        id: yarn-cache
-#        with:
-#          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-yarn-
-#      #      - uses: actions/cache@v2
-#      #        with:
-#      #          path: "**/node_modules"
-#      #          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-#      - uses: actions/cache@v4
-#        with:
-#          path: "**/dist"
-#          key: ${{ runner.os }}-dist-${{ hashFiles('**/yarn.lock') }}
-#
-#      - name: Build Libs
-#        run: make build-libs
+
+  package-storybook:
+    uses: komune-io/fixers-g2/.github/workflows/make-nodejs-workflow.yml@feat/libsCi
+    needs: [package-storybook]
+    permissions:
+      contents: read
+      packages: write
+    with:
+      make-file: "docs.mk"
+      artifact-name: storybook-static
+      artifact-path: ./storybook-static
+
+  publish-chromatic:
+    runs-on: ubuntu-latest
+    name: Publish Chromatic
+    needs: [package-storybook]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-static
+          path: ./storybook-static
+      - name: Publish to Chromatic
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: ./storybook-static
+
+      - name: Chromatic Footer
+        shell: bash
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "Deploy to Chromatic  ${{ steps.chromatic.outputs.buildUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "The Storybook preview URL  ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+
+  publish-github-page:
+    runs-on: ubuntu-latest
+    name: Publish Github Page
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: [package-storybook]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-static
+          path: ./storybook-static
+
+      - name: Package and upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
+      - name: Print footer
+        shell: bash
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "Deploy to ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY

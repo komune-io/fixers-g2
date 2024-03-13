@@ -39,6 +39,11 @@ runs:
     - name: Test
       run: make -f ${{ inputs.make-file }} ${{ inputs.make-test-task }}
       shell: bash
+    - name: Version
+      run: |
+        VERSION=$(cat VERSION)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
     - name: Package
       run: make -f ${{ inputs.make-file }} ${{ inputs.make-package-task }}
       shell: bash
