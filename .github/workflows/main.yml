@@ -16,7 +16,7 @@ jobs:
 
   package-storybook:
     uses: komune-io/fixers-g2/.github/workflows/make-nodejs-workflow.yml@feat/libsCi
-    needs: [package-storybook]
+    needs: [package-libs]
     permissions:
       contents: read
       packages: write
