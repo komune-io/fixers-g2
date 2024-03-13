@@ -9,7 +9,7 @@ import { useOrganizationTableState } from './useOrganizationTableState'
 import { Organization } from '../../Domain'
 
 export default {
-  title: 'I2V2/OrganizationTable',
+  title: 'IM/OrganizationTable',
   component: OrganizationTable,
   parameters: {
     docs: {

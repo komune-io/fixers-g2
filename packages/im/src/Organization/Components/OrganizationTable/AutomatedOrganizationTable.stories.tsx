@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Organization } from '../../Domain'
 
 export default {
-  title: 'I2V2/AutomatedOrganizationTable',
+  title: 'IM/AutomatedOrganizationTable',
   component: AutomatedOrganizationTable
 } as Meta
 

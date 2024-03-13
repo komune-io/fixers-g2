@@ -9,7 +9,7 @@ import { KeycloakProvider, OidcSecure } from '@komune-io/g2-providers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export default {
-  title: 'I2V2/AutomatedUserTable',
+  title: 'IM/AutomatedUserTable',
   component: AutomatedUserTable
 } as Meta
 

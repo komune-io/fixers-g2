@@ -8,7 +8,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export default {
-  title: 'I2V2/UserResetPasswordForm',
+  title: 'IM/UserResetPasswordForm',
   component: UserResetPasswordFormAutomated
 } as Meta
 

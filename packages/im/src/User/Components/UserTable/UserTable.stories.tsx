@@ -9,7 +9,7 @@ import { User } from '../../Domain'
 import { useUserTableState } from './useUserTableState'
 
 export default {
-  title: 'I2V2/UserTable',
+  title: 'IM/UserTable',
   component: UserTable,
   parameters: {
     docs: {
