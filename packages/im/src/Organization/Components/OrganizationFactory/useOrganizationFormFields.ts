@@ -75,7 +75,7 @@ export const useOrganizationFormFields = (
       await getInseeOrganization(formState.values.siret).then((values) => {
         if (values) {
           const flat = organizationToFlatOrganization(values)
-          for (var key in flat) {
+          for (const key in flat) {
             if (flat[key] == null) delete flat[key]
           }
           formState.setValues(
