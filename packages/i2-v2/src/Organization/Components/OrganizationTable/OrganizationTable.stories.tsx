@@ -51,7 +51,7 @@ export const OrganizationTableStory: StoryFn<OrganizationTableProps> = (
         city: 'Montpellier'
       },
       siret: '12345678912345',
-      website: 'https://smartb.city'
+      website: 'https://github.com/komune-io'
     },
     {
       id: '2',
@@ -63,7 +63,7 @@ export const OrganizationTableStory: StoryFn<OrganizationTableProps> = (
         city: 'Montpellier'
       },
       siret: '12345678912345',
-      website: 'https://smartb.city'
+      website: 'https://github.com/komune-io'
     },
     {
       id: '3',
@@ -75,7 +75,7 @@ export const OrganizationTableStory: StoryFn<OrganizationTableProps> = (
         city: 'Montpellier'
       },
       siret: '12345678912345',
-      website: 'https://smartb.city'
+      website: 'https://github.com/komune-io'
     }
   ]
 

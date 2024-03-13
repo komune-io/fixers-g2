@@ -5,7 +5,7 @@ import {
 } from './SidePageStepper'
 import { Meta, StoryFn } from '@storybook/react'
 import React from 'react'
-import logo from '../assets/smartb.png'
+import logo from '../assets/komune.png'
 
 export default {
   title: 'Layout/Stepper',
@@ -44,7 +44,7 @@ export const SidePageStepper: StoryFn<SidePageStepperProps> = (
       {...args}
       headerComponent={
         <img
-          alt='smartb logo'
+          alt='komune logo'
           src={logo}
           style={{
             width: '100%',

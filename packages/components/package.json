@@ -1,7 +1,7 @@
 {
   "name": "@komune-io/g2-components",
   "version": "0.5.0-alpha.1",
-  "repository": "https://gitlab.smartb.city/fixers/g2.git",
+  "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Adrien Poupard <adrien@komune-io.city>",
   "license": "Apache-2.0",
   "description": "React components library",

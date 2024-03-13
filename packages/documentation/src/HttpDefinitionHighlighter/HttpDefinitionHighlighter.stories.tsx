@@ -26,7 +26,7 @@ httpDefinitionHighlighter.args = {
     {
       method: 'DELETE',
       path: '/fileDelete',
-      url: 'https://docs.smartb.city/g2'
+      url: 'https://github.com/komune-io/fixers-g2'
     }
   ],
   language: 'http-definition',
