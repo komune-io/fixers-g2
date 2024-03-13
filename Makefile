@@ -12,6 +12,9 @@ build: build-libs
 test:
 	echo 'No Test'
 
+package:
+	echo 'No Package'
+
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
