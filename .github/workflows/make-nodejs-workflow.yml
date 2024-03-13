@@ -52,33 +52,17 @@ jobs:
       PKG_MAVEN_USERNAME: ${{ secrets.PKG_MAVEN_USERNAME }}
       PKG_MAVEN_TOKEN: ${{ secrets.PKG_MAVEN_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node ${{inputs.node-version}}
-        uses: actions/setup-node@v4
+      - name: Init NodeJs
+        uses: komune-io/fixers-g2/.github/actions/nodejs.yml@main
         with:
-          node-version: ${{inputs.node-version}}
-          cache: "yarn"
-      - name: Lint
-        run: make -f ${{ inputs.make-file }} ${{inputs.make-lint-task}}
-      - name: Build
-        run: make -f ${{ inputs.make-file }} ${{inputs.make-build-task}}
-      - name: Test
-        run: make -f ${{ inputs.make-file }} ${{inputs.make-test-task}}
-      - if: inputs.artifact-name != '' && inputs.artifact-path != ''
-        name: Keep artifact ${{ inputs.artifact-path }}
-        uses: actions/upload-artifact@v4
+          node-version: ${{ inputs.node-version }}
+      - name: Run Make Commands and Upload Artifact
+        uses: komune-io/fixers-g2/.github/actions/make-package.yml@main
         with:
-          name: ${{ inputs.artifact-name }}
-          path: ${{ inputs.artifact-path }}
-      - name: Version
-        run: |
-          VERSION=$(cat VERSION)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io/komune-io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Package
-        run: make -f ${{ inputs.make-file }} ${{inputs.make-package-task}}
+          make-file: ${{ inputs.make-file }}
+          make-lint-task: ${{ inputs.make-lint-task }}
+          make-build-task: ${{ inputs.make-build-task }}
+          make-test-task: ${{ inputs.make-test-task }}
+          make-package-task: ${{ inputs.make-package-task }}
+          artifact-name: ${{ inputs.artifact-name }}
+          artifact-path: ${{ inputs.artifact-path }}

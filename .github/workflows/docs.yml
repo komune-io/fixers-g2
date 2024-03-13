@@ -7,7 +7,7 @@ on: [push]
 
 jobs:
   package-storybook:
-    uses: komune-io/fixers-g2/.github/workflows/docs-workflow.yml@main
+    uses: komune-io/fixers-g2/.github/workflows/make-nodejs-workflow.yml@main
     permissions:
       contents: read
       packages: write
