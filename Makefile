@@ -1,27 +1,17 @@
-DOCKER_REPOSITORY = ghcr.io/
-
-STORYBOOK_DOCKERFILE	:= infra/docker/storybook/Dockerfile
-STORYBOOK_NAME	   	 	:= ${DOCKER_REPOSITORY}komune-io/g2-storybook
-STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
-STORYBOOK_LATEST		:= ${STORYBOOK_NAME}:latest
-
-docs: docker-storybook
-
-# Storybook
-build-storybook: build-libs
-	@yarn build-storybook
-
-docker-storybook:
-	@docker build --platform=linux/amd64 -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
-	@docker push ${STORYBOOK_IMG}
-
-lint-docker-storybook:
-	@docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < ${STORYBOOK_DOCKERFILE}
 
 clean:
 	-rm -fr node_modules
 	-find ./packages/*/ -name "node_modules" -type d -exec rm -rf {} \;
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
+
+lint:
+	echo 'No Lint'
+
+build: build-libs
+
+test:
+	echo 'No Test'
+
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
