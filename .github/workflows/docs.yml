@@ -16,26 +16,6 @@ jobs:
       artifact-name: storybook-static
       artifact-path: ./storybook-static
 
-  #  build-storybook:
-  #    name: Package Storybook
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - uses: actions/checkout@v4
-  #        with:
-  #          fetch-depth: 0
-  #      - uses: actions/setup-node@v4
-  #        with:
-  #          node-version: 21
-  #          cache: "yarn"
-  #      - name: Lint
-  #        run: make lint-docker-storybook
-  #      - name: Build StoryBook
-  #        run: make build-storybook
-  #      - uses: actions/upload-artifact@v4
-  #        with:
-  #          name: storybook-static
-  #          path: ./storybook-static
-
   publish-chromatic:
     runs-on: ubuntu-latest
     name: Publish Chromatic

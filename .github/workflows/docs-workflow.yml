@@ -28,6 +28,11 @@ on:
         required: false
         type: "string"
         default: "test"
+      make-package-task:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+        default: "package"
       artifact-name:
         description: "Make Command To Execute"
         required: false
@@ -75,5 +80,5 @@ jobs:
           registry: ghcr.io/komune-io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish
-        run: make docker-storybook
+      - name: Package
+        run: make -f ${{ inputs.make-file }} ${{inputs.make-package-task}}
