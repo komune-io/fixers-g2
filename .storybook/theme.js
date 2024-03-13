@@ -4,7 +4,7 @@ export default create({
   base: "light",
   brandTitle: "Komune G2",
   brandUrl: "https://docs.komune.io/g2",
-  brandImage: "/",
+  brandImage: "/komune.png",
   brandTarget: "_self",
   appBg: "#FFFEFB",
   fontBase: '"Montserrat", sans-serif',

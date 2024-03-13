@@ -5,7 +5,7 @@ import {
 import { Meta, StoryFn } from '@storybook/react'
 
 import { Stack } from '@mui/material'
-import smartbLogo from '../assets/smartb.png'
+import komuneLogo from '../assets/komune.png'
 
 export default {
   title: 'Components/Presentation',
@@ -31,8 +31,8 @@ export const Presentation: StoryFn<PresentationBasicProps> = (
       <AruiPresentation {...args} />
       <AruiPresentation
         label='Smartb'
-        imgSrc={smartbLogo}
-        description='smartb logo'
+        imgSrc={komuneLogo}
+        description='komune logo'
       />
     </Stack>
   )

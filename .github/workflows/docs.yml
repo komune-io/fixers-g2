@@ -6,37 +6,77 @@ on: [push]
 #    types: [created]
 
 jobs:
-  build-storybook:
+  package-storybook:
+    uses: komune-io/fixers-g2/.github/workflows/docs-workflow.yml@feat/DocCi
+    permissions:
+      contents: read
+      packages: write
+    with:
+      make-file: "docs.mk"
+      artifact-name: storybook-static
+      artifact-path: ./storybook-static
+
+  #  build-storybook:
+  #    name: Package Storybook
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v4
+  #        with:
+  #          fetch-depth: 0
+  #      - uses: actions/setup-node@v4
+  #        with:
+  #          node-version: 21
+  #          cache: "yarn"
+  #      - name: Lint
+  #        run: make lint-docker-storybook
+  #      - name: Build StoryBook
+  #        run: make build-storybook
+  #      - uses: actions/upload-artifact@v4
+  #        with:
+  #          name: storybook-static
+  #          path: ./storybook-static
+
+  publish-chromatic:
     runs-on: ubuntu-latest
+    name: Publish Chromatic
+    needs: [package-storybook]
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 21
-          cache: "yarn"
-      - run: yarn
-      - name: Build StoryBook
-        run: make build-storybook
-      - uses: actions/upload-artifact@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
           name: storybook-static
           path: ./storybook-static
-  #      - uses: chromaui/action@v1
-  #        with:
-  #          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-  #          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to Chromatic
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: ./storybook-static
 
-  deploy:
+      - name: Chromatic Footer
+        shell: bash
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "Deploy to Chromatic  ${{ steps.chromatic.outputs.buildUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo ""  >> $GITHUB_STEP_SUMMARY
+          echo "The Storybook preview URL  ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+
+  publish-github-page:
     runs-on: ubuntu-latest
+    name: Publish Github Page
+    if: github.ref == 'refs/heads/main'
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: [build-storybook]
+    needs: [package-storybook]
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4

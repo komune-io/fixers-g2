@@ -1,0 +1,79 @@
+name: Reusable Dev Workflow
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: "Node version"
+        required: false
+        type: "string"
+        default: "21"
+      make-file:
+        description: "Node version"
+        required: false
+        type: "string"
+        default: "Makefile"
+      make-lint-task:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+        default: "lint"
+      make-build-task:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+        default: "build"
+      make-test-task:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+        default: "test"
+      artifact-name:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+      artifact-path:
+        description: "Make Command To Execute"
+        required: false
+        type: "string"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      PKG_MAVEN_USERNAME: ${{ secrets.PKG_MAVEN_USERNAME }}
+      PKG_MAVEN_TOKEN: ${{ secrets.PKG_MAVEN_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node ${{inputs.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{inputs.node-version}}
+          cache: "yarn"
+      - name: Lint
+        run: make -f ${{ inputs.make-file }} ${{inputs.make-lint-task}}
+      - name: Build
+        run: make -f ${{ inputs.make-file }} ${{inputs.make-build-task}}
+      - name: Test
+        run: make -f ${{ inputs.make-file }} ${{inputs.make-test-task}}
+      - if: inputs.artifact-name != '' && inputs.artifact-path != ''
+        name: Keep artifact ${{ inputs.artifact-path }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-path }}
+      - name: Version
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io/komune-io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish
+        run: make docker-storybook

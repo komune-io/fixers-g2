@@ -76,7 +76,7 @@ httpDefinition.args = {
     {
       method: 'DELETE',
       path: '/fileDelete',
-      url: 'https://docs.smartb.city/g2'
+      url: 'https://komune-io.github.io/fixers-g2'
     }
   ],
   language: 'http-definition',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Loading as AruiLoading, LoadingBasicProps } from './Loading'
 import { Meta, StoryFn } from '@storybook/react'
-import smartb from '../assets/smartb.png'
+import komune from '../assets/komune.png'
 import { styles, classes } from './types'
 
 export default {
@@ -33,5 +33,5 @@ const Template: StoryFn<LoadingBasicProps> = (args: LoadingBasicProps) => (
 
 export const Loading = Template.bind({})
 Loading.args = {
-  icon: <img src={smartb} alt='smartb logo' />
+  icon: <img src={komune} alt='komune logo' />
 }

@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-docs'
 import { styles, classes } from './types'
 import LinkTo from '@storybook/addon-links/react'
-import defaultLogo from '../assets/smartb.png'
+import defaultLogo from '../assets/komune.png'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 
 export default {

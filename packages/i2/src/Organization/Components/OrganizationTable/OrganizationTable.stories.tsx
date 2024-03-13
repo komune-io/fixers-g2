@@ -54,7 +54,7 @@ const organizations: Organization[] = [
       city: 'Montpellier'
     },
     siret: '12345678912345',
-    website: 'https://smartb.city'
+    website: 'https://github.com/komune-io'
   },
   {
     id: '2',
@@ -66,7 +66,7 @@ const organizations: Organization[] = [
       city: 'Montpellier'
     },
     siret: '12345678912345',
-    website: 'https://smartb.city'
+    website: 'https://github.com/komune-io'
   },
   {
     id: '3',
@@ -78,7 +78,7 @@ const organizations: Organization[] = [
       city: 'Montpellier'
     },
     siret: '12345678912345',
-    website: 'https://smartb.city'
+    website: 'https://github.com/komune-io'
   }
 ]
 
