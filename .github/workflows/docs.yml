@@ -7,7 +7,7 @@ on: [push]
 
 jobs:
   package-storybook:
-    uses: komune-io/g2/.github/workflows/docs-workflow.yml@feat/DocCi
+    uses: komune-io/fixers-g2/.github/workflows/docs-workflow.yml@feat/DocCi
     with:
       make-file: "docs.mk"
 
