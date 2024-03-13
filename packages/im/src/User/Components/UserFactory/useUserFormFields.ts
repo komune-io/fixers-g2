@@ -1,9 +1,9 @@
 import { FormComposableField } from '@komune-io/g2-composable'
 import { useCallback, useMemo, useState } from 'react'
 import {
-  AdressFieldsName,
+  AddressFieldsName,
   mergeFields,
-  useAdressFields
+  useAddressFields
 } from '../../../Commons'
 import { OrganizationId } from '../../../Organization'
 import { User } from '../../Domain'
@@ -21,7 +21,7 @@ export type userFieldsName =
   | 'memberOf'
   | 'sendVerifyEmail'
   | 'sendResetPassword'
-  | AdressFieldsName
+  | AddressFieldsName
 
 export type UserFactoryFieldsOverride = Partial<
   Record<userFieldsName, Partial<FormComposableField<userFieldsName>>>
@@ -102,7 +102,7 @@ export const useUserFormFields = <T extends User = User>(
     [user?.email, checkEmailValidity, t]
   )
 
-  const { addressFields } = useAdressFields({
+  const { addressFields } = useAddressFields({
     //@ts-ignore
     fieldsOverride
   })

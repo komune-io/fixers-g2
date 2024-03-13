@@ -62,7 +62,7 @@ export const AutomatedUserTable = <T extends User = User>(
     ...other
   } = props
 
-  const [localPage, setLocalSetPage] = useState<number>(1)
+  const [localPage, setLocalPage] = useState<number>(1)
 
   const getUsers = useGetUsers<T>({
     query: {
@@ -84,7 +84,7 @@ export const AutomatedUserTable = <T extends User = User>(
   return (
     <UserTable<T>
       page={page ?? localPage}
-      setPage={setPage ?? setLocalSetPage}
+      setPage={setPage ?? setLocalPage}
       isLoading={!getUsers.isSuccess}
       tableState={tableState}
       totalPages={total && total > 1 ? total : undefined}

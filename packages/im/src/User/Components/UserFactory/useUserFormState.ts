@@ -121,8 +121,7 @@ export const useUserFormState = <T extends User = User>(
       onSuccess: (data, variables, context) => {
         getUser.refetch()
         queryClient.invalidateQueries({ queryKey: ['users'] })
-        updateUserOptions?.onSuccess &&
-          updateUserOptions.onSuccess(data, variables, context)
+        updateUserOptions?.onSuccess?.(data, variables, context)
       }
     }),
     [updateUserOptions, getUser, queryClient.invalidateQueries]
@@ -133,8 +132,7 @@ export const useUserFormState = <T extends User = User>(
       ...createUserOptions,
       onSuccess: (data, variables, context) => {
         queryClient.invalidateQueries({ queryKey: ['users'] })
-        createUserOptions?.onSuccess &&
-          createUserOptions.onSuccess(data, variables, context)
+        createUserOptions?.onSuccess?.(data, variables, context)
       }
     }),
     [createUserOptions, queryClient.invalidateQueries]

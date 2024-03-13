@@ -45,8 +45,7 @@ export const ChoicedResetPassword = (props: ChoicedResetPasswordProps) => {
     (data, varaibles, context) => {
       setMutating(false)
       onToggle()
-      userUpdatePasswordOptions?.onSuccess &&
-        userUpdatePasswordOptions.onSuccess(data, varaibles, context)
+      userUpdatePasswordOptions?.onSuccess?.(data, varaibles, context)
     },
     [onToggle, userUpdatePasswordOptions?.onSuccess]
   )
@@ -54,8 +53,7 @@ export const ChoicedResetPassword = (props: ChoicedResetPasswordProps) => {
   const onMutate = useCallback(
     (varaibles) => {
       setMutating(true)
-      userUpdatePasswordOptions?.onMutate &&
-        userUpdatePasswordOptions.onMutate(varaibles)
+      userUpdatePasswordOptions?.onMutate?.(varaibles)
     },
     [userUpdatePasswordOptions?.onMutate]
   )
@@ -64,8 +62,7 @@ export const ChoicedResetPassword = (props: ChoicedResetPasswordProps) => {
     (error, varaibles, context) => {
       setMutating(false)
       setError(true)
-      userUpdatePasswordOptions?.onError &&
-        userUpdatePasswordOptions.onError(error, varaibles, context)
+      userUpdatePasswordOptions?.onError?.(error, varaibles, context)
     },
     [userUpdatePasswordOptions?.onError]
   )

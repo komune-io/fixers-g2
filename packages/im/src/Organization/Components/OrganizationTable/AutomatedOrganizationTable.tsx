@@ -65,7 +65,7 @@ export const AutomatedOrganizationTable = <
     ...other
   } = props
 
-  const [localPage, setLocalSetPage] = useState<number>(1)
+  const [localPage, setLocalPage] = useState<number>(1)
 
   const getOrganizations = useGetOrganizations<T>({
     query: {
@@ -90,7 +90,7 @@ export const AutomatedOrganizationTable = <
       tableState={tableState}
       totalPages={total && total > 1 ? total : undefined}
       page={page ?? localPage}
-      setPage={setPage ?? setLocalSetPage}
+      setPage={setPage ?? setLocalPage}
       {...other}
     />
   )

@@ -4,9 +4,9 @@ import {
 } from '@komune-io/g2-composable'
 import { useMemo, useCallback, useState } from 'react'
 import {
-  AdressFieldsName,
+  AddressFieldsName,
   mergeFields,
-  useAdressFields
+  useAddressFields
 } from '../../../Commons'
 import { Organization, organizationToFlatOrganization } from '../../Domain'
 import { siretValidation } from '../../Validation/siret'
@@ -20,7 +20,7 @@ export type organizationFieldsName =
   | 'description'
   | 'website'
   | 'roles'
-  | AdressFieldsName
+  | AddressFieldsName
 
 export type OrganizationFactoryFieldsOverride = Partial<
   Record<
@@ -101,7 +101,7 @@ export const useOrganizationFormFields = (
     setInseeOrganization
   ])
 
-  const { addressFields } = useAdressFields({
+  const { addressFields } = useAddressFields({
     //@ts-ignore
     fieldsOverride
   })
