@@ -47,8 +47,6 @@ runs:
     - name: Package
       run: make -f ${{ inputs.make-file }} ${{ inputs.make-package-task }}
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload Artifact
       if: inputs.artifact-name != '' && inputs.artifact-path != ''
       uses: actions/upload-artifact@v2
