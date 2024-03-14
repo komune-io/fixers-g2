@@ -50,7 +50,7 @@ jobs:
       packages: write
     steps:
       - name: Init NodeJs
-        uses: komune-io/fixers-g2/.github/actions/nodejs@feat/libsCi
+        uses: komune-io/fixers-g2/.github/actions/nodejs@main
         with:
           node-version: ${{ inputs.node-version }}
       - name: Log in to the Container registry
@@ -60,7 +60,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Make Commands and Upload Artifact
-        uses: komune-io/fixers-g2/.github/actions/make-package@feat/libsCi
+        uses: komune-io/fixers-g2/.github/actions/make-package@main
         with:
           make-file: ${{ inputs.make-file }}
           make-lint-task: ${{ inputs.make-lint-task }}
