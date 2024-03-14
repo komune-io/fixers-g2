@@ -30,17 +30,17 @@ export const parameters = {
 };
 
 G2ConfigBuilder({
-  i2: {
-    orgUrl: "https://dev.app.alveoleplus.fr/api",
-    userUrl: "https://dev.app.alveoleplus.fr/api",
+  im: {
+    orgUrl: "https://connect.kommune.dev/im",
+    userUrl: "https://connect.kommune.dev/im",
   },
   keycloak: {
-    realm: "alveole-dev",
-    clientId: "alveole-web",
-    url: "https://dev.app.alveoleplus.fr/auth",
+    realm: "komune-dev",
+    clientId: "komune-web",
+    url: "https://connect.kommune.dev/auth",
   },
   fs: {
-    url: "http://51.83.34.130:8090",
+    url: "https://connect.kommune.dev/fs",
   },
 });
 

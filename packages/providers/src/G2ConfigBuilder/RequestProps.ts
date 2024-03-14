@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { fsConfig, i2Config, platFormConfig } from '.'
+import { fsConfig, imConfig, platFormConfig } from '.'
 import { useAuth } from '../KeycloakProvider'
 
 export type RequestProps = {
@@ -16,7 +16,7 @@ export const useNoAuthenticatedRequest = (
         endpoint === 'fs'
           ? fsConfig().url
           : endpoint === 'im'
-          ? i2Config().url
+          ? imConfig().url
           : platFormConfig().url
     }),
     []
@@ -33,7 +33,7 @@ export const useAuthenticatedRequest = (
         endpoint === 'fs'
           ? fsConfig().url
           : endpoint === 'im'
-          ? i2Config().url
+          ? imConfig().url
           : platFormConfig().url,
       jwt: auth.keycloak.token
     }),

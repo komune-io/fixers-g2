@@ -7,9 +7,9 @@ export interface PlatformConfig {
   url: string
 }
 
-export const i2Config: () => I2Config = () => {
+export const imConfig: () => I2Config = () => {
   // @ts-ignore
-  return window._env_?.config?.i2
+  return window._env_?.config?.im
 }
 
 export interface FsConfig {
@@ -33,7 +33,7 @@ export interface G2Config {
     url: string
   }
   platform: PlatformConfig
-  i2: I2Config
+  im: I2Config
   fs: FsConfig
 }
 

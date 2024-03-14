@@ -12,9 +12,7 @@ build: build-libs
 test:
 	echo 'No Test'
 
-package:
-	echo 'No Package'
-
+package: push-libs-github
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
@@ -37,5 +35,5 @@ build-libs:
 push-libs-npm:
 	VERSION=${VERSION} yarn publishWorkspaces:npm
 
-push-libs-gitlab:
-	TAG=${VERSION} yarn publishWorkspaces:gitlab
+push-libs-github:
+	TAG=${VERSION} yarn publishWorkspaces:github

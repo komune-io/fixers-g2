@@ -14,10 +14,9 @@ RUN if [ ! -d "./storybook-static" ]; then \
     fi
 
 
-
-
-
 FROM nginx:1.25.4-alpine
+
+LABEL org.opencontainers.image.source="https://github.com/komune-io/fixers-g2"
 
 COPY --from=build /app/storybook-static /var/www
 COPY infra/docker/storybook/nginx.conf /etc/nginx/nginx.conf
