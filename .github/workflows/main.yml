@@ -48,12 +48,11 @@ jobs:
       - name: Chromatic Footer
         shell: bash
         run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo "## Deployed to Chromatic" >> $GITHUB_STEP_SUMMARY
           echo ""  >> $GITHUB_STEP_SUMMARY
-          echo "Deploy to Chromatic  ${{ steps.chromatic.outputs.buildUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "Report: ${{ steps.chromatic.outputs.buildUrl }}" >> $GITHUB_STEP_SUMMARY
           echo ""  >> $GITHUB_STEP_SUMMARY
-          echo "The Storybook preview URL  ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "Preview: ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
 
   publish-github-page:
     runs-on: ubuntu-latest
@@ -80,11 +79,11 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+        id: deployment
 
       - name: Print footer
         shell: bash
         run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "# Made by Komune" >> $GITHUB_STEP_SUMMARY
+          echo "## Deployed to Github Page" >> $GITHUB_STEP_SUMMARY
           echo ""  >> $GITHUB_STEP_SUMMARY
-          echo "Deploy to ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Page: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
