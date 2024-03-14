@@ -66,3 +66,5 @@ jobs:
           make-package-task: ${{ inputs.make-package-task }}
           artifact-name: ${{ inputs.artifact-name }}
           artifact-path: ${{ inputs.artifact-path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
