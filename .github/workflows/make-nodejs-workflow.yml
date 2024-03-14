@@ -56,6 +56,12 @@ jobs:
         uses: komune-io/fixers-g2/.github/actions/nodejs@feat/libsCi
         with:
           node-version: ${{ inputs.node-version }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Make Commands and Upload Artifact
         uses: komune-io/fixers-g2/.github/actions/make-package@feat/libsCi
         with:
@@ -66,5 +72,3 @@ jobs:
           make-package-task: ${{ inputs.make-package-task }}
           artifact-name: ${{ inputs.artifact-name }}
           artifact-path: ${{ inputs.artifact-path }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
