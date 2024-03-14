@@ -48,9 +48,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      PKG_MAVEN_USERNAME: ${{ secrets.PKG_MAVEN_USERNAME }}
-      PKG_MAVEN_TOKEN: ${{ secrets.PKG_MAVEN_TOKEN }}
     steps:
       - name: Init NodeJs
         uses: komune-io/fixers-g2/.github/actions/nodejs@feat/libsCi
