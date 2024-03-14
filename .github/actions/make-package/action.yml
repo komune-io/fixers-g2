@@ -1,0 +1,55 @@
+name: "Make Package"
+description: "Run lint, build, test, and package commands using make"
+inputs:
+  make-file:
+    description: "Makefile to use"
+    required: true
+    default: "Makefile"
+  make-lint-task:
+    description: "Make command for linting"
+    required: true
+    default: "lint"
+  make-build-task:
+    description: "Make command for building"
+    required: true
+    default: "build"
+  make-test-task:
+    description: "Make command for testing"
+    required: true
+    default: "test"
+  make-package-task:
+    description: "Make command for packaging"
+    required: true
+    default: "package"
+  artifact-name:
+    description: "Name for the uploaded artifact, leave empty if no artifact is needed"
+    required: false
+  artifact-path:
+    description: "Path to the artifact to upload, leave empty if no artifact is needed"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Lint
+      run: make -f ${{ inputs.make-file }} ${{ inputs.make-lint-task }}
+      shell: bash
+    - name: Build
+      run: make -f ${{ inputs.make-file }} ${{ inputs.make-build-task }}
+      shell: bash
+    - name: Test
+      run: make -f ${{ inputs.make-file }} ${{ inputs.make-test-task }}
+      shell: bash
+    - name: Version
+      run: |
+        VERSION=$(cat VERSION)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+    - name: Package
+      run: make -f ${{ inputs.make-file }} ${{ inputs.make-package-task }}
+      shell: bash
+    - name: Upload Artifact
+      if: inputs.artifact-name != '' && inputs.artifact-path != ''
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: ${{ inputs.artifact-path }}
