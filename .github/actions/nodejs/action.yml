@@ -15,19 +15,17 @@ runs:
       with:
         node-version: ${{inputs.node-version}}
         cache: "yarn"
-    - name: Setup Yarn Cache
-      uses: actions/cache@v4
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - uses: actions/cache@v4
+      id: yarn-modules-cache # use this to check for `cache-hit` (`steps.yarn-modules-cache.outputs.cache-hit != 'true'`)   with:
       with:
         path: "**/node_modules"
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-yarn-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-modules-
     - uses: actions/cache@v4
+      id: yarn-dist-cache # use this to check for `cache-hit` (`steps.yarn-dist-cache.outputs.cache-hit != 'true'`)   with:
       with:
         path: "**/dist"
-        key: ${{ runner.os }}-dist-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-yarn-dist-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-dist-
