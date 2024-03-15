@@ -79,7 +79,7 @@
     "publishWorkspaces:gitlab": "yarn workspaces run publish:gitlab",
     "publishWorkspaces:npm": "VERSION=${VERSION} yarn workspaces run publish:npm",
     "prepare": "husky",
-    "eslint": "npx eslint packages/**"
+    "eslint": "npx eslint . --ext .tsx,.ts packages/**"
   },
   "publishConfig": {
     "@komune-io:registry": "https://npm.pkg.github.com"
