@@ -20,7 +20,7 @@ const requiredField =
 const requiredFile =
   (t: TFunction, key: string, fileName: string): ValidatorFnc =>
   (value: any, values: any) => {
-    if (!!values[`${key}Uploaded`]) return undefined
+    if (values[`${key}Uploaded`]) return undefined
     return requiredFieldValidator(
       t('g2.fileRequired', { fileDesc: fileName }),
       value

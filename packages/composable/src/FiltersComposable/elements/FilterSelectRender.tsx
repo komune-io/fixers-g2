@@ -21,7 +21,7 @@ export const FilterSelectRender: ElementRendererFunction<
   const value = getIn(formState.values, basicProps.name)
   return (params?.multiple === true) === true ? (
     <FilterSelect
-      values={Array.isArray(value) ? value : !!value ? [value] : []}
+      values={Array.isArray(value) ? value : value ? [value] : []}
       onChangeValues={(values) =>
         formState.setFieldValue(basicProps.name, values, false)
       }

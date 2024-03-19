@@ -19,11 +19,11 @@ export const S2AutomateViewer = (props: S2AutomateViewerProps) => {
     () =>
       statesTransitions.map(
         (stateTransition: S2Transition): Transition => ({
-          from: !!stateTransition.from
+          from: stateTransition.from
             ? (stateTransition.from.position ||
                 stateTransition.from.nodePosition()) + 1
             : 0,
-          to: !!stateTransition.to
+          to: stateTransition.to
             ? (stateTransition.to.position ||
                 stateTransition.to.nodePosition()) + 1
             : 0,

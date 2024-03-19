@@ -109,9 +109,7 @@ export const AutomatedGalleryFactory = (
       ...uploadFilesOptions,
       onSuccess: (data, varaibles, context) => {
         if (data) {
-          const galleryCopy = !!gallery.data?.items
-            ? [...gallery.data.items]
-            : []
+          const galleryCopy = gallery.data?.items ? [...gallery.data.items] : []
           data.forEach((event) => {
             galleryCopy.push(event)
           })

@@ -202,7 +202,7 @@ export const useOrganizationFormState = <T extends Organization = Organization>(
 
   const initialValues = useMemo(
     () => ({
-      ...(!!organization
+      ...(organization
         ? //@ts-ignore
           organizationToFlatOrganization(organization)
         : undefined),

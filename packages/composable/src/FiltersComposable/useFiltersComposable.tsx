@@ -45,7 +45,7 @@ export const useFiltersComposable = <T extends {} = any>(
   const initialValues = useMemo(() => {
     const obj = {}
     const params = qs.parse(searchParams.toString())
-    for (let fieldName in params) {
+    for (const fieldName in params) {
       obj[fieldName] = unformatFieldValue(params[fieldName])
     }
     return { ...formikConfig?.initialValues, ...obj }
@@ -55,7 +55,7 @@ export const useFiltersComposable = <T extends {} = any>(
 
   const filtersCount = useMemo(() => {
     let count = 0
-    for (let it in submittedFilters) {
+    for (const it in submittedFilters) {
       const value = submittedFilters[it]
       if (Array.isArray(value)) {
         count += value.length
@@ -76,7 +76,7 @@ export const useFiltersComposable = <T extends {} = any>(
       //@ts-ignore
       const cleanedValues = qs.parse(searchParams.toString())
 
-      for (let fieldName in definedValues) {
+      for (const fieldName in definedValues) {
         const value = definedValues[fieldName]
         if ((typeof value === 'number' || !!value) && value.length !== 0) {
           cleanedValues[fieldName] = value

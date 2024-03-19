@@ -166,7 +166,7 @@ export const useUserFormState = <T extends User = User>(
         )
       }
       const res = await Promise.all(results)
-      for (let it in res) {
+      for (const it in res) {
         const result = res[it]
         if (!result) return false
       }
@@ -220,13 +220,13 @@ export const useUserFormState = <T extends User = User>(
       sendVerifyEmail: true,
       sendResetPassword: true,
       //@ts-ignore
-      ...(!!user ? userToFlatUser(user) : undefined),
+      ...(user ? userToFlatUser(user) : undefined),
       roles: multipleRoles
         ? user?.roles || defaultRoles
         : // @ts-ignore
-        user?.roles && user?.roles?.length > 0
-        ? user?.roles[0]
-        : defaultRoles[0],
+          user?.roles && user?.roles?.length > 0
+          ? user?.roles[0]
+          : defaultRoles[0],
       ...(extendInitialValues ? extendInitialValues(user) : undefined)
     }),
     [user, multipleRoles, defaultRoles, extendInitialValues]

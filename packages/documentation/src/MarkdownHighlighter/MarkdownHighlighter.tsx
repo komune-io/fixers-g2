@@ -83,7 +83,9 @@ const components = {
         {...props}
       />
     ) : (
-      <code className={className} {...props} children={children} />
+      <code className={className} {...props}>
+        {children}
+      </code>
     )
   },
   mark: (object: any) => {
@@ -106,7 +108,8 @@ export const MarkdownHighlighter = (props: MarkdownHighlighterProps) => {
       rehypePlugins={rehype}
       //@ts-ignore
       components={components}
-      children={markdown}
-    />
+    >
+      {markdown}
+    </ReactMarkdown>
   )
 }
