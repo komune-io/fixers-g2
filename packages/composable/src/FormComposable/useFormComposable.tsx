@@ -116,7 +116,7 @@ export const useFormComposable = <T extends {}>(
   const validateField = useCallback(
     (fieldName: string) => {
       const validator = validators.current[fieldName]
-      const error = !!validator
+      const error = validator
         ? validator(getIn(formik.values, fieldName), formik.values)
         : undefined
       if (typeof error === 'string') formik.setFieldError(fieldName, error)

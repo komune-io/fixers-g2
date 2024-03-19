@@ -104,7 +104,7 @@ const shareModuleDeps = async (
   moduleDeps?: { [dependencyName: string]: Dependency }
 ) => {
   if (!moduleDeps || moduleDeps.length <= 0) return
-  let sharedScope: { [key: string]: object } = {}
+  const sharedScope: { [key: string]: object } = {}
   for (const dep in moduleDeps) {
     const required = moduleDeps[dep]
     sharedScope[dep] = {

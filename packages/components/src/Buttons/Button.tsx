@@ -152,7 +152,7 @@ export const ButtonBase = function <T = {}>(
 
   const onClickMemoisied = useCallback(
     async (event: React.ChangeEvent<{}>) => {
-      if (!!onClick) {
+      if (onClick) {
         setloading(true)
         await onClick(event)
         if (isMounted.current) {

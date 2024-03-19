@@ -15,6 +15,8 @@ import { TableClasses, TableStyles } from './Table'
 import { Row } from './types'
 import { LinkProps, Link } from 'react-router-dom'
 
+/* eslint-disable react/jsx-key */
+
 export interface GroundedBaseProps<Data extends {}> {
   /**
    * The number of pages the table contain.

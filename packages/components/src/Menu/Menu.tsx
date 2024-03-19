@@ -15,6 +15,8 @@ import {
   makeG2STyles
 } from '@komune-io/g2-themes'
 
+/* eslint-disable react/jsx-key */
+
 const useStyles = makeG2STyles<{ paddingLeft: number }>()(
   (theme, { paddingLeft }) => ({
     item: {

@@ -55,9 +55,9 @@ const retrieveNumber = (value: any) => {
 }
 
 const unformatFieldValue = (field: any, value: any) => {
+  const date = new Date(Number(value))
   switch (field.type) {
     case 'datepicker':
-      const date = new Date(Number(value))
       return date.toString()
     case 'textfield':
       return retrieveNumber(value)
@@ -96,7 +96,7 @@ export const useEnhancedFiltersBase = <
     })
     let additionals = {}
     const unformattedParams = {}
-    for (let i in params) {
+    for (const i in params) {
       unformattedParams[i] = retrieveNumber(params[i])
     }
     additionals = { ...initAdditionalFilters, ...unformattedParams }
@@ -118,7 +118,7 @@ export const useEnhancedFiltersBase = <
     (values: any, formikHelpers: FormikHelpers<any>) => {
       onSubmit && onSubmit(values, formikHelpers, additionalFilters)
 
-      let fieldsValues = { ...values }
+      const fieldsValues = { ...values }
 
       fields.forEach((field) => {
         fieldsValues[field.name] = fieldsValues[field.name]

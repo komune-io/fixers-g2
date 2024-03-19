@@ -1,10 +1,9 @@
-import { clone, toPath } from "lodash";
+import { clone, toPath } from 'lodash'
 
-const isInteger = (obj: any): boolean =>
-  String(Math.floor(Number(obj))) === obj;
+const isInteger = (obj: any): boolean => String(Math.floor(Number(obj))) === obj
 
 const isObject = (obj: any): obj is Object =>
-  obj !== null && typeof obj === "object";
+  obj !== null && typeof obj === 'object'
 
 export function getIn(
   obj: any,
@@ -12,54 +11,54 @@ export function getIn(
   def?: any,
   p: number = 0
 ) {
-  const path = toPath(key);
+  const path = toPath(key)
   while (obj && p < path.length) {
-    obj = obj[path[p++]];
+    obj = obj[path[p++]]
   }
 
   // check if path is not in the end
   if (p !== path.length && !obj) {
-    return def;
+    return def
   }
 
-  return obj === undefined ? def : obj;
+  return obj === undefined ? def : obj
 }
 
 export function setIn(obj: any, path: string, value: any): any {
-  let res: any = clone(obj); // this keeps inheritance when obj is a class
-  let resVal: any = res;
-  let i = 0;
-  let pathArray = toPath(path);
+  const res: any = clone(obj) // this keeps inheritance when obj is a class
+  let resVal: any = res
+  let i = 0
+  const pathArray = toPath(path)
 
   for (; i < pathArray.length - 1; i++) {
-    const currentPath: string = pathArray[i];
-    let currentObj: any = getIn(obj, pathArray.slice(0, i + 1));
+    const currentPath: string = pathArray[i]
+    const currentObj: any = getIn(obj, pathArray.slice(0, i + 1))
 
     if (currentObj && (isObject(currentObj) || Array.isArray(currentObj))) {
-      resVal = resVal[currentPath] = clone(currentObj);
+      resVal = resVal[currentPath] = clone(currentObj)
     } else {
-      const nextPath: string = pathArray[i + 1];
+      const nextPath: string = pathArray[i + 1]
       resVal = resVal[currentPath] =
-        isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {};
+        isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {}
     }
   }
 
   // Return original object if new value is the same as current
   if ((i === 0 ? obj : resVal)[pathArray[i]] === value) {
-    return obj;
+    return obj
   }
 
   if (value === undefined) {
-    delete resVal[pathArray[i]];
+    delete resVal[pathArray[i]]
   } else {
-    resVal[pathArray[i]] = value;
+    resVal[pathArray[i]] = value
   }
 
   // If the path array has a single element, the loop did not run.
   // Deleting on `resVal` had no effect in this scenario, so we delete on the result instead.
   if (i === 0 && value === undefined) {
-    delete res[pathArray[i]];
+    delete res[pathArray[i]]
   }
 
-  return res;
+  return res
 }

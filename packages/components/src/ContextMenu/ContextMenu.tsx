@@ -22,6 +22,8 @@ import { RoundedArrow } from '../icons'
 import { MenuItems } from '../Menu'
 import { cx } from '@emotion/css'
 
+/* eslint-disable react/jsx-key */
+
 const StyledPaper = styled(Paper)({
   borderRadius: '2px',
   overflow: 'hidden',
@@ -130,7 +132,7 @@ export const ContextMenuBase = (
       menu.map((item) => (
         <Item
           onMouseEnter={(event) => {
-            if (!!item.items) {
+            if (item.items) {
               setCurrentItem(event.currentTarget)
               setSelectedItem(item)
             } else {

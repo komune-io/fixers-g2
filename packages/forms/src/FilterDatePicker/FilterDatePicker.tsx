@@ -304,7 +304,7 @@ const FilterDatePickerBase = (
         className={defaultStyles.cx(
           defaultStyles.classes.input,
           variant !== 'outlined' && defaultStyles.classes.inputWithoutLabel,
-          !!rightIcon
+          rightIcon
             ? localStyles.classes.inputWithRemove
             : localStyles.classes.input,
           getVariantColorClass(),

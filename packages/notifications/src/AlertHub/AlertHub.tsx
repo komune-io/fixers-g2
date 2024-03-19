@@ -59,6 +59,7 @@ const ClosableAlert = forwardRef<
     'onClose'
   >
 >((props, ref) => {
+  /* eslint-disable */
   const {
     key,
     id = key,
@@ -69,6 +70,7 @@ const ClosableAlert = forwardRef<
     iconVariant,
     ...other
   } = props
+  /* eslint-enable */
   const { classes, cx } = useSytles()
   const { closeSnackbar } = useSnackbar()
   const handleClose = useCallback(() => closeSnackbar(id), [id])

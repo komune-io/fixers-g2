@@ -28,6 +28,8 @@ import { cx } from '@emotion/css'
 import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 import { useTranslation } from 'react-i18next'
 
+/* eslint-disable react/jsx-key */
+
 //@ts-ignore
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
