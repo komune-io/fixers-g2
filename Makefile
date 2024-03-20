@@ -5,7 +5,7 @@ clean:
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
 
 lint:
-	echo 'No Lint'
+	yarn eslintCheck
 
 build: build-libs
 

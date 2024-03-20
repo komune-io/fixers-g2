@@ -1,0 +1,23 @@
+name: Dev
+
+on: [push]
+
+jobs:
+  dev:
+    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@main
+    permissions:
+      contents: read
+      packages: write
+
+  docs:
+    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@main
+    permissions:
+      contents: read
+      packages: write
+      pages: write
+      id-token: write
+    with:
+      storybook-dir: ''
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
