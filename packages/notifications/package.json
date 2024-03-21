@@ -2,7 +2,7 @@
   "name": "@komune-io/g2-notifications",
   "version": "0.5.0-alpha.1",
   "repository": "https://github.com/komune-io/fixers-g2.git",
-  "author": "Adrien Poupard <adrien@komune-io.city>",
+  "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
   "description": "React notifications library",
   "private": false,
