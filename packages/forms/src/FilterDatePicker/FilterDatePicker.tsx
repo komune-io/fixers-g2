@@ -1,9 +1,10 @@
 import {
   MobileDatePicker as MuiMobileDatePicker,
   DatePickerProps as MuiDatePickerProps,
-  LocalizationProvider
+  LocalizationProvider,
+  DateView
 } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns/index.js'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import React, { forwardRef, useCallback, useMemo, useState } from 'react'
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import {
@@ -14,12 +15,11 @@ import {
 import {
   InputAdornment,
   InputLabelProps,
-  TextField as MuiTextField,
-  TextFieldProps as MuiTextFieldProps
+  StandardTextFieldProps
 } from '@mui/material'
 import { Calendar } from '../assets/icons'
 import { ClearRounded } from '@mui/icons-material'
-import { fr, enUS } from 'date-fns/locale/index.js'
+import { fr, enUS } from 'date-fns/locale'
 import { CustomActionBar } from '../DatePicker/CustomActionBar'
 import { useTranslation } from 'react-i18next'
 const dateFnsLocales = {
@@ -129,7 +129,7 @@ export interface FilterDatePickerBasicProps extends BasicProps {
    * The props to the textfield element
    *
    */
-  textFieldProps?: Partial<MuiTextFieldProps>
+  textFieldProps?: Partial<StandardTextFieldProps>
   /**
    * The porps given to the label component
    */
@@ -150,7 +150,7 @@ export interface FilterDatePickerBasicProps extends BasicProps {
 }
 
 export type FilterDatePickerProps = MergeMuiElementProps<
-  Omit<MuiDatePickerProps<Date, Date>, 'onChange' | 'renderInput'>,
+  Omit<MuiDatePickerProps<Date>, 'onChange' | 'renderInput'>,
   FilterDatePickerBasicProps
 >
 
@@ -202,8 +202,14 @@ const FilterDatePickerBase = (
 
   const format = useMemo(() => {
     if (i18n.language === 'fr')
-      return { format: 'dd/MM/yyyy', mask: '__/__/____' }
-    return { format: 'yyyy/MM/dd', mask: '____/__/__' }
+      return {
+        format: 'dd/MM/yyyy',
+        views: ['day', 'month', 'year'] as DateView[]
+      }
+    return {
+      format: 'yyyy/MM/dd',
+      views: ['year', 'month', 'day'] as DateView[]
+    }
   }, [i18n.language])
 
   const onChange = useCallback(
@@ -262,76 +268,31 @@ const FilterDatePickerBase = (
     styles?.clearIcon
   ])
 
-  const renderInput = (props: any) => {
-    const InputProps = {
-      endAdornment: (
-        <InputAdornment
-          style={variant === 'filled' ? colorStyle : undefined}
-          component='div'
-          position='end'
-        >
-          <Calendar
-            onClick={!disabled ? onOpenMemoized : undefined}
-            className={defaultStyles.cx(
-              localStyles.classes.calendarIcon,
-              disabled && localStyles.classes.calendarIconDisabled,
-              'AruiFilterDatePicker-calendarIcon',
-              classes?.calendarIcon
-            )}
-            style={styles?.calendarIcon}
-          />
-        </InputAdornment>
-      ),
-      style:
-        variant === 'filled'
-          ? { ...styles?.input, ...colorStyle }
-          : styles?.input,
-      className: defaultStyles.cx('AruiDatePicker-input', classes?.input),
-      ...textFieldProps?.InputProps,
-      ...props.InputProps
-    }
-
-    delete props.inputProps?.placeholder
-    return (
-      <MuiTextField
-        {...textFieldProps}
-        {...props}
-        id={id}
-        name={name}
-        disabled={disabled}
-        placeholder={variant === 'filled' ? label : undefined}
-        color={color !== 'default' ? color : undefined}
-        className={defaultStyles.cx(
-          defaultStyles.classes.input,
-          variant !== 'outlined' && defaultStyles.classes.inputWithoutLabel,
-          rightIcon
-            ? localStyles.classes.inputWithRemove
-            : localStyles.classes.input,
-          getVariantColorClass(),
-          'AruiFilterDatePicker-datePicker',
-          classes?.textField
-        )}
-        style={styles?.textField}
-        variant='outlined'
-        InputProps={InputProps}
-        InputLabelProps={{
-          ...InputLabelProps,
-          className: defaultStyles.cx(
-            defaultStyles.classes.label,
-            'AruiFilterDatePicker-label',
-            classes?.label
-          ),
-          style: styles?.label
-        }}
-        inputProps={{
-          size: '5',
-          ...textFieldProps?.inputProps,
-          ...props.inputProps,
-          onClick: onOpenMemoized
-        }}
-        onClick={onOpenMemoized}
-      />
-    )
+  const InputProps = {
+    endAdornment: (
+      <InputAdornment
+        style={variant === 'filled' ? colorStyle : undefined}
+        component='div'
+        position='end'
+      >
+        <Calendar
+          onClick={!disabled ? onOpenMemoized : undefined}
+          className={defaultStyles.cx(
+            localStyles.classes.calendarIcon,
+            disabled && localStyles.classes.calendarIconDisabled,
+            'AruiFilterDatePicker-calendarIcon',
+            classes?.calendarIcon
+          )}
+          style={styles?.calendarIcon}
+        />
+      </InputAdornment>
+    ),
+    style:
+      variant === 'filled'
+        ? { ...styles?.input, ...colorStyle }
+        : styles?.input,
+    className: defaultStyles.cx('AruiDatePicker-input', classes?.input),
+    ...textFieldProps?.InputProps
   }
 
   return (
@@ -353,22 +314,59 @@ const FilterDatePickerBase = (
           open={open}
           onOpen={onOpen}
           onClose={onCloseMemoized}
-          inputFormat={format.format}
-          mask={format.mask}
+          format={format.format}
+          views={format.views}
           minDate={minDate}
           maxDate={maxDate}
-          componentsProps={{
+          slotProps={{
             actionBar: {
               actions: ['cancel', 'clear', 'accept']
+            },
+            textField: {
+              ...textFieldProps,
+              id,
+              name,
+              disabled,
+              placeholder: variant === 'filled' ? label : undefined,
+              color: color !== 'default' ? color : undefined,
+              className: defaultStyles.cx(
+                defaultStyles.classes.input,
+                variant !== 'outlined' &&
+                  defaultStyles.classes.inputWithoutLabel,
+                !!rightIcon
+                  ? localStyles.classes.inputWithRemove
+                  : localStyles.classes.input,
+                getVariantColorClass(),
+                'AruiFilterDatePicker-datePicker',
+                classes?.textField
+              ),
+              style: styles?.textField,
+              variant: 'outlined',
+              InputProps: InputProps,
+              InputLabelProps: {
+                ...InputLabelProps,
+                className: defaultStyles.cx(
+                  defaultStyles.classes.label,
+                  'AruiFilterDatePicker-label',
+                  classes?.label
+                ),
+                style: styles?.label,
+                // inputProps: {
+                //   size: '5',
+                //   ...textFieldProps?.inputProps,
+                //   ...props.inputProps,
+                //   onClick: onOpenMemoized
+                // },
+                onClick: onOpenMemoized
+              }
             }
           }}
-          components={{
-            ActionBar: CustomActionBar
+          slots={{
+            actionBar: CustomActionBar
           }}
           disabled={disabled}
           value={value ? value : null}
           onChange={onChange}
-          renderInput={renderInput}
           {...other}
         />
         {rightIcon}
