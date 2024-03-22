@@ -119,8 +119,8 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     onView,
     isLoading = false,
     className,
-    style,
     dropzoneProps,
+    style,
     uploaded,
     outterLabel,
     id,
@@ -209,38 +209,18 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     return
   }, [fileTypesAllowed])
 
-  const dropzoneContent = useCallback(() => {
-    const props = {
-      uploaded,
-      error,
-      label,
-      isRequired,
-      onDelete,
-      onEditFileName,
-      onDownload: onDownloadMemoized,
-      onView: onViewMemoized,
-      fileTypesAllowed,
-      isLoading: isLoading || loading
-    }
-    return <DropzoneChildren {...props} />
-  }, [
+  const childrenProps = {
+    uploaded,
+    error,
     label,
     isRequired,
     onDelete,
     onEditFileName,
-    onDownload,
-    onViewMemoized,
-    onDownloadMemoized,
-    error,
+    onDownload: onDownloadMemoized,
+    onView: onViewMemoized,
     fileTypesAllowed,
-    isLoading,
-    loading
-  ])
-
-  const dropzoneContentMemo = useMemo(
-    () => dropzoneContent(),
-    [dropzoneContent]
-  )
+    isLoading: isLoading || loading
+  }
 
   if (uploaded) {
     return (
@@ -263,7 +243,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
           }}
           onClick={onViewMemoized}
         >
-          {dropzoneContentMemo}
+          <DropzoneChildren {...childrenProps} />
         </Stack>
       </>
     )
@@ -273,16 +253,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
       {outterLabel && <InputLabel htmlFor={id}>{outterLabel}</InputLabel>}
       <Dropzone
         className={cx('AruiDocumentHandler-root', className)}
-        style={style}
-        onDrop={onDrop}
-        onReject={onRejectMemoized}
-        accept={accept}
-        ref={dropzoneRef}
-        maxSize={50 * 1024 * 1024}
-        multiple={multiple && !isRequired}
-        disabled={isLoading || loading}
-        {...dropzoneProps}
-        sx={{
+        style={{
           width: '100%',
           minWidth: '100px',
           overflow: 'hidden',
@@ -291,10 +262,18 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
           padding: '0px',
           pointerEvents: isLoading || loading ? 'none' : 'auto',
           opacity: isLoading || loading ? 0.8 : 1,
-          ...dropzoneProps?.sx
+          ...dropzoneProps?.style
         }}
+        onDrop={onDrop}
+        onReject={onRejectMemoized}
+        accept={accept}
+        ref={dropzoneRef}
+        maxSize={50 * 1024 * 1024}
+        multiple={multiple && !isRequired}
+        disabled={isLoading || loading}
+        {...dropzoneProps}
       >
-        {dropzoneContent}
+        <DropzoneChildren {...childrenProps} />
       </Dropzone>
     </>
   )

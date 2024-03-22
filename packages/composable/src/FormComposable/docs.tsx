@@ -8,5 +8,6 @@ export interface InputTypes {
 }
 
 export const FormField = (props: InputTypes & CommonFieldProps) => {
+  console.log(props)
   return <></>
 }

@@ -229,7 +229,9 @@ const DropPictureBase = (
   const { getRootProps, getInputProps } = useDropzone({
     ...other,
     multiple: false,
-    accept: 'image/jpeg, image/png',
+    accept: {
+      'image/*': ['.jpeg', '.png']
+    },
     maxSize: maxSize,
     onDropAccepted: onUpload,
     onDropRejected: onReject
