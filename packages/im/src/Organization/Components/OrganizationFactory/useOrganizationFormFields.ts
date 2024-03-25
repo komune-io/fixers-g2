@@ -14,7 +14,6 @@ import { validators } from '@komune-io/g2-utils'
 import { useTranslation } from 'react-i18next'
 
 export type organizationFieldsName =
-  | 'logo'
   | 'siret'
   | 'name'
   | 'description'
@@ -111,18 +110,6 @@ export const useOrganizationFormFields = (
       organizationFieldsName,
       FormComposableField<organizationFieldsName>
     > => ({
-      logo: mergeFields<FormComposableField<organizationFieldsName>>(
-        {
-          name: 'logo',
-          label: t('g2.facultativeField', { label: t('g2.logo') }),
-          type: 'dropPicture',
-          params: {
-            alt: "Le logo de l'entreprise",
-            height: '200px'
-          }
-        },
-        fieldsOverride?.logo
-      ),
       siret: mergeFields<FormComposableField<organizationFieldsName>>(
         {
           name: 'siret',

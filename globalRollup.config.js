@@ -1,52 +1,53 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "rollup-plugin-typescript2";
-import image from "@rollup/plugin-image";
-import json from "rollup-plugin-json";
-import svgr from "@svgr/rollup";
-import postcss from "rollup-plugin-postcss";
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import typescript from 'rollup-plugin-typescript2'
+import image from '@rollup/plugin-image'
+import json from 'rollup-plugin-json'
+import svgr from '@svgr/rollup'
+import postcss from 'rollup-plugin-postcss'
 // import analyze from "rollup-plugin-analyzer";
 
 const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
     localPackageJson.dependencies || {}
-  ).concat(Object.keys(localPackageJson.peerDependencies || {}));
+  ).concat(Object.keys(localPackageJson.peerDependencies || {}))
   const globals = {
-    react: "React",
-    "react-dom": "ReactDOM",
-  };
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  }
   return {
-    external: [...externalsDependencies, "tslib"],
+    external: [...externalsDependencies, 'tslib'],
     output: [
       {
-        file: localPackageJson.main,
+        file: 'dist/index.cjs',
+        //        file: localPackageJson.main,
         globals: globals,
-        format: "cjs",
-        sourcemap: true,
+        format: 'cjs',
+        sourcemap: true
       },
       {
         file: localPackageJson.module,
         globals: globals,
-        format: "es",
-        sourcemap: true,
-      },
+        format: 'es',
+        sourcemap: true
+      }
     ],
     plugins: [
       resolve({
         browser: true,
-        extensions: [".mjs", ".js", ".jsx", ".json", ".node", ".tsx", ".ts"],
+        extensions: ['.mjs', '.js', '.jsx', '.json', '.node', '.tsx', '.ts']
       }),
       commonjs({
-        include: /\/node_modules\//,
+        include: /\/node_modules\//
       }),
       typescript({ clean: true }),
       image(),
       json(),
       svgr(),
-      postcss(),
+      postcss()
       // analyze(),
-    ],
-  };
-};
+    ]
+  }
+}
 
-export default getGlobal;
+export default getGlobal

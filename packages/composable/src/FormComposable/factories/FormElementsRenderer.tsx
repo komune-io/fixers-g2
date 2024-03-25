@@ -5,7 +5,6 @@ import { AutoCompleteRender } from '../elements/AutoCompleteRender'
 import { CheckBoxRender } from '../elements/CheckBoxRender'
 import { RadioChoicesRender } from '../elements/RadioChoicesRender'
 import { ComposableElementRendererProps } from '../../ComposableRender'
-import { DropPictureRender } from '../elements/DropPictureRender'
 import { DocumentHandlerRender } from '../elements/DocumentHandlerRender'
 import { MapComposableRenderer } from '../elements/MapComposableRenderer'
 import { MultiChoicesRender } from '../elements/MultiChoicesRender'
@@ -19,7 +18,6 @@ export const DefaultRenderer = {
   datePicker: DatePickerRender,
   radioChoices: RadioChoicesRender,
   multiChoices: MultiChoicesRender,
-  dropPicture: DropPictureRender,
   documentHandler: DocumentHandlerRender,
   map: MapComposableRenderer,
   hidden: HiddenRender

@@ -323,13 +323,6 @@ const fullFields: AllFormComposableField[] = [
     fullRow: true
   },
   {
-    name: 'picture',
-    type: 'dropPicture',
-    params: {
-      height: '200px'
-    }
-  },
-  {
     key: 'storybook-form-field-name',
     name: 'name',
     label: 'Name',
