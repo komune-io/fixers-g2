@@ -34,15 +34,15 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/mermaid": "^8.2.4",
+    "@types/mermaid": "^9.2.0",
     "@types/react": "^18.0.28"
   },
   "dependencies": {
     "@komune-io/g2-themes": "0.5.0-alpha.1",
     "@komune-io/g2-utils": "0.5.0-alpha.1",
-    "mermaid": "^8.9.2",
-    "vis-data": "^7.1.2",
-    "vis-network": "^9.0.0"
+    "mermaid": "^10.9.0",
+    "vis-data": "^7.1.9",
+    "vis-network": "^9.1.9"
   },
   "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
   "publishConfig": {
