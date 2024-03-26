@@ -1,6 +1,6 @@
 {
   "name": "@komune-io/webpack-components",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
