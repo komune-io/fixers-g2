@@ -1,6 +1,6 @@
 {
   "name": "@komune-io/g2-forms",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
@@ -29,7 +29,7 @@
   ],
   "devDependencies": {
     "@geoman-io/leaflet-geoman-free": "^2.13.1",
-    "@komune-io/g2-providers": "0.5.0-alpha.1",
+    "@komune-io/g2-providers": "0.5.0-alpha",
     "@types/geojson": "^7946.0.10",
     "@types/leaflet": "^1.9.0",
     "@types/react": "^18.0.28",
@@ -43,9 +43,9 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha.1",
-    "@komune-io/g2-themes": "0.5.0-alpha.1",
-    "@komune-io/g2-utils": "0.5.0-alpha.1",
+    "@komune-io/g2-components": "0.5.0-alpha",
+    "@komune-io/g2-themes": "0.5.0-alpha",
+    "@komune-io/g2-utils": "0.5.0-alpha",
     "@mantine/hooks": "^4.2.12",
     "@mui/icons-material": "^5.11.11",
     "@mui/x-date-pickers": "^5.0.2",

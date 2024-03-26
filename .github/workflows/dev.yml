@@ -8,6 +8,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+    secrets:
+      NPM_PKG_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      with-docker-registry-login: false
 
   docs:
     uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@main

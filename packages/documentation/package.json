@@ -1,6 +1,6 @@
 {
   "name": "@komune-io/g2-documentation",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "description": "Components for documentation",
   "author": "Komune",
   "license": "Apache-2.0",
@@ -38,8 +38,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@komune-io/g2-themes": "0.5.0-alpha.1",
-    "@komune-io/g2-utils": "0.5.0-alpha.1",
+    "@komune-io/g2-themes": "0.5.0-alpha",
+    "@komune-io/g2-utils": "0.5.0-alpha",
     "github-markdown-css": "^4.0.0",
     "react-markdown": "^6.0.2",
     "react-syntax-highlighter": "^15.5.0",
