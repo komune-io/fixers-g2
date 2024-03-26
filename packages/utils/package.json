@@ -38,7 +38,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@mantine/hooks": "^4.2.12",
+    "@mantine/hooks": "^7.7.0",
     "@tanstack/react-query": "^5.28.6",
     "i18next": "^23.10.1",
     "lodash": "^4.17.21"

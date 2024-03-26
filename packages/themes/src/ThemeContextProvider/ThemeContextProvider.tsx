@@ -7,9 +7,6 @@ import React, {
 } from 'react'
 import { ThemeProvider, ThemeOptions, useMediaQuery } from '@mui/material'
 import { defaultMaterialUiTheme, defaultTheme, Theme } from './Theme'
-import { CacheProvider } from '@emotion/react'
-import createCache from '@emotion/cache'
-import { TssCacheProvider } from 'tss-react'
 import { mergeDeepRight } from 'ramda'
 import { DeepPartial } from '@komune-io/g2-utils'
 import { useDidUpdate } from '@mantine/hooks'
@@ -40,16 +37,6 @@ export interface ThemeContextProviderProps {
   customMuiTheme?: Partial<ThemeOptions>
   defaultOpenDrawer?: boolean
 }
-
-export const muiCache = createCache({
-  key: 'mui',
-  prepend: true
-})
-
-export const tssCache = createCache({
-  key: 'tss',
-  prepend: false
-})
 
 export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
   const { children, customMuiTheme, theme, defaultOpenDrawer } = props
@@ -99,11 +86,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
         toggleOpenDrawer
       }}
     >
-      <TssCacheProvider value={tssCache}>
-        <CacheProvider value={muiCache}>
-          <ThemeProvider theme={defaultMuiTheme}>{children}</ThemeProvider>
-        </CacheProvider>
-      </TssCacheProvider>
+      <ThemeProvider theme={defaultMuiTheme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   )
 }

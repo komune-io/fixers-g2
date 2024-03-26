@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { DeepPartial } from '@komune-io/g2-utils'
 import { G2Translations } from './G2Translations'
 import { LoadingProviders } from '../LoadingProviders'
+import { MantineProvider } from '@mantine/core'
 
 export interface AppProviderProps<
   Languages extends { [K in keyof Languages]: string } = {}
@@ -59,7 +60,9 @@ export const AppProvider = <
     <Suspense fallback={loadingComponent ?? <LoadingProviders />}>
       <QueryClientProvider client={queryClient}>
         <I18nextProvider i18n={i18n}>
-          <BrowserRouter>{children}</BrowserRouter>
+          <MantineProvider>
+            <BrowserRouter>{children}</BrowserRouter>
+          </MantineProvider>
         </I18nextProvider>
       </QueryClientProvider>
     </Suspense>
