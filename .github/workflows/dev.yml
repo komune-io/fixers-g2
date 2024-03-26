@@ -14,7 +14,7 @@ jobs:
       with-docker-registry-login: false
 
   docs:
-    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@main
+    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@51876c9708ed846aae7bf32a77715a371609540e
     permissions:
       contents: read
       packages: write
@@ -22,6 +22,7 @@ jobs:
       id-token: write
     with:
       storybook-dir: ''
+      storybook-static-dir-separator: ''
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
