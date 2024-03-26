@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   dev:
-    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@e14c0ac441847f6d2938555a4bbab60214bc7179
+    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@a11e37effcd88c98ea6f44c3a167488ed5ecb34d
     permissions:
       contents: read
       packages: write
@@ -15,7 +15,7 @@ jobs:
       with-docker-registry-login: false
 
   docs:
-    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@e14c0ac441847f6d2938555a4bbab60214bc7179
+    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@a11e37effcd88c98ea6f44c3a167488ed5ecb34d
     permissions:
       contents: read
       packages: write
