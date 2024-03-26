@@ -77,12 +77,12 @@ const permanentHeader = ({ toggleOpenDrawer }) => {
 export const withThemeProvider = (Story) => {
   return (
     <I18nextProvider i18n={i18n}>
-      <MantineProvider>
-        <ThemeContextProvider theme={{ permanentHeader }}>
+      <ThemeContextProvider theme={{ permanentHeader }}>
+        <MantineProvider>
           <CssBaseline />
           <Story />
-        </ThemeContextProvider>
-      </MantineProvider>
+        </MantineProvider>
+      </ThemeContextProvider>
     </I18nextProvider>
   );
 };
