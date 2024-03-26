@@ -4,17 +4,18 @@ on: [push, workflow_dispatch]
 
 jobs:
   dev:
-    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@main
+    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@e14c0ac441847f6d2938555a4bbab60214bc7179
     permissions:
       contents: read
       packages: write
     secrets:
       NPM_PKG_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_PKG_NPMJS_TOKEN: ${{ secrets.NPM_PKG_NPMJS_TOKEN}}
     with:
       with-docker-registry-login: false
 
   docs:
-    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@51876c9708ed846aae7bf32a77715a371609540e
+    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@e14c0ac441847f6d2938555a4bbab60214bc7179
     permissions:
       contents: read
       packages: write

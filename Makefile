@@ -9,7 +9,8 @@ lint:
 	yarn eslintCheck
 
 build-pre:
-	lerna version $(VERSION) --no-git-tag-version --yes --exact
+	VERSION=$(VERSION) yarn publishWorkspaces:version
+
 build: build-libs
 
 test:
