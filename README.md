@@ -90,12 +90,12 @@ lerna version 0.0.1 --no-git-tag-version --exact
 lerna publish from-package --no-git-reset
 ```
 
-- Release experimental Version on gitlab from develop
+- Release experimental Version on github from develop
 
 ```
 lerna version 1.0.0-alpha.1 --no-git-tag-version --exact
 
-yarn publishWorkspaces:gitlab
+yarn publishWorkspaces:github
 ```
 
 - Create new package

@@ -1,6 +1,6 @@
 {
   "name": "@komune-io/g2-providers",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
@@ -41,9 +41,9 @@
   },
   "dependencies": {
     "@axa-fr/react-oidc": "^7.6.0",
-    "@komune-io/g2-components": "0.5.0-alpha.1",
-    "@komune-io/g2-themes": "0.5.0-alpha.1",
-    "@komune-io/g2-utils": "0.5.0-alpha.1",
+    "@komune-io/g2-components": "0.5.0-alpha",
+    "@komune-io/g2-themes": "0.5.0-alpha",
+    "@komune-io/g2-utils": "0.5.0-alpha",
     "i18next": "^22.4.11",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.1",

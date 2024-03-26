@@ -1,3 +1,4 @@
+VERSION = $(shell cat VERSION)
 
 clean:
 	-rm -fr node_modules
@@ -7,14 +8,18 @@ clean:
 lint:
 	yarn eslintCheck
 
+build-pre:
+	lerna version $(VERSION) --no-git-tag-version --yes --exact
 build: build-libs
 
 test:
 	echo 'No Test'
 
-package:
-	echo 'No Package'
+publish:
+	TAG=$(VERSION) yarn publishWorkspaces:github
 
+promote:
+	VERSION=$(VERSION) yarn publishWorkspaces:npm
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
@@ -34,8 +39,6 @@ build-libs:
 	@yarn workspace @komune-io/g2-storybook-documentation run build
 	@yarn workspace @komune-io/webpack-components run build
 
-push-libs-npm:
-	VERSION=${VERSION} yarn publishWorkspaces:npm
-
-push-libs-gitlab:
-	TAG=${VERSION} yarn publishWorkspaces:gitlab
+.PHONY: version
+version:
+	@echo "$(VERSION)"
