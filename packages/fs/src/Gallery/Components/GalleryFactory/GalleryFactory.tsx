@@ -6,15 +6,12 @@ import {
   CircularProgress,
   IconButton,
   Stack,
+  SxProps,
+  Theme,
   Typography
 } from '@mui/material'
 import { AddPhotoAlternateRounded, CloseRounded } from '@mui/icons-material'
-import {
-  Dropzone,
-  DropzoneStatus,
-  IMAGE_MIME_TYPE,
-  DropzoneProps
-} from '@mantine/dropzone'
+import { Dropzone, IMAGE_MIME_TYPE, DropzoneProps } from '@mantine/dropzone'
 import { FileRejection } from 'react-dropzone'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { StackProps } from '@mantine/core'
@@ -63,10 +60,6 @@ export interface GalleryFactoryBasicProps extends BasicProps {
    */
   isLoading?: boolean
   /**
-   * use this to override the default dropzone container children
-   */
-  generateDropzone?: (status: DropzoneStatus) => JSX.Element
-  /**
    * The props of the dropzone
    */
   dropzoneProps?: DropzoneProps
@@ -78,6 +71,7 @@ export interface GalleryFactoryBasicProps extends BasicProps {
    * The styles applied to the different part of the component
    */
   styles?: GalleryFactoryStyles
+  sx?: SxProps<Theme>
 }
 
 export type GalleryFactoryProps = MergeMuiElementProps<
@@ -96,7 +90,6 @@ export const GalleryFactory = (props: GalleryFactoryProps) => {
     classes,
     styles,
     className,
-    generateDropzone,
     dropzoneProps,
     sx,
     ...rest
@@ -191,23 +184,6 @@ export const GalleryFactory = (props: GalleryFactoryProps) => {
     [onAdd]
   )
 
-  const dropzone = useCallback(
-    (status) =>
-      generateDropzone
-        ? generateDropzone(status)
-        : dropzoneChildren(
-            status,
-            error
-              ? t('g2.' + error, {
-                  formats: ['png', 'gif', 'jpeg', 'svg+xml', 'webp'].join(', '),
-                  sizeLimit: (dropzoneProps?.maxSize ?? 10) / 1024 / 1024
-                })
-              : undefined,
-            t('g2.addImages')
-          ),
-    [generateDropzone, error, dropzoneProps?.maxSize, t]
-  )
-
   return (
     //@ts-ignore
     <Stack
@@ -218,6 +194,12 @@ export const GalleryFactory = (props: GalleryFactoryProps) => {
         gap: '20px',
         overflow: 'auto',
         minHeight: '150px',
+        '& .AruiGalleryFactory-dropzone': {
+          width: '300px',
+          flexShrink: 0,
+          maxWidth: '300px',
+          borderRadius: '20px'
+        },
         ...sx,
         '& .AruiGalleryFactory-image': {
           borderRadius: '20px',
@@ -233,19 +215,25 @@ export const GalleryFactory = (props: GalleryFactoryProps) => {
           <Dropzone
             className={cx('AruiGalleryFactory-dropzone', classes?.dropzone)}
             style={styles?.dropzone}
-            sx={{
-              width: '300px',
-              flexShrink: 0,
-              maxWidth: '300px',
-              borderRadius: '20px'
-            }}
             onDrop={onDrop}
             onReject={onRejectMemoized}
             accept={IMAGE_MIME_TYPE}
             maxSize={10 * 1024 * 1024}
             {...dropzoneProps}
           >
-            {dropzone}
+            <DropzoneChildren
+              error={
+                error
+                  ? t('g2.' + error, {
+                      formats: ['png', 'gif', 'jpeg', 'svg+xml', 'webp'].join(
+                        ', '
+                      ),
+                      sizeLimit: (dropzoneProps?.maxSize ?? 10) / 1024 / 1024
+                    })
+                  : undefined
+              }
+              addImagesString={t('g2.addImages')}
+            />
           </Dropzone>
         ) : (
           <Stack
@@ -264,34 +252,38 @@ export const GalleryFactory = (props: GalleryFactoryProps) => {
   )
 }
 
-export const dropzoneChildren = (
-  _: DropzoneStatus,
-  error?: string,
+interface DropzoneChildren {
+  error?: string
   addImagesString?: string
-) => (
-  <Stack
-    sx={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%'
-    }}
-  >
-    <AddPhotoAlternateRounded
+}
+
+export const DropzoneChildren = (props: DropzoneChildren) => {
+  const { addImagesString, error } = props
+  return (
+    <Stack
       sx={{
-        width: '50px',
-        height: '50px'
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
       }}
-    />
-    <Typography align='center'>{addImagesString}</Typography>
-    {error && (
-      <Typography
-        sx={{ paddingTop: '15px' }}
-        align='center'
-        variant='body2'
-        color='error'
-      >
-        {error}
-      </Typography>
-    )}
-  </Stack>
-)
+    >
+      <AddPhotoAlternateRounded
+        sx={{
+          width: '50px',
+          height: '50px'
+        }}
+      />
+      <Typography align='center'>{addImagesString}</Typography>
+      {error && (
+        <Typography
+          sx={{ paddingTop: '15px' }}
+          align='center'
+          variant='body2'
+          color='error'
+        >
+          {error}
+        </Typography>
+      )}
+    </Stack>
+  )
+}
