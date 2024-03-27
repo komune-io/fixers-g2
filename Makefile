@@ -18,7 +18,7 @@ test:
 	echo 'No Test'
 
 publish:
-	yarn orkspaces:publish
+	yarn workspaces:publish
 
 promote:
 	yarn workspaces:publish
