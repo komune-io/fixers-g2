@@ -21,7 +21,7 @@ publish:
 	yarn publishWorkspaces:github
 
 promote:
-	VERSION=$(VERSION) yarn publishWorkspaces:github
+	yarn publishWorkspaces:github
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
