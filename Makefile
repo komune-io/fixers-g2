@@ -32,7 +32,6 @@ build-libs:
 	@yarn workspace @komune-io/g2-fs run build
 	@yarn workspace @komune-io/g2 run build
 	@yarn workspace @komune-io/g2-storybook-documentation run build
-	@yarn workspace @komune-io/webpack-components run build
 
 push-libs-npm:
 	VERSION=${VERSION} yarn publishWorkspaces:npm
