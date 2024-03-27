@@ -54,7 +54,8 @@ const useStyles = makeG2STyles()({
     height: '17px',
     cursor: 'pointer',
     color: 'currentColor',
-    stroke: 'currentColor'
+    stroke: 'currentColor',
+    fill: 'none'
   },
   calendarIconDisabled: {
     cursor: 'default'
@@ -191,6 +192,7 @@ const FilterDatePickerBase = (
   })
 
   const onOpenMemoized = useCallback(() => {
+    console.log('open')
     setOpen(true)
     onOpen && onOpen()
   }, [onOpen])
@@ -287,6 +289,7 @@ const FilterDatePickerBase = (
         />
       </InputAdornment>
     ),
+    onClick: onOpenMemoized,
     style:
       variant === 'filled'
         ? { ...styles?.input, ...colorStyle }
@@ -350,14 +353,7 @@ const FilterDatePickerBase = (
                   'AruiFilterDatePicker-label',
                   classes?.label
                 ),
-                style: styles?.label,
-                // inputProps: {
-                //   size: '5',
-                //   ...textFieldProps?.inputProps,
-                //   ...props.inputProps,
-                //   onClick: onOpenMemoized
-                // },
-                onClick: onOpenMemoized
+                style: styles?.label
               }
             }
           }}

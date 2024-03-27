@@ -195,6 +195,7 @@ const DatePickerBase = (
         views={format.views}
         minDate={minDate}
         maxDate={maxDate}
+        orientation='portrait'
         slotProps={{
           actionBar: {
             actions: ['cancel', 'clear']

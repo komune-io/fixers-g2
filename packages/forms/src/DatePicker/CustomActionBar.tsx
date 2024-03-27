@@ -47,5 +47,14 @@ export const CustomActionBar = (props: PickersActionBarProps) => {
     return null
   }
 
-  return <Actions padding={1} actions={actionsDisplay} />
+  return (
+    <Actions
+      padding={1}
+      actions={actionsDisplay}
+      sx={{
+        gridColumn: '1 / 4',
+        gridRow: 3
+      }}
+    />
+  )
 }
