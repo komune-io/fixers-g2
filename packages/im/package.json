@@ -50,8 +50,5 @@
     "@mui/icons-material": "^5.11.11",
     "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.2"
-  },
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

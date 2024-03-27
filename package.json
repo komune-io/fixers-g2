@@ -81,8 +81,5 @@
     "eslintCheck": "eslint . --ext .tsx,.ts",
     "eslintFix": "eslint . --ext .tsx,.ts --fix",
     "prettier": "prettier --write --ignore-unknown"
-  },
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }
