@@ -9,6 +9,7 @@ lint:
 	yarn eslintCheck
 
 build-pre:
+	@yarn install --frozen-lockfile --ignore-scripts
 	VERSION=$(VERSION) yarn publishWorkspaces:version
 
 build: build-libs
@@ -17,7 +18,7 @@ test:
 	echo 'No Test'
 
 publish:
-	TAG=$(VERSION) yarn publishWorkspaces:github
+	yarn publishWorkspaces:github
 
 promote:
 	VERSION=$(VERSION) yarn publishWorkspaces:npm
