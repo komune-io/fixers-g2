@@ -84,12 +84,6 @@ const useStyles = makeG2STyles()({
     cursor: 'pointer',
     color: 'rgba(0, 0, 0, 0.54)'
   },
-  selectIcon: {
-    width: '12px',
-    height: '12px',
-    right: '10px',
-    top: 'calc(50% - 5px)'
-  },
   list: {
     padding: '0px'
   },
@@ -281,12 +275,19 @@ export const Select = React.forwardRef(
           {...props}
           color='#98A5AE'
           className={defaultStyles.cx(
-            localStyles.classes.selectIcon,
             'AruiSelect-selectIcon',
             classes?.selectIcon,
             props.className
           )}
-          style={styles?.selectIcon}
+          sx={{
+            width: '12px',
+            height: '12px'
+          }}
+          style={{
+            right: '10px',
+            top: 'calc(50% - 5px)',
+            ...styles?.selectIcon
+          }}
         />
       ),
       []
