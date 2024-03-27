@@ -49,9 +49,5 @@
   },
   "files": [
     "dist"
-  ],
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
-  }
+  ]
 }

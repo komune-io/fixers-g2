@@ -52,9 +52,5 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^6.8.2",
     "redux": "^4.1.0"
-  },
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

@@ -43,9 +43,5 @@
     "mermaid": "^8.9.2",
     "vis-data": "^7.1.2",
     "vis-network": "^9.0.0"
-  },
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

@@ -50,9 +50,5 @@
     "react-dropzone": "^11.3.2",
     "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.2"
-  },
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

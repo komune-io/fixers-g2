@@ -45,9 +45,5 @@
     "ramda": "^0.28.0",
     "tinycolor2": "^1.6.0",
     "tss-react": "^3.7.0"
-  },
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }
