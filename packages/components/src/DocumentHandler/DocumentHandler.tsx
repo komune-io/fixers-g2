@@ -172,7 +172,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
       setLoading(true)
       const url = await getFileUrl()
       if (url) {
-        var link = document.createElement('a')
+        let link = document.createElement('a')
         link.href = url
         link.download = label
         link.click()
