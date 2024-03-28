@@ -10,7 +10,7 @@ lint:
 
 build-pre:
 	@yarn install --frozen-lockfile --ignore-scripts
-	VERSION=$(VERSION) yarn publishWorkspaces:version
+	VERSION=$(VERSION) yarn workspaces:version
 
 build: build-libs
 
@@ -18,10 +18,10 @@ test:
 	echo 'No Test'
 
 publish:
-	yarn publishWorkspaces:github
+	yarn workspaces:publish
 
 promote:
-	yarn publishWorkspaces:github
+	yarn workspaces:publish
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts

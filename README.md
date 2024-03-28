@@ -95,7 +95,7 @@ lerna publish from-package --no-git-reset
 ```
 lerna version 1.0.0-alpha.1 --no-git-tag-version --exact
 
-yarn publishWorkspaces:github
+yarn workspaces:publish
 ```
 
 - Create new package
