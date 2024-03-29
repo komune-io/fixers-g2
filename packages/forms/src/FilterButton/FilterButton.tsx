@@ -75,7 +75,8 @@ export const FilterButton = (props: FilterButtonProps) => {
       }}
       variant={variant === 'outlined' ? variant : 'contained'}
       startIcon={<FilterAltOutlined sx={{ width: 24, height: 24 }} />}
-      children={children}
-    />
+    >
+      {children}
+    </Button>
   )
 }

@@ -91,7 +91,7 @@ export const MultiChoices = React.forwardRef(
 
     const onChangeMemoized = useCallback(
       (key: SmartKey, checked: boolean) => {
-        let valuesCopy = [...values]
+        const valuesCopy = [...values]
         if (checked) valuesCopy.push(key)
         else {
           const index = values.findIndex((value) => key === value)

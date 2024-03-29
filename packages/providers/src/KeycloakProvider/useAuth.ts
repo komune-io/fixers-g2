@@ -178,7 +178,7 @@ function useAuth<
 
   const getPrincipalRole = useCallback(
     (givenRoles: Roles[]): Roles | undefined => {
-      for (let it in roles) {
+      for (const it in roles) {
         if (givenRoles.includes(roles[it])) {
           return roles[it]
         }
@@ -198,7 +198,7 @@ function useAuth<
     (role: Roles | Roles[]): boolean => {
       if (Array.isArray(role)) {
         if (role.length === 0) return true
-        for (let it in role) {
+        for (const it in role) {
           if (tokenParsed?.realm_access?.roles.includes(role[it])) return true
         }
         return false
@@ -268,7 +268,7 @@ function useAuth<
 
   const rolesServices: RolesServices<Roles> = useMemo(() => {
     const object: RolesServices<Roles> = {} as RolesServices<Roles>
-    for (let it in roles) {
+    for (const it in roles) {
       const fn = () => hasRole(roles[it])
       object[`is_${roles[it]}`] = fn
     }
@@ -323,7 +323,7 @@ function useAuth<
   const additionals: AuthServiceAdditional<AdditionalServices> = useMemo(() => {
     const object: AuthServiceAdditional<AdditionalServices> =
       {} as AuthServiceAdditional<AdditionalServices>
-    for (let serviceName in additionalServices) {
+    for (const serviceName in additionalServices) {
       const fn: AuthFnc = (params) =>
         additionalServices[serviceName.toString()](keycloak, service, params)
       object[serviceName.toString()] = fn

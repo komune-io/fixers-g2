@@ -170,8 +170,8 @@ export const Filters = (props: FiltersProps) => {
 
   const fieldsMemoized = useMemo(
     () =>
-      fields.map((field) => {
-        if (field === 'spacer') return <Box sx={{ flexGrow: 1 }} />
+      fields.map((field, index) => {
+        if (field === 'spacer') return <Box key={index} sx={{ flexGrow: 1 }} />
 
         const commonProps = {
           key: field.key,

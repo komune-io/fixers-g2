@@ -18,7 +18,7 @@ export const initI18next = <T extends { [key: string]: string } = {}>(
     }
   } else {
     let iteration = 0
-    for (let languageName in languages) {
+    for (const languageName in languages) {
       fallbackLng[languages[languageName.toString()]] = [languageName]
       if (iteration === 0) {
         fallbackLng['default'] = [languageName]

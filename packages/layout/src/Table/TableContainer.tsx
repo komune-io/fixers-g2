@@ -57,14 +57,14 @@ export const TableContainer = styled(BasicTableContainer)((props) => {
     '& .AruiTable-table': {
       borderCollapse: 'unset'
     },
-    '& .AruiTable-tableCell': !!getRowLink
+    '& .AruiTable-tableCell': getRowLink
       ? {
           zIndex: 2,
           position: 'relative',
           pointerEvents: 'none'
         }
       : undefined,
-    '& .AruiTable-tableCell :is(button, a, label)': !!getRowLink
+    '& .AruiTable-tableCell :is(button, a, label)': getRowLink
       ? {
           pointerEvents: 'auto'
         }

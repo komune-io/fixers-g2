@@ -231,7 +231,7 @@ export const Form = (props: FormProps) => {
           isLoading,
           readOnly
         )
-        if (!!field.customDisplay) {
+        if (field.customDisplay) {
           return field.customDisplay(input)
         }
         return input

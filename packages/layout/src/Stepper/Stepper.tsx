@@ -15,6 +15,8 @@ import {
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 
+/* eslint-disable react/jsx-key */
+
 export type StepItem = {
   key: string
   label: string
@@ -52,7 +54,6 @@ export type StepperProps = MergeMuiElementProps<
 export const Stepper = (props: StepperProps) => {
   const {
     steps = [],
-    headerComponent,
     sx,
     activeStep,
     orientation = 'vertical',
@@ -89,8 +90,8 @@ export const Stepper = (props: StepperProps) => {
                       activeStep != undefined && index === activeStep
                         ? theme.palette[activeColor].main
                         : activeStep != undefined && index < activeStep
-                        ? theme.palette.success.main
-                        : '#9E9E9E'
+                          ? theme.palette.success.main
+                          : '#9E9E9E'
                     } !important`
                 }
               }}
@@ -233,16 +234,16 @@ function AvStepIcon(props: StepIconProps & { activeColor: ColorPalette }) {
               color: 'white'
             }
           : completed
-          ? {
-              background: (theme) => theme.palette.success.main,
-              border: (theme) => `2px ${theme.palette.success.main} solid`,
-              color: 'white'
-            }
-          : {
-              background: 'none',
-              border: `2px #9E9E9E solid`,
-              color: '#9E9E9E'
-            })
+            ? {
+                background: (theme) => theme.palette.success.main,
+                border: (theme) => `2px ${theme.palette.success.main} solid`,
+                color: 'white'
+              }
+            : {
+                background: 'none',
+                border: `2px #9E9E9E solid`,
+                color: '#9E9E9E'
+              })
       }}
     >
       {completed ? (

@@ -1,8 +1,8 @@
 {
   "name": "@komune-io/g2-forms",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
-  "author": "Adrien Poupard <adrien@komune-io.city>",
+  "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
   "description": "React forms library",
   "private": false,
@@ -21,15 +21,14 @@
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "publish:github": "npm publish",
-    "publish:npm": "yarn publish --access public --new-version ${VERSION}"
+    "publish:npm": "npm publish --access public"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
     "@geoman-io/leaflet-geoman-free": "^2.13.1",
-    "@komune-io/g2-providers": "0.5.0-alpha.1",
+    "@komune-io/g2-providers": "0.5.0-alpha",
     "@types/geojson": "^7946.0.10",
     "@types/leaflet": "^1.9.0",
     "@types/react": "^18.0.28",
@@ -58,8 +57,5 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.22.3",
     "tinycolor2": "^1.6.0"
-  },
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

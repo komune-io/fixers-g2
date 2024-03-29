@@ -49,7 +49,7 @@ export const objectHiglighter: StoryFn = () => (
     object={{
       name: 'test',
       age: 18,
-      do: (arg: String) => {
+      do: (arg: string) => {
         console.log(arg)
       },
       child: {

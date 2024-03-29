@@ -53,7 +53,7 @@ export const validateConditions =
     const validatorConditions: ValidatorCondition[] = conditions.filter(
       (cond) => cond.type === 'validator'
     )
-    for (let cond of validatorConditions) {
+    for (const cond of validatorConditions) {
       if (evalCondition(cond, values)) return cond.error
     }
     return

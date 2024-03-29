@@ -255,7 +255,7 @@ export const TextField = React.forwardRef(
     )
 
     const onSearchMemoisied = useCallback(async () => {
-      if (!!onSearch) {
+      if (onSearch) {
         setloading(true)
         await onSearch()
         setloading(false)
@@ -398,7 +398,7 @@ export const TextField = React.forwardRef(
     ])
 
     const inputClasses = () => {
-      if (!!rightIcon) {
+      if (rightIcon) {
         if (inputAdornment.endAdornment) {
           return localStyles.classes.withIconEndOnRemove
         } else {
@@ -433,8 +433,8 @@ export const TextField = React.forwardRef(
               textFieldType === 'search'
                 ? 'text'
                 : textFieldType === 'search-number'
-                ? 'number'
-                : textFieldType
+                  ? 'number'
+                  : textFieldType
             }
             defaultValue={defaultValue}
             className={defaultStyles.cx(

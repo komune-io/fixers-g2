@@ -1,3 +1,4 @@
+VERSION = $(shell cat VERSION)
 
 clean:
 	-rm -fr node_modules
@@ -5,16 +6,22 @@ clean:
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
 
 lint:
-	echo 'No Lint'
+	yarn eslintCheck
+
+build-pre:
+	@yarn install --frozen-lockfile --ignore-scripts
+	VERSION=$(VERSION) yarn workspaces:version
 
 build: build-libs
 
 test:
 	echo 'No Test'
 
-package:
-	echo 'No Package'
+publish:
+	yarn workspaces:publish
 
+promote:
+	yarn workspaces:publish
 
 build-libs:
 	@yarn install --frozen-lockfile --ignore-scripts
@@ -33,8 +40,6 @@ build-libs:
 	@yarn workspace @komune-io/g2 run build
 	@yarn workspace @komune-io/g2-storybook-documentation run build
 
-push-libs-npm:
-	VERSION=${VERSION} yarn publishWorkspaces:npm
-
-push-libs-gitlab:
-	TAG=${VERSION} yarn publishWorkspaces:gitlab
+.PHONY: version
+version:
+	@echo "$(VERSION)"

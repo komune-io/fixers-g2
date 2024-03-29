@@ -95,7 +95,7 @@ export const ColumnFactory = <Data extends {} = {}>(
   const columns = generateColumns(columnsGenerators)
 
   if (Array.isArray(columns)) return columns
-  let finalColumns: G2ColumnDef<Data>[] = []
+  const finalColumns: G2ColumnDef<Data>[] = []
   Object.keys(columns).forEach((key) => {
     const column = columns[key]
     column.id = column.id ?? key
@@ -120,7 +120,7 @@ export const ColumnFactoryV1 = <Data extends {} = {}>(
 
   //@ts-ignore
   const columnsObject = generateColumns(columnsGenerators)
-  let columns: Column<Data>[] = []
+  const columns: Column<Data>[] = []
 
   for (const key in columnsObject) {
     const column = columnsObject[key]

@@ -15,7 +15,7 @@ export const transformLayerToJson = (
   }
 }
 
-var icon = () => {
+const icon = () => {
   return new L.Icon({
     iconUrl: 'https://static.thenounproject.com/png/2333558-200.png',
     iconSize: [30, 36],

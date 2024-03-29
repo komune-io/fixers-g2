@@ -1,8 +1,8 @@
 {
   "name": "@komune-io/g2-components",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
-  "author": "Adrien Poupard <adrien@komune-io.city>",
+  "author": "Komune <team@komune.io>",
   "license": "Apache-2.0",
   "description": "React components library",
   "private": false,
@@ -21,14 +21,13 @@
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "publish:github": "npm publish",
-    "publish:npm": "yarn publish --access public --new-version ${VERSION}"
+    "publish:npm": "npm publish --access public"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@komune-io/g2-forms": "0.5.0-alpha.1",
+    "@komune-io/g2-forms": "0.5.0-alpha",
     "@types/react": "^18.0.28",
     "@types/react-dropzone": "^5.1.0"
   },
@@ -50,9 +49,5 @@
     "react-dropzone": "^14.2.3",
     "react-i18next": "^14.1.0",
     "react-router-dom": "^6.22.3"
-  },
-  "gitHead": "01582f4b620c1e44cab5a65394e29d95f66ddabb",
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }
