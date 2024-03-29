@@ -9,7 +9,7 @@ import postcss from "rollup-plugin-postcss";
 
 const getGlobal = (localPackageJson) => {
   const externalsDependencies = Object.keys(
-    localPackageJson.dependencies || {}
+    localPackageJson.dependencies || {},
   ).concat(Object.keys(localPackageJson.peerDependencies || {}));
   const globals = {
     react: "React",
@@ -19,7 +19,7 @@ const getGlobal = (localPackageJson) => {
     external: [...externalsDependencies, "tslib"],
     output: [
       {
-        file: localPackageJson.main,
+        file: "dist/index.cjs",
         globals: globals,
         format: "cjs",
         sourcemap: true,
