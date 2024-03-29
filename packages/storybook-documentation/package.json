@@ -38,8 +38,5 @@
     "@komune-io/g2-themes": "0.5.0-alpha.1",
     "@komune-io/g2-utils": "0.5.0-alpha.1",
     "@storybook/addon-docs": "^7.6.17"
-  },
-  "publishConfig": {
-    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }
