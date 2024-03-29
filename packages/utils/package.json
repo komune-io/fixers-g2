@@ -6,16 +6,15 @@
   "version": "0.5.0-alpha",
   "description": "Utility package used in the g2 packages.",
   "private": false,
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "module": "dist/index.es.js",
-  "type": "module",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
@@ -40,6 +39,9 @@
     "@mantine/hooks": "^7.7.0",
     "@tanstack/react-query": "^5.28.6",
     "i18next": "^23.10.1",
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
+  },
+  "publishConfig": {
+    "@komune-io:registry": "https://npm.pkg.github.com"
   }
 }

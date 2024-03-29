@@ -1,9 +1,11 @@
-import {
-  MapContainer,
-  MapContainerProps,
-  TileLayer,
-  TileLayerProps
-} from 'react-leaflet'
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  Suspense
+} from 'react'
 import { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import {
   FormHelperText,
@@ -13,37 +15,50 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  DraggableMarker,
-  DraggableMarkerControl,
-  DraggableMarkerNeeds
-} from './DraggableMarker'
-import 'leaflet/dist/leaflet.css'
 import { Button } from '@komune-io/g2-components'
 import { CloseRounded } from '@mui/icons-material'
 import L from 'leaflet'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
-import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 import { useTranslation } from 'react-i18next'
+import 'leaflet/dist/leaflet.css'
+import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 
-/* eslint-disable react/jsx-key */
+// Import only the types and components you need
+import {
+  MapContainer,
+  TileLayer,
+  MapContainerProps,
+  TileLayerProps
+} from 'react-leaflet'
 
-//@ts-ignore
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow
-})
+// Ensure DraggableMarker has a default export
+const DraggableMarker = React.lazy(() =>
+  import('./DraggableMarker').then((module) => ({ default: module.default }))
+)
+
+// Modify Leaflet's icon path only in client-side environment
+if (typeof window !== 'undefined') {
+  L.Icon.Default.prototype.options.iconRetinaUrl = markerIcon2x
+  L.Icon.Default.prototype.options.iconUrl = markerIcon
+  L.Icon.Default.prototype.options.shadowUrl = markerShadow
+  /* eslint-disable react/jsx-key */
+
+  //@ts-ignore
+  delete L.Icon.Default.prototype._getIconUrl
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: markerIcon2x,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow
+  })
+}
 
 export const defaultPosition = { center: { lng: 2, lat: 46 }, zoom: 5 }
 
 export interface MapPlugin {
   key: string
   value?: any
-  setValue?: (value) => void
+  setValue?: (value: any) => void
   element: React.ElementType<any>
 }
 
@@ -69,51 +84,16 @@ export interface MapStyles {
 }
 
 export interface MapBasicProps extends BasicProps {
-  /**
-   * the children wil be put under the map in the element tree you can pass absolute element that you want to apply above the map
-   */
   children?: React.ReactNode
-  /**
-   * the pluggins you want to have inside the map they should be compatible with leaflet.
-   * They should use the two required props `value` and `setValue` to handle their custom states
-   * They will also receive the prop `map?: LeafletMap` of the type `import { Map as LeafletMap } from "leaflet"` to access the currentMap object and also the props `isMobile`, `readOnly`, `isFullScreen` to be informed of the state of the current map
-   */
   additionalPlugins?: (MapPlugin & Record<string, any>)[]
-  /**
-   * the pluggin to have a draggableMarker on the map. When `readOnly` is set to `true` its just a simple marker
-   */
-  draggableMarkerPlugin?: DraggableMarkerNeeds
-  /**
-   * the initial center of the map
-   */
+  draggableMarkerPlugin?: any // Adjust the type as necessary
   center?: LatLngExpression
-  /**
-   * the initial zoom of the map
-   */
   zoom?: number
-  /**
-   * the props passed to the map component
-   */
   mapProps?: Partial<MapContainerProps>
-  /**
-   * the props passed to the TileLayer component
-   */
   tileLayerProps?: Partial<TileLayerProps>
-  /**
-   * the readOnly property passed to the pluggins of the map
-   */
   readOnly?: boolean
-  /**
-   * the error message you want to display at the bottom of the map
-   */
   errorMessage?: string
-  /**
-   * The classes applied to the different part of the component
-   */
   classes?: MapClasses
-  /**
-   * The styles applied to the different part of the component
-   */
   styles?: MapStyles
 }
 
@@ -152,91 +132,75 @@ export const Map = (props: MapProps) => {
   }, [isFullScreen])
 
   const onFullScreenChange = useCallback(() => {
-    if (document.fullscreenElement === containerRef.current)
-      setIsFullScreen(true)
-    else setIsFullScreen(false)
+    setIsFullScreen(document.fullscreenElement === containerRef.current)
   }, [])
 
   useEffect(() => {
     document.addEventListener('fullscreenchange', onFullScreenChange)
-
     return () => {
       document.removeEventListener('fullscreenchange', onFullScreenChange)
     }
   }, [onFullScreenChange])
 
-  const [map, setMap] = useState<LeafletMap | undefined>()
+  //   const [map, setMap] = useState<LeafletMap | undefined>();
+  const mapRef = useRef<LeafletMap | null>(null)
+  const handleMapCreation = (mapInstance: LeafletMap) => {
+    mapRef.current = mapInstance
+  }
 
   useEffect(() => {
-    if (map) {
+    if (mapRef) {
       if (isSm && !isFullScreen) {
-        map.dragging.disable()
+        mapRef.dragging.disable()
       } else {
-        map.dragging.enable()
+        mapRef.dragging.enable()
       }
     }
-  }, [isSm, isFullScreen, map])
+  }, [isSm, isFullScreen, mapRef])
 
   const plugins = useMemo(
     () =>
       additionalPlugins?.map((plugin) => {
-        const { element, ...other } = plugin
+        const { element, ...otherPluginProps } = plugin
         const PluginElement = element
         return (
           <PluginElement
-            {...other}
+            {...otherPluginProps}
             isMobile={isSm}
             readOnly={readOnly}
             isFullScreen={isFullScreen}
-            map={map}
+            map={mapRef}
           />
         )
       }),
-    [additionalPlugins, readOnly, isSm, isFullScreen, map]
+    [additionalPlugins, readOnly, isSm, isFullScreen, mapRef]
   )
 
   return (
-    <Stack
-      ref={containerRef}
-      sx={{
-        position: 'relative',
-        zIndex: 0,
-        transition: '0.6s',
-        ...sx
-      }}
-      className={cx('AruiMap-root', className)}
-      {...other}
-    >
-      <MapContainer
-        {...mapProps}
-        //@ts-ignore
-        ref={setMap}
-        center={center ?? defaultPosition.center}
-        zoom={zoom}
-        scrollWheelZoom
-        className={cx('AruiMap-map', classes?.map)}
-        style={{
-          height: '100%',
-          minHeight: 400,
-          width: '100%',
-          zIndex: 0,
-          ...styles?.map
-        }}
-      >
-        <TileLayer
-          {...tileLayerProps}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        {!!draggableMarkerPlugin && (
-          <DraggableMarker
-            draggable={(!isSm || isFullScreen) && !readOnly}
-            map={map}
-            {...draggableMarkerPlugin}
+    <Stack {...other}>
+      <Suspense fallback={<div>Loading map...</div>}>
+        <MapContainer
+          {...mapProps}
+          ref={mapRef}
+          center={center ?? defaultPosition.center}
+          zoom={zoom}
+          scrollWheelZoom={true}
+          className={cx('AruiMap-map', classes?.map)}
+          style={{ ...styles?.map, height: '100%', width: '100%' }}
+          //           whenCreated={handleMapCreation}
+        >
+          <TileLayer
+            {...tileLayerProps}
+            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
           />
-        )}
-        {plugins}
-      </MapContainer>
+          <Suspense fallback={<div>Loading marker...</div>}>
+            <DraggableMarker {...draggableMarkerPlugin} map={mapRef.current} />
+          </Suspense>
+          {/* Render additional plugins */}
+          {plugins}
+        </MapContainer>
+      </Suspense>
       {children}
       {isSm && !isFullScreen && (
         <Button
@@ -245,7 +209,6 @@ export const Map = (props: MapProps) => {
             classes?.openFullScreenButton
           )}
           style={styles?.openFullScreenButton}
-          sx={{ position: 'absolute', top: '10px', right: '5px' }}
           onClick={toggleFullScreen}
         >
           {t('g2.openFullScreen')}
@@ -258,35 +221,13 @@ export const Map = (props: MapProps) => {
             classes?.closeFullScreenIcon
           )}
           style={styles?.closeFullScreenIcon}
-          sx={{ position: 'absolute', top: '10px', right: '5px' }}
           onClick={toggleFullScreen}
         >
           <CloseRounded />
         </IconButton>
       )}
-      {!!draggableMarkerPlugin && (
-        <DraggableMarkerControl
-          isFullScreen={isFullScreen}
-          isSm={isSm}
-          {...draggableMarkerPlugin}
-          map={map}
-          readOnly={readOnly}
-        />
-      )}
       {!!errorMessage && (
         <FormHelperText
-          sx={{
-            position: 'absolute',
-            top: '100%',
-            color: 'error.main',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            lineHeight: 1.667,
-            width: '100%',
-            margin: '0',
-            marginTop: '3px'
-          }}
           className={cx('AruiMap-errorMessage', classes?.errorMessage)}
           style={styles?.errorMessage}
         >
