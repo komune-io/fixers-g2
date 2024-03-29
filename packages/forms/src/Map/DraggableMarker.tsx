@@ -15,7 +15,7 @@ export interface DraggableMarkerProps extends DraggableMarkerNeeds {
   map?: Map
 }
 
-export const DraggableMarker = (props: DraggableMarkerProps) => {
+const DraggableMarker = (props: DraggableMarkerProps) => {
   const { draggable = false, onPositionChange, position, map } = props
   const [diplayInfo, setDiplayInfo] = useState(draggable)
   const [markerRef, setmarkerRef] = useState<LeafletMarker<any> | null>(null)
@@ -146,3 +146,5 @@ export const DraggableMarkerControl = (
     </>
   )
 }
+
+export default DraggableMarker
