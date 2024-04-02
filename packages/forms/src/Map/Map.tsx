@@ -4,7 +4,8 @@ import React, {
   useMemo,
   useRef,
   useState,
-  Suspense
+  Suspense,
+  lazy
 } from 'react'
 import { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import {
@@ -25,17 +26,11 @@ import 'leaflet/dist/leaflet.css'
 import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 
 // Import only the types and components you need
-import {
-  MapContainer,
-  TileLayer,
-  MapContainerProps,
-  TileLayerProps
-} from 'react-leaflet'
+import { MapContainerProps, TileLayerProps } from 'react-leaflet'
 
+const LazyLeafletMap = lazy(() => import('./LeafletMap'))
 // Ensure DraggableMarker has a default export
-const DraggableMarker = React.lazy(() =>
-  import('./DraggableMarker').then((module) => ({ default: module.default }))
-)
+const DraggableMarker = lazy(() => import('./DraggableMarker'))
 
 // Modify Leaflet's icon path only in client-side environment
 if (typeof window !== 'undefined') {
@@ -142,21 +137,17 @@ export const Map = (props: MapProps) => {
     }
   }, [onFullScreenChange])
 
-  //   const [map, setMap] = useState<LeafletMap | undefined>();
-  const mapRef = useRef<LeafletMap | null>(null)
-  const handleMapCreation = (mapInstance: LeafletMap) => {
-    mapRef.current = mapInstance
-  }
+  const [map, setMap] = useState<LeafletMap | undefined>()
 
   useEffect(() => {
-    if (mapRef) {
+    if (map) {
       if (isSm && !isFullScreen) {
-        mapRef.dragging.disable()
+        map.dragging.disable()
       } else {
-        mapRef.dragging.enable()
+        map.dragging.enable()
       }
     }
-  }, [isSm, isFullScreen, mapRef])
+  }, [isSm, isFullScreen, map])
 
   const plugins = useMemo(
     () =>
@@ -169,37 +160,35 @@ export const Map = (props: MapProps) => {
             isMobile={isSm}
             readOnly={readOnly}
             isFullScreen={isFullScreen}
-            map={mapRef}
+            map={map}
           />
         )
       }),
-    [additionalPlugins, readOnly, isSm, isFullScreen, mapRef]
+    [additionalPlugins, readOnly, isSm, isFullScreen, map]
   )
 
   return (
     <Stack {...other}>
       <Suspense fallback={<div>Loading map...</div>}>
-        <MapContainer
+        <LazyLeafletMap
           {...mapProps}
-          ref={mapRef}
+          //@ts-ignore
+          ref={setMap}
           center={center ?? defaultPosition.center}
           zoom={zoom}
           scrollWheelZoom={true}
           className={cx('AruiMap-map', classes?.map)}
-          style={{ ...styles?.map, height: '100%', width: '100%' }}
-          //           whenCreated={handleMapCreation}
+          style={{
+            height: '100%',
+            minHeight: 400,
+            width: '100%',
+            zIndex: 0,
+            ...styles?.map
+          }}
         >
-          <TileLayer
-            {...tileLayerProps}
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-            attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
-          />
-          <Suspense fallback={<div>Loading marker...</div>}>
-            <DraggableMarker {...draggableMarkerPlugin} map={mapRef.current} />
-          </Suspense>
-          {/* Render additional plugins */}
+          <DraggableMarker {...draggableMarkerPlugin} map={map} />
           {plugins}
-        </MapContainer>
+        </LazyLeafletMap>
       </Suspense>
       {children}
       {isSm && !isFullScreen && (
