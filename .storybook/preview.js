@@ -3,6 +3,7 @@ import { ThemeContextProvider } from "@komune-io/g2-themes";
 import { StorybookCanvas } from "@komune-io/g2-storybook-documentation";
 import { G2ConfigBuilder, initI18next } from "../packages/providers/src";
 import { I18nextProvider } from "react-i18next";
+import { MantineProvider } from "@mantine/core";
 
 import "./default.css";
 import { Box, CssBaseline, IconButton } from "@mui/material";
@@ -77,8 +78,10 @@ export const withThemeProvider = (Story) => {
   return (
     <I18nextProvider i18n={i18n}>
       <ThemeContextProvider theme={{ permanentHeader }}>
-        <CssBaseline />
-        <Story />
+        <MantineProvider>
+          <CssBaseline />
+          <Story />
+        </MantineProvider>
       </ThemeContextProvider>
     </I18nextProvider>
   );

@@ -2,7 +2,7 @@ import React, { ComponentPropsWithRef, useMemo } from 'react'
 import { ContainerRenderer, ElementRenderersConfig } from '../ComposableRender'
 import { cx } from '@emotion/css'
 import { Stack, StackProps, styled, SxProps, Theme } from '@mui/material'
-import { FormikProvider } from 'formik'
+import { FormikContextType, FormikProvider } from 'formik'
 import {
   FormComposableField,
   FormComposableState,
@@ -157,7 +157,7 @@ export const FormComposable = <RENDERER extends ElementRenderersConfig>(
   )
 
   return (
-    <FormikProvider value={formState}>
+    <FormikProvider value={formState as FormikContextType<any>}>
       {/* @ts-ignore */}
       <Form
         onSubmit={formState.handleSubmit}

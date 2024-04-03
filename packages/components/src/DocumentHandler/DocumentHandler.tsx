@@ -13,7 +13,8 @@ import {
   InputLabel,
   Stack,
   Typography,
-  StackProps
+  StackProps,
+  Box
 } from '@mui/material'
 import {
   CloudDoneRounded,
@@ -25,6 +26,7 @@ import {
   VisibilityRounded
 } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
+import '@mantine/dropzone/styles.css'
 
 export type DropError =
   | 'file-too-large'
@@ -119,8 +121,8 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     onView,
     isLoading = false,
     className,
-    style,
     dropzoneProps,
+    style,
     uploaded,
     outterLabel,
     id,
@@ -209,38 +211,18 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     return
   }, [fileTypesAllowed])
 
-  const dropzoneContent = useCallback(() => {
-    const props = {
-      uploaded,
-      error,
-      label,
-      isRequired,
-      onDelete,
-      onEditFileName,
-      onDownload: onDownloadMemoized,
-      onView: onViewMemoized,
-      fileTypesAllowed,
-      isLoading: isLoading || loading
-    }
-    return <DropzoneChildren {...props} />
-  }, [
+  const childrenProps = {
+    uploaded,
+    error,
     label,
     isRequired,
     onDelete,
     onEditFileName,
-    onDownload,
-    onViewMemoized,
-    onDownloadMemoized,
-    error,
+    onDownload: onDownloadMemoized,
+    onView: onViewMemoized,
     fileTypesAllowed,
-    isLoading,
-    loading
-  ])
-
-  const dropzoneContentMemo = useMemo(
-    () => dropzoneContent(),
-    [dropzoneContent]
-  )
+    isLoading: isLoading || loading
+  }
 
   if (uploaded) {
     return (
@@ -263,17 +245,36 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
           }}
           onClick={onViewMemoized}
         >
-          {dropzoneContentMemo}
+          <DropzoneChildren {...childrenProps} />
         </Stack>
       </>
     )
   }
   return (
-    <>
+    <Box
+      sx={{
+        width: '100%',
+        minWidth: '100px',
+        '& .AruiDocumentHandler-root': {
+          width: '100%',
+          minWidth: '100px',
+          overflow: 'hidden',
+          borderRadius: theme.borderRadius + 'px',
+          border: '2px dashed rgb(189, 189, 189)',
+          borderColor: error ? theme.colors.error : '#BDBDBD',
+          padding: '0px',
+          pointerEvents: isLoading || loading ? 'none' : 'auto',
+          opacity: isLoading || loading ? 0.8 : 1,
+          backgroundColor: 'rgb(255, 255, 255)'
+        },
+        '&:hover .AruiDocumentHandler-root': {
+          backgroundColor: 'rgb(248, 249, 250)'
+        }
+      }}
+    >
       {outterLabel && <InputLabel htmlFor={id}>{outterLabel}</InputLabel>}
       <Dropzone
         className={cx('AruiDocumentHandler-root', className)}
-        style={style}
         onDrop={onDrop}
         onReject={onRejectMemoized}
         accept={accept}
@@ -282,21 +283,10 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
         multiple={multiple && !isRequired}
         disabled={isLoading || loading}
         {...dropzoneProps}
-        sx={{
-          width: '100%',
-          minWidth: '100px',
-          overflow: 'hidden',
-          borderRadius: theme.borderRadius + 'px',
-          borderColor: error ? theme.colors.error : '#BDBDBD',
-          padding: '0px',
-          pointerEvents: isLoading || loading ? 'none' : 'auto',
-          opacity: isLoading || loading ? 0.8 : 1,
-          ...dropzoneProps?.sx
-        }}
       >
-        {dropzoneContent}
+        <DropzoneChildren {...childrenProps} />
       </Dropzone>
-    </>
+    </Box>
   )
 }
 
@@ -371,7 +361,7 @@ export const DropzoneChildren = (props: DropzoneChildrenProps) => {
       if (labelType) {
         labels.push(
           <Typography
-            key='fileType'
+            key='fileType-lastPart'
             sx={{ color: '#676879', textTransform: 'uppercase' }}
             variant='subtitle2'
           >

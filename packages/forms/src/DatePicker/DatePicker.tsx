@@ -1,21 +1,19 @@
 import {
   DatePicker as MuiDatePicker,
   DatePickerProps as MuiDatePickerProps,
-  LocalizationProvider
+  LocalizationProvider,
+  DateView
 } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns/index.js'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import React, { forwardRef, useCallback, useMemo } from 'react'
 import { useInputStyles } from '../style'
-import {
-  TextField as MuiTextField,
-  FilledTextFieldProps as MuiTextFieldProps
-} from '@mui/material'
+import { FilledTextFieldProps as MuiTextFieldProps } from '@mui/material'
 import {
   BasicProps,
   makeG2STyles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
-import { fr, enUS } from 'date-fns/locale/index.js'
+import { fr, enUS } from 'date-fns/locale'
 import { CustomActionBar } from './CustomActionBar'
 import { useTranslation } from 'react-i18next'
 const dateFnsLocales = {
@@ -121,7 +119,7 @@ export interface DatePickerBasicProps extends BasicProps {
 }
 
 export type DatePickerProps = MergeMuiElementProps<
-  Omit<MuiDatePickerProps<Date, Date>, 'onChange' | 'renderInput'>,
+  Omit<MuiDatePickerProps<Date>, 'onChange' | 'renderInput'>,
   DatePickerBasicProps
 >
 
@@ -156,8 +154,14 @@ const DatePickerBase = (
   const { i18n } = useTranslation()
   const format = useMemo(() => {
     if (i18n.language === 'fr')
-      return { format: 'dd/MM/yyyy', mask: '__/__/____' }
-    return { format: 'yyyy/MM/dd', mask: '____/__/__' }
+      return {
+        format: 'dd/MM/yyyy',
+        views: ['day', 'month', 'year'] as DateView[]
+      }
+    return {
+      format: 'yyyy/MM/dd',
+      views: ['year', 'month', 'day'] as DateView[]
+    }
   }, [i18n.language])
 
   const onChange = useCallback(
@@ -180,59 +184,6 @@ const DatePickerBase = (
     }
   }, [classes?.helperText, styles?.helperText, errorMessage, error])
 
-  const renderInput = useCallback(
-    (props) => {
-      if (placeholder) {
-        delete props.inputProps?.placeholder
-      }
-      return (
-        <MuiTextField
-          {...textFieldProps}
-          {...props}
-          id={id}
-          name={name}
-          variant='filled'
-          error={error}
-          className={defaultStyles.cx(
-            localStyles.classes.input,
-            defaultStyles.classes.input,
-            size === 'large' && defaultStyles.classes.inputLarge,
-            size === 'medium' && defaultStyles.classes.inputMedium,
-            size === 'small' && defaultStyles.classes.inputSmall,
-            error && defaultStyles.classes.inputError,
-            disabled && defaultStyles.classes.inputDisabled,
-            'AruiDatePicker-datePicker',
-            className
-          )}
-          style={style}
-          helperText={error ? errorMessage ?? helperText : helperText}
-          color='primary'
-          InputProps={{
-            disableUnderline: true,
-            style: styles?.input,
-            className: defaultStyles.cx('AruiDatePicker-input', classes?.input),
-            ...textFieldProps?.InputProps,
-            ...props.InputProps
-          }}
-          FormHelperTextProps={formHelperProps}
-          placeholder={placeholder}
-        />
-      )
-    },
-    [
-      id,
-      name,
-      error,
-      errorMessage,
-      style,
-      className,
-      classes?.input,
-      styles?.input,
-      textFieldProps,
-      formHelperProps,
-      helperText
-    ]
-  )
   return (
     <LocalizationProvider
       dateAdapter={AdapterDateFns}
@@ -240,23 +191,55 @@ const DatePickerBase = (
     >
       <MuiDatePicker
         ref={ref}
-        inputFormat={format.format}
-        mask={format.mask}
+        format={format.format}
+        views={format.views}
         minDate={minDate}
         maxDate={maxDate}
-        componentsProps={{
+        orientation='portrait'
+        slotProps={{
           actionBar: {
             actions: ['cancel', 'clear']
+          },
+          dialog: {
+            className: localStyles.classes.dialog
+          },
+          textField: {
+            name,
+            variant: 'filled',
+            error,
+            className: defaultStyles.cx(
+              localStyles.classes.input,
+              defaultStyles.classes.input,
+              size === 'large' && defaultStyles.classes.inputLarge,
+              size === 'medium' && defaultStyles.classes.inputMedium,
+              size === 'small' && defaultStyles.classes.inputSmall,
+              error && defaultStyles.classes.inputError,
+              disabled && defaultStyles.classes.inputDisabled,
+              'AruiDatePicker-datePicker',
+              className
+            ),
+            style,
+            helperText: error ? errorMessage ?? helperText : helperText,
+            color: 'primary',
+            InputProps: {
+              disableUnderline: true,
+              style: styles?.input,
+              className: defaultStyles.cx(
+                'AruiDatePicker-input',
+                classes?.input
+              ),
+              ...textFieldProps?.InputProps
+            },
+            FormHelperTextProps: formHelperProps,
+            placeholder: placeholder
           }
         }}
-        components={{
-          ActionBar: CustomActionBar
+        slots={{
+          actionBar: CustomActionBar
         }}
-        DialogProps={{ className: localStyles.classes.dialog }}
         disabled={disabled}
         value={value || null}
         onChange={onChange}
-        renderInput={renderInput}
         {...other}
       />
     </LocalizationProvider>

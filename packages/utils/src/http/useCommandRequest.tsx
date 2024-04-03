@@ -15,7 +15,7 @@ export type CommandParams<COMMAND, EVENT> = {
 export const useCommandRequest = <COMMAND, EVENT>(
   path: string,
   props: RequestProps,
-  params?: CommandParams<COMMAND, EVENT>
+  params?: CommandParams<COMMAND, EVENT>,
 ) => {
   const { url, jwt } = props;
   const apiCall = useCallback(
@@ -34,10 +34,10 @@ export const useCommandRequest = <COMMAND, EVENT>(
         return undefined;
       }
     },
-    [url, jwt]
+    [url, jwt],
   );
 
-  return useMutation(apiCall, params?.options);
+  return useMutation({ mutationFn: apiCall, ...params?.options });
 };
 
 export interface CommandWithFile<COMMAND> {
@@ -48,7 +48,7 @@ export interface CommandWithFile<COMMAND> {
 export const useCommandWithFileRequest = <COMMAND, EVENT>(
   path: string,
   props: RequestProps,
-  params?: CommandParams<CommandWithFile<COMMAND>, EVENT>
+  params?: CommandParams<CommandWithFile<COMMAND>, EVENT>,
 ) => {
   const { url, jwt } = props;
   const apiCall = useCallback(
@@ -59,7 +59,7 @@ export const useCommandWithFileRequest = <COMMAND, EVENT>(
       });
       formData.append(
         "command",
-        new Blob([JSON.stringify(command)], { type: "application/json" })
+        new Blob([JSON.stringify(command)], { type: "application/json" }),
       );
 
       const res = await request<EVENT>({
@@ -77,8 +77,8 @@ export const useCommandWithFileRequest = <COMMAND, EVENT>(
         return undefined;
       }
     },
-    [url, jwt]
+    [url, jwt],
   );
 
-  return useMutation(apiCall, params?.options);
+  return useMutation({ mutationFn: apiCall, ...params?.options });
 };

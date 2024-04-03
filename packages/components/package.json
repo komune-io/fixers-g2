@@ -32,22 +32,22 @@
     "@types/react-dropzone": "^5.1.0"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.10.6",
-    "@mui/material": "^5.11.12",
+    "@emotion/css": "^11.11.2",
+    "@mui/material": "^5.15.14",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@mantine/core": "^7.7.0"
   },
   "dependencies": {
     "@komune-io/g2-notifications": "0.5.0-alpha",
     "@komune-io/g2-themes": "0.5.0-alpha",
     "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mantine/core": "^4.2.12",
-    "@mantine/dropzone": "^4.2.12",
-    "@mantine/hooks": "^4.2.12",
-    "@mui/icons-material": "^5.11.11",
+    "@mantine/dropzone": "^7.7.0",
+    "@mantine/hooks": "^7.7.0",
+    "@mui/icons-material": "^5.15.14",
     "@mui/lab": "5.0.0-alpha.122",
-    "react-dropzone": "^11.3.2",
-    "react-i18next": "^12.2.0",
-    "react-router-dom": "^6.8.2"
+    "react-dropzone": "^14.2.3",
+    "react-i18next": "^14.1.0",
+    "react-router-dom": "^6.22.3"
   }
 }

@@ -27,20 +27,20 @@
     "dist"
   ],
   "peerDependencies": {
-    "@emotion/css": "^11.10.6",
-    "@mui/material": "^5.11.12",
+    "@emotion/css": "^11.11.2",
+    "@mui/material": "^5.15.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/mermaid": "^8.2.4",
+    "@types/mermaid": "^9.2.0",
     "@types/react": "^18.0.28"
   },
   "dependencies": {
     "@komune-io/g2-themes": "0.5.0-alpha",
     "@komune-io/g2-utils": "0.5.0-alpha",
-    "mermaid": "^8.9.2",
-    "vis-data": "^7.1.2",
-    "vis-network": "^9.0.0"
+    "mermaid": "^10.9.0",
+    "vis-data": "^7.1.9",
+    "vis-network": "^9.1.9"
   }
 }

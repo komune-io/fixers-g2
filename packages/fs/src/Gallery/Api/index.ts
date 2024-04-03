@@ -41,7 +41,7 @@ export interface getGalleryParams {
   queryKey?: string
   jwt?: string
   apiUrl: string
-  options?: GetGalleryOptions
+  options?: any
 }
 
 export const useGetGallery = (params: getGalleryParams) => {
@@ -62,7 +62,11 @@ export const useGetGallery = (params: getGalleryParams) => {
     }
   }, [apiUrl, jwt, directoryPath])
 
-  return useQuery([queryKey, directoryPath], getGallery, options)
+  return useQuery<GetGalleryResult>({
+    queryKey: [queryKey, directoryPath],
+    queryFn: getGallery,
+    ...options
+  })
 }
 
 export type DeleteFilesOptions = Omit<
@@ -98,7 +102,7 @@ export const useDeleteFiles = (params: deleteFilesParams) => {
     [apiUrl, jwt]
   )
 
-  return useMutation(deleteFile, options)
+  return useMutation({ mutationFn: deleteFile, ...options })
 }
 
 export type UploadFilesOptions = Omit<
@@ -148,5 +152,5 @@ export const useUploadFiles = (params: UploadFilesParams) => {
     [jwt, apiUrl]
   )
 
-  return useMutation(uploadFiles, options)
+  return useMutation({ mutationFn: uploadFiles, ...options })
 }

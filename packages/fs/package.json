@@ -27,11 +27,12 @@
     "dist"
   ],
   "peerDependencies": {
-    "@emotion/css": "^11.10.6",
-    "@mui/material": "^5.11.12",
-    "@tanstack/react-query": "^4.32.5",
+    "@emotion/css": "^11.11.2",
+    "@mui/material": "^5.15.14",
+    "@tanstack/react-query": "^5.28.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@mantine/core": "^7.7.0"
   },
   "dependencies": {
     "@komune-io/g2-components": "0.5.0-alpha",
@@ -39,14 +40,13 @@
     "@komune-io/g2-providers": "0.5.0-alpha",
     "@komune-io/g2-themes": "0.5.0-alpha",
     "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mantine/core": "^4.2.12",
-    "@mantine/dropzone": "^4.2.12",
-    "@mantine/hooks": "^4.2.12",
-    "@mui/icons-material": "^5.11.11",
-    "@tanstack/react-query": "^4.32.5",
-    "react-dropzone": "^11.3.2",
-    "react-i18next": "^12.2.0",
-    "uuid": "^8.3.2"
+    "@mantine/dropzone": "^7.7.0",
+    "@mantine/hooks": "^7.7.0",
+    "@mui/icons-material": "^5.15.14",
+    "@tanstack/react-query": "^5.28.6",
+    "react-dropzone": "^14.2.3",
+    "react-i18next": "^14.1.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

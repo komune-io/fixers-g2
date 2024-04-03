@@ -40,7 +40,11 @@ export const useGetOrganizationRefs = (params?: OrganizationRefsAllParams) => {
 
   const getOrganizationRefs = useCallback(fetchOrganizationRefs(jwt), [jwt])
 
-  const query = useQuery([queryKey], getOrganizationRefs, options)
+  const query = useQuery({
+    queryKey: [queryKey],
+    queryFn: getOrganizationRefs,
+    ...options
+  })
 
   const map = useMemo(() => {
     if (query.data?.items) {
@@ -61,7 +65,11 @@ export const usePrefetchOrganizationRefs = async (
   const { jwt, options, queryKey = 'organizationRefs' } = params ?? {}
   const getOrganizationRefs = useCallback(fetchOrganizationRefs(jwt), [jwt])
   const queryClient = useQueryClient()
-  queryClient.prefetchQuery([queryKey], getOrganizationRefs, options)
+  queryClient.prefetchQuery({
+    queryKey: [queryKey],
+    queryFn: getOrganizationRefs,
+    ...options
+  })
 }
 
 const fetchOrganizationRefs =

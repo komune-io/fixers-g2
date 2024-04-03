@@ -21,7 +21,7 @@ export type QueryParams<QUERY, RESULT> = {
 export const useQueryRequest = <QUERY, RESULT>(
   path: string,
   props: RequestProps,
-  params: QueryParams<QUERY, RESULT>
+  params: QueryParams<QUERY, RESULT>,
 ) => {
   const { queryKey = path, options } = params;
   const queryFn = useFetchQueryRequest<QUERY, RESULT>(path, props);
@@ -29,17 +29,15 @@ export const useQueryRequest = <QUERY, RESULT>(
 
   const invalidateQuery = useCallback(
     () => queryClient.invalidateQueries({ queryKey: [queryKey] }),
-    [queryClient.invalidateQueries, queryKey]
+    [queryClient.invalidateQueries, queryKey],
   );
 
   return {
-    ...useQuery<RESULT | null, unknown, RESULT, [string, QUERY]>(
-      [queryKey, params.query],
-      () => queryFn(params.query),
-      {
-        ...options,
-      }
-    ),
+    ...useQuery<RESULT | null, unknown, RESULT, [string, QUERY]>({
+      queryKey: [queryKey, params.query],
+      queryFn: () => queryFn(params.query),
+      ...options,
+    }),
     key: queryKey,
     invalidateQuery: invalidateQuery,
   };
@@ -47,7 +45,7 @@ export const useQueryRequest = <QUERY, RESULT>(
 
 export const useFetchQueryRequest = <QUERY, RESULT>(
   path: string,
-  props: RequestProps
+  props: RequestProps,
 ): ((query?: QUERY) => Promise<RESULT | null>) => {
   return useCallback(
     async (query?: QUERY) =>
@@ -56,19 +54,19 @@ export const useFetchQueryRequest = <QUERY, RESULT>(
             await fetchQueryRequest<QUERY, RESULT[]>(path, query, props)
           )?.pop() ?? null
         : null,
-    [props]
+    [props],
   );
 };
 
 export const useFetchBinary = <QUERY>(
   path: string,
-  props: RequestProps
+  props: RequestProps,
 ): ((query?: QUERY) => Promise<string | undefined>) => {
   return useCallback(
     async (query?: QUERY) =>
       query &&
       fetchQueryRequest(path, query, props, { returnType: "objectUrl" }),
-    [props]
+    [props],
   );
 };
 
@@ -76,7 +74,7 @@ export const fetchQueryRequest = async <QUERY, RESULT>(
   path: string,
   query: QUERY,
   props: RequestProps,
-  options?: Partial<HttpOptions>
+  options?: Partial<HttpOptions>,
 ) => {
   const { jwt, url } = props;
   const res = await request<RESULT>({
