@@ -35,11 +35,11 @@
     "@mantine/core": "^7.7.0"
   },
   "dependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha.1",
-    "@komune-io/g2-forms": "0.5.0-alpha.1",
-    "@komune-io/g2-providers": "0.5.0-alpha.1",
-    "@komune-io/g2-themes": "0.5.0-alpha.1",
-    "@komune-io/g2-utils": "0.5.0-alpha.1",
+    "@komune-io/g2-components": "0.5.0-alpha",
+    "@komune-io/g2-forms": "0.5.0-alpha",
+    "@komune-io/g2-providers": "0.5.0-alpha",
+    "@komune-io/g2-themes": "0.5.0-alpha",
+    "@komune-io/g2-utils": "0.5.0-alpha",
     "@mantine/dropzone": "^7.7.0",
     "@mantine/hooks": "^7.7.0",
     "@mui/icons-material": "^5.15.14",

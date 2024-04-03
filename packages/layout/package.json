@@ -34,11 +34,11 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha.1",
-    "@komune-io/g2-forms": "0.5.0-alpha.1",
-    "@komune-io/g2-notifications": "0.5.0-alpha.1",
-    "@komune-io/g2-themes": "0.5.0-alpha.1",
-    "@komune-io/g2-utils": "0.5.0-alpha.1",
+    "@komune-io/g2-components": "0.5.0-alpha",
+    "@komune-io/g2-forms": "0.5.0-alpha",
+    "@komune-io/g2-notifications": "0.5.0-alpha",
+    "@komune-io/g2-themes": "0.5.0-alpha",
+    "@komune-io/g2-utils": "0.5.0-alpha",
     "@mui/icons-material": "^5.15.14",
     "@tanstack/react-table": "^8.15.0",
     "@types/react-table": "^7.7.12",
