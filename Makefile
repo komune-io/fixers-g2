@@ -5,11 +5,13 @@ clean:
 	-find ./packages/*/ -name "node_modules" -type d -exec rm -rf {} \;
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
 
-lint:
-	yarn eslintCheck
-
-build-pre:
+install:
 	@yarn install --frozen-lockfile --ignore-scripts
+
+lint: install
+	@yarn eslintCheck
+
+build-pre: install
 	VERSION=$(VERSION) yarn workspaces:version
 
 build: build-libs
@@ -23,8 +25,7 @@ publish:
 promote:
 	yarn workspaces:publish
 
-build-libs:
-	@yarn install --frozen-lockfile --ignore-scripts
+build-libs: install
 	@yarn workspace @komune-io/g2-utils run build
 	@yarn workspace @komune-io/g2-themes run build
 	@yarn workspace @komune-io/g2-notifications run build
