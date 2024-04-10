@@ -25,7 +25,7 @@ publish:
 promote:
 	yarn workspaces:publish
 
-build-libs:
+build-libs: install
 	@yarn workspace @komune-io/g2-utils run build
 	@yarn workspace @komune-io/g2-themes run build
 	@yarn workspace @komune-io/g2-notifications run build
