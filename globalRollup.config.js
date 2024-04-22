@@ -19,16 +19,18 @@ const getGlobal = (localPackageJson) => {
     external: [...externalsDependencies, 'tslib'],
     output: [
       {
-        file: 'dist/index.cjs',
+        dir: './dist',
         globals: globals,
         format: 'cjs',
-        sourcemap: true
+        sourcemap: true,
+        entryFileNames: '[name].cjs'
       },
       {
-        file: localPackageJson.module,
+        dir: './dist',
         globals: globals,
         format: 'es',
-        sourcemap: true
+        sourcemap: true,
+        entryFileNames: '[name].es.js'
       }
     ],
     plugins: [
