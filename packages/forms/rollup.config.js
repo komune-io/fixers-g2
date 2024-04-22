@@ -11,6 +11,7 @@ export default {
     '@mui/x-date-pickers/PickersActionBar/index.js',
     '@mui/x-date-pickers/AdapterDateFns/index.js',
     'leaflet/dist/leaflet.css',
-    'date-fns/locale/index.js'
+    'date-fns/locale',
+    '@mui/x-date-pickers/AdapterDateFnsV3'
   ]
 }
