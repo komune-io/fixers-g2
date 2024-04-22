@@ -27,10 +27,12 @@ import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 
 // Import only the types and components you need
 import { MapContainerProps, TileLayerProps } from 'react-leaflet'
+import DraggableMarker, {
+  DraggableMarkerControl,
+  DraggableMarkerNeeds
+} from './DraggableMarker'
 
 const LazyLeafletMap = lazy(() => import('./LeafletMap'))
-// Ensure DraggableMarker has a default export
-const DraggableMarker = lazy(() => import('./DraggableMarker'))
 
 // Modify Leaflet's icon path only in client-side environment
 if (typeof window !== 'undefined') {
@@ -74,16 +76,51 @@ export interface MapStyles {
 }
 
 export interface MapBasicProps extends BasicProps {
+  /**
+   * the children wil be put under the map in the element tree you can pass absolute element that you want to apply above the map
+   */
   children?: React.ReactNode
+  /**
+   * the pluggins you want to have inside the map they should be compatible with leaflet.
+   * They should use the two required props `value` and `setValue` to handle their custom states
+   * They will also receive the prop `map?: LeafletMap` of the type `import { Map as LeafletMap } from "leaflet"` to access the currentMap object and also the props `isMobile`, `readOnly`, `isFullScreen` to be informed of the state of the current map
+   */
   additionalPlugins?: (MapPlugin & Record<string, any>)[]
-  draggableMarkerPlugin?: any // Adjust the type as necessary
+  /**
+   * the pluggin to have a draggableMarker on the map. When `readOnly` is set to `true` its just a simple marker
+   */
+  draggableMarkerPlugin?: DraggableMarkerNeeds
+  /**
+   * the initial center of the map
+   */
   center?: LatLngExpression
+  /**
+   * the initial zoom of the map
+   */
   zoom?: number
+  /**
+   * the props passed to the map component
+   */
   mapProps?: Partial<MapContainerProps>
+  /**
+   * the props passed to the TileLayer component
+   */
   tileLayerProps?: Partial<TileLayerProps>
+  /**
+   * the readOnly property passed to the pluggins of the map
+   */
   readOnly?: boolean
+  /**
+   * the error message you want to display at the bottom of the map
+   */
   errorMessage?: string
+  /**
+   * The classes applied to the different part of the component
+   */
   classes?: MapClasses
+  /**
+   * The styles applied to the different part of the component
+   */
   styles?: MapStyles
 }
 
@@ -163,7 +200,17 @@ export const Map = (props: MapProps) => {
   )
 
   return (
-    <Stack {...other}>
+    <Stack
+      ref={containerRef}
+      sx={{
+        position: 'relative',
+        zIndex: 0,
+        transition: '0.6s',
+        ...sx
+      }}
+      className={cx('AruiMap-root', className)}
+      {...other}
+    >
       <Suspense fallback={<div>Loading map...</div>}>
         <LazyLeafletMap
           {...mapProps}
@@ -181,7 +228,11 @@ export const Map = (props: MapProps) => {
             ...styles?.map
           }}
         >
-          <DraggableMarker {...draggableMarkerPlugin} map={map} />
+          <DraggableMarker
+            draggable={(!isSm || isFullScreen) && !readOnly}
+            {...draggableMarkerPlugin}
+            map={map}
+          />
           {plugins}
         </LazyLeafletMap>
       </Suspense>
@@ -204,14 +255,36 @@ export const Map = (props: MapProps) => {
             'AruiMap-closeFullScreenIcon',
             classes?.closeFullScreenIcon
           )}
+          sx={{ position: 'absolute', top: '10px', right: '5px' }}
           style={styles?.closeFullScreenIcon}
           onClick={toggleFullScreen}
         >
           <CloseRounded />
         </IconButton>
       )}
+      {!!draggableMarkerPlugin && (
+        <DraggableMarkerControl
+          isFullScreen={isFullScreen}
+          isSm={isSm}
+          {...draggableMarkerPlugin}
+          map={map}
+          readOnly={readOnly}
+        />
+      )}
       {!!errorMessage && (
         <FormHelperText
+          sx={{
+            position: 'absolute',
+            top: '100%',
+            color: 'error.main',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            lineHeight: 1.667,
+            width: '100%',
+            margin: '0',
+            marginTop: '3px'
+          }}
           className={cx('AruiMap-errorMessage', classes?.errorMessage)}
           style={styles?.errorMessage}
         >
