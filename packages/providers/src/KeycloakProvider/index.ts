@@ -1,3 +1,5 @@
 export * from './useAuth'
 export * from './KeycloakProvider'
-export { OidcSecure, withOidcSecure } from '@axa-fr/react-oidc'
+import oidcPkg from '@axa-fr/react-oidc'
+const { OidcSecure, withOidcSecure } = oidcPkg
+export { OidcSecure, withOidcSecure }

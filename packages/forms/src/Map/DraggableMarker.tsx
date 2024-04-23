@@ -1,9 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Marker } from 'react-leaflet'
+import React, {
+  lazy,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import { LatLngLiteral, Marker as LeafletMarker, Map } from 'leaflet'
 import { Button } from '@komune-io/g2-components'
 import GeoJSON, { Feature, Point } from 'geojson'
 import { useTranslation } from 'react-i18next'
+
+//@ts-ignore
+const LazyMarker = lazy(async () => (await import('react-leaflet')).Marker)
 
 export interface DraggableMarkerNeeds {
   position?: LatLngLiteral
@@ -65,12 +74,12 @@ const DraggableMarker = (props: DraggableMarkerProps) => {
 
   if (!position) return <></>
   return (
-    <Marker
+    <LazyMarker
       draggable={draggable}
       eventHandlers={eventHandlers}
       position={position}
       ref={setmarkerRef}
-    ></Marker>
+    ></LazyMarker>
   )
 }
 
