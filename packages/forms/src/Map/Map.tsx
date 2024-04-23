@@ -18,37 +18,15 @@ import {
 } from '@mui/material'
 import { Button } from '@komune-io/g2-components'
 import { CloseRounded } from '@mui/icons-material'
-import L from 'leaflet'
+
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
 import { useTranslation } from 'react-i18next'
-import 'leaflet/dist/leaflet.css'
-import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
-
-// Import only the types and components you need
 import { MapContainerProps, TileLayerProps } from 'react-leaflet'
-import DraggableMarker, {
-  DraggableMarkerControl,
-  DraggableMarkerNeeds
-} from './DraggableMarker'
+import { DraggableMarkerControl, DraggableMarkerNeeds } from './DraggableMarker'
 
 const LazyLeafletMap = lazy(() => import('./LeafletMap'))
-
-// Modify Leaflet's icon path only in client-side environment
-if (typeof window !== 'undefined') {
-  L.Icon.Default.prototype.options.iconRetinaUrl = markerIcon2x
-  L.Icon.Default.prototype.options.iconUrl = markerIcon
-  L.Icon.Default.prototype.options.shadowUrl = markerShadow
-  /* eslint-disable react/jsx-key */
-
-  //@ts-ignore
-  delete L.Icon.Default.prototype._getIconUrl
-  L.Icon.Default.mergeOptions({
-    iconRetinaUrl: markerIcon2x,
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow
-  })
-}
+const LazyDraggableMarker = lazy(() => import('./DraggableMarker'))
 
 export const defaultPosition = { center: { lng: 2, lat: 46 }, zoom: 5 }
 
@@ -233,7 +211,7 @@ export const Map = (props: MapProps) => {
             ...styles?.map
           }}
         >
-          <DraggableMarker
+          <LazyDraggableMarker
             draggable={(!isSm || isFullScreen) && !readOnly}
             {...draggableMarkerPlugin}
             map={map}
