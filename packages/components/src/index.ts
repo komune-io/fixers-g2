@@ -21,7 +21,12 @@ export {
 } from './Buttons'
 export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 export { Loading, LoadingProps } from './Loading'
-export { Pagination, PaginationProps } from './Pagination'
+export {
+  Pagination,
+  PaginationProps,
+  FixedPagination,
+  FixedPaginationProps
+} from './Pagination'
 export { LabelSwitch, LabelSwitchProps, Label } from './LabelSwitch'
 export { Ticket, TicketProps } from './Ticket'
 export { CopyToClipboard, CopyToClipboardProps } from './CopyToClipboard'
