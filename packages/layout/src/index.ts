@@ -54,7 +54,15 @@ export {
   TableCellProfile,
   TableCellProfileProps,
   TableCellText,
-  TableCellTextProps
+  TableCellTextProps,
+  TableCellChip,
+  TableCellChipProps,
+  TableCellIconTag,
+  TableCellIconTagProps,
+  TableCellStatus,
+  TableCellStatusProps,
+  TableCellTag,
+  TableCellTagProps
 } from './ColumnFactory'
 export {
   G2ColumnDef,

@@ -76,7 +76,8 @@ export const G2Translations = {
       copyToClipboard: 'Copier dans le presse papier',
       required: 'Obligatoire',
       noData: 'Aucune donnée trouvé',
-      noOrganization: "Vous n'êtes pas inclut dans une organisation"
+      noOrganization: "Vous n'êtes pas inclut dans une organisation",
+      totalItem: '{{start}} - {{end}} sur {{total}}'
     },
     http: {
       '600': "{{errorMessage}} à cause d'un problème de connexion",
@@ -190,7 +191,8 @@ export const G2Translations = {
       copyToClipboard: 'Copy to clipboard',
       required: 'Required',
       noData: 'No data found',
-      noOrganization: 'You are not included in an organization'
+      noOrganization: 'You are not included in an organization',
+      totalItem: '{{start}} - {{end}} of {{total}}'
     },
     http: {
       '600': '{{errorMessage}} due to a network issue',
