@@ -20,10 +20,18 @@ export type FixedPaginationProps = {
   onOffsetChange?: (newPage: OffsetPagination) => void
   isLoading?: boolean
   leftElement?: React.ReactNode
+  middleElement?: React.ReactNode
 }
 
 export const FixedPagination = (props: FixedPaginationProps) => {
-  const { pagination, page, onOffsetChange, isLoading, leftElement } = props
+  const {
+    pagination,
+    page,
+    onOffsetChange,
+    isLoading,
+    leftElement,
+    middleElement
+  } = props
 
   const { t } = useTranslation()
   const totalItems = useRef<number | undefined>(undefined)
@@ -72,8 +80,8 @@ export const FixedPagination = (props: FixedPaginationProps) => {
         }
       }}
     >
-      {leftElement}
-      <div style={{ flexGrow: 1, flexBasis: 0 }} />
+      {leftElement ?? <div style={{ flexGrow: 1, flexBasis: 0 }} />}
+      {middleElement ?? <div style={{ flexGrow: 1, flexBasis: 0 }} />}
       <Stack
         direction='row'
         gap={2}
