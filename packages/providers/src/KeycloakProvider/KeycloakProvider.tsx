@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import provider, { OidcConfiguration } from '@axa-fr/react-oidc'
+import { OidcConfiguration, OidcProvider } from '@axa-fr/react-oidc'
 import type { OidcProviderProps } from '@axa-fr/react-oidc/dist/OidcProvider'
 import { OidcClient } from '@axa-fr/oidc-client'
 import { g2Config } from '../G2ConfigBuilder'
@@ -20,8 +20,6 @@ export const KeycloakProvider = (props: KeycloakProviderProps) => {
     // service_worker_relative_url:'/OidcServiceWorker.js',
     // service_worker_only:true,
   })
-
-  const { OidcProvider } = provider
 
   return (
     <OidcProvider
