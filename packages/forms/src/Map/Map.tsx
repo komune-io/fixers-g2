@@ -166,12 +166,13 @@ export const Map = (props: MapProps) => {
 
   const plugins = useMemo(
     () =>
-      additionalPlugins?.map((plugin) => {
+      additionalPlugins?.map((plugin, index) => {
         const { element, ...otherPluginProps } = plugin
         const PluginElement = element
         return (
           <PluginElement
             {...otherPluginProps}
+            key={index}
             isMobile={isSm}
             readOnly={readOnly}
             isFullScreen={isFullScreen}
