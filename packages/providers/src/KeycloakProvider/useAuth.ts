@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { KeycloakTokenParsed } from 'keycloak-js'
-import oidcPkg from '@axa-fr/react-oidc'
-const { useOidc, useOidcAccessToken } = oidcPkg
+import { useOidc, useOidcAccessToken } from '@axa-fr/react-oidc'
 import {
   AuthFunction,
   ModifiedPolicies,
