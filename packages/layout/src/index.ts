@@ -65,6 +65,7 @@ export {
   TableCellTagProps
 } from './ColumnFactory'
 export {
+  G2Row,
   G2ColumnDef,
   TableV2,
   TableV2Props,
