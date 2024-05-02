@@ -2,8 +2,7 @@ import { ImageList, ImageListItem, Stack } from '@mui/material'
 import React, { useMemo } from 'react'
 import { FsFile } from '../../Domain'
 import { cx } from '@emotion/css'
-import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { AutoCompleteProps } from '@komune-io/g2-forms'
+import { BasicProps } from '@komune-io/g2-themes'
 import { ImageListProps } from '@mui/material/ImageList/ImageList'
 
 export interface GalleryClasses {
@@ -16,10 +15,7 @@ export interface GalleryStyles {
   item?: React.CSSProperties
 }
 
-export type GridProps<T = any> = MergeMuiElementProps<
-  ImageListProps,
-  AutoCompleteProps<T>
->
+export type GridProps = Omit<ImageListProps, 'children'>
 
 export interface GalleryProps extends BasicProps {
   /**
