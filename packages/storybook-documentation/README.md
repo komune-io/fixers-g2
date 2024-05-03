@@ -1,30 +1,15 @@
-# documentation
+# @komune-io/g2-storybook-documentation
 
-> Components for documentation
+> G2 React Storybook Documentation Library
 
-[![NPM](https://img.shields.io/npm/v/documentation.svg)](https://www.npmjs.com/package/documentation) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@komune-io/g2-storybook-documentation.svg)](https://www.npmjs.com/package/@komune-io/g2-storybook-documentation) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save documentation
-```
-
-## Usage
-
-```tsx
-import React, { Component } from 'react'
-
-import MyComponent from 'documentation'
-import 'documentation/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+npm install --save @komune-io/g2-storybook-documentation
 ```
 
 ## License
 
-&quot;&quot; © [Komune](https://github.com/komune-io)
+[Apache License 2.0](https://github.com/apache/.github/blob/main/LICENSE)

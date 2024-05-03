@@ -1,30 +1,15 @@
-# @komune-io/g2-components
+# @komune-io/g2-s2
 
-> React components Library
+> G2 React S2 Library
 
-[![NPM](https://img.shields.io/npm/v/@komune-io/g2-components.svg)](https://www.npmjs.com/package/@komune-io/g2-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@komune-io/g2-s2.svg)](https://www.npmjs.com/package/@komune-io/g2-s2) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save @komune-io/g2-components
-```
-
-## Usage
-
-```tsx
-import React, { Component } from 'react'
-
-import MyComponent from '@komune-io/g2-components'
-import '@komune-io/g2-components/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+npm install --save @komune-io/g2-s2
 ```
 
 ## License
 
-MIT © [](https://github.com/)
+[Apache License 2.0](https://github.com/apache/.github/blob/main/LICENSE)
