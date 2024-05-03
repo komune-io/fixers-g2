@@ -60,6 +60,16 @@ export const FixedPagination = (props: FixedPaginationProps) => {
     [pagination.limit, onOffsetChange]
   )
 
+  const totalItemLabel = useMemo(() => {
+    const start = pagination.offset + 1
+    const end = Math.min(
+      pagination.offset + pagination.limit,
+      total.items ?? pagination.offset + pagination.limit
+    )
+    const totalItems = total.items
+    return t('totalItem', { start: start, end: end, totalItems: totalItems })
+  }, [pagination, total])
+
   return (
     <Stack
       direction='row'
@@ -106,14 +116,7 @@ export const FixedPagination = (props: FixedPaginationProps) => {
         {total.page && (
           <>
             <Typography color='text.secondary' variant='caption'>
-              {t('totalItem', {
-                start: pagination.offset + 1,
-                end: Math.min(
-                  pagination.offset + pagination.limit,
-                  total.items ?? pagination.offset + pagination.limit
-                ),
-                total: total.items
-              })}
+              {totalItemLabel}
             </Typography>
             <Pagination
               onPageChange={handlePageChange}
