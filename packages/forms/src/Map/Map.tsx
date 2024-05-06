@@ -1,9 +1,12 @@
-import {
-  MapContainer,
-  MapContainerProps,
-  TileLayer,
-  TileLayerProps
-} from 'react-leaflet'
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  Suspense,
+  lazy
+} from 'react'
 import { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import {
   FormHelperText,
@@ -13,37 +16,24 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  DraggableMarker,
-  DraggableMarkerControl,
-  DraggableMarkerNeeds
-} from './DraggableMarker'
-import 'leaflet/dist/leaflet.css'
 import { Button } from '@komune-io/g2-components'
 import { CloseRounded } from '@mui/icons-material'
-import L from 'leaflet'
+
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
-import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 import { useTranslation } from 'react-i18next'
+import { MapContainerProps, TileLayerProps } from 'react-leaflet'
+import { DraggableMarkerControl, DraggableMarkerNeeds } from './DraggableMarker'
 
-/* eslint-disable react/jsx-key */
-
-//@ts-ignore
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow
-})
+const LazyLeafletMap = lazy(() => import('./LeafletMap'))
+const LazyDraggableMarker = lazy(() => import('./DraggableMarker'))
 
 export const defaultPosition = { center: { lng: 2, lat: 46 }, zoom: 5 }
 
 export interface MapPlugin {
   key: string
   value?: any
-  setValue?: (value) => void
+  setValue?: (value: any) => void
   element: React.ElementType<any>
 }
 
@@ -152,14 +142,11 @@ export const Map = (props: MapProps) => {
   }, [isFullScreen])
 
   const onFullScreenChange = useCallback(() => {
-    if (document.fullscreenElement === containerRef.current)
-      setIsFullScreen(true)
-    else setIsFullScreen(false)
+    setIsFullScreen(document.fullscreenElement === containerRef.current)
   }, [])
 
   useEffect(() => {
     document.addEventListener('fullscreenchange', onFullScreenChange)
-
     return () => {
       document.removeEventListener('fullscreenchange', onFullScreenChange)
     }
@@ -179,12 +166,13 @@ export const Map = (props: MapProps) => {
 
   const plugins = useMemo(
     () =>
-      additionalPlugins?.map((plugin) => {
-        const { element, ...other } = plugin
+      additionalPlugins?.map((plugin, index) => {
+        const { element, ...otherPluginProps } = plugin
         const PluginElement = element
         return (
           <PluginElement
-            {...other}
+            {...otherPluginProps}
+            key={index}
             isMobile={isSm}
             readOnly={readOnly}
             isFullScreen={isFullScreen}
@@ -207,36 +195,31 @@ export const Map = (props: MapProps) => {
       className={cx('AruiMap-root', className)}
       {...other}
     >
-      <MapContainer
-        {...mapProps}
-        //@ts-ignore
-        ref={setMap}
-        center={center ?? defaultPosition.center}
-        zoom={zoom}
-        scrollWheelZoom
-        className={cx('AruiMap-map', classes?.map)}
-        style={{
-          height: '100%',
-          minHeight: 400,
-          width: '100%',
-          zIndex: 0,
-          ...styles?.map
-        }}
-      >
-        <TileLayer
-          {...tileLayerProps}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        {!!draggableMarkerPlugin && (
-          <DraggableMarker
+      <Suspense fallback={<div>Loading map...</div>}>
+        <LazyLeafletMap
+          {...mapProps}
+          //@ts-ignore
+          ref={setMap}
+          center={center ?? defaultPosition.center}
+          zoom={zoom}
+          scrollWheelZoom={true}
+          className={cx('AruiMap-map', classes?.map)}
+          style={{
+            height: '100%',
+            minHeight: 400,
+            width: '100%',
+            zIndex: 0,
+            ...styles?.map
+          }}
+        >
+          <LazyDraggableMarker
             draggable={(!isSm || isFullScreen) && !readOnly}
-            map={map}
             {...draggableMarkerPlugin}
+            map={map}
           />
-        )}
-        {plugins}
-      </MapContainer>
+          {plugins}
+        </LazyLeafletMap>
+      </Suspense>
       {children}
       {isSm && !isFullScreen && (
         <Button
@@ -245,7 +228,6 @@ export const Map = (props: MapProps) => {
             classes?.openFullScreenButton
           )}
           style={styles?.openFullScreenButton}
-          sx={{ position: 'absolute', top: '10px', right: '5px' }}
           onClick={toggleFullScreen}
         >
           {t('g2.openFullScreen')}
@@ -257,8 +239,8 @@ export const Map = (props: MapProps) => {
             'AruiMap-closeFullScreenIcon',
             classes?.closeFullScreenIcon
           )}
-          style={styles?.closeFullScreenIcon}
           sx={{ position: 'absolute', top: '10px', right: '5px' }}
+          style={styles?.closeFullScreenIcon}
           onClick={toggleFullScreen}
         >
           <CloseRounded />

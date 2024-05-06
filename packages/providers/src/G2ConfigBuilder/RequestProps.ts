@@ -1,11 +1,7 @@
 import { useMemo } from 'react'
 import { fsConfig, imConfig, platFormConfig } from '.'
 import { useAuth } from '../KeycloakProvider'
-
-export type RequestProps = {
-  url: string
-  jwt?: string
-}
+import { RequestProps } from '@komune-io/g2-utils'
 
 export const useNoAuthenticatedRequest = (
   endpoint: 'plateform' | 'im' | 'fs' = 'plateform'
@@ -16,8 +12,8 @@ export const useNoAuthenticatedRequest = (
         endpoint === 'fs'
           ? fsConfig().url
           : endpoint === 'im'
-          ? imConfig().url
-          : platFormConfig().url
+            ? imConfig().url
+            : platFormConfig().url
     }),
     []
   )
@@ -33,8 +29,8 @@ export const useAuthenticatedRequest = (
         endpoint === 'fs'
           ? fsConfig().url
           : endpoint === 'im'
-          ? imConfig().url
-          : platFormConfig().url,
+            ? imConfig().url
+            : platFormConfig().url,
       jwt: auth.keycloak.token
     }),
     [auth.keycloak.token]
