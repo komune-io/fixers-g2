@@ -2,7 +2,7 @@
   "name": "@komune-io/g2-forms",
   "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
-  "author": "Komune <team@komune.io>",
+  "author": "Komune",
   "license": "Apache-2.0",
   "description": "React forms library",
   "private": false,
