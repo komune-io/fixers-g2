@@ -1,7 +1,7 @@
 {
   "name": "@komune-io/g2-fs",
   "repository": "https://github.com/komune-io/fixers-g2.git",
-  "author": "Komune <team@komune.io>",
+  "author": "Komune",
   "license": "Apache-2.0",
   "version": "0.5.0-alpha",
   "description": "React fs components library",
