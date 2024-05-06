@@ -211,7 +211,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     return
   }, [fileTypesAllowed])
 
-  const childrenProps = {
+  const childrenProps: DropzoneChildrenProps = {
     uploaded,
     error,
     label,
@@ -295,7 +295,6 @@ interface DropzoneChildrenProps {
   error?: string
   label?: string
   isRequired?: boolean
-  isRequiredLabel?: string
   onDelete?: () => void
   onEditFileName?: (newName: string) => void
   onDownload?: () => void
