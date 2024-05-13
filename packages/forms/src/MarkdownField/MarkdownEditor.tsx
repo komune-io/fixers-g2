@@ -15,7 +15,6 @@ import React from 'react'
 export interface MarkdownEditorProps extends MDXEditorProps {}
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
-  const {} = props
   return (
     <MarkdownStyleContainer
       sx={{

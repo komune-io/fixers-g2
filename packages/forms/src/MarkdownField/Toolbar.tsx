@@ -41,9 +41,9 @@ import {
 } from 'lexical'
 import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text'
 
-export const IS_BOLD = 0b1 as const
-export const IS_ITALIC = 0b10 as const
-export const IS_UNDERLINE = 0b1000 as const
+export const IS_BOLD = 0b1
+export const IS_ITALIC = 0b10
+export const IS_UNDERLINE = 0b1000
 
 const TglButton = styled(ToggleButton)({
   border: 0,
