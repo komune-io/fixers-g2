@@ -12,6 +12,9 @@ export default {
     '@mui/x-date-pickers/AdapterDateFns/index.js',
     'leaflet/dist/leaflet.css',
     'date-fns/locale',
-    '@mui/x-date-pickers/AdapterDateFnsV3'
+    '@mui/x-date-pickers/AdapterDateFnsV3',
+    '@lexical/utils',
+    'lexical',
+    '@lexical/rich-text'
   ]
 }

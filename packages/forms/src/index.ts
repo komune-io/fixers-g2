@@ -57,3 +57,4 @@ export {
   MultiChoicesStyles,
   MultiChoicesProps
 } from './MultiChoices'
+export { MarkdownField, MarkdownFieldProps } from './MarkdownField'
