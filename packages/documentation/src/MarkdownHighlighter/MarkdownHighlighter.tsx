@@ -95,17 +95,14 @@ const components = {
   }
 }
 
-const remark: ReactMarkdown.PluggableList = [[gfm, { singleTilde: false }]]
-const rehype: ReactMarkdown.PluggableList = [raw]
-
 export const MarkdownHighlighter = (props: MarkdownHighlighterProps) => {
   const { markdown, className } = props
   const { classes, cx } = useStyles()
   return (
     <ReactMarkdown
       className={cx(classes.markdown, 'markdown-body', className)}
-      remarkPlugins={remark}
-      rehypePlugins={rehype}
+      remarkPlugins={[[gfm, { singleTilde: false }]]}
+      rehypePlugins={[raw]}
       //@ts-ignore
       components={components}
     >
