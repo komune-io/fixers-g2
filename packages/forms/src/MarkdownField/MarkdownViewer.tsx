@@ -55,7 +55,12 @@ export const MarkdownViewer = (props: MarkdownViewerProps) => {
   const { markdown } = props
   return (
     <MarkdownStyleContainer>
-      <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+      <Markdown
+        //@ts-ignore
+        remarkPlugins={[remarkGfm]}
+        //@ts-ignore
+        rehypePlugins={[rehypeRaw]}
+      >
         {markdown}
       </Markdown>
     </MarkdownStyleContainer>
