@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@mantine/hooks": "^7.6.2",
-    "ramda": "^0.29.1",
     "tinycolor2": "^1.6.0",
     "tss-react": "^4.9.6"
   }
