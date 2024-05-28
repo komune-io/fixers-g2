@@ -93,5 +93,8 @@
         }
       ]
     }
-  ]
+  ],
+  "properties": {
+    "sectionsType": "papered"
+  }
 }

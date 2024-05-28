@@ -13,7 +13,7 @@ import { BrowserRouter } from 'react-router-dom'
 import json from './autoForm.json'
 import { autoFormFormatter } from './autoFormFormatter'
 import { Button } from '@komune-io/g2-components'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import LinkTo from '@storybook/addon-links/react'
 
 export default {
@@ -68,13 +68,15 @@ export default {
 export const AutoFormStory: StoryFn<AutoFormProps> = (args: AutoFormProps) => {
   return (
     <BrowserRouter>
-      <AutoForm
-        {...args}
-        onSubmit={(command, values) => console.log(command, values)}
-        getFormActions={(formState) => (
-          <Button onClick={formState.submitForm}>Submit</Button>
-        )}
-      />
+      <Stack gap={3}>
+        <AutoForm
+          {...args}
+          onSubmit={(command, values) => console.log(command, values)}
+          getFormActions={(formState) => (
+            <Button onClick={formState.submitForm}>Submit</Button>
+          )}
+        />
+      </Stack>
     </BrowserRouter>
   )
 }
