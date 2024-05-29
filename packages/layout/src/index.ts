@@ -19,7 +19,8 @@ export {
   PopUp,
   PopUpProps,
   ConfirmationPopUp,
-  ConfirmationPopUpProps
+  ConfirmationPopUpProps,
+  ConfirmationPopUpVariant
 } from './PopUp'
 export {
   Table,

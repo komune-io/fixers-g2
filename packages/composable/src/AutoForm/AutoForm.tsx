@@ -1,4 +1,4 @@
-import { Stack, StackProps, Typography, Divider } from '@mui/material'
+import { Stack, Typography, Divider } from '@mui/material'
 import React, { useCallback, useMemo, Fragment } from 'react'
 import {
   FormComposable,
@@ -11,6 +11,7 @@ import {
 import { SectionCondition, evalCondition } from '../Conditions'
 import { FormikHelpers } from 'formik'
 import { CommandWithFile } from '@komune-io/g2-utils'
+import { Section } from '@komune-io/g2-layout'
 
 export type FormSection = {
   /**
@@ -43,7 +44,7 @@ export type AutoFormData = {
    * describe the type of display for the sections
    * @default "default"
    */
-  sectionsType?: 'default' | 'divided'
+  sectionsType?: 'default' | 'divided' | 'papered'
   /**
    * The different sections of the form
    */
@@ -54,8 +55,10 @@ export type AutoFormData = {
 >
 
 export interface AutoFormProps
-  extends Omit<StackProps, 'onSubmit'>,
-    Pick<FormikFormParams<{}>, 'readOnly' | 'isLoading' | 'formikConfig'> {
+  extends Pick<
+    FormikFormParams<{}>,
+    'readOnly' | 'isLoading' | 'formikConfig'
+  > {
   onSubmit?: (
     command: CommandWithFile<any>,
     values: any,
@@ -76,8 +79,7 @@ export const AutoForm = (props: AutoFormProps) => {
     formikConfig,
     getFormActions,
     initialValues,
-    downloadDocument,
-    ...other
+    downloadDocument
   } = props
 
   const sectionsType = formData?.sectionsType ?? 'default'
@@ -141,44 +143,97 @@ export const AutoForm = (props: AutoFormProps) => {
     [formState]
   )
 
+  const formSectionsDispaly = useMemo(() => {
+    return formData?.sections.map((section) => {
+      return (
+        <FormSection
+          key={section.id}
+          section={section}
+          formState={formState}
+          sectionsType={sectionsType}
+          displayLabel={formData?.sections.length > 1}
+        />
+      )
+    })
+  }, [formData, formState, sectionsType])
+
   return (
-    <Stack gap={3} {...other}>
-      {formData?.sections.map((section) => {
-        const message = section.conditions?.find((cond) =>
-          evalCondition(cond, formState.values)
-        )
-        return (
-          <Fragment key={section.id}>
-            {formData?.sections.length > 1 && section.label && (
-              <TitleDivider
-                withDivider={sectionsType === 'divided'}
-                title={section.label}
-              />
-            )}
-            {section.description && (
-              <Typography variant='body2'>{section.description}</Typography>
-            )}
-            <FormComposable
-              formState={formState}
-              fields={section.fields}
-              display={section.display}
-              gridColumnNumber={section.gridColumnNumber}
-              orientation={section.orientation}
-            />
-            {message && (
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette[message.type].main
-                }}
-              >
-                {message.message}
-              </Typography>
-            )}
-          </Fragment>
-        )
-      })}
+    <>
+      {formSectionsDispaly}
       {actions}
-    </Stack>
+    </>
+  )
+}
+
+export interface FormSectionProps {
+  sectionsType: 'default' | 'divided' | 'papered'
+  section: FormSection
+  formState: FormComposableState
+  displayLabel?: boolean
+}
+
+export const FormSection = (props: FormSectionProps) => {
+  const { sectionsType, section, formState, displayLabel = true } = props
+
+  const message = section.conditions?.find((cond) =>
+    evalCondition(cond, formState.values)
+  )
+
+  const sectionContent = (
+    <>
+      {section.description && (
+        <Typography variant='body2'>{section.description}</Typography>
+      )}
+      <FormComposable
+        formState={formState}
+        fields={section.fields}
+        display={section.display}
+        gridColumnNumber={section.gridColumnNumber}
+        orientation={section.orientation}
+      />
+      {message && (
+        <Typography
+          sx={{
+            color: (theme) => theme.palette[message.type].main
+          }}
+        >
+          {message.message}
+        </Typography>
+      )}
+    </>
+  )
+
+  if (sectionsType === 'papered')
+    return (
+      <Section
+        flexContent
+        headerProps={{
+          content: [
+            {
+              leftPart: [
+                <TitleDivider
+                  key='SectionTitle'
+                  withDivider={false}
+                  title={section.label}
+                />
+              ]
+            }
+          ]
+        }}
+      >
+        {sectionContent}
+      </Section>
+    )
+  return (
+    <Fragment key={section.id}>
+      {displayLabel && section.label && (
+        <TitleDivider
+          withDivider={sectionsType === 'divided'}
+          title={section.label}
+        />
+      )}
+      {sectionContent}
+    </Fragment>
   )
 }
 
