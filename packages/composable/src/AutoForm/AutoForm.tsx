@@ -84,8 +84,6 @@ export const AutoForm = (props: AutoFormProps) => {
 
   const sectionsType = formData?.sectionsType ?? 'default'
 
-  console.log(sectionsType)
-
   const initial = useMemo(() => {
     const initialValuesCopy = { ...initialValues }
     formData?.sections.forEach((section) =>
