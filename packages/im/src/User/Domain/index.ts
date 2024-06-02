@@ -122,10 +122,10 @@ export interface UserUpdatedEmailEvent {
   id: UserId
 }
 
-type WithId = { id: string }
+type WithIdentifier = { identifier: string }
 
 function transformRoles(
-  roles: WithId | WithId[] | string | string[] | undefined
+  roles: WithIdentifier | WithIdentifier[] | string | string[] | undefined
 ): string[] {
   if (roles === undefined) {
     return []
@@ -138,8 +138,8 @@ function transformRoles(
   return rolesArray.map((role) => {
     if (typeof role === 'string') {
       return role
-    } else if (typeof role === 'object' && 'id' in role) {
-      return role.id
+    } else if (typeof role === 'object') {
+      return role.identifier
     }
     return ''
   })
