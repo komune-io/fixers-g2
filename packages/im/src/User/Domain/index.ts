@@ -61,10 +61,7 @@ export const userToFlatUser = (user: User): FlatUser => {
   return flat
 }
 
-export const flatUserToUser = (
-  flat: FlatUser,
-  multipleRoles: boolean
-): User => {
+export const flatUserToUser = (flat: FlatUser): User => {
   // @ts-ignore
   const user: User & {
     street?: string
@@ -82,8 +79,7 @@ export const flatUserToUser = (
       name: '',
       roles: []
     },
-    // @ts-ignore
-    roles: multipleRoles ? flat.roles : [flat.roles]
+    roles: transformRoles(flat.roles)
   }
   delete user.street
   delete user.city
@@ -124,4 +120,27 @@ export interface UserUpdateEmailCommand {
 
 export interface UserUpdatedEmailEvent {
   id: UserId
+}
+
+type WithId = { id: string }
+
+function transformRoles(
+  roles: WithId | WithId[] | string | string[] | undefined
+): string[] {
+  if (roles === undefined) {
+    return []
+  }
+
+  // Wrap roles in an array if it's not already an array
+  const rolesArray = Array.isArray(roles) ? roles : [roles]
+
+  // Flatten the roles array and transform objects with id property to their id string
+  return rolesArray.map((role) => {
+    if (typeof role === 'string') {
+      return role
+    } else if (typeof role === 'object' && 'id' in role) {
+      return role.id
+    }
+    return ''
+  })
 }
