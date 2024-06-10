@@ -252,7 +252,9 @@ const AlertBase = (props: AlertProps, ref: React.ForwardedRef<HTMLElement>) => {
           {children ? (
             children
           ) : (
-            <Typography variant='body2'>{message}</Typography>
+            <Typography sx={{ color: 'currentColor' }} variant='body2'>
+              {message}
+            </Typography>
           )}
           {onClose && (
             <CloseRounded

@@ -77,7 +77,11 @@ export const G2Translations = {
       required: 'Obligatoire',
       noData: 'Aucune donnée trouvé',
       noOrganization: "Vous n'êtes pas inclut dans une organisation",
-      totalItem: '{{start}} - {{end}} sur {{total}}'
+      totalItem: '{{start}} - {{end}} sur {{total}}',
+      toFilter: 'Filtrer',
+      toFilterCount: 'Filtrer ({{count}})',
+      apply: 'Appliquer',
+      clearFilters: 'Retirer les filtres'
     },
     http: {
       '600': "{{errorMessage}} à cause d'un problème de connexion",
@@ -192,6 +196,10 @@ export const G2Translations = {
       required: 'Required',
       noData: 'No data found',
       noOrganization: 'You are not included in an organization',
+      toFilter: 'Filter',
+      toFilterCount: 'Filter ({{count}})',
+      apply: 'Apply',
+      clearFilters: 'Clear filters',
       totalItem: '{{start}} - {{end}} of {{total}}'
     },
     http: {

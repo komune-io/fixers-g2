@@ -64,6 +64,7 @@ export const FixedPagination = (props: FixedPaginationProps) => {
     <Stack
       direction='row'
       alignItems='center'
+      justifyContent='space-between'
       alignContent='center'
       sx={{
         background: (theme) => theme.palette.background.default + '99',
@@ -80,8 +81,8 @@ export const FixedPagination = (props: FixedPaginationProps) => {
         }
       }}
     >
-      {leftElement ?? <div style={{ flexGrow: 1, flexBasis: 0 }} />}
-      {middleElement ?? <div style={{ flexGrow: 1, flexBasis: 0 }} />}
+      {leftElement ?? <div />}
+      {middleElement ?? <div />}
       <Stack
         direction='row'
         gap={2}
