@@ -122,7 +122,24 @@ export const Page = (props: PageProps) => {
             headerProps
           )
         )}
-        sx={headerProps.sx}
+        sx={{
+          paddingLeft:
+            g2Theme.permanentHeader && (!openDrawer || isMobile)
+              ? `${g2Theme.drawerWidth + (isMobile ? 5 : 40)}px !important`
+              : undefined,
+          transition: g2Theme.permanentHeader
+            ? !openDrawer
+              ? theme.transitions.create(['padding'], {
+                  easing: theme.transitions.easing.sharp,
+                  duration: theme.transitions.duration.leavingScreen
+                })
+              : theme.transitions.create(['padding'], {
+                  easing: theme.transitions.easing.easeOut,
+                  duration: theme.transitions.duration.enteringScreen
+                })
+            : undefined,
+          ...headerProps.sx
+        }}
       />
     )
   }, [

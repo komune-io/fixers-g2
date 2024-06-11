@@ -45,12 +45,39 @@ G2ConfigBuilder({
   }
 })
 
+const permanentHeader = ({ toggleOpenDrawer }) => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '100%',
+        padding: '16px',
+        gap: '16px',
+        alignItems: 'center'
+      }}
+    >
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: 'flex'
+        }}
+      >
+        <img src='/komune.png' style={{ width: '100%' }} />
+      </Box>
+      <IconButton onClick={toggleOpenDrawer}>
+        <Menu />
+      </IconButton>
+    </Box>
+  )
+}
+
 const i18n = initI18next({ en: 'en-US', fr: 'fr-FR' })
 
 export const withThemeProvider = (Story) => {
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeContextProvider>
+      <ThemeContextProvider theme={{ permanentHeader }}>
         <MantineProvider>
           <CssBaseline />
           <Story />

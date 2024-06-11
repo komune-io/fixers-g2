@@ -1,18 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   StandAloneAppLayout as AruiStandAloneAppLayout,
   StandAloneAppLayoutProps
 } from './StandAloneAppLayout'
 import { Meta, StoryFn } from '@storybook/react'
-import { Box, IconButton, Link, Paper, Stack, Typography } from '@mui/material'
+import { Box, Link, Paper, Stack, Typography } from '@mui/material'
 import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes } from './docs'
 import { Button } from '@komune-io/g2-components'
 import { Page } from '../Page'
-import { Menu } from '@mui/icons-material'
-import { ThemeContext } from '@komune-io/g2-themes'
 
 export default {
   title: 'Layout/StandAloneAppLayout',
@@ -82,7 +80,6 @@ export const StandAloneAppLayout: StoryFn<StandAloneAppLayoutProps> = (
 }
 
 export const Content = () => {
-  const { theme, toggleOpenDrawer } = useContext(ThemeContext)
   return (
     <Page
       headerProps={{
@@ -90,30 +87,6 @@ export const Content = () => {
         content: [
           {
             leftPart: [
-              <Box
-                key='permanentHeader'
-                sx={{
-                  display: 'flex',
-                  zIndex: 1500,
-                  justifyContent: 'flex-end',
-                  width: theme.drawerWidth - 32,
-                  ml: -3,
-                  gap: '16px',
-                  alignItems: 'center'
-                }}
-              >
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    display: 'flex'
-                  }}
-                >
-                  <img src='/komune.png' style={{ width: '100%' }} />
-                </Box>
-                <IconButton onClick={toggleOpenDrawer}>
-                  <Menu />
-                </IconButton>
-              </Box>,
               <Typography key='page-title' variant='h5'>
                 Page Header
               </Typography>
@@ -192,7 +165,8 @@ StandAloneAppLayout.args = {
       icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
     }
   ],
-  defaultStateHandling: false,
+  defaultOpenButton: false,
+  defaultCloseButton: false,
   drawerPaddingTop: '90px'
 }
 

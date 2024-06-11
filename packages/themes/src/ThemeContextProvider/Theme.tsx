@@ -15,6 +15,12 @@ export interface Theme {
   drawerWidth: number
   fontSize: FontSizes
   /**
+   * Here you can pass the header put to the right in the page component and above the drawer menu.
+   * It should use the prop openDrawer and toggleOpenDrawer to update the drawer state.
+   * It will be place in a container of the width `drawerWidth`
+   */
+  permanentHeader?: React.ElementType<any>
+  /**
    * The breakpoint where the drawer becom absolute above the main content when opened
    * @default "md"
    */

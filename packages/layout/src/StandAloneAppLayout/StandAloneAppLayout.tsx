@@ -13,7 +13,7 @@ import {
 } from '@mui/material'
 import { MenuItem } from '@komune-io/g2-components'
 import { ThemeContext } from '@komune-io/g2-themes'
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { AppLogoProps, AppMenu } from '../AppMenu'
 import { UserMenu, UserMenuProps } from '../UserMenu'
 import { Menu } from '@mui/icons-material'
@@ -80,13 +80,20 @@ export interface StandAloneAppLayoutProps {
    */
   userMenuProps?: UserMenuProps
   /**
-   * Pass this props to false if you want to remove the default burger button and do your own state management using the fonctions in the g2 context
+   * Pass this props to false if you want to remove the default burger button to open the drawer
    *
    * @default true
    */
-  defaultStateHandling?: boolean
+  defaultOpenButton?: boolean
   /**
-   * If you have a fixed header that will get over the drawer set the padding to de the height of the header
+   * Pass this props to false if you want to remove the default burger button to close the drawer
+   *
+   * @default true
+   */
+  defaultCloseButton?: boolean
+  /**
+   * If you have a fixed header that will get over the drawer set the padding to de the height of the header.
+   * By default if there is a permanent header the padding is set to 90px
    */
   drawerPaddingTop?: string
   /**
@@ -121,7 +128,8 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
     drawerProps,
     mainProps,
     drawerContent,
-    defaultStateHandling = true,
+    defaultOpenButton = true,
+    defaultCloseButton = true,
     drawerPaddingTop,
     classes,
     styles
@@ -142,9 +150,30 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
 
   const currentOpen = open !== undefined ? open : openDrawer
 
+  const PerManentHeader = useMemo(
+    () => g2Theme.permanentHeader,
+    [g2Theme.permanentHeader]
+  )
+
   return (
     <>
-      {defaultStateHandling && (
+      {PerManentHeader && (
+        <Box
+          sx={{
+            position: 'fixed',
+            zIndex: 2000,
+            top: 0,
+            left: 0,
+            width: g2Theme.drawerWidth
+          }}
+        >
+          <PerManentHeader
+            toggleOpenDrawer={toggleOpenDrawer}
+            openDrawer={currentOpen}
+          />
+        </Box>
+      )}
+      {defaultOpenButton && (
         <IconButton
           sx={{
             zIndex: 1001,
@@ -172,7 +201,11 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
             height: `100%`,
             overflow: 'visible',
             visibility: 'visible !important' as 'visible',
-            paddingTop: drawerPaddingTop ? drawerPaddingTop : 0
+            paddingTop: drawerPaddingTop
+              ? drawerPaddingTop
+              : PerManentHeader
+                ? '90px'
+                : undefined
           },
           ...drawerProps?.sx
         }}
@@ -184,7 +217,7 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         anchor='left'
         open={currentOpen}
       >
-        {defaultStateHandling && (
+        {defaultCloseButton && (
           <IconButton
             sx={{
               zIndex: 1001,

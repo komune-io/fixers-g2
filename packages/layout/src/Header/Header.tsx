@@ -78,11 +78,6 @@ export interface HeaderBasicProps extends BasicProps {
    */
   isFixed?: boolean
   /**
-   * Define if the header will ignore the drawer menu and stay the same anyway
-   * @default false
-   */
-  ignoreDrawer?: boolean
-  /**
    * Add a strong padding, used in the page headers for example
    * @default false
    */
@@ -118,7 +113,6 @@ export const Header = (props: HeaderProps) => {
     withBottomDivider = true,
     isFixed = true,
     strongPadding = false,
-    ignoreDrawer = false,
     bgcolor,
     sx,
     onTabChange,
@@ -213,7 +207,7 @@ export const Header = (props: HeaderProps) => {
       sx={{
         [theme.breakpoints.down('sm')]: {
           padding: (theme) => {
-            const topPadding = theme.spacing(1)
+            const topPadding = theme.spacing(2)
             const horizontalPadding = strongPadding
               ? theme.spacing(2)
               : theme.spacing(1)
@@ -240,9 +234,8 @@ export const Header = (props: HeaderProps) => {
           const color = bgcolor ? bgcolor : theme.palette.background.default
           return color + '99'
         },
-        position: ignoreDrawer ? 'fixed' : isFixed ? 'sticky' : 'relative',
-        top: isFixed || ignoreDrawer ? '0px' : undefined,
-        left: ignoreDrawer ? '0px' : undefined,
+        position: isFixed ? 'sticky' : 'relative',
+        top: isFixed ? '0px' : undefined,
         backdropFilter: 'blur(15px)',
         webkitBackdropFilter: 'blur(15px)',
         zIndex: zIndex,
