@@ -204,7 +204,7 @@ export const useUserFormState = <T extends User = User>(
       if (onSubmit) {
         await onSubmit({
           ...values,
-          ...flatUserToUser(values, multipleRoles),
+          ...flatUserToUser(values),
           id: user?.id ?? '',
           phone: values.phone?.replaceAll(' ', '')
         } as T)
