@@ -81,7 +81,9 @@ export const G2Translations = {
       toFilter: 'Filtrer',
       toFilterCount: 'Filtrer ({{count}})',
       apply: 'Appliquer',
-      clearFilters: 'Retirer les filtres'
+      clearFilters: 'Retirer les filtres',
+      title: 'Titre',
+      text: 'Texte'
     },
     http: {
       '600': "{{errorMessage}} à cause d'un problème de connexion",
@@ -200,7 +202,9 @@ export const G2Translations = {
       toFilterCount: 'Filter ({{count}})',
       apply: 'Apply',
       clearFilters: 'Clear filters',
-      totalItem: '{{start}} - {{end}} of {{total}}'
+      totalItem: '{{start}} - {{end}} of {{total}}',
+      title: 'Title',
+      text: 'Text'
     },
     http: {
       '600': '{{errorMessage}} due to a network issue',

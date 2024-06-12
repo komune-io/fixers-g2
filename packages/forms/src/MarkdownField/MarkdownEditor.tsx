@@ -12,11 +12,20 @@ import { Toolbar } from './Toolbar'
 import '@mdxeditor/editor/style.css'
 import React from 'react'
 
-export interface MarkdownEditorProps extends MDXEditorProps {}
+export interface MarkdownEditorProps extends MDXEditorProps {
+  /**
+   * Choose the 3 titles levels `["h1", "h2", "h3"]` or `["h4", "h5", "h6"]`
+   *
+   * @default "h4"
+   */
+  titlesTopLevel?: 'h1' | 'h4'
+}
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
+  const { titlesTopLevel } = props
   return (
     <MarkdownStyleContainer
+      titlesTopLevel={titlesTopLevel}
       sx={{
         '& .markdownEditor': {
           '--font-body': 'unset',
@@ -36,7 +45,7 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
           quotePlugin(),
           markdownShortcutPlugin(),
           toolbarPlugin({
-            toolbarContents: Toolbar
+            toolbarContents: () => <Toolbar titlesTopLevel={titlesTopLevel} />
           })
         ]}
         {...props}

@@ -29,7 +29,7 @@ import {
   styled,
   toggleButtonGroupClasses
 } from '@mui/material'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { mergeRegister } from '@lexical/utils'
 import {
   CAN_REDO_COMMAND,
@@ -37,13 +37,15 @@ import {
   COMMAND_PRIORITY_CRITICAL,
   REDO_COMMAND,
   UNDO_COMMAND,
-  $createParagraphNode
+  $createParagraphNode,
+  TextFormatType
 } from 'lexical'
 import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text'
+import { useTranslation } from 'react-i18next'
 
-export const IS_BOLD = 0b1
-export const IS_ITALIC = 0b10
-export const IS_UNDERLINE = 0b1000
+export const IS_BOLD = 0b1 as const
+export const IS_ITALIC = 0b10 as const
+export const IS_UNDERLINE = 0b1000 as const
 
 const TglButton = styled(ToggleButton)({
   border: 0,
@@ -67,7 +69,9 @@ const HistoryActionButton = styled(ToggleButton)({
   }
 })
 
-export const Toolbar = () => {
+export const Toolbar = (props: { titlesTopLevel?: 'h1' | 'h4' }) => {
+  const { titlesTopLevel } = props
+
   const [currentFormat] = useCellValues(currentFormat$)
   const applyFormat = usePublisher(applyFormat$)
   const [currentListType] = useCellValues(currentListType$)
@@ -75,37 +79,104 @@ export const Toolbar = () => {
   const convertSelectionToNode = usePublisher(convertSelectionToNode$)
   const currentBlockType = useCellValue(currentBlockType$)
 
-  const boldIsOn = (currentFormat & IS_BOLD) !== 0
-  const italicIsOn = (currentFormat & IS_ITALIC) !== 0
-  const underlineIsOn = (currentFormat & IS_UNDERLINE) !== 0
+  const { t } = useTranslation()
+
+  const decorationsDisplay = useMemo(
+    () =>
+      [
+        {
+          value: 'bold',
+          isOn: (currentFormat & IS_BOLD) !== 0,
+          icon: <FormatBoldRounded />
+        },
+        {
+          value: 'italic',
+          isOn: (currentFormat & IS_ITALIC) !== 0,
+          icon: <FormatItalicRounded />
+        },
+        {
+          value: 'underline',
+          isOn: (currentFormat & IS_UNDERLINE) !== 0,
+          icon: <FormatUnderlinedRounded />
+        }
+      ].map((deco) => {
+        return (
+          <TglButton
+            key={deco.value}
+            value={deco.value}
+            aria-label={deco.value}
+            selected={deco.isOn}
+            onChange={applyFormat.bind(null, deco.value as TextFormatType)}
+          >
+            {deco.icon}
+          </TglButton>
+        )
+      }),
+    [currentFormat, applyFormat.bind]
+  )
+
+  const titlesLogic = useMemo(
+    () =>
+      titlesTopLevel === 'h1'
+        ? [
+            {
+              value: 'h1',
+              selected: currentBlockType === 'h1'
+            },
+            {
+              value: 'h2',
+              selected: currentBlockType === 'h2'
+            },
+            {
+              value: 'h3',
+              selected: ['h3', 'h4', 'h5', 'h6'].includes(currentBlockType)
+            }
+          ]
+        : [
+            {
+              value: 'h4',
+              selected: ['h1', 'h2', 'h3', 'h4'].includes(currentBlockType)
+            },
+            {
+              value: 'h5',
+              selected: currentBlockType === 'h5'
+            },
+            {
+              value: 'h6',
+              selected: currentBlockType === 'h6'
+            }
+          ],
+    [titlesTopLevel, currentBlockType]
+  )
+
+  const titlesDisplay = useMemo(
+    () =>
+      titlesLogic.map((logic, index) => {
+        const count = index + 1
+        const label = t('g2.title') + ' ' + count
+        return (
+          <TglButton
+            key={count}
+            value={logic.value}
+            aria-label={label}
+            selected={logic.selected}
+            onChange={(_, value) =>
+              convertSelectionToNode(() => $createHeadingNode(value))
+            }
+          >
+            <Typography sx={{ color: 'currentColor' }} variant='body2'>
+              {label}
+            </Typography>
+          </TglButton>
+        )
+      }),
+    [titlesLogic, t, convertSelectionToNode]
+  )
 
   return (
     <Stack direction='row' gap={0} width='100%' alignItems='center'>
       <Stack direction='row' gap={0} width='100%' flexWrap='wrap'>
-        <TglButton
-          value='bold'
-          aria-label='bold'
-          selected={boldIsOn}
-          onChange={applyFormat.bind(null, 'bold')}
-        >
-          <FormatBoldRounded />
-        </TglButton>
-        <TglButton
-          value='italic'
-          aria-label='italic'
-          selected={italicIsOn}
-          onChange={applyFormat.bind(null, 'italic')}
-        >
-          <FormatItalicRounded />
-        </TglButton>
-        <TglButton
-          value='underlined'
-          aria-label='underlined'
-          selected={underlineIsOn}
-          onChange={applyFormat.bind(null, 'underline')}
-        >
-          <FormatUnderlinedRounded />
-        </TglButton>
+        {decorationsDisplay}
         <Divider orientation='vertical' flexItem variant='middle' />
         <TglButton
           value='bullet'
@@ -139,45 +210,10 @@ export const Toolbar = () => {
           onChange={() => convertSelectionToNode(() => $createParagraphNode())}
         >
           <Typography sx={{ color: 'currentColor' }} variant='body2'>
-            Text
+            {t('g2.text')}
           </Typography>
         </TglButton>
-        <TglButton
-          value='h4'
-          aria-label='Title 1'
-          selected={currentBlockType === 'h4'}
-          onChange={(_, value) =>
-            convertSelectionToNode(() => $createHeadingNode(value))
-          }
-        >
-          <Typography sx={{ color: 'currentColor' }} variant='body2'>
-            Title 1
-          </Typography>
-        </TglButton>
-        <TglButton
-          value='h5'
-          aria-label='Title 2'
-          selected={currentBlockType === 'h5'}
-          onChange={(_, value) =>
-            convertSelectionToNode(() => $createHeadingNode(value))
-          }
-        >
-          <Typography sx={{ color: 'currentColor' }} variant='body2'>
-            Title 2
-          </Typography>
-        </TglButton>
-        <TglButton
-          value='h6'
-          aria-label='Title 3'
-          selected={currentBlockType === 'h6'}
-          onChange={(_, value) =>
-            convertSelectionToNode(() => $createHeadingNode(value))
-          }
-        >
-          <Typography sx={{ color: 'currentColor' }} variant='body2'>
-            Title 3
-          </Typography>
-        </TglButton>
+        {titlesDisplay}
       </Stack>
       <Box sx={{ flexGrow: 1 }} />
       <UndoRedo />
@@ -211,7 +247,6 @@ export const UndoRedo: React.FC = () => {
         )
       )
     }
-    return
   }, [activeEditor])
 
   return (

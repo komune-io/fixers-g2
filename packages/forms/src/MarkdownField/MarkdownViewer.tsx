@@ -4,7 +4,11 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import React from 'react'
 
-export const MarkdownStyleContainer = styled(Box)(({ theme }) => ({
+export const MarkdownStyleContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'titlesTopLevel'
+})<{
+  titlesTopLevel?: 'h1' | 'h4'
+}>(({ theme, titlesTopLevel }) => ({
   '& > :first-child': {
     marginTop: '0px'
   },
@@ -27,40 +31,59 @@ export const MarkdownStyleContainer = styled(Box)(({ theme }) => ({
     paddingLeft: '4px',
     margin: '8px 0px'
   },
-  '& h1': {
-    ...theme.typography.h1
-  },
-  '& h2': {
-    ...theme.typography.h2
-  },
-  '& h3': {
-    ...theme.typography.h3
-  },
-  '& h4': {
-    ...theme.typography.h4
-  },
-  '& h5': {
-    ...theme.typography.h5
-  },
-  '& h6': {
-    ...theme.typography.h6
-  }
+  ...(titlesTopLevel === 'h1'
+    ? {
+        '& h1': {
+          ...theme.typography.h4
+        },
+        '& h2': {
+          ...theme.typography.h5
+        },
+        '& h3': {
+          ...theme.typography.h6
+        },
+        '& h4': {
+          ...theme.typography.h6
+        },
+        '& h5': {
+          ...theme.typography.h6
+        },
+        '& h6': {
+          ...theme.typography.h6
+        }
+      }
+    : {
+        '& h1': {
+          ...theme.typography.h4
+        },
+        '& h2': {
+          ...theme.typography.h4
+        },
+        '& h3': {
+          ...theme.typography.h4
+        },
+        '& h4': {
+          ...theme.typography.h4
+        },
+        '& h5': {
+          ...theme.typography.h5
+        },
+        '& h6': {
+          ...theme.typography.h6
+        }
+      })
 }))
 
 export interface MarkdownViewerProps {
   markdown?: string
+  titlesTopLevel?: 'h1' | 'h4'
 }
 
 export const MarkdownViewer = (props: MarkdownViewerProps) => {
-  const { markdown } = props
+  const { markdown, titlesTopLevel } = props
   return (
-    <MarkdownStyleContainer>
-      <Markdown
-        //@ts-ignore
-        remarkPlugins={[remarkGfm]}
-        //@ts-ignore
-        rehypePlugins={[rehypeRaw]}
-      >
+    <MarkdownStyleContainer titlesTopLevel={titlesTopLevel}>
+      <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {markdown}
       </Markdown>
     </MarkdownStyleContainer>
