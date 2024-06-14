@@ -101,7 +101,7 @@ export const AutoForm = (props: AutoFormProps) => {
   }, [initialValues, formData, downloadDocument])
 
   const onSubmitCommand = useCallback(
-    (values: any, formikHelpers: FormikHelpers<any>) => {
+    async (values: any, formikHelpers: FormikHelpers<any>) => {
       if (onSubmit) {
         const command: CommandWithFile<any> = {
           command: {},
@@ -121,7 +121,7 @@ export const AutoForm = (props: AutoFormProps) => {
             }
           })
         )
-        onSubmit(command, values, formikHelpers)
+        await onSubmit(command, values, formikHelpers)
       }
     },
     [onSubmit, formData]

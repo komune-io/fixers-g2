@@ -125,7 +125,7 @@ export const Page = (props: PageProps) => {
         sx={{
           paddingLeft:
             g2Theme.permanentHeader && (!openDrawer || isMobile)
-              ? `${g2Theme.drawerWidth + (isMobile ? 5 : 40)}px`
+              ? `${g2Theme.drawerWidth + (isMobile ? 5 : 40)}px !important`
               : undefined,
           transition: g2Theme.permanentHeader
             ? !openDrawer

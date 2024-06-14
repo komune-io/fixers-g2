@@ -9,7 +9,8 @@ export {
   FiltersComposable,
   FilterComposableField,
   FilterRenderType,
-  FiltersComposableActionsProps
+  FiltersComposableActionsProps,
+  useCompleteFilters
 } from './FiltersComposable'
 export * from './AutoForm'
 export * from './Conditions'

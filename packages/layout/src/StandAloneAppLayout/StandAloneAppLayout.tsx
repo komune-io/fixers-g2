@@ -4,6 +4,7 @@ import {
   CssBaseline,
   Drawer,
   DrawerProps,
+  IconButton,
   styled,
   SxProps,
   Theme,
@@ -15,6 +16,7 @@ import { ThemeContext } from '@komune-io/g2-themes'
 import React, { useContext, useMemo } from 'react'
 import { AppLogoProps, AppMenu } from '../AppMenu'
 import { UserMenu, UserMenuProps } from '../UserMenu'
+import { Menu } from '@mui/icons-material'
 
 const Main = styled('main', {
   shouldForwardProp: (prop) =>
@@ -78,6 +80,23 @@ export interface StandAloneAppLayoutProps {
    */
   userMenuProps?: UserMenuProps
   /**
+   * Pass this props to false if you want to remove the default burger button to open the drawer
+   *
+   * @default true
+   */
+  defaultOpenButton?: boolean
+  /**
+   * Pass this props to false if you want to remove the default burger button to close the drawer
+   *
+   * @default true
+   */
+  defaultCloseButton?: boolean
+  /**
+   * If you have a fixed header that will get over the drawer set the padding to de the height of the header.
+   * By default if there is a permanent header the padding is set to 90px
+   */
+  drawerPaddingTop?: string
+  /**
    * The drawer component props
    */
   drawerProps?: DrawerProps
@@ -109,6 +128,9 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
     drawerProps,
     mainProps,
     drawerContent,
+    defaultOpenButton = true,
+    defaultCloseButton = true,
+    drawerPaddingTop,
     classes,
     styles
   } = props
@@ -151,6 +173,20 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
           />
         </Box>
       )}
+      {defaultOpenButton && (
+        <IconButton
+          sx={{
+            zIndex: 1001,
+            position: 'fixed',
+            top: 10,
+            left: 10,
+            width: 'fit-content'
+          }}
+          onClick={toggleOpenDrawer}
+        >
+          <Menu />
+        </IconButton>
+      )}
       <Drawer
         {...drawerProps}
         className={cx('AruiStandAloneAppLayout-drawer', classes?.drawer)}
@@ -165,7 +201,11 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
             height: `100%`,
             overflow: 'visible',
             visibility: 'visible !important' as 'visible',
-            paddingTop: g2Theme.permanentHeader ? '90px' : undefined
+            paddingTop: drawerPaddingTop
+              ? drawerPaddingTop
+              : PerManentHeader
+                ? '90px'
+                : undefined
           },
           ...drawerProps?.sx
         }}
@@ -177,6 +217,20 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         anchor='left'
         open={currentOpen}
       >
+        {defaultCloseButton && (
+          <IconButton
+            sx={{
+              zIndex: 1001,
+              position: 'absolute',
+              top: 10,
+              right: 10,
+              width: 'fit-content'
+            }}
+            onClick={toggleOpenDrawer}
+          >
+            <Menu />
+          </IconButton>
+        )}
         <Box
           className={cx(
             'AruiStandAloneAppLayout-scrollableContainer',

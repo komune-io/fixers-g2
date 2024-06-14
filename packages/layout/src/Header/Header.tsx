@@ -207,7 +207,7 @@ export const Header = (props: HeaderProps) => {
       sx={{
         [theme.breakpoints.down('sm')]: {
           padding: (theme) => {
-            const topPadding = theme.spacing(1)
+            const topPadding = theme.spacing(2)
             const horizontalPadding = strongPadding
               ? theme.spacing(2)
               : theme.spacing(1)
@@ -235,7 +235,7 @@ export const Header = (props: HeaderProps) => {
           return color + '99'
         },
         position: isFixed ? 'sticky' : 'relative',
-        top: isFixed ? '0px' : '',
+        top: isFixed ? '0px' : undefined,
         backdropFilter: 'blur(15px)',
         webkitBackdropFilter: 'blur(15px)',
         zIndex: zIndex,

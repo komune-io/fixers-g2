@@ -72,7 +72,51 @@ export default {
 export const StandAloneAppLayout: StoryFn<StandAloneAppLayoutProps> = (
   args: StandAloneAppLayoutProps
 ) => {
-  return <AruiStandAloneAppLayout {...args} />
+  return (
+    <AruiStandAloneAppLayout {...args}>
+      <Content />
+    </AruiStandAloneAppLayout>
+  )
+}
+
+export const Content = () => {
+  return (
+    <Page
+      headerProps={{
+        ignoreDrawer: true,
+        content: [
+          {
+            leftPart: [
+              <Typography key='page-title' variant='h5'>
+                Page Header
+              </Typography>
+            ],
+            rightPart: [<Button key='page-action'>An action</Button>]
+          }
+        ],
+        currentTab: 'tab-1'
+      }}
+      bottomActionsProps={{
+        actions: [
+          {
+            label: 'Cancel',
+            key: 'cancelButton',
+            variant: 'text'
+          },
+          {
+            label: 'validate',
+            key: 'validateFormButton',
+            type: 'submit'
+          }
+        ]
+      }}
+    >
+      <Stack direction='row' height='120vh' alignItems='strecth' gap='32px'>
+        <Paper sx={{ flexGrow: 1 }} elevation={0} />
+        <Paper sx={{ flexGrow: 1 }} elevation={0} />
+      </Stack>
+    </Page>
+  )
 }
 
 StandAloneAppLayout.args = {
@@ -121,42 +165,9 @@ StandAloneAppLayout.args = {
       icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
     }
   ],
-  children: (
-    <Page
-      headerProps={{
-        content: [
-          {
-            leftPart: [
-              <Typography key='page-title' variant='h5'>
-                Page Header
-              </Typography>
-            ],
-            rightPart: [<Button key='page-action'>An action</Button>]
-          }
-        ],
-        currentTab: 'tab-1'
-      }}
-      bottomActionsProps={{
-        actions: [
-          {
-            label: 'Cancel',
-            key: 'cancelButton',
-            variant: 'text'
-          },
-          {
-            label: 'validate',
-            key: 'validateFormButton',
-            type: 'submit'
-          }
-        ]
-      }}
-    >
-      <Stack direction='row' height='120vh' alignItems='strecth' gap='32px'>
-        <Paper sx={{ flexGrow: 1 }} elevation={0} />
-        <Paper sx={{ flexGrow: 1 }} elevation={0} />
-      </Stack>
-    </Page>
-  )
+  defaultOpenButton: false,
+  defaultCloseButton: false,
+  drawerPaddingTop: '90px'
 }
 
 StandAloneAppLayout.storyName = 'StandAloneAppLayout'

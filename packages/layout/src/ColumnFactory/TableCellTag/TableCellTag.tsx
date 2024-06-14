@@ -20,10 +20,12 @@ export const TableCellTag = (props: TableCellTagProps) => {
 
   const selected = useMemo(
     () =>
-      (Array.isArray(value) ? value : [value]).map(
-        (val) => options.find((option) => option.key === val)!
-      ),
-    [multiple, value, options]
+      value
+        ? (Array.isArray(value) ? value : [value]).map(
+            (val) => options.find((option) => option.key === val)!
+          )
+        : undefined,
+    [value, options]
   )
 
   return (

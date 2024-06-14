@@ -1,17 +1,20 @@
-import { MDXEditorProps } from '@mdxeditor/editor'
 import { MarkdownViewer } from './MarkdownViewer'
-import { MarkdownEditor } from './MarkdownEditor'
+import { MarkdownEditor, MarkdownEditorProps } from './MarkdownEditor'
 import React from 'react'
 
-export interface MarkdownFieldProps extends MDXEditorProps {
+export interface MarkdownFieldProps extends MarkdownEditorProps {
   readOnly?: boolean
 }
 
 export const MarkdownField = (props: MarkdownFieldProps) => {
-  const { markdown, readOnly = false, ...other } = props
+  const { markdown, readOnly = false, titlesTopLevel, ...other } = props
   return readOnly ? (
-    <MarkdownViewer markdown={markdown} />
+    <MarkdownViewer markdown={markdown} titlesTopLevel={titlesTopLevel} />
   ) : (
-    <MarkdownEditor markdown={markdown} {...other} />
+    <MarkdownEditor
+      markdown={markdown}
+      titlesTopLevel={titlesTopLevel}
+      {...other}
+    />
   )
 }
