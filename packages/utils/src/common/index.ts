@@ -1,4 +1,4 @@
-import { t } from 'i18next'
+import { t, TOptions } from 'i18next'
 export * from './getSetIn'
 
 export const objToArray = <T>(obj: {
@@ -157,9 +157,10 @@ export const insertObjectIdsInsideRoutes = <Routes extends string = string>(
 }
 
 export const getTranslatedMessageOrUndefined = (
-  key: string
+  key: string,
+  options?: TOptions
 ): string | undefined => {
-  const message = t(key)
+  const message = t(key, options)
   if (message === key) {
     return undefined
   }

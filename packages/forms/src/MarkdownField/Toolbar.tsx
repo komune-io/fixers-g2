@@ -247,6 +247,7 @@ export const UndoRedo: React.FC = () => {
         )
       )
     }
+    return
   }, [activeEditor])
 
   return (
