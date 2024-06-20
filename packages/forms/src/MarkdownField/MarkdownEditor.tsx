@@ -1,5 +1,6 @@
 import {
   MDXEditor,
+  MDXEditorMethods,
   MDXEditorProps,
   headingsPlugin,
   listsPlugin,
@@ -10,7 +11,9 @@ import {
 import { MarkdownStyleContainer } from './MarkdownViewer'
 import { Toolbar } from './Toolbar'
 import '@mdxeditor/editor/style.css'
-import React from 'react'
+import React, { useRef } from 'react'
+import { useDidUpdate } from '@mantine/hooks'
+import { BoxProps } from '@mui/material'
 
 export interface MarkdownEditorProps extends MDXEditorProps {
   /**
@@ -19,12 +22,22 @@ export interface MarkdownEditorProps extends MDXEditorProps {
    * @default "h4"
    */
   titlesTopLevel?: 'h1' | 'h4'
+  /**
+   * The props of the style container that styles the markdown
+   */
+  styleContainerProps?: BoxProps
 }
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
-  const { titlesTopLevel } = props
+  const { titlesTopLevel, styleContainerProps } = props
+
+  const ref = useRef<MDXEditorMethods>(null)
+
+  useDidUpdate(() => ref.current?.setMarkdown(props.markdown), [props.markdown])
+
   return (
     <MarkdownStyleContainer
+      {...styleContainerProps}
       titlesTopLevel={titlesTopLevel}
       sx={{
         '& .markdownEditor': {
@@ -34,11 +47,13 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
         },
         '& div[contenteditable="true"]': {
           padding: 0
-        }
+        },
+        ...styleContainerProps?.sx
       }}
     >
       <MDXEditor
         className='markdownEditor'
+        ref={ref}
         plugins={[
           headingsPlugin(),
           listsPlugin(),

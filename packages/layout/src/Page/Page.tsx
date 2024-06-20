@@ -34,7 +34,7 @@ const mergeHeaderContent = (key: string, l: any, r: any) => {
       }))
     }
   }
-  return r
+  return r ?? l
 }
 
 export interface PageBasicProps extends BasicProps {
@@ -138,6 +138,7 @@ export const Page = (props: PageProps) => {
                   duration: theme.transitions.duration.enteringScreen
                 })
             : undefined,
+          ...pageDescendantContext.headerProps?.sx,
           ...headerProps.sx
         }}
       />

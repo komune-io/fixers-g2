@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material'
+import { Box, BoxProps, styled } from '@mui/material'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -74,15 +74,15 @@ export const MarkdownStyleContainer = styled(Box, {
       })
 }))
 
-export interface MarkdownViewerProps {
+export interface MarkdownViewerProps extends BoxProps {
   markdown?: string
   titlesTopLevel?: 'h1' | 'h4'
 }
 
 export const MarkdownViewer = (props: MarkdownViewerProps) => {
-  const { markdown, titlesTopLevel } = props
+  const { markdown, titlesTopLevel, ...other } = props
   return (
-    <MarkdownStyleContainer titlesTopLevel={titlesTopLevel}>
+    <MarkdownStyleContainer {...other} titlesTopLevel={titlesTopLevel}>
       <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {markdown}
       </Markdown>
