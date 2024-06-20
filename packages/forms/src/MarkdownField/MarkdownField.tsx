@@ -7,11 +7,22 @@ export interface MarkdownFieldProps extends MarkdownEditorProps {
 }
 
 export const MarkdownField = (props: MarkdownFieldProps) => {
-  const { markdown, readOnly = false, titlesTopLevel, ...other } = props
+  const {
+    markdown,
+    readOnly = false,
+    titlesTopLevel,
+    styleContainerProps,
+    ...other
+  } = props
   return readOnly ? (
-    <MarkdownViewer markdown={markdown} titlesTopLevel={titlesTopLevel} />
+    <MarkdownViewer
+      {...styleContainerProps}
+      markdown={markdown}
+      titlesTopLevel={titlesTopLevel}
+    />
   ) : (
     <MarkdownEditor
+      styleContainerProps={styleContainerProps}
       markdown={markdown}
       titlesTopLevel={titlesTopLevel}
       {...other}
