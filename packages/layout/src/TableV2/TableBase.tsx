@@ -16,6 +16,8 @@ import React, { Fragment } from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 import { TableClasses, TableStyles } from '../Table'
 import { G2ColumnDef } from './useTable'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 export interface TableBaseProps<Data extends {}> {
   /**
@@ -140,9 +142,17 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
         )}
       </>
     )
+
+    const { transform, transition, setNodeRef, isDragging } = useSortable({
+      id: tableState._getRowId(row.original, row.index)
+    })
+
     const extProps =
       additionalRowsProps[tableState._getRowId(row.original, row.index)] ??
       additionalRowsProps?.all
+
+    console.log(CSS.Transform.toString(transform))
+
     return (
       <Fragment key={row.id}>
         <TableRow
@@ -158,14 +168,19 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
             classes?.tableRow
           )}
           style={styles?.tableRow}
-          sx={
-            variant === 'elevated'
-              ? {
-                  display:
-                    expandInRow && variant === 'elevated' ? undefined : 'flex'
-                }
-              : undefined
-          }
+          sx={{
+            display:
+              variant === 'elevated'
+                ? expandInRow
+                  ? undefined
+                  : 'flex'
+                : undefined,
+            transform: CSS.Transform.toString(transform), //let dnd-kit do its thing
+            transition: transition,
+            opacity: isDragging ? 0.8 : undefined,
+            zIndex: isDragging ? 2 : undefined
+          }}
+          ref={setNodeRef}
         >
           {expandInRow && variant === 'elevated' ? (
             <Box

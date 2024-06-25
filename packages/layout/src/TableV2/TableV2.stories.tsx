@@ -8,6 +8,7 @@ import { Info } from '@mui/icons-material'
 import { ColumnDef } from '@tanstack/react-table'
 import { ColumnFactory } from '../ColumnFactory'
 import { BrowserRouter } from 'react-router-dom'
+import { arrayMove } from '@dnd-kit/sortable'
 
 export default {
   title: 'Layout/TableV2',
@@ -22,17 +23,17 @@ interface Data {
 
 const data1: Data[] = [
   {
-    id: '0',
+    id: 'row 0',
     name: 'Jean',
     isRelaxed: true
   },
   {
-    id: '1',
+    id: 'row 1',
     name: 'Mathieu',
     isRelaxed: false
   },
   {
-    id: '2',
+    id: 'row 2',
     name: 'Simon',
     isRelaxed: true
   }
@@ -40,17 +41,17 @@ const data1: Data[] = [
 
 const data2: Data[] = [
   {
-    id: '3',
+    id: 'row 3',
     name: 'Paul',
     isRelaxed: true
   },
   {
-    id: '4',
+    id: 'row 4',
     name: 'Olivier',
     isRelaxed: false
   },
   {
-    id: '5',
+    id: 'row 5',
     name: 'Thomas',
     isRelaxed: true
   }
@@ -99,7 +100,6 @@ export const TableV2: StoryFn<TableV2BasicProps<Data>> = (
 }
 
 TableV2.args = {
-  getRowId: (row) => row.id,
   renderSubComponent: (row) => (
     <Box
       sx={{
@@ -110,6 +110,30 @@ TableV2.args = {
     </Box>
   ),
   onRowClicked: (row) => console.log('cliked', row)
+}
+
+export const Draggable: StoryFn<TableV2BasicProps<Data>> = (
+  args: TableV2BasicProps<Data>
+) => {
+  const [data, setData] = useState(data1)
+  const tableState = useTable({
+    data: data,
+    columns: columns,
+    enableRowSelection: true,
+    enableDragging: true,
+    getRowId: (row) => row.id
+  })
+
+  const onDragRow = (oldRowId: string | number, newRowId: string | number) => {
+    setData((old) => {
+      const oldIndex = old.findIndex((row) => row.id === oldRowId)
+      const newIndex = old.findIndex((row) => row.id === newRowId)
+      return arrayMove(data, oldIndex, newIndex)
+    })
+  }
+
+  console.log(data)
+  return <AruiTableV2 onDragRow={onDragRow} tableState={tableState} {...args} />
 }
 
 export const theVariants: StoryFn = () => {
