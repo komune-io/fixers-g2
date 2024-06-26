@@ -1,8 +1,6 @@
 import { cx } from '@emotion/css'
 import {
   Table as MuiTable,
-  Box,
-  Collapse,
   TableBody,
   TableCell,
   TableCellBaseProps,
@@ -11,13 +9,12 @@ import {
   TableRow,
   Typography
 } from '@mui/material'
+import { TableRow as G2TableRow } from './TableRow'
 import { Table, flexRender, Row } from '@tanstack/react-table'
-import React, { Fragment } from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import React from 'react'
+import { LinkProps } from 'react-router-dom'
 import { TableClasses, TableStyles } from '../Table'
 import { G2ColumnDef } from './useTable'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
 
 export interface TableBaseProps<Data extends {}> {
   /**
@@ -61,19 +58,7 @@ export interface TableBaseProps<Data extends {}> {
 }
 
 export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
-  const {
-    classes,
-    onRowClicked,
-    renderSubComponent,
-    styles,
-    tableState,
-    withFooter,
-    renderRowHoveredComponent,
-    expandInRow,
-    additionalRowsProps = {},
-    variant,
-    getRowLink
-  } = props
+  const { classes, styles, tableState, withFooter, variant } = props
 
   //@ts-ignore
   const TableComponent: React.ElementType =
@@ -95,154 +80,14 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
     variant === 'elevated' ? 'div' : undefined
 
   const rowsDisplay = tableState.getRowModel().rows.map((row) => {
-    const cell = (
-      <>
-        {row.getVisibleCells().map((cell) => {
-          const column = cell.column.columnDef as G2ColumnDef<Data>
-          return (
-            <TableCell
-              component={TableCellComponent}
-              key={cell.id}
-              className={cx(
-                column.className,
-                'AruiTable-tableCell',
-                classes?.tableCell
-              )}
-              style={{ ...column.style, ...styles?.tableCell }}
-              sx={
-                variant === 'elevated'
-                  ? {
-                      flex: '100 0 auto',
-                      width: '100px'
-                    }
-                  : undefined
-              }
-            >
-              {flexRender(column.cell, cell.getContext())}
-            </TableCell>
-          )
-        })}
-        {!!renderRowHoveredComponent && (
-          <TableCell
-            component={TableCellComponent}
-            sx={{
-              padding: 0,
-              position: 'absolute',
-              width: '100%',
-              height: '100%'
-            }}
-            className={cx(
-              'AruiTable-rowHoveredComponentContainer',
-              classes?.rowHoveredComponentContainer
-            )}
-            style={styles?.rowHoveredComponentContainer}
-          >
-            {renderRowHoveredComponent(row)}
-          </TableCell>
-        )}
-      </>
-    )
-
-    const { transform, transition, setNodeRef, isDragging } = useSortable({
-      id: tableState._getRowId(row.original, row.index)
-    })
-
-    const extProps =
-      additionalRowsProps[tableState._getRowId(row.original, row.index)] ??
-      additionalRowsProps?.all
-
-    console.log(CSS.Transform.toString(transform))
-
     return (
-      <Fragment key={row.id}>
-        <TableRow
-          component={TableRowComponent}
-          {...extProps}
-          onClick={() => {
-            onRowClicked && onRowClicked(row)
-          }}
-          className={cx(
-            extProps?.className,
-            'AruiTable-principaleTableRow',
-            'AruiTable-tableRow',
-            classes?.tableRow
-          )}
-          style={styles?.tableRow}
-          sx={{
-            display:
-              variant === 'elevated'
-                ? expandInRow
-                  ? undefined
-                  : 'flex'
-                : undefined,
-            transform: CSS.Transform.toString(transform), //let dnd-kit do its thing
-            transition: transition,
-            opacity: isDragging ? 0.8 : undefined,
-            zIndex: isDragging ? 2 : undefined
-          }}
-          ref={setNodeRef}
-        >
-          {expandInRow && variant === 'elevated' ? (
-            <Box
-              sx={{
-                display: 'flex'
-              }}
-            >
-              {cell}
-            </Box>
-          ) : (
-            cell
-          )}
-          {expandInRow && variant === 'elevated' && (
-            <Collapse in={row.getIsExpanded()} timeout='auto' unmountOnExit>
-              {renderSubComponent && renderSubComponent(row)}
-            </Collapse>
-          )}
-          {getRowLink && (
-            <TableCell
-              component={TableCellComponent}
-              sx={{
-                padding: 0,
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                zIndex: 1,
-                top: 0,
-                left: 0
-              }}
-              className='AruiTable-rowLinkContainer'
-            >
-              <Link
-                {...getRowLink(row)}
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%'
-                }}
-              />
-            </TableCell>
-          )}
-        </TableRow>
-        {(!expandInRow || variant === 'grounded') && (
-          <TableRow
-            component={TableRowComponent}
-            className={cx('AruiTable-tableRow', classes?.tableRow)}
-            style={styles?.tableRow}
-          >
-            <TableCell
-              component={TableCellComponent}
-              className={cx('AruiTable-tableCell', classes?.tableCell)}
-              style={styles?.tableCell}
-              sx={{ paddingBottom: 0, paddingTop: 0 }}
-              colSpan={variant === 'grounded' ? 100 : undefined}
-            >
-              <Collapse in={row.getIsExpanded()} timeout='auto' unmountOnExit>
-                {renderSubComponent && renderSubComponent(row)}
-              </Collapse>
-            </TableCell>
-          </TableRow>
-        )}
-      </Fragment>
+      <G2TableRow
+        {...props}
+        key={tableState._getRowId(row.original, row.index)}
+        tableCellComponent={TableCellComponent}
+        tableRowComponent={TableRowComponent}
+        row={row}
+      />
     )
   })
 

@@ -125,14 +125,13 @@ export const Draggable: StoryFn<TableV2BasicProps<Data>> = (
   })
 
   const onDragRow = (oldRowId: string | number, newRowId: string | number) => {
+    console.log('drag end')
     setData((old) => {
       const oldIndex = old.findIndex((row) => row.id === oldRowId)
       const newIndex = old.findIndex((row) => row.id === newRowId)
       return arrayMove(data, oldIndex, newIndex)
     })
   }
-
-  console.log(data)
   return <AruiTableV2 onDragRow={onDragRow} tableState={tableState} {...args} />
 }
 
