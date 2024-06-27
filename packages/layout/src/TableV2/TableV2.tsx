@@ -10,6 +10,7 @@ import { TableBase } from './TableBase'
 import { Pagination } from '@komune-io/g2-components'
 import { TableClasses, TableStyles } from '../Table/Table'
 import { LinkProps } from 'react-router-dom'
+import { DndContainer } from './DndContainer'
 
 export type TableState<Data extends {}> = Table<Data>
 
@@ -91,6 +92,10 @@ export interface TableV2BasicProps<Data extends {}> extends BasicProps {
    */
   expandInElevatedRow?: boolean
   /**
+   * needed for the drag and drop to work, your function should replace the old row by the new one in the array of data
+   */
+  onDragRow?: (oldRowId: string | number, newRowId: string | number) => void
+  /**
    * The classes applied to the different part of the component
    */
   classes?: TableClasses
@@ -126,6 +131,7 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
     additionalRowsProps,
     tableState,
     getRowLink,
+    onDragRow,
     sx,
     ...other
   } = props
@@ -133,7 +139,7 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
   const isPaginated = !!page && !!totalPages && totalPages > 1
 
   return (
-    <>
+    <DndContainer tableState={tableState} onDragRow={onDragRow}>
       <TableContainer
         className={cx('AruiTable-root', className)}
         sx={
@@ -198,6 +204,6 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
           totalPage={totalPages}
         />
       ) : undefined}
-    </>
+    </DndContainer>
   )
 }

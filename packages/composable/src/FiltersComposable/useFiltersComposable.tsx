@@ -22,6 +22,12 @@ export interface FormikFormParams<T> {
    * this prop allow you to add you custom config to the useFormik hook
    */
   formikConfig?: Omit<FormikConfig<any>, 'onSubmit'>
+  /**
+   * weather or not the filters state will be stored in the url
+   *
+   * @default true
+   */
+  urlStorage?: boolean
 }
 
 const retrieveNumber = (value: any) => {
@@ -38,18 +44,19 @@ const unformatFieldValue = (value: any) => {
 export const useFiltersComposable = <T extends {} = any>(
   params?: FormikFormParams<T>
 ): FiltersComposableState<T> => {
-  const { onSubmit, formikConfig } = params ?? {}
+  const { onSubmit, formikConfig, urlStorage = true } = params ?? {}
 
   const [searchParams, setSearchParams] = useSearchParams()
 
   const initialValues = useMemo(() => {
+    if (!urlStorage) return formikConfig?.initialValues
     const obj = {}
     const params = qs.parse(searchParams.toString())
     for (const fieldName in params) {
       obj[fieldName] = unformatFieldValue(params[fieldName])
     }
     return { ...formikConfig?.initialValues, ...obj }
-  }, [searchParams, formikConfig?.initialValues])
+  }, [searchParams, formikConfig?.initialValues, urlStorage])
 
   const [submittedFilters, setSubmittedFilters] = useState(initialValues)
 
@@ -85,18 +92,20 @@ export const useFiltersComposable = <T extends {} = any>(
         }
       }
 
-      setSearchParams(
-        qs.stringify(cleanedValues, {
-          addQueryPrefix: true,
-          arrayFormat: 'indices',
-          serializeDate: (date) => date.toISOString()
-        })
-      )
+      if (urlStorage) {
+        setSearchParams(
+          qs.stringify(cleanedValues, {
+            addQueryPrefix: true,
+            arrayFormat: 'indices',
+            serializeDate: (date) => date.toISOString()
+          })
+        )
+      }
 
       setSubmittedFilters(cleanedValues)
       formikHelpers.setValues(cleanedValues)
     },
-    [onSubmit, setSearchParams, submittedFilters, searchParams]
+    [onSubmit, setSearchParams, submittedFilters, searchParams, urlStorage]
   )
 
   const formik = useFormik({

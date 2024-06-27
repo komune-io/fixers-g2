@@ -7,10 +7,13 @@ import {
   TableOptions,
   ColumnDef,
   Table,
-  RowModel
+  RowModel,
+  Row
 } from '@tanstack/react-table'
 import React, { useMemo } from 'react'
 import { Arrow } from '../icons'
+import { useSortable } from '@dnd-kit/sortable'
+import { DragIndicator } from '@mui/icons-material'
 
 export type G2ColumnDef<Data extends {}> = ColumnDef<Data> & {
   className?: string
@@ -38,6 +41,11 @@ export interface UseTableOptions<Data extends {}>
    */
   expandIcon?: JSX.Element
   /**
+   * Indicates if the columns are draggable
+   * @default false
+   */
+  enableDragging?: boolean
+  /**
    * Indicates if there shouldn't be a checkbox to check or uncheck all the rows on the current page at the same time
    * @default false
    */
@@ -56,45 +64,28 @@ export const useTable = <Data extends {}>(
     RowSelectionPosition = 'start',
     expandIcon,
     noToggleAllPageRowsSelected = false,
+    enableDragging = false,
     ...other
   } = options
 
   const extendedColumns = useMemo(() => {
+    const draggableRow: G2ColumnDef<Data> = {
+      id: 'dragger',
+      cell: ({ row }) => {
+        return <RowDragHandleCell {...row} />
+      },
+      className: 'AruiTable-actionColumn'
+    }
+
     const expanderRow: G2ColumnDef<Data> = {
       id: 'expander',
       cell: ({ row }) => {
         return (
-          <div onClick={(e) => e.stopPropagation()}>
-            <IconButton
-              className='AruiTable-actionColumn'
-              onClick={() => row.toggleExpanded()}
-            >
-              <Box
-                sx={{
-                  transform:
-                    row.getIsExpanded() && expandIconPosition === 'start'
-                      ? 'rotate(-180deg)'
-                      : row.getIsExpanded() && expandIconPosition === 'end'
-                      ? 'rotate(180deg)'
-                      : '',
-                  transition: '0.2s',
-                  display: 'flex'
-                }}
-              >
-                {expandIcon || (
-                  <Arrow
-                    key='expanderIcon'
-                    color='#353945'
-                    width='20px'
-                    height='20px'
-                    style={{
-                      transform: 'rotate(-90deg)'
-                    }}
-                  />
-                )}
-              </Box>
-            </IconButton>
-          </div>
+          <ExpandRowCell
+            {...row}
+            expandIcon={expandIcon}
+            expandIconPosition={expandIconPosition}
+          />
         )
       },
       className: 'AruiTable-actionColumn'
@@ -127,6 +118,7 @@ export const useTable = <Data extends {}>(
     }
 
     return [
+      ...(enableDragging ? [draggableRow] : []),
       ...(enableExpanding && expandIconPosition === 'start'
         ? [expanderRow]
         : []),
@@ -145,7 +137,8 @@ export const useTable = <Data extends {}>(
     enableRowSelection,
     expandIconPosition,
     expandIcon,
-    noToggleAllPageRowsSelected
+    noToggleAllPageRowsSelected,
+    enableDragging
   ])
 
   return useReactTable({
@@ -156,4 +149,59 @@ export const useTable = <Data extends {}>(
     ...other,
     columns: extendedColumns
   })
+}
+
+const RowDragHandleCell = <T extends {}>({ id }: Row<T>) => {
+  const { attributes, listeners } = useSortable({
+    id
+  })
+  return (
+    // Alternatively, you could set these attributes on the rows themselves
+    <IconButton {...attributes} {...listeners}>
+      <DragIndicator />
+    </IconButton>
+  )
+}
+
+const ExpandRowCell = <T extends {}>({
+  expandIcon,
+  expandIconPosition,
+  ...row
+}: Row<T> & {
+  expandIconPosition: 'start' | 'end'
+  expandIcon?: JSX.Element
+}) => {
+  return (
+    <div onClick={(e) => e.stopPropagation()}>
+      <IconButton
+        className='AruiTable-actionColumn'
+        onClick={() => row.toggleExpanded()}
+      >
+        <Box
+          sx={{
+            transform:
+              row.getIsExpanded() && expandIconPosition === 'start'
+                ? 'rotate(-180deg)'
+                : row.getIsExpanded() && expandIconPosition === 'end'
+                  ? 'rotate(180deg)'
+                  : '',
+            transition: '0.2s',
+            display: 'flex'
+          }}
+        >
+          {expandIcon || (
+            <Arrow
+              key='expanderIcon'
+              color='#353945'
+              width='20px'
+              height='20px'
+              style={{
+                transform: 'rotate(-90deg)'
+              }}
+            />
+          )}
+        </Box>
+      </IconButton>
+    </div>
+  )
 }
