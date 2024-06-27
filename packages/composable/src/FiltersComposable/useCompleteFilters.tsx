@@ -1,11 +1,8 @@
-import {
-  FilterComposableField,
-  useFiltersComposable,
-  FiltersComposable
-} from '@komune-io/g2'
 import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FiltersComposableProps } from './FiltersComposable'
+import { FiltersComposable, FiltersComposableProps } from './FiltersComposable'
+import { FormikFormParams, useFiltersComposable } from './useFiltersComposable'
+import { FilterComposableField } from './type'
 
 export interface OffsetPagination {
   offset: number
@@ -17,7 +14,7 @@ export const defaultOffset: OffsetPagination = {
   offset: 0
 }
 
-export interface useCompleteFiltersParams
+export interface useCompleteFiltersParams<T>
   extends Omit<FiltersComposableProps, 'formState' | 'fields'> {
   /**
    * the filters fields
@@ -31,7 +28,7 @@ export interface useCompleteFiltersParams
   /**
    * The initial values of the filters
    */
-  initialValues?: any
+  useFiltersParams?: FormikFormParams<T>
   /**
    * The default state to the offset pagination
    */
@@ -39,9 +36,15 @@ export interface useCompleteFiltersParams
 }
 
 export const useCompleteFilters = <T extends {} = any>(
-  params: useCompleteFiltersParams
+  params: useCompleteFiltersParams<T>
 ) => {
-  const { filters, withPage = true, actions, initialValues, ...other } = params
+  const {
+    filters,
+    withPage = true,
+    actions,
+    useFiltersParams,
+    ...other
+  } = params
   const { t } = useTranslation()
   const onSubmit = useCallback((values: any, submittedFilters: any) => {
     const pagination = withPage ? defaultOffset : undefined
@@ -50,16 +53,18 @@ export const useCompleteFilters = <T extends {} = any>(
   }, [])
   const { filtersCount, formState, submittedFilters, setAdditionalFilter } =
     useFiltersComposable<T & OffsetPagination>({
+      ...useFiltersParams,
       onSubmit: onSubmit,
       formikConfig: {
         initialValues: {
+          ...useFiltersParams?.formikConfig,
           ...(withPage
             ? {
                 offset: 0,
                 limit: 10
               }
             : undefined),
-          ...initialValues
+          ...useFiltersParams?.formikConfig?.initialValues
         }
       }
     })
