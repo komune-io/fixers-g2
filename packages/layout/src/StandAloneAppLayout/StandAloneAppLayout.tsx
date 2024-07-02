@@ -161,7 +161,7 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         <Box
           sx={{
             position: 'fixed',
-            zIndex: 2000,
+            zIndex: 600,
             top: 0,
             left: 0,
             width: g2Theme.drawerWidth
@@ -193,6 +193,8 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         style={styles?.drawer}
         sx={{
           width: g2Theme.drawerWidth,
+          zIndex: 500,
+          position: 'relative',
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: g2Theme.drawerWidth,
