@@ -96,6 +96,10 @@ export interface TableV2BasicProps<Data extends {}> extends BasicProps {
    */
   onDragRow?: (oldRowId: string | number, newRowId: string | number) => void
   /**
+   * The list of the data ids, only required for DnD features
+   */
+  dataIds?: string[]
+  /**
    * The classes applied to the different part of the component
    */
   classes?: TableClasses
@@ -133,13 +137,14 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
     getRowLink,
     onDragRow,
     sx,
+    dataIds,
     ...other
   } = props
 
   const isPaginated = !!page && !!totalPages && totalPages > 1
 
   return (
-    <DndContainer tableState={tableState} onDragRow={onDragRow}>
+    <DndContainer dataIds={dataIds} onDragRow={onDragRow}>
       <TableContainer
         className={cx('AruiTable-root', className)}
         sx={

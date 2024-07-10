@@ -10,17 +10,16 @@ import {
 } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { Table } from '@tanstack/react-table'
 import React, { useCallback } from 'react'
 
 export interface DndContainerProps {
   children?: React.ReactNode
   onDragRow?: (oldRowId: string | number, newRowId: string | number) => void
-  tableState: Table<any>
+  dataIds?: string[]
 }
 
 export const DndContainer = (props: DndContainerProps) => {
-  const { children, onDragRow, tableState } = props
+  const { children, onDragRow, dataIds } = props
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -38,10 +37,7 @@ export const DndContainer = (props: DndContainerProps) => {
     [onDragRow]
   )
 
-  const allRowIds = tableState
-    .getRowModel()
-    .rows.map((row) => tableState._getRowId(row.original, row.index))
-
+  if (!dataIds) return <>{children}</>
   return (
     <DndContext
       collisionDetection={closestCenter}
@@ -49,7 +45,7 @@ export const DndContainer = (props: DndContainerProps) => {
       onDragEnd={handleDragEnd}
       sensors={sensors}
     >
-      <SortableContext items={allRowIds} strategy={verticalListSortingStrategy}>
+      <SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
         {children}
       </SortableContext>
     </DndContext>

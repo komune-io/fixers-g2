@@ -48,12 +48,24 @@ export const useCompleteFilters = <T extends {} = any>(
   } = params
   const { t } = useTranslation()
 
+  const onSubmit = useCallback(
+    (values: any, submittedFilters: any) => {
+      const pagination = withPage
+        ? defaultOffset ?? initDefaultOffset
+        : undefined
+      if (values.offset === submittedFilters.offset)
+        return { ...values, ...pagination }
+    },
+    [defaultOffset]
+  )
+
   const { filtersCount, formState, submittedFilters, setAdditionalFilter } =
     useFiltersComposable<T & OffsetPagination>({
       ...useFiltersParams,
+      onSubmit: onSubmit,
+      ...useFiltersParams?.formikConfig,
       formikConfig: {
         initialValues: {
-          ...useFiltersParams?.formikConfig,
           ...(withPage ? defaultOffset ?? initDefaultOffset : undefined),
           ...useFiltersParams?.formikConfig?.initialValues
         }
