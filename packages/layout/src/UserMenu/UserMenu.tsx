@@ -83,7 +83,7 @@ export const UserMenu = (props: UserMenuProps) => {
         style={other.style}
         sx={{
           borderTop: '1px solid #E0E0E0',
-          backgroundColor: 'white',
+          backgroundColor: 'transparent',
           ...sx
         }}
       >
@@ -101,6 +101,7 @@ export const UserMenu = (props: UserMenuProps) => {
       className={cx('AruiUserMenu-root', className)}
       sx={{
         boxShadow: 'none',
+        bgcolor: 'transparent',
         ...sx
       }}
       {...other}

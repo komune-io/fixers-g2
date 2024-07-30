@@ -134,7 +134,11 @@ const Item = (props: ItemProps) => {
     subMenuProps,
     ...other
   } = props
-  const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
+  const defOnClick = onClick ?? goto
+  const onItemClick = useCallback(
+    () => defOnClick && !href && defOnClick(),
+    [defOnClick, href]
+  )
 
   const stylesObject = useMemo(
     () => ({

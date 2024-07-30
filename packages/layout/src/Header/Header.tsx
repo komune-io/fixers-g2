@@ -8,7 +8,11 @@ import {
   TabsProps,
   useTheme
 } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import {
+  BasicProps,
+  MergeMuiElementProps,
+  useTheme as useG2Theme
+} from '@komune-io/g2-themes'
 import React, { useMemo } from 'react'
 
 export type HeaderTab = {
@@ -125,6 +129,7 @@ export const Header = (props: HeaderProps) => {
   } = props
 
   const theme = useTheme()
+  const g2Theme = useG2Theme()
 
   const contentDisplay = useMemo(
     () =>
@@ -231,7 +236,11 @@ export const Header = (props: HeaderProps) => {
         width: '100%',
         boxSizing: 'border-box',
         bgcolor: (theme) => {
-          const color = bgcolor ? bgcolor : theme.palette.background.default
+          const color = bgcolor
+            ? bgcolor
+            : g2Theme.bgColorOnMenu
+              ? 'white'
+              : theme.palette.background.default
           return color + '99'
         },
         position: isFixed ? 'sticky' : 'relative',
