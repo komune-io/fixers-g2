@@ -29,6 +29,11 @@ export interface Theme {
    * the url of the logo of the platform
    */
   logoUrl?: string
+  /**
+   * Pass true if you want to have the background color on the menu instead of the main page
+   * @default false
+   */
+  bgColorOnMenu?: boolean
   shadows: string[]
 }
 
@@ -87,8 +92,9 @@ export const defaultTheme: Theme = {
     '0px 14px 48px rgba(0, 0, 0, 0.3)',
     '0px 15px 52px rgba(0, 0, 0, 0.31)'
   ],
-  drawerAbsolutePositionBreakpoint: 'md'
-} // the archetypes theme (maybe not the final version)
+  drawerAbsolutePositionBreakpoint: 'md',
+  bgColorOnMenu: false
+}
 
 export const defaultMaterialUiTheme = (
   theme: Theme,
@@ -241,6 +247,9 @@ export const defaultMaterialUiTheme = (
       },
       background: {
         default: theme.colors.background
+      },
+      text: {
+        secondary: '#666560'
       },
       divider: theme.colors.tertiary,
       success: {

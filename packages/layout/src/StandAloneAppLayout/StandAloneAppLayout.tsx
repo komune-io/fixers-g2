@@ -5,6 +5,7 @@ import {
   Drawer,
   DrawerProps,
   IconButton,
+  Stack,
   styled,
   SxProps,
   Theme,
@@ -105,9 +106,13 @@ export interface StandAloneAppLayoutProps {
    */
   mainProps?: React.ComponentPropsWithRef<'main'> & { sx?: SxProps<Theme> }
   /**
-   * You can add additional content to the drawer menu with this prop
+   * You can add additional scrollable content to the drawer menu with this prop
    */
-  drawerContent?: React.ReactNode
+  scrollableContent?: React.ReactNode
+  /**
+   * You can add additional content to the bottom of the drawer menu with this prop
+   */
+  bottomContent?: React.ReactNode
   /**
    * The classes applied to the different part of the component
    */
@@ -127,7 +132,8 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
     userMenuProps,
     drawerProps,
     mainProps,
-    drawerContent,
+    scrollableContent,
+    bottomContent,
     defaultOpenButton = true,
     defaultCloseButton = true,
     drawerPaddingTop,
@@ -203,6 +209,10 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
             height: `100%`,
             overflow: 'visible',
             visibility: 'visible !important' as 'visible',
+            bgcolor: (theme) =>
+              g2Theme.bgColorOnMenu
+                ? theme.palette.background.default
+                : 'white',
             paddingTop: drawerPaddingTop
               ? drawerPaddingTop
               : PerManentHeader
@@ -233,21 +243,23 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
             <Menu />
           </IconButton>
         )}
-        <Box
+        <Stack
           className={cx(
             'AruiStandAloneAppLayout-scrollableContainer',
             classes?.scrollableContainer
           )}
           style={styles?.scrollableContainer}
           sx={{
+            gap: 2,
             height: '100%',
             width: '100%',
             overflow: 'auto'
           }}
         >
-          <AppMenu menu={menu ?? []} logo={logo} />
-          {drawerContent}
-        </Box>
+          {(menu || logo) && <AppMenu menu={menu ?? []} logo={logo} />}
+          {scrollableContent}
+        </Stack>
+        {bottomContent}
         {userMenuProps && (
           <UserMenu
             defaultOpen={!isMobile}
@@ -275,7 +287,8 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         style={styles?.main}
         isMobile={isMobile}
         sx={{
-          bgcolor: (theme) => theme.palette.background.default,
+          bgcolor: (theme) =>
+            !g2Theme.bgColorOnMenu ? theme.palette.background.default : 'white',
           ...mainProps?.sx
         }}
       >

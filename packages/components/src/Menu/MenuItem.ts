@@ -3,7 +3,11 @@ import React from 'react'
 
 export interface MenuItem<T = {}> {
   key: string
+  /**
+   * @deprecated use onclik instead
+   */
   goto?: () => void
+  onClick?: () => void
   href?: string
   label?: string
   component?: React.ElementType<any>

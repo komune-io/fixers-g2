@@ -77,7 +77,13 @@ const i18n = initI18next({ en: 'en-US', fr: 'fr-FR' })
 export const withThemeProvider = (Story) => {
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeContextProvider theme={{ permanentHeader }}>
+      <ThemeContextProvider
+        theme={{
+          permanentHeader,
+          bgColorOnMenu: true,
+          colors: { background: '#FAF8F3' }
+        }}
+      >
         <MantineProvider>
           <CssBaseline />
           <Story />
