@@ -38,7 +38,7 @@ export interface DropdownMenuProps extends MenuListProps {
 export const DropdownMenu = (props: DropdownMenuProps) => {
   const { items, sx, ...other } = props
 
-  const display = items.map((item) => <Item {...item} />)
+  const display = items.map((item) => <Item {...item} key={item.key} />)
   return (
     <MenuList
       sx={{
