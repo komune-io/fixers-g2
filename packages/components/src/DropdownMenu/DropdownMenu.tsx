@@ -5,8 +5,8 @@ import {
   AccordionDetails,
   AccordionSummary as MuiAccordionSummary,
   ListItemText,
-  MenuItem,
-  MenuList,
+  ListItemButton,
+  List,
   MenuListProps,
   Typography,
   AccordionSummaryProps,
@@ -15,6 +15,8 @@ import {
   Stack
 } from '@mui/material'
 import { ChevronRightRounded } from '@mui/icons-material'
+
+const stopPropagation = (e: MouseEvent) => e?.stopPropagation()
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -40,7 +42,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
 
   const display = items.map((item) => <Item {...item} key={item.key} />)
   return (
-    <MenuList
+    <List
       sx={{
         p: 'unset',
         ...sx
@@ -48,7 +50,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       {...other}
     >
       {display}
-    </MenuList>
+    </List>
   )
 }
 
@@ -60,20 +62,22 @@ const Item = (props: MenuItems<{}>) => {
     icon,
     component,
     componentProps,
+    href,
     ...other
   } = props
 
-  const textEllipsis = {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
-  }
+  // const textEllipsis = {
+  //   overflow: 'hidden',
+  //   textOverflow: 'ellipsis',
+  //   whiteSpace: 'nowrap'
+  // }
 
   const childIsSelected = items ? someItemsSelected(items) : false
+  const isOpen = childIsSelected || isSelected
 
   if (items)
     return (
-      <MenuItem
+      <ListItemButton
         sx={{
           p: 0,
           '&:hover': {
@@ -92,7 +96,7 @@ const Item = (props: MenuItems<{}>) => {
         <Accordion
           elevation={0}
           disableGutters
-          defaultExpanded={childIsSelected || isSelected}
+          defaultExpanded={isOpen}
           sx={{
             cursor: 'normal',
             bgcolor: 'transparent',
@@ -132,7 +136,20 @@ const Item = (props: MenuItems<{}>) => {
             }}
           >
             {icon}
-            <Typography sx={textEllipsis}>{label}</Typography>
+            <Typography
+              component={component ? component : href ? 'a' : 'p'}
+              onClick={component && isOpen ? stopPropagation : undefined}
+              sx={{
+                flexGrow: 1,
+                textDecoration: 'none',
+                color: 'currentcolor'
+              }}
+              noWrap
+              {...componentProps}
+              {...other}
+            >
+              {label}
+            </Typography>
           </AccordionSummary>
           <AccordionDetails
             sx={{
@@ -152,11 +169,12 @@ const Item = (props: MenuItems<{}>) => {
             <DropdownMenu items={items} />
           </AccordionDetails>
         </Accordion>
-      </MenuItem>
+      </ListItemButton>
     )
   return (
-    <MenuItem
-      LinkComponent={component}
+    <ListItemButton
+      component={component ? component : href ? 'a' : 'div'}
+      href={href}
       disableRipple
       disableTouchRipple
       sx={{
@@ -196,15 +214,11 @@ const Item = (props: MenuItems<{}>) => {
         width='100%'
       >
         {icon}
-        <ListItemText
-          sx={{
-            '& .MuiTypography-root': textEllipsis
-          }}
-        >
+        <ListItemText primaryTypographyProps={{ noWrap: true }}>
           {label}
         </ListItemText>
       </Stack>
-    </MenuItem>
+    </ListItemButton>
   )
 }
 
