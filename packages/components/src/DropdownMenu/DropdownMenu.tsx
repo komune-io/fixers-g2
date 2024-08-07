@@ -69,6 +69,8 @@ const Item = (props: MenuItems<{}>) => {
     whiteSpace: 'nowrap'
   }
 
+  const childIsSelected = items ? someItemsSelected(items) : false
+
   if (items)
     return (
       <MenuItem
@@ -90,7 +92,7 @@ const Item = (props: MenuItems<{}>) => {
         <Accordion
           elevation={0}
           disableGutters
-          defaultExpanded={isSelected}
+          defaultExpanded={childIsSelected || isSelected}
           sx={{
             cursor: 'normal',
             bgcolor: 'transparent',
@@ -204,4 +206,14 @@ const Item = (props: MenuItems<{}>) => {
       </Stack>
     </MenuItem>
   )
+}
+
+const someItemsSelected = (items: MenuItems[]) => {
+  const isSelected = items.some((item) => item.isSelected)
+  if (isSelected) return true
+  const childIsSelected = items.some((item) => {
+    if (item.items) return someItemsSelected(item.items)
+    return false
+  })
+  return childIsSelected
 }

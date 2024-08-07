@@ -25,13 +25,11 @@ DropdownMenu.args = {
     {
       key: 'key2',
       label: 'Section 2',
-      isSelected: true,
       icon: <ListRounded />,
       items: [
         {
           key: 'key2-1',
           label: 'Section 2-1',
-          isSelected: true,
           items: [
             {
               key: 'key2-1-1',
