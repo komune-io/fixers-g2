@@ -5,7 +5,7 @@ import {
 } from './DropdownMenu'
 import { Meta, StoryFn } from '@storybook/react'
 import { ListRounded } from '@mui/icons-material'
-
+import { Link } from '@mui/material'
 export default {
   title: 'Components/DropdownMenu',
   component: AruiDropdownMenu
@@ -25,13 +25,12 @@ DropdownMenu.args = {
     {
       key: 'key2',
       label: 'Section 2',
-      isSelected: true,
       icon: <ListRounded />,
       items: [
         {
           key: 'key2-1',
           label: 'Section 2-1',
-          isSelected: true,
+          component: Link,
           items: [
             {
               key: 'key2-1-1',
@@ -53,6 +52,7 @@ DropdownMenu.args = {
     {
       key: 'key3',
       label: 'Section 3',
+      component: Link,
       items: [
         {
           key: 'key3-1',
