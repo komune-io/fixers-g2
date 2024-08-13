@@ -26,10 +26,16 @@ export interface MarkdownEditorProps extends MDXEditorProps {
    * The props of the style container that styles the markdown
    */
   styleContainerProps?: BoxProps
+  /**
+   * Use this prop if you want to remove the toolbar
+   *
+   * @default false
+   */
+  removeToolBar?: boolean
 }
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
-  const { titlesTopLevel, styleContainerProps } = props
+  const { titlesTopLevel, styleContainerProps, removeToolBar = false } = props
 
   const ref = useRef<MDXEditorMethods>(null)
 
@@ -59,9 +65,15 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
           listsPlugin(),
           quotePlugin(),
           markdownShortcutPlugin(),
-          toolbarPlugin({
-            toolbarContents: () => <Toolbar titlesTopLevel={titlesTopLevel} />
-          })
+          ...(removeToolBar
+            ? []
+            : [
+                toolbarPlugin({
+                  toolbarContents: () => (
+                    <Toolbar titlesTopLevel={titlesTopLevel} />
+                  )
+                })
+              ])
         ]}
         {...props}
       />
