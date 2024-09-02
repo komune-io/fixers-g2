@@ -130,9 +130,7 @@ const Item = (props: MenuItems<{}>) => {
             {icon}
             <Typography
               component={component ? component : href ? 'a' : 'p'}
-              onClick={
-                childIsSelected && !isSelected ? stopPropagation : undefined
-              }
+              onClick={childIsSelected ? stopPropagation : undefined}
               sx={{
                 flexGrow: 1,
                 textDecoration: 'none',
