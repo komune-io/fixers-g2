@@ -1,6 +1,7 @@
 import { cx } from '@emotion/css'
-import { NavigateNextRounded } from '@mui/icons-material'
+import { MoreHorizRounded, NavigateNextRounded } from '@mui/icons-material'
 import {
+  IconButton,
   Breadcrumbs as MuiBreadcrumbs,
   BreadcrumbsProps as MuiBreadcrumbsProps,
   Typography
@@ -8,6 +9,7 @@ import {
 import React, { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Link } from '../Link'
+import { MenuItem, useButtonMenu } from '../Menu'
 
 interface BreadcrumbsClasses {
   link?: string
@@ -42,43 +44,73 @@ export interface BreadcrumbsProps extends MuiBreadcrumbsProps {
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { crumbs, sx, className, classes, styles, ...other } = props
 
-  const crumbsDisplay = useMemo(
-    () =>
-      crumbs?.map((crumb, index) =>
-        index !== crumbs.length - 1 ? (
-          <Link
-            component={RouterLink}
-            componentProps={{
-              to: crumb.url
-            }}
-            key={crumb.url}
-            sx={{
-              color: '#757575',
-              textDecoration: 'none !important',
-              '&:hover': {
-                textDecoration: 'underline !important'
-              }
-            }}
-            className={cx('AruiBreadcrumbs-link', classes?.link)}
-            style={styles?.link}
-          >
-            {crumb.label}
-          </Link>
-        ) : (
-          <Typography
-            sx={{
-              color: '#424242'
-            }}
-            key={crumb.url}
-            className={cx('AruiBreadcrumbs-currentPage', classes?.currentPage)}
-            style={styles?.currentPage}
-          >
-            {crumb.label}
-          </Typography>
-        )
-      ),
-    [crumbs, classes, styles]
-  )
+  const collapsedCrumbs = useMemo(() => {
+    if ((crumbs?.length ?? 0) < 4) return
+    const targetedCrumbs = crumbs?.slice(1, crumbs.length - 2)
+    return <CollapsedCrumbs crumbs={targetedCrumbs} />
+  }, [crumbs])
+
+  const crumbsDisplay = useMemo(() => {
+    let crumbsToDisplay = crumbs
+    if (collapsedCrumbs && crumbs) {
+      crumbsToDisplay = [
+        crumbs[0],
+        crumbs[crumbs.length - 2],
+        crumbs[crumbs.length - 1]
+      ]
+    }
+    const display = crumbsToDisplay?.map((crumb, index) =>
+      index !== crumbsToDisplay.length - 1 ? (
+        <Link
+          component={RouterLink}
+          componentProps={{
+            to: crumb.url
+          }}
+          key={crumb.url}
+          sx={{
+            color: '#757575',
+            maxWidth: '160px',
+            display: 'block',
+            textDecoration: 'none !important',
+            '&:hover': {
+              textDecoration: 'underline !important'
+            }
+          }}
+          className={cx('AruiBreadcrumbs-link', classes?.link)}
+          style={styles?.link}
+          variant='body2'
+          noWrap
+        >
+          {crumb.label}
+        </Link>
+      ) : (
+        <Typography
+          sx={{
+            color: '#424242',
+            maxWidth: '160px',
+            display: 'block',
+            fontWeight: 600
+          }}
+          key={crumb.url}
+          className={cx('AruiBreadcrumbs-currentPage', classes?.currentPage)}
+          style={styles?.currentPage}
+          variant='body2'
+          noWrap
+        >
+          {crumb.label}
+        </Typography>
+      )
+    )
+    if (collapsedCrumbs && display) {
+      return [
+        display[0],
+        collapsedCrumbs,
+        display[display.length - 2],
+        display[display.length - 1]
+      ]
+    }
+    return display
+  }, [crumbs, collapsedCrumbs, classes, styles])
 
   return (
     <MuiBreadcrumbs
@@ -93,7 +125,14 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
       className={cx('AruiBreadcrumbs-root', className)}
       sx={{
         '& .MuiBreadcrumbs-separator': {
-          margin: '0 4px'
+          margin: 0
+        },
+        '& .MuiBreadcrumbs-ol': {
+          flexWrap: 'nowrap'
+        },
+        '& .MuiBreadcrumbs-li:has(p), .MuiBreadcrumbs-li:has(a)': {
+          flexShrink: 1,
+          minWidth: 0
         },
         ...sx
       }}
@@ -101,5 +140,42 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     >
       {crumbsDisplay}
     </MuiBreadcrumbs>
+  )
+}
+
+const CollapsedCrumbs = (props: { crumbs?: Crumb[] }) => {
+  const { crumbs } = props
+
+  const items = useMemo(
+    () =>
+      crumbs?.map(
+        (crumb): MenuItem => ({
+          key: crumb.url,
+          to: crumb.url,
+          label: crumb.label
+        })
+      ),
+    [crumbs]
+  )
+
+  const { buttonProps, menu } = useButtonMenu({
+    items
+  })
+
+  return (
+    <>
+      <IconButton
+        size='small'
+        {...buttonProps}
+        sx={{
+          borderRadius: 0.5
+        }}
+        disableTouchRipple
+      >
+        <MoreHorizRounded />
+      </IconButton>
+
+      {menu}
+    </>
   )
 }
