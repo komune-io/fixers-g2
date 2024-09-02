@@ -48,8 +48,8 @@ export const useButtonMenu = (params: useButtonMenuParams) => {
   const buttonProps = useMemo(
     () => ({
       'aria-controls': open ? 'basic-menu' : undefined,
-      'aria-haspopup': 'true' as 'true',
-      'aria-expanded': open ? ('true' as 'true') : undefined,
+      'aria-haspopup': 'true' as const,
+      'aria-expanded': open ? ('true' as const) : undefined,
       onClick: handleClick
     }),
     [open, handleClick]
