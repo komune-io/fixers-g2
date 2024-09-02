@@ -16,7 +16,7 @@ import {
 import { ChevronRightRounded } from '@mui/icons-material'
 import { SpecialBehaviorAccordion } from './SpecialBehaviorAccordion'
 
-// const stopPropagation = (e: MouseEvent) => e?.stopPropagation()
+const stopPropagation = (e: MouseEvent) => e?.stopPropagation()
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -130,7 +130,9 @@ const Item = (props: MenuItems<{}>) => {
             {icon}
             <Typography
               component={component ? component : href ? 'a' : 'p'}
-              // onClick={isOpen ? stopPropagation : undefined}
+              onClick={
+                childIsSelected && !isSelected ? stopPropagation : undefined
+              }
               sx={{
                 flexGrow: 1,
                 textDecoration: 'none',
