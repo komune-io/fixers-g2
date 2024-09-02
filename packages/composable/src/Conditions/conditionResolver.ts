@@ -1,5 +1,5 @@
 import { SpelExpressionEvaluator } from 'spel2js'
-import { FieldValidatorFnc } from '../FormComposable/type/FormComposableField'
+import { FieldValidatorFnc } from '../FormComposable'
 
 export interface ConditionBase {
   type: string
@@ -15,12 +15,13 @@ export interface ValidatorCondition extends ConditionBase {
   error: string
 }
 
-export type Condition = DisplayCondition | ValidatorCondition
-
-export interface SectionCondition extends ConditionBase {
+export interface MessageCondition extends ConditionBase {
   type: 'info' | 'error' | 'warning'
   message: string
 }
+
+export type Condition = DisplayCondition | ValidatorCondition
+export type SectionCondition = DisplayCondition | MessageCondition
 
 export const evalCondition = (
   condition: ConditionBase,
@@ -37,13 +38,24 @@ export const evalCondition = (
 }
 
 export const evalDisplayConditions = (
-  conditions?: Condition[],
+  conditions?: ConditionBase[],
   values?: any
 ): boolean => {
   if (!conditions) return true
   const displayConditions = conditions.filter((cond) => cond.type === 'display')
   if (displayConditions.length === 0) return true
   return displayConditions.every((cond) => evalCondition(cond, values))
+}
+
+export const evalMessageConditions = (
+  conditions?: ConditionBase[],
+  values?: any
+): MessageCondition | undefined => {
+  if (!conditions) return undefined
+  const displayConditions = conditions.filter(
+    (cond) => cond.type === 'message'
+  ) as MessageCondition[]
+  return displayConditions.find((cond) => evalCondition(cond, values))
 }
 
 export const validateConditions =

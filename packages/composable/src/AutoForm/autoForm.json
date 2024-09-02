@@ -90,6 +90,43 @@
               }
             ]
           }
+        },
+        {
+          "name": "enableOptionalSection",
+          "label": "Enable Optional Section",
+          "type": "checkBox",
+          "properties": {}
+        }
+      ]
+    },
+    {
+      "id": "optional",
+      "label": "Optional",
+      "conditions": [
+        {
+          "type": "display",
+          "expression": "#enableOptionalSection"
+        }
+      ],
+      "fields": [
+        {
+          "name": "disableOptionalField",
+          "type": "checkBox",
+          "label": "Disable Optional Field"
+        },
+        {
+          "name": "optionalField",
+          "type": "textField",
+          "label": "Optional description",
+          "properties": {
+            "rows": 2
+          },
+          "conditions": [
+            {
+              "type": "display",
+              "expression": "!#disableOptionalField"
+            }
+          ]
         }
       ]
     }
