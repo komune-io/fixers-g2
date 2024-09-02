@@ -1,7 +1,6 @@
 import React from 'react'
 import { MenuItems } from '../Menu'
 import {
-  Accordion,
   AccordionDetails,
   AccordionSummary as MuiAccordionSummary,
   ListItemText,
@@ -15,8 +14,9 @@ import {
   Stack
 } from '@mui/material'
 import { ChevronRightRounded } from '@mui/icons-material'
+import { SpecialBehaviorAccordion } from './SpecialBehaviorAccordion'
 
-const stopPropagation = (e: MouseEvent) => e?.stopPropagation()
+// const stopPropagation = (e: MouseEvent) => e?.stopPropagation()
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -66,12 +66,6 @@ const Item = (props: MenuItems<{}>) => {
     ...other
   } = props
 
-  // const textEllipsis = {
-  //   overflow: 'hidden',
-  //   textOverflow: 'ellipsis',
-  //   whiteSpace: 'nowrap'
-  // }
-
   const childIsSelected = items ? someItemsSelected(items) : false
   const isOpen = childIsSelected || isSelected
 
@@ -93,10 +87,10 @@ const Item = (props: MenuItems<{}>) => {
           orientation='vertical'
           flexItem
         />
-        <Accordion
+        <SpecialBehaviorAccordion
           elevation={0}
           disableGutters
-          defaultExpanded={isOpen}
+          expanded={isOpen}
           sx={{
             cursor: 'normal',
             bgcolor: 'transparent',
@@ -117,28 +111,26 @@ const Item = (props: MenuItems<{}>) => {
               pl: 0,
               minHeight: 0,
               '& .MuiAccordionSummary-content': {
-                color: 'text.secondary',
+                color: isSelected ? '#387A6E' : 'text.secondary',
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                bgcolor: isSelected
-                  ? (theme) => theme.palette.primary.main + '1A'
-                  : undefined,
+                bgcolor: isSelected ? '#387A6E1A' : undefined,
                 borderRadius: 0.5,
                 px: 0.5,
-                my: 1,
+                my: 0.75,
                 minWidth: 0
               },
               '&:hover .MuiAccordionSummary-content': {
-                bgcolor: (theme) => theme.palette.primary.main + '1A'
+                bgcolor: '#387A6E1A'
               }
             }}
           >
             {icon}
             <Typography
               component={component ? component : href ? 'a' : 'p'}
-              onClick={component && isOpen ? stopPropagation : undefined}
+              // onClick={isOpen ? stopPropagation : undefined}
               sx={{
                 flexGrow: 1,
                 textDecoration: 'none',
@@ -163,12 +155,15 @@ const Item = (props: MenuItems<{}>) => {
               },
               '& .MuiAccordionDetails-root': {
                 pl: 1
+              },
+              '& .MuiListItemButton-root:first-of-type': {
+                pt: 0
               }
             }}
           >
             <DropdownMenu items={items} />
           </AccordionDetails>
-        </Accordion>
+        </SpecialBehaviorAccordion>
       </ListItemButton>
     )
   return (
@@ -179,28 +174,27 @@ const Item = (props: MenuItems<{}>) => {
       disableTouchRipple
       sx={{
         '& .MenuItem-divider': {
-          bgcolor: isSelected
-            ? (theme) => theme.palette.primary.main + '1A'
-            : undefined,
+          bgcolor: isSelected ? '#387A6E1A' : undefined,
+          color: isSelected ? '#387A6E' : undefined,
           borderRadius: 0.5,
           px: 0.5
         },
         '&:hover .MenuItem-divider': {
-          bgcolor: (theme) => theme.palette.primary.main + '1A'
+          bgcolor: '#387A6E1A'
         },
         '&:hover': {
           bgcolor: 'unset'
         },
         gap: 2,
         p: 0,
-        height: '32px',
+        py: 0.5,
         color: 'text.secondary'
       }}
       {...componentProps}
       {...other}
     >
       <Divider
-        sx={{ display: 'none', ml: 1.5 }}
+        sx={{ display: 'none', ml: 1.5, my: -0.5 }}
         className='subMenuItem-divider'
         orientation='vertical'
         flexItem
@@ -214,7 +208,13 @@ const Item = (props: MenuItems<{}>) => {
         width='100%'
       >
         {icon}
-        <ListItemText primaryTypographyProps={{ noWrap: true }}>
+        <ListItemText
+          sx={{ m: 0 }}
+          primaryTypographyProps={{
+            noWrap: true,
+            sx: { color: 'currentcolor' }
+          }}
+        >
           {label}
         </ListItemText>
       </Stack>
