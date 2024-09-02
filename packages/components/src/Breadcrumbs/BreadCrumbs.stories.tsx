@@ -32,6 +32,10 @@ Breadcrumbs.args = {
       url: ''
     },
     {
+      label: 'A very very long link label',
+      url: ''
+    },
+    {
       label: 'currentPage',
       url: ''
     }
