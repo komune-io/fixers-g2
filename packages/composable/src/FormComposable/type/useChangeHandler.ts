@@ -1,11 +1,11 @@
 import { FormComposableState } from './FormComposableState'
-import { SetFieldValue } from './getValueSetup'
+import { SetFieldValueFnc } from './getValueSetup'
 import { OnChangeFnc, OnValueChangeFnc } from './FormComposableField'
 import { useCallback } from 'react'
 
 export const useChangeHandler = <T>(
   formState: FormComposableState,
-  setFieldValue: SetFieldValue,
+  setFieldValue: SetFieldValueFnc,
   onChange?: OnChangeFnc,
   onValueChange?: OnValueChangeFnc
 ) => {
