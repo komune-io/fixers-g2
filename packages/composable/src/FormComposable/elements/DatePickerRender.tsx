@@ -35,7 +35,7 @@ export const DatePickerRender: ElementRendererFunction<
 
   const onChangeHandler = useCallback(
     (date?: Date) => {
-      if (!!onValueChange) {
+      if (onValueChange) {
         onValueChange(value, formState)
       } else {
         date && !isNaN(date.getTime()) ? date.getTime() : date?.toString()

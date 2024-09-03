@@ -11,7 +11,7 @@ export const useChangeHandler = <T>(
 ) => {
   return useCallback(
     (value: T) => {
-      if (!!onValueChange) {
+      if (onValueChange) {
         onValueChange(value, formState)
       } else {
         setFieldValue(value)
