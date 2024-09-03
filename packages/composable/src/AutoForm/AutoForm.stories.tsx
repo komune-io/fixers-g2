@@ -97,7 +97,7 @@ export const OnChangeVariant: StoryFn = () => {
               name: 'title',
               type: 'textField',
               required: true,
-              onChange: (value: any, formState: FormComposableState) => {
+              onValueChange: (value: any, formState: FormComposableState) => {
                 if (value.length <= charLimit)
                   formState.setFieldValue('title', value)
               },
