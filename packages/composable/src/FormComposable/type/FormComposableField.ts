@@ -6,8 +6,14 @@ import {
 import { ReactNode } from 'react'
 import { PotentialError } from '@komune-io/g2-forms'
 import { Condition } from '../../Conditions'
+import { FormComposableState } from './FormComposableState'
 
 export type FieldValidatorFnc = (value?: any, values?: any) => PotentialError
+export type OnChangeFnc = (value: any) => void
+export type OnValueChangeFnc = (
+  value: any,
+  formState: FormComposableState
+) => void
 
 export interface CommonFieldProps<Name extends string = string> {
   /**
@@ -50,9 +56,16 @@ export interface CommonFieldProps<Name extends string = string> {
    */
   fullRow?: boolean
   /**
-   * the event called when the value of the input change
+   * Event handler called when the value of the input changes.
+   * The new value is automatically set in the form state.
    */
-  onChange?: (value: any) => void
+  onChange?: OnChangeFnc
+  /**
+   * Event handler called when the value of the input changes.
+   * The new value is not set in the form state.
+   * The `onChange` event will not be called.
+   */
+  onValueChange?: OnValueChangeFnc
   /**
    * Indicates if the data is on readOnly mode
    *

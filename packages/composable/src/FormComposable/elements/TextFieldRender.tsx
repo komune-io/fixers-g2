@@ -7,6 +7,7 @@ import React, { useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
+import { useChangeHandler } from '../type/useChangeHandler'
 
 export type TextFieldExtendProps = Partial<
   Omit<
@@ -25,24 +26,24 @@ export const TextFieldRender: ElementRendererFunction<TextFieldRenderProps> = (
 ) => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const componentProps = { ...basicProps }
-  const onChange = componentProps.onChange
 
+  const { onChange, onValueChange, ...componentProps } = basicProps
   const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
-
-  delete componentProps.onChange
+  const onChangeHandler = useChangeHandler(
+    formState,
+    setFieldValue,
+    onChange,
+    onValueChange
+  )
 
   return (
     <InputForm
       inputType='textField'
       value={value ?? ''}
-      onChange={(value: string) => {
-        setFieldValue(value)
-        !!onChange && onChange(value)
-      }}
+      onChange={onChangeHandler}
       {...params}
       {...componentProps}
     />

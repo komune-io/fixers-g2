@@ -7,6 +7,7 @@ import React, { useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
+import { useChangeHandler } from '../type/useChangeHandler'
 
 export type AutoCompleteExtendProps = Partial<
   Omit<
@@ -31,24 +32,25 @@ export const AutoCompleteRender: ElementRendererFunction<
 > = (props: AutoCompleteRenderProps) => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const componentProps = { ...basicProps }
-  const onChange = componentProps.onChange
-
+  const { onChange, onValueChange, emptyValueInReadOnly, ...componentProps } =
+    basicProps
   const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
-  delete componentProps.onChange
+  const onChangeHandler = useChangeHandler(
+    formState,
+    setFieldValue,
+    onChange,
+    onValueChange
+  )
 
   return params?.multiple === true ? (
     // @ts-ignore
     <InputForm
       inputType='autoComplete'
       values={value ?? []}
-      onChangeValues={(values: any) => {
-        setFieldValue(values)
-        !!onChange && onChange(values)
-      }}
+      onChangeValues={onChangeHandler}
       {...params}
       {...componentProps}
     />
@@ -57,10 +59,7 @@ export const AutoCompleteRender: ElementRendererFunction<
     <InputForm
       inputType='autoComplete'
       value={value ?? null}
-      onChangeValue={(value: any) => {
-        setFieldValue(value)
-        !!onChange && onChange(value)
-      }}
+      onChangeValue={onChangeHandler}
       {...params}
       {...componentProps}
     />

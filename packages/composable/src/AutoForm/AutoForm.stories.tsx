@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Meta, StoryFn } from '@storybook/react'
 import {
   ArgsTable,
@@ -8,7 +8,7 @@ import {
   Title,
   Subtitle
 } from '@storybook/addon-docs'
-import { AutoForm, AutoFormProps } from './AutoForm'
+import { AutoForm, AutoFormData, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
 // @ts-ignore
 import json from './autoForm.json'
@@ -16,6 +16,8 @@ import { autoFormFormatter } from './autoFormFormatter'
 import { Button } from '@komune-io/g2-components'
 import { Box, Stack, Typography } from '@mui/material'
 import LinkTo from '@storybook/addon-links/react'
+import { useAutoForm } from './useAutoForm'
+import { FormComposableState } from '../FormComposable'
 
 export default {
   title: 'Composable/AutoForm',
@@ -82,9 +84,63 @@ export const AutoFormStory: StoryFn<AutoFormProps> = (args: AutoFormProps) => {
   )
 }
 
-const formData = autoFormFormatter(json)
-console.log(formData)
+export const OnChangeVariant: StoryFn = () => {
+  const charLimit = 20
+  const formData = useMemo(
+    (): AutoFormData => ({
+      sections: [
+        {
+          id: 'sectionCreation',
+          fields: [
+            {
+              label: 'Name',
+              name: 'title',
+              type: 'textField',
+              required: true,
+              onChange: (value: any, formState: FormComposableState) => {
+                if (value.length <= charLimit)
+                  formState.setFieldValue('title', value)
+              },
+              params: {
+                multiline: true,
+                rows: 2,
+                createInputContainer: (input) => (
+                  <Stack gap={2}>
+                    {input}
+                    <Typography
+                      variant='caption'
+                      sx={{
+                        alignSelf: 'flex-end'
+                      }}
+                    >
+                      {`${input.props.value.length}/${charLimit}`}
+                    </Typography>
+                  </Stack>
+                )
+              }
+            }
+          ]
+        }
+      ]
+    }),
+    []
+  )
+
+  const { form } = useAutoForm({
+    data: formData,
+    initialValues: {},
+    actions: (formState) => (
+      <Button onClick={formState.submitForm}>Submit</Button>
+    ),
+    onSubmit: async (values: undefined) => {
+      console.log(values)
+    }
+  })
+  return form
+}
+
+OnChangeVariant.storyName = 'OnChange'
 
 AutoFormStory.args = {
-  formData: formData
+  formData: autoFormFormatter(json)
 }

@@ -33,13 +33,15 @@ export const MapComposableRenderer: ElementRendererFunction<
     () => getIn(formState.values, basicProps.name),
     [formState.values, basicProps.name]
   )
-  const onChange = basicProps.onChange
-  delete basicProps.onChange
-  delete basicProps.emptyValueInReadOnly
 
-  //@ts-ignore
-  delete basicProps.error
-  delete basicProps.isLoading
+  const {
+    onChange,
+    onValueChange,
+    emptyValueInReadOnly,
+    error,
+    isLoading,
+    ...componentProps
+  } = basicProps
 
   const pluginsCount =
     (params?.additionalPlugins?.length ?? 0) +
@@ -47,12 +49,17 @@ export const MapComposableRenderer: ElementRendererFunction<
 
   const onChangeMapState = useCallback(
     (key: string, value: any) => {
-      formState.setFieldValue(
-        basicProps.name,
-        pluginsCount > 1 ? { ...mapState, [key]: value } : value
-      )
+      if (onValueChange) {
+        onValueChange(value, formState)
+      } else {
+        formState.setFieldValue(
+          componentProps.name,
+          pluginsCount > 1 ? { ...mapState, [key]: value } : value
+        )
+        onChange && onChange(value)
+      }
     },
-    [onChange, mapState, formState.setFieldValue, pluginsCount]
+    [mapState, formState.setFieldValue, pluginsCount]
   )
 
   const additionalPlugins = useMemo(
@@ -73,7 +80,7 @@ export const MapComposableRenderer: ElementRendererFunction<
 
   return (
     <Map
-      {...basicProps}
+      {...componentProps}
       {...params}
       additionalPlugins={additionalPlugins}
       draggableMarkerPlugin={
