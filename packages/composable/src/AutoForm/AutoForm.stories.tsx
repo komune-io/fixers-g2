@@ -10,6 +10,7 @@ import {
 } from '@storybook/addon-docs'
 import { AutoForm, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
+// @ts-ignore
 import json from './autoForm.json'
 import { autoFormFormatter } from './autoFormFormatter'
 import { Button } from '@komune-io/g2-components'
@@ -81,7 +82,9 @@ export const AutoFormStory: StoryFn<AutoFormProps> = (args: AutoFormProps) => {
   )
 }
 
+const formData = autoFormFormatter(json)
+console.log(formData)
+
 AutoFormStory.args = {
-  //@ts-ignore
-  formData: autoFormFormatter(json)
+  formData: formData
 }

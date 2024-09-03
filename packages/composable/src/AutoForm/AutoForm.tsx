@@ -8,7 +8,11 @@ import {
   FormikFormParams,
   useFormComposable
 } from '../FormComposable'
-import { SectionCondition, evalCondition } from '../Conditions'
+import {
+  SectionCondition,
+  evalDisplayConditions,
+  evalMessageConditions
+} from '../Conditions'
 import { FormikHelpers } from 'formik'
 import { CommandWithFile } from '@komune-io/g2-utils'
 import { Section } from '@komune-io/g2-layout'
@@ -143,7 +147,7 @@ export const AutoForm = (props: AutoFormProps) => {
     [formState]
   )
 
-  const formSectionsDispaly = useMemo(() => {
+  const formSectionsDisplay = useMemo(() => {
     return formData?.sections.map((section) => {
       return (
         <FormSection
@@ -159,7 +163,7 @@ export const AutoForm = (props: AutoFormProps) => {
 
   return (
     <>
-      {formSectionsDispaly}
+      {formSectionsDisplay}
       {actions}
     </>
   )
@@ -174,11 +178,10 @@ export interface FormSectionProps {
 
 export const FormSection = (props: FormSectionProps) => {
   const { sectionsType, section, formState, displayLabel = true } = props
+  const display = evalDisplayConditions(section.conditions, formState.values)
 
-  const message = section.conditions?.find((cond) =>
-    evalCondition(cond, formState.values)
-  )
-
+  if (!display) return <></>
+  const message = evalMessageConditions(section.conditions, formState.values)
   const sectionContent = (
     <>
       {section.description && (
