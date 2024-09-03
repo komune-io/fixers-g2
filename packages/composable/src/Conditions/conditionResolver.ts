@@ -52,10 +52,10 @@ export const evalMessageConditions = (
   values?: any
 ): MessageCondition | undefined => {
   if (!conditions) return undefined
-  const displayConditions = conditions.filter(
+  const messageConditions = conditions.filter(
     (cond) => cond.type === 'message'
   ) as MessageCondition[]
-  return displayConditions.find((cond) => evalCondition(cond, values))
+  return messageConditions.find((cond) => evalCondition(cond, values))
 }
 
 export const validateConditions =
