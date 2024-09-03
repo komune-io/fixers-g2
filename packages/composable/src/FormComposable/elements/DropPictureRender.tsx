@@ -39,7 +39,6 @@ export const DropPictureRender: ElementRendererFunction<
     formState.values,
     basicProps.name + 'Uploaded'
   )
-  if (basicProps.readOnly && !uploadedGetUrl && !localFile) return <></>
 
   const setFieldValue = (file: File) =>
     formState.setFieldValue(basicProps.name, file, false)
@@ -49,6 +48,8 @@ export const DropPictureRender: ElementRendererFunction<
     onChange,
     onValueChange
   )
+
+  if (basicProps.readOnly && !uploadedGetUrl && !localFile) return <></>
 
   return (
     <Box sx={sx}>
