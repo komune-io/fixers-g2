@@ -3,7 +3,7 @@ import {
   DatePickerProps,
   InputForm
 } from '@komune-io/g2-forms'
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
@@ -25,25 +25,31 @@ export const DatePickerRender: ElementRendererFunction<
 > = (props: DatePickerRenderProps) => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const componentProps = { ...basicProps }
+
+  const { onChange, onValueChange, ...componentProps } = basicProps
   const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
   const date = new Date(value)
-  const onChange = componentProps.onChange
-  delete componentProps.onChange
+
+  const onChangeHandler = useCallback(
+    (date?: Date) => {
+      if (onValueChange) {
+        onValueChange(value, formState)
+      } else {
+        date && !isNaN(date.getTime()) ? date.getTime() : date?.toString()
+        !!onChange && onChange(value)
+      }
+    },
+    [formState, setFieldValue, onChange, onValueChange]
+  )
 
   return (
     <InputForm
       inputType='datePicker'
       value={!isNaN(date.getTime()) ? date : value ?? ''}
-      onChangeDate={(date) => {
-        setFieldValue(
-          date && !isNaN(date.getTime()) ? date.getTime() : date?.toString()
-        )
-        !!onChange && onChange(date)
-      }}
+      onChangeDate={onChangeHandler}
       {...params}
       {...componentProps}
     />

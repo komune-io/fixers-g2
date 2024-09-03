@@ -4,6 +4,7 @@ import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getIn } from 'formik'
 import { Box } from '@mui/material'
+import { useChangeHandler } from '../type/useChangeHandler'
 
 export type DocumentHandlerExtendProps = Partial<
   Omit<
@@ -22,9 +23,25 @@ export const DocumentHandlerRender: ElementRendererFunction<
 > = (props: DocumentHandlerRenderProps) => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const { errorMessage, label, onChange, readOnly, sx, ...basicPropsRest } =
-    basicProps
+  const {
+    errorMessage,
+    label,
+    onChange,
+    onValueChange,
+    readOnly,
+    sx,
+    ...basicPropsRest
+  } = basicProps
   delete basicProps.emptyValueInReadOnly
+
+  const setFieldValue = (files: File[]) =>
+    formState.setFieldValue(basicProps.name, files[0], false)
+  const onChangeHandler = useChangeHandler(
+    formState,
+    setFieldValue,
+    onChange,
+    onValueChange
+  )
 
   const localFile: File | undefined = getIn(formState.values, basicProps.name)
   const uploadedGetUrl = getIn(formState.values, basicProps.name + 'Uploaded')
@@ -39,10 +56,7 @@ export const DocumentHandlerRender: ElementRendererFunction<
         getFileUrl={
           localFile ? () => URL.createObjectURL(localFile) : uploadedGetUrl
         }
-        onAdd={(files: File[]) => {
-          formState.setFieldValue(basicProps.name, files[0], false)
-          !!onChange && onChange(files[0])
-        }}
+        onAdd={onChangeHandler}
         onDelete={
           !basicProps.readOnly
             ? () => {

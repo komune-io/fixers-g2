@@ -7,6 +7,7 @@ import {
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
+import { useChangeHandler } from '../type/useChangeHandler'
 
 export type MultiChoicesExtendProps = Partial<
   Omit<
@@ -25,13 +26,17 @@ export const MultiChoicesRender: ElementRendererFunction<
 > = (props: MultiChoicesRenderProps): ReactElement => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const componentProps = { ...basicProps }
+  const { onChange, onValueChange, ...componentProps } = basicProps
   const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
-  const onChange = componentProps.onChange
-  delete componentProps.onChange
+  const onChangeHandler = useChangeHandler(
+    formState,
+    setFieldValue,
+    onChange,
+    onValueChange
+  )
 
   return (
     <InputForm
@@ -39,10 +44,7 @@ export const MultiChoicesRender: ElementRendererFunction<
       values={value ?? ''}
       {...params}
       {...componentProps}
-      onChange={(values) => {
-        setFieldValue(values)
-        !!onChange && onChange(values)
-      }}
+      onChange={onChangeHandler}
     />
   )
 }

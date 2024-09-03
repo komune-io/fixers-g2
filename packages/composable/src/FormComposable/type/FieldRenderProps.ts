@@ -2,7 +2,11 @@ import { WithElementParams } from '../../ComposableRender'
 import { FormComposableState } from './FormComposableState'
 import { FormComposableProps } from '../FormComposable'
 import { useEffect, useMemo } from 'react'
-import { FormComposableField } from './FormComposableField'
+import {
+  FormComposableField,
+  OnChangeFnc,
+  OnValueChangeFnc
+} from './FormComposableField'
 import { cx } from '@emotion/css'
 import { getIn } from 'formik'
 import { SxProps, Theme } from '@mui/material'
@@ -41,7 +45,8 @@ export interface FieldRender {
    */
   readOnly?: boolean
   sx?: SxProps<Theme>
-  onChange?: (value: any) => void
+  onChange?: OnChangeFnc
+  onValueChange?: OnValueChangeFnc
   emptyValueInReadOnly?: any
 }
 
@@ -82,12 +87,13 @@ const getFormProps = (
         }
       : undefined,
     onChange: field.onChange,
+    onValueChange: field.onValueChange,
     readOnly:
       field.readOnly === true
         ? field.readOnly
         : readOnly === true
-        ? readOnly
-        : formState.readOnly,
+          ? readOnly
+          : formState.readOnly,
 
     emptyValueInReadOnly:
       //@ts-ignore

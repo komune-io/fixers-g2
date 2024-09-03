@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { ChangeEventHandler, useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
+import { useChangeHandler } from '../type/useChangeHandler'
 
 export type HiddenRenderProps = FieldRenderProps<
   'hidden',
@@ -13,14 +14,28 @@ export const HiddenRender: ElementRendererFunction<HiddenRenderProps> = (
 ) => {
   const { element, formState, basicProps } = props
   const { params } = element
-  const componentProps = { ...basicProps }
 
-  const { value } = useMemo(
+  const { onChange, onValueChange, ...componentProps } = basicProps
+  const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
+  const onChangeHandler = useChangeHandler(
+    formState,
+    setFieldValue,
+    onChange,
+    onValueChange
+  )
+  const changeEventHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    onChangeHandler(e.target.value)
+  }
 
-  delete componentProps.onChange
-
-  return <input value={value ?? ''} type='hidden' {...params} />
+  return (
+    <input
+      value={value ?? ''}
+      onChange={changeEventHandler}
+      type='hidden'
+      {...params}
+    />
+  )
 }
