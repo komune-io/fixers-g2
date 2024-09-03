@@ -16,7 +16,7 @@ export const HiddenRender: ElementRendererFunction<HiddenRenderProps> = (
   const { params } = element
 
   const { onChange, onValueChange, ...componentProps } = basicProps
-  const { setFieldValue } = useMemo(
+  const { value, setFieldValue } = useMemo(
     () => getValueSetup(componentProps.name, formState),
     [componentProps.name, formState]
   )
@@ -30,5 +30,12 @@ export const HiddenRender: ElementRendererFunction<HiddenRenderProps> = (
     onChangeHandler(e.target.value)
   }
 
-  return <input onChange={changeEventHandler} type='hidden' {...params} />
+  return (
+    <input
+      value={value ?? ''}
+      onChange={changeEventHandler}
+      type='hidden'
+      {...params}
+    />
+  )
 }
