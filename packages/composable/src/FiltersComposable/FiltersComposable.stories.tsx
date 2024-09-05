@@ -84,7 +84,7 @@ const Example = (args: any) => {
   const onSubmit = useCallback((values: any, submittedFilters: any) => {
     if (values.page === submittedFilters.page) return { ...values, page: 0 }
   }, [])
-  const { formState, setAdditionalFilter, submittedFilters } =
+  const { formState, setAdditionalFilter, submittedFilters, emptyFilters } =
     useFiltersComposable({
       onSubmit,
       formikConfig: {
@@ -105,8 +105,7 @@ const Example = (args: any) => {
         key: 'resetFiltersButton',
         variant: 'text',
         onClick: () => {
-          formState.setValues({ page: submittedFilters.page })
-          formState.submitForm()
+          emptyFilters({ page: submittedFilters.page })
         }
       },
       {
@@ -114,7 +113,7 @@ const Example = (args: any) => {
         key: 'executeFiltersButton'
       }
     ],
-    [formState.setValues, formState.submitForm]
+    [emptyFilters, submittedFilters.page]
   )
 
   useEffect(() => {

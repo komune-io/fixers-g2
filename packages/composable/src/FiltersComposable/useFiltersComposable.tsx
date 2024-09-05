@@ -125,10 +125,24 @@ export const useFiltersComposable = <T extends {} = any>(
     [formik.submitForm]
   )
 
+  const emptyFilters = useCallback((values?: T) => {
+    const defValues = values ?? {}
+    formik.setValues(defValues)
+    setSearchParams(
+      qs.stringify(defValues, {
+        addQueryPrefix: true,
+        arrayFormat: 'indices',
+        serializeDate: (date) => date.toISOString()
+      })
+    )
+    setSubmittedFilters(defValues)
+  }, [])
+
   return {
     formState: formik,
     setAdditionalFilter: setAdditionalFilterMemoized,
     submittedFilters,
-    filtersCount
+    filtersCount,
+    emptyFilters
   }
 }

@@ -5,4 +5,5 @@ export interface FiltersComposableState<T extends {} = any> {
   formState: ReturnType<typeof useFormik>
   setAdditionalFilter: (fieldName: string, value: any) => void
   filtersCount: number
+  emptyFilters: (values?: T) => void
 }
