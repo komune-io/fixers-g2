@@ -17,7 +17,8 @@ export {
   DeleteButton,
   EditButton,
   ButtonProps,
-  LinkButton
+  LinkButton,
+  LinkButtonProps
 } from './Buttons'
 export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
 export { Loading, LoadingProps } from './Loading'
