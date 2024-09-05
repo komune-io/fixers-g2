@@ -59,18 +59,23 @@ export const useCompleteFilters = <T extends {} = any>(
     [defaultOffset]
   )
 
-  const { filtersCount, formState, submittedFilters, setAdditionalFilter } =
-    useFiltersComposable<T & OffsetPagination>({
-      ...useFiltersParams,
-      onSubmit: onSubmit,
-      ...useFiltersParams?.formikConfig,
-      formikConfig: {
-        initialValues: {
-          ...(withPage ? defaultOffset ?? initDefaultOffset : undefined),
-          ...useFiltersParams?.formikConfig?.initialValues
-        }
+  const {
+    filtersCount,
+    formState,
+    submittedFilters,
+    setAdditionalFilter,
+    emptyFilters
+  } = useFiltersComposable<T & OffsetPagination>({
+    ...useFiltersParams,
+    onSubmit: onSubmit,
+    ...useFiltersParams?.formikConfig,
+    formikConfig: {
+      initialValues: {
+        ...(withPage ? defaultOffset ?? initDefaultOffset : undefined),
+        ...useFiltersParams?.formikConfig?.initialValues
       }
-    })
+    }
+  })
 
   const setOffset = useCallback(
     (newPage: OffsetPagination) => {
@@ -102,15 +107,15 @@ export const useCompleteFilters = <T extends {} = any>(
         {...other}
       />
     ),
-    [formState, filters, filtersCount, t, ...Object.values(other)]
+    [formState, filters, withPage, filtersCount, t, ...Object.values(other)]
   )
-
   return {
     component: component,
     submittedFilters,
     setOffset,
     setAdditionalFilter,
     formState,
-    filtersCount
+    filtersCount,
+    emptyFilters
   }
 }
