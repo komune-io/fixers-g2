@@ -62,7 +62,7 @@ export interface PopUpBasicProps extends BasicProps {
    */
   onClose: (event: React.ChangeEvent<{}>) => void
   /**
-   * The list of the actions that will be displayed at the bottom f the pop-up
+   * The list of the actions that will be displayed at the bottom of the pop-up
    */
   actions?: Action[]
   /**

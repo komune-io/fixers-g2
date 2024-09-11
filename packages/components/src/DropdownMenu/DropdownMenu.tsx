@@ -123,7 +123,7 @@ const Item = (props: MenuItems<{}>) => {
                 minWidth: 0
               },
               '&:hover .MuiAccordionSummary-content': {
-                bgcolor: '#387A6E1A'
+                bgcolor: '#F0EDE7'
               }
             }}
           >
@@ -136,6 +136,7 @@ const Item = (props: MenuItems<{}>) => {
                 textDecoration: 'none',
                 color: 'currentcolor'
               }}
+              variant='body2'
               noWrap
               {...componentProps}
               {...other}
@@ -180,7 +181,7 @@ const Item = (props: MenuItems<{}>) => {
           px: 0.5
         },
         '&:hover .MenuItem-divider': {
-          bgcolor: '#387A6E1A'
+          bgcolor: '#F0EDE7'
         },
         '&:hover': {
           bgcolor: 'unset'
@@ -212,7 +213,8 @@ const Item = (props: MenuItems<{}>) => {
           sx={{ m: 0 }}
           primaryTypographyProps={{
             noWrap: true,
-            sx: { color: 'currentcolor' }
+            sx: { color: 'currentcolor' },
+            variant: 'body2'
           }}
         >
           {label}
