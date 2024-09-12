@@ -11,7 +11,8 @@ import {
   AccordionSummaryProps,
   styled,
   Divider,
-  Stack
+  Stack,
+  alpha
 } from '@mui/material'
 import { ChevronRightRounded } from '@mui/icons-material'
 import { SpecialBehaviorAccordion } from './SpecialBehaviorAccordion'
@@ -106,26 +107,28 @@ const Item = (props: MenuItems<{}>) => {
         >
           <AccordionSummary
             aria-controls={`${label}-content`}
-            sx={{
+            sx={(theme) => ({
               pr: 0,
               pl: 0,
               minHeight: 0,
               '& .MuiAccordionSummary-content': {
-                color: isSelected ? '#387A6E' : 'text.secondary',
+                color: isSelected ? 'primary.main' : 'text.secondary',
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                bgcolor: isSelected ? '#387A6E1A' : undefined,
+                bgcolor: isSelected
+                  ? alpha(theme.palette.primary.main, 0.1)
+                  : undefined,
                 borderRadius: 0.5,
                 px: 0.5,
                 my: 0.75,
                 minWidth: 0
               },
               '&:hover .MuiAccordionSummary-content': {
-                bgcolor: '#F0EDE7'
+                bgcolor: 'secondary.main'
               }
-            }}
+            })}
           >
             {icon}
             <Typography
@@ -173,15 +176,17 @@ const Item = (props: MenuItems<{}>) => {
       href={href}
       disableRipple
       disableTouchRipple
-      sx={{
+      sx={(theme) => ({
         '& .MenuItem-divider': {
-          bgcolor: isSelected ? '#387A6E1A' : undefined,
-          color: isSelected ? '#387A6E' : undefined,
+          bgcolor: isSelected
+            ? alpha(theme.palette.primary.main, 0.1)
+            : undefined,
+          color: isSelected ? 'primary.main' : undefined,
           borderRadius: 0.5,
           px: 0.5
         },
         '&:hover .MenuItem-divider': {
-          bgcolor: '#F0EDE7'
+          bgcolor: 'secondary.main'
         },
         '&:hover': {
           bgcolor: 'unset'
@@ -190,7 +195,7 @@ const Item = (props: MenuItems<{}>) => {
         p: 0,
         py: 0.5,
         color: 'text.secondary'
-      }}
+      })}
       {...componentProps}
       {...other}
     >

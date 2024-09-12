@@ -81,7 +81,10 @@ export const withThemeProvider = (Story) => {
         theme={{
           permanentHeader,
           bgColorOnMenu: true,
-          colors: { background: '#FAF8F3' }
+          colors: {
+            secondary: '#F0EDE7',
+            background: '#FAF8F3'
+          }
         }}
       >
         <MantineProvider>
