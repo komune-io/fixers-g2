@@ -499,7 +499,13 @@ const useRenderValue = (props: UseRenderValueProps) => {
         />
       )
     },
-    [displaySelected, defaultStyles, localStyles, classes, color, styles]
+    [
+      defaultStyles.cx,
+      localStyles.classes.chip,
+      classes?.chip,
+      color,
+      styles?.chip
+    ]
   )
 
   const renderValue = useCallback(
@@ -532,16 +538,15 @@ const useRenderValue = (props: UseRenderValueProps) => {
       )
     },
     [
-      variant,
-      color,
-      colorStyle,
       label,
       classes?.label,
-      classes?.chip,
       styles?.label,
-      styles?.chip,
-      displaySelected,
-      optionsMap
+      colorStyle,
+      defaultStyles.cx,
+      defaultStyles.classes.label,
+      localStyles.classes.label,
+      getDisplayValue,
+      getCountChip
     ]
   )
   return renderValue
