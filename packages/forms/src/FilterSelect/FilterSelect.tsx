@@ -19,7 +19,11 @@ import {
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
-import { useFilterColorStyle, useFilterInputStyles } from '../style'
+import {
+  FilterInputStyles,
+  useFilterColorStyle,
+  useFilterInputStyles
+} from '../style'
 import { Option, SmartKey } from '../Select'
 import { extractNumberOrBooleanFromString } from '@komune-io/g2-utils'
 
@@ -111,9 +115,12 @@ const useStyles = makeG2STyles()((theme) => ({
   },
   label: {
     cursor: 'pointer',
-    lineHeight: 'unset'
+    lineHeight: 'unset',
+    flex: '1'
   }
 }))
+
+export type FilterSelectStyle = ReturnType<typeof useStyles>
 
 export interface FilterSelectBasicProps extends BasicProps {
   /**
@@ -269,67 +276,7 @@ export const FilterSelect = React.forwardRef(
       () => (value ? optionsMap.get(value) : undefined),
       [value, optionsMap]
     )
-
-    const renderValue = useCallback(
-      (selected: string | string[]) => {
-        const count = Array.isArray(selected)
-          ? selected.length
-          : selected === ''
-          ? 0
-          : 1
-        return (
-          <Box
-            display='flex'
-            justifyContent='space-between'
-            alignItems='center'
-          >
-            <InputLabel
-              className={defaultStyles.cx(
-                defaultStyles.classes.label,
-                localStyles.classes.label,
-                'AruiFilterSelect-label',
-                classes?.label
-              )}
-              style={{ ...styles?.label, ...colorStyle }}
-            >
-              {displaySelected && !Array.isArray(selected) && !!selected
-                ? optionsMap.get(selected)?.label
-                : label}
-            </InputLabel>
-            {!(displaySelected && !Array.isArray(selected)) && (
-              <Chip
-                className={defaultStyles.cx(
-                  localStyles.classes.chip,
-                  'AruiFilterSelect-chip',
-                  classes?.chip
-                )}
-                label={count}
-                variant='outlined'
-                color={color}
-                style={styles?.chip}
-                sx={{
-                  visibility: count <= 0 ? 'hidden' : 'visible'
-                }}
-              />
-            )}
-          </Box>
-        )
-      },
-      [
-        placeholder,
-        variant,
-        color,
-        colorStyle,
-        label,
-        classes?.label,
-        classes?.chip,
-        styles?.label,
-        styles?.chip,
-        displaySelected,
-        optionsMap
-      ]
-    )
-
+    const renderValue = useRenderValue({ defaultStyles, localStyles, ...props })
     const optionsMemoized = useMemo(() => {
       return options.map((option) => (
         //@ts-ignore
@@ -484,3 +431,112 @@ export const FilterSelect = React.forwardRef(
     )
   }
 )
+
+interface UseRenderValueProps extends FilterSelectProps {
+  defaultStyles: FilterInputStyles
+  localStyles: FilterSelectStyle
+}
+
+const useRenderValue = (props: UseRenderValueProps) => {
+  const {
+    defaultStyles,
+    localStyles,
+    classes,
+    styles,
+    displaySelected,
+    label,
+    options = [],
+    color = 'primary',
+    variant = 'filled'
+  } = props
+  const colorStyle = useFilterColorStyle({
+    color,
+    variant
+  })
+  const optionsMap = useMemo(
+    () => new Map<SmartKey, Option>(options.map((el) => [el.key, el])),
+    [options]
+  )
+
+  const getDisplayValue = useCallback(
+    (selected: string | string[]) => {
+      if (displaySelected) {
+        if (Array.isArray(selected)) {
+          return selected.length == 0
+            ? undefined
+            : selected.map((key) => optionsMap.get(key)?.label).join(', ')
+        } else {
+          return optionsMap.get(selected)?.label?.toString() ?? undefined
+        }
+      }
+      return undefined
+    },
+    [displaySelected, optionsMap]
+  )
+
+  const getCountChip = useCallback(
+    (selected: string | string[]) => {
+      const count = Array.isArray(selected)
+        ? selected.length
+        : selected === ''
+          ? 0
+          : 1
+
+      return (
+        <Chip
+          className={defaultStyles.cx(
+            localStyles.classes.chip,
+            'AruiFilterSelect-chip',
+            classes?.chip
+          )}
+          label={count}
+          variant='outlined'
+          color={color}
+          style={styles?.chip}
+          sx={{
+            visibility: count <= 0 ? 'hidden' : 'visible'
+          }}
+        />
+      )
+    },
+    [displaySelected, defaultStyles, localStyles, classes, color, styles]
+  )
+
+  const renderValue = useCallback(
+    (selected: string | string[]) => {
+      const display = getDisplayValue(selected)
+      const count = getCountChip(selected)
+      const isPlaceHolder = display === undefined
+      return (
+        <Box display='flex' justifyContent='space-between' alignItems='center'>
+          <InputLabel
+            className={defaultStyles.cx(
+              defaultStyles.classes.label,
+              localStyles.classes.label,
+              'AruiFilterSelect-label',
+              classes?.label,
+              isPlaceHolder && 'AruiFilterSelect-placeHolder'
+            )}
+            style={{ ...styles?.label, ...colorStyle }}
+          >
+            {display ?? label}
+          </InputLabel>
+          {count}
+        </Box>
+      )
+    },
+    [
+      variant,
+      color,
+      colorStyle,
+      label,
+      classes?.label,
+      classes?.chip,
+      styles?.label,
+      styles?.chip,
+      displaySelected,
+      optionsMap
+    ]
+  )
+  return renderValue
+}

@@ -204,3 +204,5 @@ export const useFilterInputStyles = makeG2STyles()((theme) => ({
     color: 'inherit'
   }
 }))
+
+export type FilterInputStyles = ReturnType<typeof useFilterInputStyles>

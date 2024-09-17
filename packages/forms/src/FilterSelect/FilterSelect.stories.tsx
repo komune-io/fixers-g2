@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { FilterSelect, Option, FilterSelectBasicProps } from './FilterSelect'
+import { FilterSelect, FilterSelectBasicProps } from './FilterSelect'
+import { Option, SmartKey } from '../Select'
 import { Meta, StoryFn } from '@storybook/react'
 import { Box } from '@mui/material'
 import { FilterSelectClasses, FilterSelectStyles } from './docs'
@@ -34,13 +35,13 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof FilterSelect>
 
 export const FilterSelectStory: StoryFn<FilterSelectBasicProps> = (
   args: FilterSelectBasicProps
 ) => {
-  const [value, setvalue] = useState('')
-  const [values, setvalues] = useState<string[]>([])
+  const [value, setValue] = useState<SmartKey>('')
+  const [values, setValues] = useState<SmartKey[]>([])
   return (
     <FilterSelect
       options={[]}
@@ -48,23 +49,27 @@ export const FilterSelectStory: StoryFn<FilterSelectBasicProps> = (
       value={args.multiple ? undefined : value}
       values={args.multiple ? values : undefined}
       onChangeValue={(value) =>
-        setvalue((oldValue) => (oldValue === value ? '' : value))
+        setValue((oldValue) => (oldValue === value ? '' : value))
       }
-      onChangeValues={(values) => setvalues(values)}
+      onChangeValues={(values) => setValues(values)}
       onRemove={() => {
-        setvalue('')
-        setvalues([])
+        setValue('')
+        setValues([])
       }}
     />
   )
 }
 
-export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
-  const [value, setvalue] = useState('')
+export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = (
+  args: Partial<FilterSelectBasicProps>
+) => {
+  const [value, setvalue] = useState<SmartKey>()
+  const [values, setvalues] = useState<SmartKey[]>()
   return (
     <Box display='flex' justifyContent='space-around' alignItems='center'>
       <Box display='flex' flexDirection='column' alignItems='center'>
         <FilterSelect
+          {...args}
           label='Primary outlined'
           color='primary'
           variant='outlined'
@@ -72,6 +77,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -79,6 +86,7 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           style={{ margin: 20, width: '200px' }}
         />
         <FilterSelect
+          {...args}
           label='Secondary outlined'
           color='secondary'
           variant='outlined'
@@ -86,6 +94,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -93,6 +103,7 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           style={{ margin: 20, width: '200px' }}
         />
         <FilterSelect
+          {...args}
           label='Default outlined'
           color='default'
           variant='outlined'
@@ -100,6 +111,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -109,6 +122,7 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
       </Box>
       <Box display='flex' flexDirection='column' alignItems='center'>
         <FilterSelect
+          {...args}
           label='Primary filled'
           color='primary'
           variant='filled'
@@ -116,6 +130,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -123,6 +139,7 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           style={{ margin: 20, width: '200px' }}
         />
         <FilterSelect
+          {...args}
           label='Secondary filled'
           color='secondary'
           variant='filled'
@@ -130,6 +147,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -137,6 +156,7 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           style={{ margin: 20, width: '200px' }}
         />
         <FilterSelect
+          {...args}
           label='Default filled'
           color='default'
           variant='filled'
@@ -144,6 +164,8 @@ export const FilterSelectSizes: StoryFn<FilterSelectBasicProps> = () => {
           onChangeValue={(value) =>
             setvalue((oldValue) => (oldValue === value ? '' : value))
           }
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
           onRemove={() => {
             setvalue('')
           }}
@@ -186,7 +208,29 @@ export const MultipleFilterSelect: StoryFn<FilterSelectBasicProps> = () => {
         multiple
         options={options}
         values={values}
+        onChangeValues={(values) => setvalues(values.map((v) => v.toString()))}
+        onRemove={() => {
+          setvalues([])
+        }}
+      />
+    </Box>
+  )
+}
+
+export const MultipleFilterSelectDisplaySelected: StoryFn<
+  FilterSelectBasicProps
+> = () => {
+  const [values, setvalues] = useState<SmartKey[]>([])
+
+  return (
+    <Box display='flex' flexDirection='column' alignItems='center'>
+      <FilterSelect
+        label='multiple select'
+        multiple
+        options={options}
+        values={values}
         onChangeValues={(values) => setvalues(values)}
+        displaySelected
         onRemove={() => {
           setvalues([])
         }}
@@ -196,7 +240,7 @@ export const MultipleFilterSelect: StoryFn<FilterSelectBasicProps> = () => {
 }
 
 export const SortSelect: StoryFn<FilterSelectBasicProps> = () => {
-  const [value, setvalue] = useState('')
+  const [value, setvalue] = useState<SmartKey>('')
 
   const options: Option[] = [
     {
@@ -300,3 +344,14 @@ FilterSelectStory.storyName = 'FilterSelect'
 FilterSelectSizes.storyName = 'All the select variants'
 FilterSelectStates.storyName = 'The select states'
 MultipleFilterSelect.storyName = 'Multiple select'
+MultipleFilterSelectDisplaySelected.storyName =
+  'Multiple select Display Selected'
+
+export const VariantsMultipleSelectDisplaySelected: StoryFn<FilterSelectBasicProps> =
+  FilterSelectSizes.bind({})
+VariantsMultipleSelectDisplaySelected.args = {
+  displaySelected: true,
+  multiple: true
+}
+VariantsMultipleSelectDisplaySelected.storyName =
+  'Variants Multiple select Display Selected'

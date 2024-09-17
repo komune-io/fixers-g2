@@ -221,6 +221,22 @@ const fields: FilterComposableField[] = [
         { key: 'montpellier', label: 'Montpellier' }
       ]
     }
+  },
+  {
+    name: 'countries',
+    label: 'Countries',
+    type: 'select',
+    params: {
+      multiple: true,
+      displaySelected: true,
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ]
+    }
   }
 ]
 
