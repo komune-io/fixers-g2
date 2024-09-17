@@ -507,6 +507,12 @@ const useRenderValue = (props: UseRenderValueProps) => {
       const display = getDisplayValue(selected)
       const count = getCountChip(selected)
       const isPlaceHolder = display === undefined
+      console.log('display', display)
+      console.log('isPlaceHolder', isPlaceHolder)
+      console.log(
+        "isPlaceHolder && 'AruiFilterSelect-placeHolder'",
+        isPlaceHolder && 'AruiFilterSelect-placeHolder'
+      )
       return (
         <Box display='flex' justifyContent='space-between' alignItems='center'>
           <InputLabel
