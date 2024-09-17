@@ -63,7 +63,7 @@ const permanentHeader = ({ toggleOpenDrawer }) => {
           display: 'flex'
         }}
       >
-        <img src='/komune.png' style={{ width: '100%' }} />
+        <img src='komune.png' style={{ width: '100%' }} />
       </Box>
       <IconButton onClick={toggleOpenDrawer}>
         <Menu />
