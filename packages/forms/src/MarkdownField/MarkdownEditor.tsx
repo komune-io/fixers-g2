@@ -46,6 +46,9 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
       {...styleContainerProps}
       titlesTopLevel={titlesTopLevel}
       sx={{
+        '& .mdxeditor-toolbar svg': {
+          color: 'currentcolor'
+        },
         '& .markdownEditor': {
           '--font-body': 'unset',
           '--font-mono': 'unset',
