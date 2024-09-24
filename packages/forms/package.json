@@ -47,7 +47,7 @@
     "@mantine/hooks": "^7.6.2",
     "@mui/icons-material": "^5.15.14",
     "@mui/x-date-pickers": "^6.19.8",
-    "@mdxeditor/editor": "^3.0.1",
+    "@mdxeditor/editor": "^3.11.5",
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.0",
     "rehype-raw": "^7.0.0",
