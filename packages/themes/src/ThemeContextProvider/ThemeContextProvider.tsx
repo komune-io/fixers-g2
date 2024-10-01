@@ -17,7 +17,12 @@ declare module '@mui/styles/defaultTheme' {
   interface DefaultTheme extends Theme {}
 }
 
-export interface ThemeContextProps {
+export interface PermanentHeaderThemeProps {
+  toggleOpenDrawer: () => void
+  openDrawer: boolean
+}
+
+export interface ThemeContextProps extends PermanentHeaderThemeProps {
   theme: Theme
   changeTheme: (theme: Partial<Theme>) => void
   openDrawer: boolean

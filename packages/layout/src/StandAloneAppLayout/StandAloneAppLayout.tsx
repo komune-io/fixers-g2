@@ -156,14 +156,14 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
 
   const currentOpen = open !== undefined ? open : openDrawer
 
-  const PerManentHeader = useMemo(
+  const PermanentHeader = useMemo(
     () => g2Theme.permanentHeader,
     [g2Theme.permanentHeader]
   )
 
   return (
     <>
-      {PerManentHeader && (
+      {PermanentHeader && (
         <Box
           sx={{
             position: 'fixed',
@@ -173,7 +173,7 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
             width: g2Theme.drawerWidth
           }}
         >
-          <PerManentHeader
+          <PermanentHeader
             toggleOpenDrawer={toggleOpenDrawer}
             openDrawer={currentOpen}
           />
@@ -215,7 +215,7 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
                 : 'white',
             paddingTop: drawerPaddingTop
               ? drawerPaddingTop
-              : PerManentHeader
+              : PermanentHeader
                 ? '90px'
                 : undefined
           },
