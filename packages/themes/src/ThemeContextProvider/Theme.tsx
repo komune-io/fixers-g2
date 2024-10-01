@@ -6,7 +6,7 @@ import {
 } from '@mui/material'
 import tinycolor from 'tinycolor2'
 import { mergeDeepRight } from 'ramda'
-import { PermanentHeaderThemeProps } from './ThemeContextProvider'
+import { ThemePermanentHeaderProps } from './ThemeContextProvider'
 
 export interface Theme {
   name?: string
@@ -20,7 +20,7 @@ export interface Theme {
    * It should use the prop openDrawer and toggleOpenDrawer to update the drawer state.
    * It will be place in a container of the width `drawerWidth`
    */
-  permanentHeader?: React.ComponentType<PermanentHeaderThemeProps>
+  permanentHeader?: React.ComponentType<ThemePermanentHeaderProps>
   /**
    * The breakpoint where the drawer becom absolute above the main content when opened
    * @default "md"
