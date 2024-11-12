@@ -26,6 +26,7 @@ export interface ThemeContextProps extends ThemePermanentHeaderProps {
   theme: Theme
   changeTheme: (theme: Partial<Theme>) => void
   openDrawer: boolean
+  setOpenDrawer: (open: boolean) => void
   toggleOpenDrawer: () => void
 }
 
@@ -33,6 +34,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
   theme: defaultTheme,
   changeTheme: () => {},
   openDrawer: false,
+  setOpenDrawer: () => {},
   toggleOpenDrawer: () => {}
 })
 
@@ -88,6 +90,7 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
         theme: localTheme,
         changeTheme: setPartialTheme,
         openDrawer,
+        setOpenDrawer,
         toggleOpenDrawer
       }}
     >
