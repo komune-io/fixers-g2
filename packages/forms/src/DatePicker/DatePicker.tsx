@@ -16,6 +16,7 @@ import {
 import { fr, enUS } from 'date-fns/locale'
 import { CustomActionBar } from './CustomActionBar'
 import { useTranslation } from 'react-i18next'
+
 const dateFnsLocales = {
   fr,
   enUS
@@ -74,7 +75,7 @@ export interface DatePickerBasicProps extends BasicProps {
   /**
    * Placeholder Message.
    *
-   * @default 'jj/MM/yyyy'
+   * @default 'dd/MM/yyyy' or 'yyyy/MM/dd'
    */
   placeholder?: string
   /**
@@ -136,7 +137,7 @@ const DatePickerBase = (
     minDate,
     maxDate,
     disabled = false,
-    placeholder = 'jj/MM/yyyy',
+    placeholder,
     size = 'medium',
     onRemove,
     textFieldProps,
@@ -163,6 +164,8 @@ const DatePickerBase = (
       views: ['year', 'month', 'day'] as DateView[]
     }
   }, [i18n.language])
+
+  const placeHolderInited = placeholder ?? format.format
 
   const onChange = useCallback(
     (date: Date | null) => {
@@ -231,7 +234,7 @@ const DatePickerBase = (
               ...textFieldProps?.InputProps
             },
             FormHelperTextProps: formHelperProps,
-            placeholder: placeholder
+            placeholder: placeHolderInited
           }
         }}
         slots={{
