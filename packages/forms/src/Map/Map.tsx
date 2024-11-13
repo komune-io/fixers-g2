@@ -133,6 +133,10 @@ export const Map = (props: MapProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
 
+  // This ref will hold the map container reference
+  const mapContainerRef = useRef(null)
+  const [map, setMap] = useState<LeafletMap | undefined>()
+
   const toggleFullScreen = useCallback(() => {
     if (isFullScreen) {
       document.exitFullscreen()
@@ -152,7 +156,12 @@ export const Map = (props: MapProps) => {
     }
   }, [onFullScreenChange])
 
-  const [map, setMap] = useState<LeafletMap | undefined>()
+  useEffect(() => {
+    // Set the map only once when component mounts
+    if (!map && mapContainerRef.current) {
+      setMap(mapContainerRef.current)
+    }
+  }, [map])
 
   useEffect(() => {
     if (map) {
@@ -162,7 +171,7 @@ export const Map = (props: MapProps) => {
         map.dragging.enable()
       }
     }
-  }, [isSm, isFullScreen, map])
+  }, [isSm, isFullScreen, map, draggableMarkerPlugin])
 
   const plugins = useMemo(
     () =>
@@ -198,8 +207,7 @@ export const Map = (props: MapProps) => {
       <Suspense fallback={<div>Loading map...</div>}>
         <LazyLeafletMap
           {...mapProps}
-          //@ts-ignore
-          ref={setMap}
+          ref={mapContainerRef}
           center={center ?? defaultPosition.center}
           zoom={zoom}
           scrollWheelZoom={true}
@@ -212,11 +220,13 @@ export const Map = (props: MapProps) => {
             ...styles?.map
           }}
         >
-          <LazyDraggableMarker
-            draggable={(!isSm || isFullScreen) && !readOnly}
-            {...draggableMarkerPlugin}
-            map={map}
-          />
+          {map && (
+            <LazyDraggableMarker
+              draggable={(!isSm || isFullScreen) && !readOnly}
+              {...draggableMarkerPlugin}
+              map={map}
+            />
+          )}
           {plugins}
         </LazyLeafletMap>
       </Suspense>
