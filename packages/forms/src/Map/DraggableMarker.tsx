@@ -1,18 +1,21 @@
 import React, {
-  lazy,
   useCallback,
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
+  Suspense,
+  lazy
 } from 'react'
 import { LatLngLiteral, Marker as LeafletMarker, Map } from 'leaflet'
 import { Button } from '@komune-io/g2-components'
 import GeoJSON, { Feature, Point } from 'geojson'
 import { useTranslation } from 'react-i18next'
 
-//@ts-ignore
-const LazyMarker = lazy(async () => (await import('react-leaflet')).Marker)
+const LazyMarker = lazy(async () => {
+  const module = await import('react-leaflet')
+  return { default: module.Marker }
+})
 
 export interface DraggableMarkerNeeds {
   position?: LatLngLiteral
@@ -24,7 +27,7 @@ export interface DraggableMarkerProps extends DraggableMarkerNeeds {
   map?: Map
 }
 
-const DraggableMarker = (props: DraggableMarkerProps) => {
+export const DraggableMarker = (props: DraggableMarkerProps) => {
   const { draggable = false, onPositionChange, position, map } = props
   const [diplayInfo, setDiplayInfo] = useState(draggable)
   const [markerRef, setmarkerRef] = useState<LeafletMarker<any> | null>(null)
@@ -74,12 +77,14 @@ const DraggableMarker = (props: DraggableMarkerProps) => {
 
   if (!position) return <></>
   return (
-    <LazyMarker
-      draggable={draggable}
-      eventHandlers={eventHandlers}
-      position={position}
-      ref={setmarkerRef}
-    ></LazyMarker>
+    <Suspense>
+      <LazyMarker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={setmarkerRef}
+      />
+    </Suspense>
   )
 }
 

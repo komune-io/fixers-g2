@@ -7,7 +7,7 @@ import React, {
   Suspense,
   lazy
 } from 'react'
-import { LatLngExpression, Map as LeafletMap } from 'leaflet'
+import { LatLngExpression, Map as LMap } from 'leaflet'
 import {
   FormHelperText,
   IconButton,
@@ -38,7 +38,7 @@ export interface MapPlugin {
 }
 
 export interface MapPluginProps extends MapPlugin {
-  map?: LeafletMap
+  map?: LMap
   readOnly: boolean
   isMobile: boolean
   isFullScreen: boolean
@@ -134,8 +134,7 @@ export const Map = (props: MapProps) => {
   const { t } = useTranslation()
 
   // This ref will hold the map container reference
-  const mapContainerRef = useRef(null)
-  const [map, setMap] = useState<LeafletMap | undefined>()
+  const [map, setMap] = useState<LMap | undefined>()
 
   const toggleFullScreen = useCallback(() => {
     if (isFullScreen) {
@@ -157,13 +156,6 @@ export const Map = (props: MapProps) => {
   }, [onFullScreenChange])
 
   useEffect(() => {
-    // Set the map only once when component mounts
-    if (!map && mapContainerRef.current) {
-      setMap(mapContainerRef.current)
-    }
-  }, [map])
-
-  useEffect(() => {
     if (map) {
       if (isSm && !isFullScreen) {
         map.dragging.disable()
@@ -178,6 +170,7 @@ export const Map = (props: MapProps) => {
       additionalPlugins?.map((plugin, index) => {
         const { element, ...otherPluginProps } = plugin
         const PluginElement = element
+        if (!map) return <></>
         return (
           <PluginElement
             {...otherPluginProps}
@@ -191,6 +184,33 @@ export const Map = (props: MapProps) => {
       }),
     [additionalPlugins, readOnly, isSm, isFullScreen, map]
   )
+  const draggableMarker = useMemo(() => {
+    if (!map || !draggableMarkerPlugin) return <></>
+    return (
+      <Suspense fallback={<div>Loading map...</div>}>
+        {
+          <LazyDraggableMarker
+            draggable={(!isSm || isFullScreen) && !readOnly}
+            map={map}
+            {...draggableMarkerPlugin}
+          />
+        }
+      </Suspense>
+    )
+  }, [map, draggableMarkerPlugin, isSm, isFullScreen, readOnly])
+
+  const draggableMarkerControl = useMemo(() => {
+    if (!map || !draggableMarkerPlugin) return <></>
+    return (
+      <DraggableMarkerControl
+        isFullScreen={isFullScreen}
+        isSm={isSm}
+        {...draggableMarkerPlugin}
+        map={map}
+        readOnly={readOnly}
+      />
+    )
+  }, [isFullScreen, isSm, draggableMarkerPlugin, readOnly, map])
 
   return (
     <Stack
@@ -207,7 +227,7 @@ export const Map = (props: MapProps) => {
       <Suspense fallback={<div>Loading map...</div>}>
         <LazyLeafletMap
           {...mapProps}
-          ref={mapContainerRef}
+          ref={setMap}
           center={center ?? defaultPosition.center}
           zoom={zoom}
           scrollWheelZoom={true}
@@ -220,13 +240,7 @@ export const Map = (props: MapProps) => {
             ...styles?.map
           }}
         >
-          {map && (
-            <LazyDraggableMarker
-              draggable={(!isSm || isFullScreen) && !readOnly}
-              {...draggableMarkerPlugin}
-              map={map}
-            />
-          )}
+          {draggableMarker}
           {plugins}
         </LazyLeafletMap>
       </Suspense>
@@ -256,15 +270,7 @@ export const Map = (props: MapProps) => {
           <CloseRounded />
         </IconButton>
       )}
-      {!!draggableMarkerPlugin && (
-        <DraggableMarkerControl
-          isFullScreen={isFullScreen}
-          isSm={isSm}
-          {...draggableMarkerPlugin}
-          map={map}
-          readOnly={readOnly}
-        />
-      )}
+      {draggableMarkerControl}
       {!!errorMessage && (
         <FormHelperText
           sx={{
