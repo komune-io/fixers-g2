@@ -186,14 +186,14 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
       const code = fileRejections[0].errors[0].code as DropError
       setError(
         t('g2.' + code, {
-          formats: ['png', 'jpeg'].join(', '),
+          formats: fileTypesAllowed?.join(', '),
           sizeLimit: dropzoneProps?.maxSize
             ? dropzoneProps?.maxSize / 1024 / 1024
             : 50
         })
       )
     },
-    [t, dropzoneProps?.maxSize]
+    [t, dropzoneProps?.maxSize, fileTypesAllowed]
   )
 
   const onDrop = useCallback(
