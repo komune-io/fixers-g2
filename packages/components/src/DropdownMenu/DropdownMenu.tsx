@@ -95,7 +95,7 @@ const Item = (props: MenuItems<{}>) => {
           sx={{
             cursor: 'normal',
             bgcolor: 'transparent',
-            width: '100%',
+            width: 'calc(100% - 12px)',
             px: 0,
             '&:not(:last-child)': {
               borderBottom: 0
@@ -116,13 +116,14 @@ const Item = (props: MenuItems<{}>) => {
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 2,
+                gap: 1,
                 bgcolor: isSelected
                   ? alpha(theme.palette.primary.main, 0.1)
                   : undefined,
                 borderRadius: 0.5,
                 px: 0.5,
                 my: 0.75,
+                ml: 0.5,
                 minWidth: 0
               },
               '&:hover .MuiAccordionSummary-content': {
