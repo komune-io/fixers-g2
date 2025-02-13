@@ -8,6 +8,7 @@ import {
 } from '@komune-io/g2-themes'
 import { Button } from '@komune-io/g2-components'
 import { Link, LinkProps } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeG2STyles()((theme) => ({
   notFoundIcon: {
@@ -39,18 +40,6 @@ interface NoMatchPageStyles {
 
 export interface NoMatchPageBasicProps extends BasicProps {
   /**
-   * The title beneath the 404 logo
-   *
-   * @default "Page not found"
-   */
-  title?: string
-  /**
-   * The label inside the go back button
-   *
-   * @default "Go back home"
-   */
-  buttonLabel?: string
-  /**
    * If true the go back button will be removed
    *
    * @default false
@@ -73,8 +62,6 @@ export type NoMatchPageProps = MergeMuiElementProps<
 
 export const NoMatchPage = (props: NoMatchPageProps) => {
   const {
-    title = 'Page not found',
-    buttonLabel = 'Go back home',
     noGoBack = false,
     classes,
     styles,
@@ -84,6 +71,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
     ...other
   } = props
   const defaultStyles = useStyles()
+  const { t } = useTranslation()
   return (
     <Box
       className={className}
@@ -113,7 +101,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
         )}
         style={styles?.title}
       >
-        {title}
+        {t('g2.pageNotFound')}
       </Typography>
       {!noGoBack && (
         <Button<LinkProps>
@@ -123,7 +111,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
           componentProps={{ to: '/' }}
           variant='outlined'
         >
-          {buttonLabel}
+          {t('g2.goBackHome')}
         </Button>
       )}
     </Box>
