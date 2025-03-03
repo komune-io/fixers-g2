@@ -15,7 +15,7 @@ export interface HttpOptions {
   formData?: FormData
   jwt?: string
   contentType?: HttpContentType
-  returnType?: 'json' | 'text' | 'objectUrl'
+  returnType?: 'json' | 'text' | 'objectUrl' | 'blob'
   errorHandler?: (
     error: Error,
     responseCode?: number,
@@ -90,6 +90,9 @@ export const request = <T>(options: HttpOptions): Promise<Nullable<T>> => {
         }
         if (returnType === 'text') {
           return response.text()
+        }
+        if (returnType === 'blob') {
+          return response.blob()
         }
         const blob = response.blob().then((myBlob: Blob) => {
           return URL.createObjectURL(myBlob)
