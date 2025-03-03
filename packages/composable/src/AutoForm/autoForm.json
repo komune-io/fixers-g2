@@ -6,6 +6,12 @@
       "description": "Provide a concise but informative name and description of your project. The name should clearly represent the project's purpose, while the description should offer more details, including its environmental goals and expected outcomes. Make sure the summary effectively conveys the essence of your project to users.",
       "fields": [
         {
+          "name": "id",
+          "type": "hidden",
+          "label": "Project Id",
+          "required": false
+        },
+        {
           "name": "name",
           "type": "textField",
           "label": "Project name",
