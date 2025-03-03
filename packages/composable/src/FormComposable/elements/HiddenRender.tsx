@@ -32,6 +32,8 @@ export const HiddenRender: ElementRendererFunction<HiddenRenderProps> = (
 
   return (
     <input
+      id={basicProps.key ?? basicProps.name}
+      name={basicProps.key ?? basicProps.name}
       value={value ?? ''}
       onChange={changeEventHandler}
       type='hidden'
