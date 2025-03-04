@@ -117,9 +117,10 @@ export interface BackendError {
 }
 
 export const errorHandler =
-  (key: string) =>
+  (key: string, customMessage?: string) =>
   (_: Error, responseCode?: number, backendError?: BackendError) => {
-    const message = getTranslatedMessageOrUndefined('http.errors.' + key)
+    const message =
+      customMessage ?? getTranslatedMessageOrUndefined('http.errors.' + key)
     const res = backendErrorHandler(backendError, message)
     if (res) return
     const c = responseCode
@@ -134,7 +135,7 @@ export const errorHandler =
     }
     if (c === 401 || c === 403) {
       sendAlert('401')
-    } else if (c === 500 || c === 503 || c === 504 || c === 400) {
+    } else if (c === 500 || c === 503 || c === 504 || c === 400 || c === 404) {
       sendAlert('500')
     } else if (c === 600) {
       sendAlert('600')
@@ -157,8 +158,9 @@ export const backendErrorHandler = (
   return message
 }
 
-export const successHandler = (key: string) => {
-  const message = getTranslatedMessageOrUndefined('http.success.' + key)
+export const successHandler = (key: string, customMessage?: string) => {
+  const message =
+    customMessage ?? getTranslatedMessageOrUndefined('http.success.' + key)
   if (message) {
     enqueueSnackbar(message, {
       //@ts-ignore

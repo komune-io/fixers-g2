@@ -1,7 +1,7 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { RequestProps } from './RequestProps'
-import { errorHandler, request, successHandler } from './request'
+import { errorHandler, HttpOptions, request, successHandler } from './request'
 
 export type CommandOptions<COMMAND, EVENT> = Omit<
   UseMutationOptions<EVENT | undefined, unknown, COMMAND | COMMAND[], unknown>,
@@ -15,7 +15,8 @@ export type CommandParams<COMMAND, EVENT> = {
 export const useCommandRequest = <COMMAND, EVENT>(
   path: string,
   props: RequestProps,
-  params?: CommandParams<COMMAND, EVENT>
+  params?: CommandParams<COMMAND, EVENT>,
+  requestOptions?: Partial<HttpOptions> & { successHandler: () => void }
 ) => {
   const { url, jwt } = props
   const apiCall = useCallback(
@@ -25,10 +26,12 @@ export const useCommandRequest = <COMMAND, EVENT>(
         method: 'POST',
         body: JSON.stringify(command),
         jwt: jwt,
-        errorHandler: errorHandler(path)
+        errorHandler: errorHandler(path),
+        ...requestOptions
       })
       if (res) {
-        successHandler(path)
+        if (requestOptions?.successHandler) requestOptions.successHandler()
+        else successHandler(path)
         return res[0]
       } else {
         return undefined
