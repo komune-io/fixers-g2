@@ -84,7 +84,8 @@ export const useCommandWithFileRequest = <COMMAND, EVENT>(
         errorHandler: errorHandler(path)
       })
       if (res) {
-        successHandler(path)
+        if (requestOptions?.successHandler) requestOptions.successHandler()
+        else successHandler(path)
         return res
       } else {
         return undefined
