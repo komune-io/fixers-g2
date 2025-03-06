@@ -65,7 +65,7 @@ export const useFetchQueryRequest = <QUERY, RESULT>(
             )
           )?.pop() ?? null
         : null,
-    [props]
+    [props, ...Object.values(options ?? {})]
   )
 }
 

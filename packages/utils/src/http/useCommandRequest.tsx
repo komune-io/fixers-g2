@@ -3,6 +3,10 @@ import { useCallback } from 'react'
 import { RequestProps } from './RequestProps'
 import { errorHandler, HttpOptions, request, successHandler } from './request'
 
+export type CommandResquestOptions = Partial<HttpOptions> & {
+  successHandler: () => void
+}
+
 export type CommandOptions<COMMAND, EVENT> = Omit<
   UseMutationOptions<EVENT | undefined, unknown, COMMAND | COMMAND[], unknown>,
   'mutationFn'
@@ -16,7 +20,7 @@ export const useCommandRequest = <COMMAND, EVENT>(
   path: string,
   props: RequestProps,
   params?: CommandParams<COMMAND, EVENT>,
-  requestOptions?: Partial<HttpOptions> & { successHandler: () => void }
+  requestOptions?: CommandResquestOptions
 ) => {
   const { url, jwt } = props
   const apiCall = useCallback(
@@ -37,7 +41,7 @@ export const useCommandRequest = <COMMAND, EVENT>(
         return undefined
       }
     },
-    [url, jwt]
+    [url, jwt, ...Object.values(requestOptions ?? {})]
   )
 
   return useMutation({ mutationFn: apiCall, ...params?.options })
@@ -56,7 +60,8 @@ export interface CommandWithFile<COMMAND> {
 export const useCommandWithFileRequest = <COMMAND, EVENT>(
   path: string,
   props: RequestProps,
-  params?: CommandParams<CommandWithFile<COMMAND>, EVENT>
+  params?: CommandParams<CommandWithFile<COMMAND>, EVENT>,
+  requestOptions?: CommandResquestOptions
 ) => {
   const { url, jwt } = props
   const apiCall = useCallback(
@@ -85,7 +90,7 @@ export const useCommandWithFileRequest = <COMMAND, EVENT>(
         return undefined
       }
     },
-    [url, jwt]
+    [url, jwt, ...Object.values(requestOptions ?? {})]
   )
 
   return useMutation({ mutationFn: apiCall, ...params?.options })
