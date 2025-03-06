@@ -4,7 +4,7 @@ import { RequestProps } from './RequestProps'
 import { errorHandler, HttpOptions, request, successHandler } from './request'
 
 export type CommandResquestOptions = Partial<HttpOptions> & {
-  successHandler: () => void
+  successHandler?: () => void
 }
 
 export type CommandOptions<COMMAND, EVENT> = Omit<
