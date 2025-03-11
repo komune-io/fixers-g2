@@ -22,8 +22,9 @@ export interface ThemePermanentHeaderProps {
   openDrawer: boolean
 }
 
-export interface ThemeContextProps extends ThemePermanentHeaderProps {
-  theme: Theme
+export interface ThemeContextProps<T extends {} = {}>
+  extends ThemePermanentHeaderProps {
+  theme: Theme<T>
   changeTheme: (theme: Partial<Theme>) => void
   openDrawer: boolean
   setOpenDrawer: (open: boolean) => void
@@ -38,14 +39,16 @@ export const ThemeContext = createContext<ThemeContextProps>({
   toggleOpenDrawer: () => {}
 })
 
-export interface ThemeContextProviderProps {
+export interface ThemeContextProviderProps<T extends {} = {}> {
   children: React.ReactNode
-  theme?: DeepPartial<Theme>
+  theme?: DeepPartial<Theme<T>>
   customMuiTheme?: Partial<ThemeOptions>
   defaultOpenDrawer?: boolean
 }
 
-export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
+export const ThemeContextProvider = <T extends {} = {}>(
+  props: ThemeContextProviderProps<T>
+) => {
   const { children, customMuiTheme, theme, defaultOpenDrawer } = props
   const [localTheme, setLocalTheme] = React.useState<Theme>(
     theme ? mergeDeepRight(defaultTheme, theme as any) : defaultTheme
@@ -99,9 +102,9 @@ export const ThemeContextProvider = (props: ThemeContextProviderProps) => {
   )
 }
 
-export const useTheme = () => {
+export const useTheme = <T extends {} = {}>() => {
   const themeContext = useContext(ThemeContext)
-  return themeContext.theme
+  return themeContext.theme as Theme<T>
 }
 
 export const useThemeContext = () => {
