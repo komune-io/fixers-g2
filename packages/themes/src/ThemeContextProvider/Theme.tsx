@@ -50,6 +50,7 @@ export interface ThemeColors {
   success: string
   warning: string
   info: string
+  custom?: any
 }
 
 export interface FontSizes {
