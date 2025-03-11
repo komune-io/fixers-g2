@@ -8,7 +8,7 @@ import tinycolor from 'tinycolor2'
 import { mergeDeepRight } from 'ramda'
 import { ThemePermanentHeaderProps } from './ThemeContextProvider'
 
-export interface Theme {
+export interface Theme<T extends {} = {}> {
   name?: string
   colors: ThemeColors
   borderRadius: number
@@ -36,6 +36,7 @@ export interface Theme {
    */
   bgColorOnMenu?: boolean
   shadows: string[]
+  local?: T
 }
 
 export interface ThemeColors {
@@ -50,7 +51,6 @@ export interface ThemeColors {
   success: string
   warning: string
   info: string
-  custom?: any
 }
 
 export interface FontSizes {
