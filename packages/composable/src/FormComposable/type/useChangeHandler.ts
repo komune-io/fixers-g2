@@ -16,6 +16,9 @@ export const useChangeHandler = <T>(
       } else {
         setFieldValue(value)
         !!onChange && onChange(value)
+        if (formState.submitOnChange) {
+          formState.submitForm()
+        }
       }
     },
     [formState, setFieldValue, onChange, onValueChange]

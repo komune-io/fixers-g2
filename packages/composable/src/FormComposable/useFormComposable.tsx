@@ -41,14 +41,26 @@ export interface FormikFormParams<T> {
    * @default false
    */
   readOnly?: boolean
+  /**
+   * Indicates if the form should submit himself on field value change
+   *
+   * @default false
+   */
+  submitOnChange?: boolean
 }
 
 export const useFormComposable = <T extends {}>(
   params: FormikFormParams<T>
 ): FormComposableState => {
   const feedback = useActionFeedback()
-  const { onSubmit, formikConfig, isLoading, readOnly, emptyValueInReadOnly } =
-    params
+  const {
+    onSubmit,
+    formikConfig,
+    isLoading,
+    readOnly,
+    emptyValueInReadOnly,
+    submitOnChange = false
+  } = params
   const validators = useRef<Record<string, ValidatorFnc>>({})
   const validate = useCallback(async (values) => {
     let errors = {}
@@ -134,6 +146,7 @@ export const useFormComposable = <T extends {}>(
     actions: actions,
     isLoading: isLoading ?? false,
     readOnly: readOnly ?? false,
-    emptyValueInReadOnly
+    emptyValueInReadOnly,
+    submitOnChange
   }
 }
