@@ -2,6 +2,7 @@ import { FormComposableState } from './FormComposableState'
 import { SetFieldValueFnc } from './getValueSetup'
 import { OnChangeFnc, OnValueChangeFnc } from './FormComposableField'
 import { useCallback } from 'react'
+import { useDebouncedCallback } from '@mantine/hooks'
 
 export const useChangeHandler = <T>(
   formState: FormComposableState,
@@ -9,6 +10,9 @@ export const useChangeHandler = <T>(
   onChange?: OnChangeFnc,
   onValueChange?: OnValueChangeFnc
 ) => {
+  const submit = useDebouncedCallback(() => {
+    formState.submitForm()
+  }, 500)
   return useCallback(
     async (value: T) => {
       if (onValueChange) {
@@ -17,7 +21,7 @@ export const useChangeHandler = <T>(
         await setFieldValue(value)
         !!onChange && onChange(value)
         if (formState.submitOnChange) {
-          formState.submitForm()
+          submit()
         }
       }
     },
