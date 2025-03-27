@@ -10,11 +10,11 @@ export const useChangeHandler = <T>(
   onValueChange?: OnValueChangeFnc
 ) => {
   return useCallback(
-    (value: T) => {
+    async (value: T) => {
       if (onValueChange) {
         onValueChange(value, formState)
       } else {
-        setFieldValue(value)
+        await setFieldValue(value)
         !!onChange && onChange(value)
         if (formState.submitOnChange) {
           formState.submitForm()
