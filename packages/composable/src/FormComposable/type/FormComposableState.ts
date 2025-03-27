@@ -10,4 +10,5 @@ export type FormComposableState = Omit<
   readOnly: boolean
   isLoading: boolean
   emptyValueInReadOnly?: any
+  submitOnChange: boolean
 }
