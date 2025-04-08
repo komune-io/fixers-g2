@@ -56,10 +56,7 @@ export const SelectRender: ElementRendererFunction<SelectRenderProps> = (
     <InputForm
       inputType='select'
       value={value ?? ''}
-      onChangeValue={(value: string) => {
-        formState.setFieldValue(componentProps.name, value, false)
-        !!onChange && onChange(value)
-      }}
+      onChangeValue={onChangeHandler}
       {...params}
       {...componentProps}
     />
