@@ -3,6 +3,7 @@ import { FormAction, ValidatorFnc } from '@komune-io/g2-forms'
 import { useActionFeedback } from '@komune-io/g2-components'
 import { FormComposableState } from './type'
 import { useCallback, useRef } from 'react'
+import { useDebouncedCallback } from '@mantine/hooks'
 
 export interface ActionProps {
   validate?: Partial<FormAction>
@@ -47,6 +48,12 @@ export interface FormikFormParams<T> {
    * @default false
    */
   submitOnChange?: boolean
+  /**
+   * Use this prop to add a debounce time to the submit function
+   *
+   *  @default 0
+   */
+  submitDebounceTime?: number
 }
 
 export const useFormComposable = <T extends {}>(
@@ -59,7 +66,8 @@ export const useFormComposable = <T extends {}>(
     isLoading,
     readOnly,
     emptyValueInReadOnly,
-    submitOnChange = false
+    submitOnChange = false,
+    submitDebounceTime = 0
   } = params
   const validators = useRef<Record<string, ValidatorFnc>>({})
   const validate = useCallback(async (values) => {
@@ -138,8 +146,13 @@ export const useFormComposable = <T extends {}>(
     [validators, formik.values, formik.getFieldProps, formik.setFieldError]
   )
 
+  const submitForm = useDebouncedCallback(async () => {
+    return formik.submitForm()
+  }, submitDebounceTime)
+
   return {
     ...formik,
+    submitForm: submitDebounceTime > 0 ? submitForm : formik.submitForm,
     registerField,
     unregisterField,
     validateField,
