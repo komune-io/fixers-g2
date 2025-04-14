@@ -3,8 +3,9 @@ import { useFormik } from 'formik'
 
 export type FormComposableState = Omit<
   ReturnType<typeof useFormik>,
-  'validateField'
+  'validateField' | 'submitForm'
 > & {
+  submitForm: (() => Promise<void>) | (() => void)
   actions: FormAction[]
   validateField: (fieldName: string) => PotentialError
   readOnly: boolean
