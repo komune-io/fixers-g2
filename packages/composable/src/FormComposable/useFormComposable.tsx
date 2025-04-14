@@ -2,7 +2,7 @@ import { FormikConfig, FormikHelpers, useFormik, getIn, setIn } from 'formik'
 import { FormAction, ValidatorFnc } from '@komune-io/g2-forms'
 import { useActionFeedback } from '@komune-io/g2-components'
 import { FormComposableState } from './type'
-import { useCallback, useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useDebouncedCallback } from '@mantine/hooks'
 
 export interface ActionProps {
@@ -70,6 +70,7 @@ export const useFormComposable = <T extends {}>(
     submitDebounceTime = 0
   } = params
   const validators = useRef<Record<string, ValidatorFnc>>({})
+  const [isSubmitting, setisSubmitting] = useState(false)
   const validate = useCallback(async (values) => {
     let errors = {}
     const entries = Object.entries(validators.current)
@@ -146,13 +147,28 @@ export const useFormComposable = <T extends {}>(
     [validators, formik.values, formik.getFieldProps, formik.setFieldError]
   )
 
-  const submitForm = useDebouncedCallback(async () => {
-    return formik.submitForm()
+  const debounceSubmitForm = useDebouncedCallback(async () => {
+    const res = await formik.submitForm()
+    setisSubmitting(false)
+    return res
   }, submitDebounceTime)
+
+  const submitForm = useCallback(async () => {
+    if (submitDebounceTime > 0) {
+      setisSubmitting(true)
+      return debounceSubmitForm()
+    } else {
+      setisSubmitting(true)
+      const res = await formik.submitForm()
+      setisSubmitting(false)
+      return res
+    }
+  }, [submitDebounceTime, debounceSubmitForm])
 
   return {
     ...formik,
-    submitForm: submitDebounceTime > 0 ? submitForm : formik.submitForm,
+    isSubmitting: isSubmitting || formik.isSubmitting,
+    submitForm,
     registerField,
     unregisterField,
     validateField,
