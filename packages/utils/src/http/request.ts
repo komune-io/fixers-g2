@@ -42,7 +42,7 @@ export const request = <T>(options: HttpOptions): Promise<Nullable<T>> => {
     method: method,
     redirect: redirect,
     headers: {
-      ...(jwt !== undefined && jwt !== ''
+      ...(jwt != undefined && jwt !== ''
         ? {
             Authorization: `Bearer ${jwt}`
           }
