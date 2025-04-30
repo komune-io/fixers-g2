@@ -110,7 +110,7 @@ export interface SelectBasicProps extends BasicProps {
   value?: SmartKey
 
   /**
-   * The values of selected. ⚠️ This prop is used only if `multiple` is true
+   * The values of selected. ⚠️ This prop is used only if `multiple` or `singleInArray` is true
    *
    * @default []
    */
@@ -122,6 +122,14 @@ export interface SelectBasicProps extends BasicProps {
    *  @default false
    */
   multiple?: boolean
+
+  /**
+   * If true the select will still have unique selection but the value will be wrapped in an array
+   * and returned in `onChangeValues`
+   *
+   *  @default false
+   */
+  singleInArray?: boolean
 
   /**
    * The event called when the value of the slect change
@@ -212,6 +220,7 @@ export const Select = React.forwardRef(
       styles,
       size = 'medium',
       multiple = false,
+      singleInArray = false,
       startAdornment,
       onClose,
       helperText,
@@ -223,7 +232,10 @@ export const Select = React.forwardRef(
 
     const onChangeMemoized = useCallback(
       (event: SelectChangeEvent<unknown>) => {
-        const eventValue = event.target.value
+        const eventValue =
+          singleInArray && !Array.isArray(event.target.value)
+            ? [event.target.value]
+            : event.target.value
         if (Array.isArray(eventValue)) {
           onChangeValues &&
             onChangeValues(extractNumberOrBooleanFromString(eventValue))
@@ -234,7 +246,7 @@ export const Select = React.forwardRef(
             )
         }
       },
-      [onChangeValue, onChangeValues]
+      [onChangeValue, onChangeValues, singleInArray]
     )
 
     const optionsMap = useMemo(
@@ -379,7 +391,7 @@ export const Select = React.forwardRef(
               classes?.select
             )}
             variant={'filled'}
-            value={multiple ? values : value}
+            value={multiple || singleInArray ? values : value}
             onClose={onCloseMemoized}
             multiple={multiple}
             IconComponent={selectIcon}
