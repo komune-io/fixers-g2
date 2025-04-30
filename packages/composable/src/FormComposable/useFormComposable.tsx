@@ -163,7 +163,7 @@ export const useFormComposable = <T extends {}>(
       setisSubmitting(false)
       return res
     }
-  }, [submitDebounceTime, debounceSubmitForm])
+  }, [submitDebounceTime, debounceSubmitForm, formik.submitForm])
 
   return {
     ...formik,

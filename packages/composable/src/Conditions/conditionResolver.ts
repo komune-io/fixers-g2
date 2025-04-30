@@ -75,9 +75,13 @@ export const requiredFieldConditions = (
   t: (key: string) => string,
   fieldName: string
 ): Condition => {
+  let name = fieldName
+  if (name.includes('.')) {
+    name = name.replaceAll('.', '?.')
+  }
   return {
     type: 'validator',
-    expression: `#${fieldName} == null || #${fieldName}?.length == 0 || #${fieldName} == '' `,
+    expression: `#${name} == null || #${name}?.length == 0 || #${name} == '' `,
     error: t('g2.fieldRequired')
   }
 }

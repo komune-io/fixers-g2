@@ -38,11 +38,11 @@ export interface DocumentHandlerBasicProps extends BasicProps {
    * The name of the file displayed has a label. You can provide it even if the file is not uploaded yet.
    * you may provide the name with the file type at the end which will be cut and displayed a part.
    */
-  label?: string
+  fileLabel?: string
   /**
    * The label displayed on top of the document handler if wanted
    */
-  outterLabel?: React.ReactNode
+  label?: React.ReactNode
   /**
    * provide it if the file is already uploaded
    */
@@ -124,7 +124,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
     dropzoneProps,
     style,
     uploaded,
-    outterLabel,
+    fileLabel,
     id,
     ...otherProps
   } = props
@@ -163,23 +163,23 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
       if (url) window.open(url, '_blank')
       setLoading(false)
     }
-  }, [onView, getFileUrl, label])
+  }, [onView, getFileUrl])
 
   const onDownloadMemoized = useCallback(async () => {
     if (onDownload) {
       onDownload()
-    } else if (getFileUrl && label) {
+    } else if (getFileUrl && fileLabel) {
       setLoading(true)
       const url = await getFileUrl()
       if (url) {
         const link = document.createElement('a')
         link.href = url
-        link.download = label
+        link.download = fileLabel
         link.click()
       }
       setLoading(false)
     }
-  }, [onDownload, getFileUrl, label])
+  }, [onDownload, getFileUrl, fileLabel])
 
   const onRejectMemoized = useCallback(
     (fileRejections: FileRejection[]) => {
@@ -214,7 +214,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
   const childrenProps: DropzoneChildrenProps = {
     uploaded,
     error,
-    label,
+    label: fileLabel,
     isRequired,
     onDelete,
     onEditFileName,
@@ -227,7 +227,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
   if (uploaded) {
     return (
       <>
-        {outterLabel && <InputLabel htmlFor={id}>{outterLabel}</InputLabel>}
+        {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
         {/* @ts-ignore */}
         <Stack
           {...otherProps}
@@ -272,7 +272,7 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
         }
       }}
     >
-      {outterLabel && <InputLabel htmlFor={id}>{outterLabel}</InputLabel>}
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <Dropzone
         className={cx('AruiDocumentHandler-root', className)}
         onDrop={onDrop}

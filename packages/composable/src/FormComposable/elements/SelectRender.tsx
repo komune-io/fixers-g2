@@ -44,7 +44,7 @@ export const SelectRender: ElementRendererFunction<SelectRenderProps> = (
     onValueChange
   )
 
-  return params?.multiple === true ? (
+  return params?.multiple === true || params?.singleInArray === true ? (
     <InputForm
       inputType='select'
       values={value ?? []}
