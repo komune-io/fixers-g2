@@ -53,13 +53,13 @@ export const FsDocumentHandler = (props: FsDocumentHandlerProps) => {
         />
       )
     })
-    documents.forEach(({ label, ...rest }) => {
+    documents.forEach(({ label, ...rest }, index) => {
       const uploadedfile = files.find(
         (file) => file.path.name.split('_')[1] === label
       )
       if (!uploadedfile) {
         documentList.push(
-          <DocumentHandler key={label} label={label} {...rest} />
+          <DocumentHandler key={index} label={label} {...rest} />
         )
       }
     })
