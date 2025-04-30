@@ -50,9 +50,10 @@ export const DocumentHandlerRender: ElementRendererFunction<
     <Box sx={sx}>
       <DocumentHandler
         uploaded={!!uploadedGetUrl || !!localFile}
-        label={
+        fileLabel={
           localFile?.name ?? (typeof label === 'string' ? label : undefined)
         }
+        label={label}
         getFileUrl={
           localFile ? () => URL.createObjectURL(localFile) : uploadedGetUrl
         }
