@@ -1,143 +1,74 @@
 {
   "sections": [
     {
-      "id": "summary",
-      "label": "Summary",
-      "description": "Provide a concise but informative name and description of your project. The name should clearly represent the project's purpose, while the description should offer more details, including its environmental goals and expected outcomes. Make sure the summary effectively conveys the essence of your project to users.",
+      "id": "form",
       "fields": [
         {
-          "name": "id",
-          "type": "hidden",
-          "label": "Project Id",
-          "required": false
-        },
-        {
-          "name": "name",
+          "name": "title",
           "type": "textField",
-          "label": "Project name",
-          "required": true
+          "label": "Titre",
+          "required": true,
+          "conditions": [
+            {
+              "type": "display",
+              "expression": "#context == 'creation'"
+            }
+          ]
         },
         {
           "name": "description",
           "type": "textField",
-          "label": "Project description",
+          "label": "Description",
           "required": true,
           "properties": {
             "multiline": true,
-            "rows": 4
+            "rows": 7
           }
         },
         {
-          "name": "presentation",
+          "name": "img",
           "type": "documentHandler",
-          "label": "Add a presentation document to your project",
+          "label": "Illustration (optionnel)",
           "properties": {
-            "fileTypesAllowed": ["pdf"],
-            "outterLabel": "Presentation document (optional)"
+            "fileTypesAllowed": ["png", "jpeg", "svg"]
           }
-        }
-      ]
-    },
-    {
-      "id": "schedule",
-      "label": "Schedule",
-      "description": "Specify the start date and estimated end date of your project. The start date marks the commencement of project activities, while the estimated end date should reflect when you anticipate the project will conclude.",
-      "fields": [
+        },
         {
-          "name": "startDate",
-          "type": "datePicker",
-          "label": "Start date",
-          "conditions": [
-            {
-              "type": "validator",
-              "expression": "#startDate <= #now",
-              "error": "The start date should be further than today"
-            }
-          ],
+          "name": "location.country",
+          "type": "textField",
+          "label": "Pays",
           "required": true
         },
         {
-          "name": "endDate",
-          "type": "datePicker",
-          "label": "Estimated end date",
-          "conditions": [
-            {
-              "type": "validator",
-              "expression": "#endDate <= #now",
-              "error": "The end date should be further than today"
-            },
-            {
-              "type": "validator",
-              "expression": "#endDate <= #startDate",
-              "error": "The end date should be further than the start date"
-            }
-          ],
-          "required": true
-        }
-      ],
-      "properties": {
-        "display": "grid"
-      }
-    },
-    {
-      "id": "program",
-      "label": "Program",
-      "fields": [
+          "name": "location.region",
+          "type": "textField",
+          "label": "Region (optionnel)"
+        },
         {
-          "name": "program",
-          "type": "autoComplete",
-          "required": true,
+          "name": "stakeholder",
+          "type": "textField",
+          "label": "Porteur du projet",
+          "required": true
+        },
+        {
+          "name": "accessRights",
+          "type": "select",
+          "label": "Accès",
           "properties": {
-            "placeholder": "Choose a program",
             "options": [
               {
-                "key": "1",
-                "label": "Program 1"
+                "key": "PUBLIC",
+                "label": "Public"
+              },
+              {
+                "key": "PRIVATE",
+                "label": "Privé"
               }
             ]
-          }
-        },
-        {
-          "name": "enableOptionalSection",
-          "label": "Enable Optional Section",
-          "type": "checkBox",
-          "properties": {}
-        }
-      ]
-    },
-    {
-      "id": "optional",
-      "label": "Optional",
-      "conditions": [
-        {
-          "type": "display",
-          "expression": "#enableOptionalSection"
-        }
-      ],
-      "fields": [
-        {
-          "name": "disableOptionalField",
-          "type": "checkBox",
-          "label": "Disable Optional Field"
-        },
-        {
-          "name": "optionalField",
-          "type": "textField",
-          "label": "Optional description",
-          "properties": {
-            "rows": 2
           },
-          "conditions": [
-            {
-              "type": "display",
-              "expression": "!#disableOptionalField"
-            }
-          ]
+          "required": true
         }
       ]
     }
-  ],
-  "properties": {
-    "sectionsType": "papered"
-  }
+  ]
 }

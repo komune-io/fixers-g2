@@ -1,0 +1,85 @@
+import { useCallback, useMemo } from 'react'
+import { FormikFormParams, useFormComposable } from '../FormComposable'
+import { CommandWithFile } from '@komune-io/g2-utils'
+import { FormikHelpers } from 'formik'
+import { AutoFormData } from './AutoForm'
+
+export interface UseAutoFormStateParams
+  extends Omit<FormikFormParams<{}>, 'onSubmit'> {
+  onSubmit?: (
+    command: CommandWithFile<any>,
+    values: any,
+    formikHelpers: FormikHelpers<any>
+  ) => boolean | void | Promise<any> | Promise<boolean>
+  formData?: AutoFormData
+  initialValues?: any
+  downloadDocument?: (
+    fieldName: string,
+    fieldValue: any
+  ) => Promise<string | undefined>
+}
+
+export const useAutoFormState = (params: UseAutoFormStateParams) => {
+  const {
+    onSubmit,
+    formData,
+    initialValues,
+    downloadDocument,
+    formikConfig,
+    readOnly,
+    ...formikParams
+  } = params
+  const initial = useMemo(() => {
+    const initialValuesCopy = { ...initialValues }
+    formData?.sections.forEach((section) =>
+      section.fields.forEach((field) => {
+        if (field.type === 'documentHandler') {
+          if (initialValuesCopy[field.name] && downloadDocument) {
+            initialValuesCopy[`${field.name}Uploaded`] = () =>
+              downloadDocument(field.name, initialValuesCopy[field.name])
+            initialValuesCopy[field.name] = undefined
+          }
+        }
+      })
+    )
+    return initialValuesCopy
+  }, [initialValues, formData, downloadDocument])
+
+  const onSubmitCommand = useCallback(
+    async (values: any, formikHelpers: FormikHelpers<any>) => {
+      if (onSubmit) {
+        const command: CommandWithFile<any> = {
+          command: {},
+          files: []
+        }
+        formData?.sections.forEach((section) =>
+          section.fields.forEach((field) => {
+            if (values[field.name] != undefined) {
+              if (field.type === 'documentHandler') {
+                command.files.push({
+                  file: values[field.name],
+                  atrKey: field.name
+                })
+              } else {
+                command.command[field.name] = values[field.name]
+              }
+            }
+          })
+        )
+        await onSubmit(command, values, formikHelpers)
+      }
+    },
+    [onSubmit, formData]
+  )
+
+  return useFormComposable({
+    onSubmit: onSubmitCommand,
+    readOnly: formData?.readOnly ?? readOnly,
+    formikConfig: {
+      ...formikConfig,
+      ...formData?.formikConfig,
+      initialValues: initial
+    },
+    ...formikParams
+  })
+}

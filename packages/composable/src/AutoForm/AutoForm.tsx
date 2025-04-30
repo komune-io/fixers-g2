@@ -1,21 +1,19 @@
 import { Stack, Typography, Divider } from '@mui/material'
-import React, { useCallback, useMemo, Fragment } from 'react'
+import React, { useMemo, Fragment } from 'react'
 import {
   FormComposable,
   FormComposableBasicProps,
   FormComposableField,
   FormComposableState,
-  FormikFormParams,
-  useFormComposable
+  FormikFormParams
 } from '../FormComposable'
 import {
   SectionCondition,
   evalDisplayConditions,
   evalMessageConditions
 } from '../Conditions'
-import { FormikHelpers } from 'formik'
-import { CommandWithFile } from '@komune-io/g2-utils'
 import { Section } from '@komune-io/g2-layout'
+import { UseAutoFormStateParams, useAutoFormState } from './useAutoFormState'
 
 export type FormSection = {
   /**
@@ -53,94 +51,19 @@ export type AutoFormData = {
    * The different sections of the form
    */
   sections: FormSection[]
-} & Pick<
-  FormikFormParams<{}>,
-  'readOnly' | 'emptyValueInReadOnly' | 'formikConfig'
->
+} & Omit<FormikFormParams<{}>, 'onSubmit' | 'actions'>
 
-export interface AutoFormProps
-  extends Pick<
-    FormikFormParams<{}>,
-    'readOnly' | 'isLoading' | 'formikConfig'
-  > {
-  onSubmit?: (
-    command: CommandWithFile<any>,
-    values: any,
-    formikHelpers: FormikHelpers<any>
-  ) => boolean | void | Promise<any> | Promise<boolean>
+export interface AutoFormProps extends UseAutoFormStateParams {
   formData?: AutoFormData
   getFormActions?: (formState: FormComposableState) => React.ReactNode
-  initialValues?: any
-  downloadDocument?: (fieldName: string) => Promise<string | undefined>
 }
 
 export const AutoForm = (props: AutoFormProps) => {
-  const {
-    formData,
-    isLoading,
-    readOnly,
-    onSubmit,
-    formikConfig,
-    getFormActions,
-    initialValues,
-    downloadDocument
-  } = props
+  const { formData, getFormActions, ...autoFormStateParams } = props
 
   const sectionsType = formData?.sectionsType ?? 'default'
 
-  const initial = useMemo(() => {
-    const initialValuesCopy = { ...initialValues }
-    formData?.sections.forEach((section) =>
-      section.fields.forEach((field) => {
-        if (field.type === 'documentHandler') {
-          if (initialValuesCopy[field.name] && downloadDocument) {
-            initialValuesCopy[`${field.name}Uploaded`] = () =>
-              downloadDocument(field.name)
-            initialValuesCopy[field.name] = undefined
-          }
-        }
-      })
-    )
-    return initialValuesCopy
-  }, [initialValues, formData, downloadDocument])
-
-  const onSubmitCommand = useCallback(
-    async (values: any, formikHelpers: FormikHelpers<any>) => {
-      if (onSubmit) {
-        const command: CommandWithFile<any> = {
-          command: {},
-          files: []
-        }
-        formData?.sections.forEach((section) =>
-          section.fields.forEach((field) => {
-            if (values[field.name] != undefined) {
-              if (field.type === 'documentHandler') {
-                command.files.push({
-                  file: values[field.name],
-                  atrKey: field.name
-                })
-              } else {
-                command.command[field.name] = values[field.name]
-              }
-            }
-          })
-        )
-        await onSubmit(command, values, formikHelpers)
-      }
-    },
-    [onSubmit, formData]
-  )
-
-  const formState = useFormComposable({
-    onSubmit: onSubmitCommand,
-    isLoading,
-    readOnly: formData?.readOnly ?? readOnly,
-    formikConfig: {
-      ...formikConfig,
-      ...formData?.formikConfig,
-      initialValues: initial
-    }
-  })
+  const formState = useAutoFormState(autoFormStateParams)
 
   const actions = useMemo(
     () => getFormActions && getFormActions(formState),
