@@ -165,7 +165,6 @@ const AutoCompleteBase = function <T>(
     returnFullObject = false,
     chipProps,
     helperText,
-    onInputChange,
     ...other
   } = props
   console.log('AutoCompleteBase', props)
