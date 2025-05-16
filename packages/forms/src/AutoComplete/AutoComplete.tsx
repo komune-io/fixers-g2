@@ -20,6 +20,7 @@ import {
 import { TextField, TextFieldProps } from '../TextField'
 import { CheckBox } from '../CheckBox'
 import { Chip, ChipProps } from '@komune-io/g2-components'
+import { AutocompleteInputChangeReason } from '@mui/base/useAutocomplete/useAutocomplete'
 
 const useStyles = makeG2STyles()({
   list: {
@@ -165,6 +166,7 @@ const AutoCompleteBase = function <T>(
     returnFullObject = false,
     chipProps,
     helperText,
+    onInputChange,
     ...other
   } = props
   console.log('AutoCompleteBase', props)
@@ -280,6 +282,17 @@ const AutoCompleteBase = function <T>(
     (option: T, value: T) => option.key === value.key || option.key === value,
     []
   )
+  const onInputChangeCallback = useCallback(
+    (
+      event: React.SyntheticEvent,
+      value: string,
+      reason: AutocompleteInputChangeReason
+    ) => {
+      onInputChange && onInputChange(event, value, reason)
+      console.log('onInputChange', event, value, reason)
+    },
+    []
+  )
 
   return (
     <MuiAutocomplete<T, boolean, undefined, boolean>
@@ -295,6 +308,7 @@ const AutoCompleteBase = function <T>(
       disabled={disabled}
       disableCloseOnSelect={multiple}
       onChange={onChangeMemoized}
+      onInputChange={onInputChangeCallback}
       renderTags={renderTags}
       renderInput={renderInput}
       renderOption={renderOption}

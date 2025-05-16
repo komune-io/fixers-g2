@@ -48,7 +48,9 @@ export const AutoCompleteRender: ElementRendererFunction<
   console.log('AutoCompleteRender', {
     onChange,
     onValueChange,
-    onChangeHandler
+    onChangeHandler,
+    params,
+    componentProps
   })
 
   return params?.multiple === true ? (
