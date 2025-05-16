@@ -182,6 +182,7 @@ const AutoCompleteBase = function <T>(
 
   const onChangeMemoized = useCallback(
     (_: React.SyntheticEvent<Element, Event>, value: T | T[] | null) => {
+      console.log('onChangeMemoized', value, Array.isArray(value))
       if (Array.isArray(value) && onChangeValues) {
         //@ts-ignore
         if (hasKey && !getOptionLabel && !returnFullObject) {
