@@ -222,7 +222,6 @@ export const InputForm: InputFormComponent = React.forwardRef(
       sx,
       ...other
     } = props
-    console.log('InputForm', props)
     const defaultStyles = useInputStyles()
 
     const labelUi = useMemo(() => {
