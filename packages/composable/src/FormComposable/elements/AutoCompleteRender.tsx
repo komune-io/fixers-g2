@@ -45,19 +45,11 @@ export const AutoCompleteRender: ElementRendererFunction<
     onValueChange
   )
 
-  console.log('AutoCompleteRender', {
-    onChange,
-    onValueChange,
-    onChangeHandler,
-    params,
-    componentProps
-  })
-
   return params?.multiple === true ? (
     // @ts-ignore
     <InputForm
       inputType='autoComplete'
-      values={value ?? []}
+      values={value ?? undefined}
       onChangeValues={onChangeHandler}
       {...params}
       {...componentProps}

@@ -11,7 +11,6 @@ export const useChangeHandler = <T>(
 ) => {
   return useCallback(
     async (value: T) => {
-      console.log('useChangeHandler', { onValueChange, value, formState })
       if (onValueChange) {
         onValueChange(value, formState)
       } else {
