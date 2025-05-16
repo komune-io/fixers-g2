@@ -167,7 +167,7 @@ const AutoCompleteBase = function <T>(
     helperText,
     ...other
   } = props
-
+  console.log('AutoCompleteBase', props)
   //@ts-ignore
   const hasKey = !!options[0]?.key
 
