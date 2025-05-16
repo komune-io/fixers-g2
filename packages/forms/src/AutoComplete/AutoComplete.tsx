@@ -11,7 +11,7 @@ import {
   AutocompleteGetTagProps,
   AutocompleteRenderInputParams
 } from '@mui/material'
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   makeG2STyles,
@@ -20,7 +20,6 @@ import {
 import { TextField, TextFieldProps } from '../TextField'
 import { CheckBox } from '../CheckBox'
 import { Chip, ChipProps } from '@komune-io/g2-components'
-import { AutocompleteInputChangeReason } from '@mui/base/useAutocomplete/useAutocomplete'
 
 const useStyles = makeG2STyles()({
   list: {
@@ -282,23 +281,16 @@ const AutoCompleteBase = function <T>(
     (option: T, value: T) => option.key === value.key || option.key === value,
     []
   )
-  const onInputChangeCallback = useCallback(
-    (
-      event: React.SyntheticEvent,
-      value: string,
-      reason: AutocompleteInputChangeReason
-    ) => {
-      onInputChange && onInputChange(event, value, reason)
-      console.log('onInputChange', event, value, reason)
-    },
-    []
+  const cleanedValues = useMemo(
+    () => (values?.length === 0 ? undefined : values),
+    [values]
   )
 
   return (
     <MuiAutocomplete<T, boolean, undefined, boolean>
       id={id}
       ref={ref}
-      value={multiple ? values : value}
+      value={multiple ? cleanedValues : value}
       limitTags={2}
       multiple={multiple}
       options={options}
@@ -308,7 +300,6 @@ const AutoCompleteBase = function <T>(
       disabled={disabled}
       disableCloseOnSelect={multiple}
       onChange={onChangeMemoized}
-      onInputChange={onInputChangeCallback}
       renderTags={renderTags}
       renderInput={renderInput}
       renderOption={renderOption}
