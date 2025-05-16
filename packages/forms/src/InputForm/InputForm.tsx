@@ -136,12 +136,12 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
   inputClasses?: [T] extends ['textField']
     ? TextFieldClasses
     : [T] extends ['select']
-    ? SelectClasses
-    : [T] extends ['datePicker']
-    ? DatePickerClasses
-    : [T] extends ['multiChoices']
-    ? MultiChoicesClasses
-    : RadioChoicesClasses
+      ? SelectClasses
+      : [T] extends ['datePicker']
+        ? DatePickerClasses
+        : [T] extends ['multiChoices']
+          ? MultiChoicesClasses
+          : RadioChoicesClasses
   /**
    * The styles applied to the different part of the input
    *
@@ -151,12 +151,12 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
   inputStyles?: [T] extends ['textField']
     ? TextFieldStyles
     : [T] extends ['select']
-    ? SelectStyles
-    : [T] extends ['datePicker']
-    ? DatePickerStyles
-    : [T] extends ['multiChoices']
-    ? MultiChoicesStyles
-    : RadioChoicesStyles
+      ? SelectStyles
+      : [T] extends ['datePicker']
+        ? DatePickerStyles
+        : [T] extends ['multiChoices']
+          ? MultiChoicesStyles
+          : RadioChoicesStyles
 }
 
 type RemoveMainProps<T> = Omit<T, keyof InputFormBasicProps>
@@ -166,14 +166,14 @@ type InputFormComponentProps<T extends InputFormTypes> =
     ([T] extends ['select']
       ? RemoveMainProps<SelectProps>
       : [T] extends ['datePicker']
-      ? RemoveMainProps<DatePickerProps>
-      : [T] extends ['radioChoices']
-      ? RemoveMainProps<RadioChoicesProps>
-      : [T] extends ['autoComplete']
-      ? RemoveMainProps<AutoCompleteProps>
-      : [T] extends ['multiChoices']
-      ? RemoveMainProps<MultiChoicesProps>
-      : RemoveMainProps<TextFieldProps>)
+        ? RemoveMainProps<DatePickerProps>
+        : [T] extends ['radioChoices']
+          ? RemoveMainProps<RadioChoicesProps>
+          : [T] extends ['autoComplete']
+            ? RemoveMainProps<AutoCompleteProps>
+            : [T] extends ['multiChoices']
+              ? RemoveMainProps<MultiChoicesProps>
+              : RemoveMainProps<TextFieldProps>)
 
 interface InputFormComponent {
   <T extends InputFormTypes>(
@@ -222,7 +222,7 @@ export const InputForm: InputFormComponent = React.forwardRef(
       sx,
       ...other
     } = props
-
+    console.log('InputForm', props)
     const defaultStyles = useInputStyles()
 
     const labelUi = useMemo(() => {
