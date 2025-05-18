@@ -167,7 +167,6 @@ const AutoCompleteBase = function <T>(
     helperText,
     ...other
   } = props
-  console.log('AutoCompleteBase', props)
   //@ts-ignore
   const hasKey = !!options[0]?.key
 
@@ -182,7 +181,6 @@ const AutoCompleteBase = function <T>(
 
   const onChangeMemoized = useCallback(
     (_: React.SyntheticEvent<Element, Event>, value: T | T[] | null) => {
-      console.log('onChangeMemoized', value, Array.isArray(value))
       if (Array.isArray(value) && onChangeValues) {
         //@ts-ignore
         if (hasKey && !getOptionLabel && !returnFullObject) {
