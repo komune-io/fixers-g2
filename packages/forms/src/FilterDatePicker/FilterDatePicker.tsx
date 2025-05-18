@@ -192,7 +192,6 @@ const FilterDatePickerBase = (
   })
 
   const onOpenMemoized = useCallback(() => {
-    console.log('open')
     setOpen(true)
     onOpen && onOpen()
   }, [onOpen])
