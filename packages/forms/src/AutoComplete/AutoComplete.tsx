@@ -281,7 +281,8 @@ const AutoCompleteBase = function <T>(
     []
   )
   const cleanedValues = useMemo(
-    () => (values?.length === 0 || value === undefined ? defaultEmpty : values),
+    () =>
+      values === undefined || values?.length === 0 ? defaultEmpty : values,
     [values]
   )
 
