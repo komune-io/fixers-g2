@@ -49,7 +49,7 @@ export const AutoCompleteRender: ElementRendererFunction<
     // @ts-ignore
     <InputForm
       inputType='autoComplete'
-      values={value ?? undefined}
+      values={value ?? null}
       onChangeValues={onChangeHandler}
       {...params}
       {...componentProps}
