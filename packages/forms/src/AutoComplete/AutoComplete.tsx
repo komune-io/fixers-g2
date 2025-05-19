@@ -167,6 +167,7 @@ const AutoCompleteBase = function <T>(
     helperText,
     ...other
   } = props
+  console.log('AutoComplete', props)
   //@ts-ignore
   const hasKey = !!options[0]?.key
 
@@ -279,7 +280,7 @@ const AutoCompleteBase = function <T>(
     []
   )
   const cleanedValues = useMemo(
-    () => (values?.length === 0 ? null : values),
+    () => (values?.length === 0 ? undefined : values),
     [values]
   )
 
