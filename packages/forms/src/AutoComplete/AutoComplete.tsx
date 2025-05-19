@@ -26,7 +26,6 @@ const useStyles = makeG2STyles()({
     padding: '0px'
   }
 })
-const defaultEmpty = []
 
 export interface AutoCompleteBasicProps<T> extends BasicProps {
   /**
@@ -281,8 +280,7 @@ const AutoCompleteBase = function <T>(
     []
   )
   const cleanedValues = useMemo(
-    () =>
-      values === undefined || values?.length === 0 ? defaultEmpty : values,
+    () => (values === null || values?.length === 0 ? undefined : values),
     [values]
   )
 
