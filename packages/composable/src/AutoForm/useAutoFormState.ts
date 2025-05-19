@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { FormikFormParams, useFormComposable } from '../FormComposable'
-import { CommandWithFile } from '@komune-io/g2-utils'
+import { CommandWithFile, getIn, setIn } from '@komune-io/g2-utils'
 import { FormikHelpers } from 'formik'
 import { AutoFormData } from './AutoForm'
 
@@ -54,14 +54,15 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
         }
         formData?.sections.forEach((section) =>
           section.fields.forEach((field) => {
-            if (values[field.name] != undefined) {
+            const fieldValue = getIn(values, field.name)
+            if (fieldValue != undefined) {
               if (field.type === 'documentHandler') {
                 command.files.push({
-                  file: values[field.name],
+                  file: fieldValue,
                   atrKey: field.name
                 })
               } else {
-                command.command[field.name] = values[field.name]
+                setIn(command.command, field.name, fieldValue)
               }
             }
           })
