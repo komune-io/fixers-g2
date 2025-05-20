@@ -285,7 +285,6 @@ const AutoCompleteBase = function <T>(
         : values,
     [values]
   )
-  console.log(props.id, multiple, value, values, cleanedValues)
   return (
     <MuiAutocomplete<T, boolean, undefined, boolean>
       id={id}
