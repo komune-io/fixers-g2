@@ -125,7 +125,7 @@ export type AutoCompleteProps<T = any> = MergeMuiElementProps<
   Omit<MuiAutocompleteProps<T, undefined, undefined, undefined>, 'renderInput'>,
   AutoCompleteBasicProps<T>
 >
-const defaultEmpty = []
+// const defaultEmpty = []
 const defaultFilterOptions = createFilterOptions()
 export const defaultGetOptionLabel =
   (options: any[], hasKey: boolean) => (option: any) => {
