@@ -279,7 +279,10 @@ const AutoCompleteBase = function <T>(
     []
   )
   const cleanedValues = useMemo(
-    () => (values === null || values?.length === 0 ? defaultEmpty : values),
+    () =>
+      values === undefined || values === null || values?.length === 0
+        ? ''
+        : values,
     [values]
   )
   console.log(props.id, multiple, value, values, cleanedValues)
