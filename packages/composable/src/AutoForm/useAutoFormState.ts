@@ -48,7 +48,7 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
   const onSubmitCommand = useCallback(
     async (values: any, formikHelpers: FormikHelpers<any>) => {
       if (onSubmit) {
-        const command: CommandWithFile<any> = {
+        let command: CommandWithFile<any> = {
           command: {},
           files: []
         }
@@ -62,7 +62,7 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
                   atrKey: field.name
                 })
               } else {
-                setIn(command.command, field.name, fieldValue)
+                command.command = setIn(command.command, field.name, fieldValue)
               }
             }
           })
