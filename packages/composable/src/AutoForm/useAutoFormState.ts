@@ -30,14 +30,18 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
     ...formikParams
   } = params
   const initial = useMemo(() => {
-    const initialValuesCopy = { ...initialValues }
+    let initialValuesCopy = { ...initialValues }
     formData?.sections.forEach((section) =>
       section.fields.forEach((field) => {
         if (field.type === 'documentHandler') {
-          if (initialValuesCopy[field.name] && downloadDocument) {
-            initialValuesCopy[`${field.name}Uploaded`] = () =>
-              downloadDocument(field.name, initialValuesCopy[field.name])
-            initialValuesCopy[field.name] = undefined
+          const fieldValue = getIn(initialValuesCopy, field.name)
+          if (fieldValue && downloadDocument) {
+            initialValuesCopy = setIn(
+              initialValuesCopy,
+              `${field.name}Uploaded`,
+              () => downloadDocument(field.name, fieldValue)
+            )
+            initialValuesCopy = setIn(initialValuesCopy, field.name, undefined)
           }
         }
       })
