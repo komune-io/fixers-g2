@@ -12,6 +12,7 @@ import { getIn } from 'formik'
 import { SxProps, Theme } from '@mui/material'
 import {
   Condition,
+  evalEnableConditions,
   requiredFieldConditions,
   validateConditions
 } from '../../Conditions'
@@ -153,6 +154,8 @@ export const useFieldRenderProps = (
         props,
         Math.ceil(gridIndex / (props.gridColumnNumber ?? 2))
       )
+
+      const enabled = evalEnableConditions(field.conditions, formState.values)
       return {
         basicProps: formProps,
         formState: formState,
@@ -160,6 +163,7 @@ export const useFieldRenderProps = (
         element: {
           params: {
             orientation,
+            disabled: !enabled,
             ...field.params
           },
           type: field.type,
