@@ -10,6 +10,10 @@ export interface DisplayCondition extends ConditionBase {
   type: 'display'
 }
 
+export interface EnableCondition extends ConditionBase {
+  type: 'enable'
+}
+
 export interface ValidatorCondition extends ConditionBase {
   type: 'validator'
   error: string
@@ -20,7 +24,7 @@ export interface MessageCondition extends ConditionBase {
   message: string
 }
 
-export type Condition = DisplayCondition | ValidatorCondition
+export type Condition = DisplayCondition | ValidatorCondition | EnableCondition
 export type SectionCondition = DisplayCondition | MessageCondition
 
 export const evalCondition = (
@@ -37,14 +41,29 @@ export const evalCondition = (
   return SpelExpressionEvaluator.eval(condition.expression, null, properLocals)
 }
 
-export const evalDisplayConditions = (
+export const evalConditions = (
+  type: Condition['type'],
   conditions?: ConditionBase[],
   values?: any
 ): boolean => {
   if (!conditions) return true
-  const displayConditions = conditions.filter((cond) => cond.type === 'display')
+  const displayConditions = conditions.filter((cond) => cond.type === type)
   if (displayConditions.length === 0) return true
   return displayConditions.every((cond) => evalCondition(cond, values))
+}
+
+export const evalDisplayConditions = (
+  conditions?: ConditionBase[],
+  values?: any
+): boolean => {
+  return evalConditions('display', conditions, values)
+}
+
+export const evalEnableConditions = (
+  conditions?: ConditionBase[],
+  values?: any
+): boolean => {
+  return evalConditions('enable', conditions, values)
 }
 
 export const evalMessageConditions = (
