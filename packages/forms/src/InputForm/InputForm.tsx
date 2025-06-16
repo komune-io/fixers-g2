@@ -225,6 +225,7 @@ export const InputForm: InputFormComponent = React.forwardRef(
     const defaultStyles = useInputStyles()
 
     const labelUi = useMemo(() => {
+      if (!description && !label) return <></>
       return (
         <Stack
           gap={1}
