@@ -64,33 +64,21 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
 ) => {
   const table: TableComposableType = {
     id: 'projectsTable',
-    name: {
-      en: 'Projects table',
-      fr: 'Tableau des projets'
-    },
+    name: 'Tableau des projets',
     columns: [
       {
         identifier: 'name',
-        name: {
-          en: 'Project name',
-          fr: 'Nom du projet'
-        },
+        name: 'Nom du projet',
         type: 'text'
       },
       {
         identifier: 'description',
-        name: {
-          en: 'Project description',
-          fr: 'Description du projet'
-        },
+        name: 'Description du projet',
         type: 'text'
       },
       {
         identifier: 'contact',
-        name: {
-          en: 'Contacts',
-          fr: 'Contacts'
-        },
+        name: 'Contacts',
         type: 'contact',
         style: {
           width: 150
@@ -98,10 +86,7 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
       },
       {
         identifier: 'homepage',
-        name: {
-          en: 'Home Page',
-          fr: "Page d'acceuil"
-        },
+        name: "Page d'acceuil",
         type: 'link',
         style: {
           width: 150
@@ -109,10 +94,7 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
       },
       {
         identifier: 'type',
-        name: {
-          en: 'Type',
-          fr: 'Type'
-        },
+        name: 'Type',
         type: 'chip',
         properties: {
           multiple: true,
@@ -137,10 +119,7 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
       },
       {
         identifier: 'status',
-        name: {
-          en: 'Status',
-          fr: 'Status'
-        },
+        name: 'Status',
         type: 'status',
         properties: {
           options: [
