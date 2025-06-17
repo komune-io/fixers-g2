@@ -1,21 +1,37 @@
+import { FunctionComponent, useMemo } from 'react'
 import { UseTableOptions, useTable } from '../TableV2'
 import { TableComposable, composableToColumns } from './composable'
 
-export interface UseTableComposableOptions<Data extends {}>
-  extends Omit<UseTableOptions<Data>, 'columns'> {
+export interface UseTableComposableOptions<
+  Data extends {},
+  ExtendingColumns extends Record<string, FunctionComponent>
+> extends Omit<UseTableOptions<Data>, 'columns'> {
   /**
    * The composable template
    */
-  tableComposable: TableComposable
+  tableComposable: TableComposable<ExtendingColumns>
+  extendingColumns?: ExtendingColumns
 }
 
-export const useTableComposable = <Data extends {} = {}>(
-  params: UseTableComposableOptions<Data>
+export const useTableComposable = <
+  Data extends {} = {},
+  ExtendingColumns extends Record<string, FunctionComponent> = {}
+>(
+  params: UseTableComposableOptions<Data, ExtendingColumns>
 ) => {
-  const { tableComposable, ...rest } = params
+  const { tableComposable, extendingColumns, ...rest } = params
 
-  return useTable({
-    columns: composableToColumns<Data>(tableComposable),
+  const columns = useMemo(
+    () =>
+      composableToColumns<Data, ExtendingColumns>(
+        tableComposable,
+        extendingColumns
+      ),
+    [tableComposable, extendingColumns]
+  )
+
+  return useTable<Data>({
+    columns,
     ...rest
   })
 }

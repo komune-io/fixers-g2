@@ -63,7 +63,10 @@ export {
   TableCellStatus,
   TableCellStatusProps,
   TableCellTag,
-  TableCellTagProps
+  TableCellTagProps,
+  ComposableColumns,
+  basicColumns,
+  BasicComposableColumns
 } from './ColumnFactory'
 export {
   G2Row,
@@ -73,6 +76,14 @@ export {
   useTable,
   UseTableOptions
 } from './TableV2'
+export {
+  ComposableColumn,
+  ComposableColumnBase,
+  TableComposable,
+  composableToColumns,
+  UseTableComposableOptions,
+  useTableComposable
+} from './TableComposable'
 
 export { LimitedList, LimitedListProps } from './LimitedList'
 export {

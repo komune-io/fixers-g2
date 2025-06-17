@@ -30,7 +30,7 @@ export type ComposableColumns<
 > = {
   [K in keyof columns]: {
     type: K
-    properties: ComponentProps<columns[K]>
+    properties?: ComponentProps<columns[K]>
   }
 }[keyof columns]
 
