@@ -1,11 +1,12 @@
 import { getIn } from '@komune-io/g2-utils'
 import { basicColumns, ComposableColumns } from '../ColumnFactory'
-import { G2ColumnDef } from '../TableV2'
+import { G2ColumnDef, UseTableOptions } from '../TableV2'
 import React, { FunctionComponent } from 'react'
 
 export interface TableComposable<
+  Data extends {} = {},
   ExtendingColumns extends Record<string, FunctionComponent> = {}
-> {
+> extends Omit<UseTableOptions<Data>, 'columns'> {
   id?: string
   label?: string
   columns: ComposableColumn<ExtendingColumns>[]
@@ -27,7 +28,7 @@ export const composableToColumns = <
   Data extends {} = {},
   ExtendingColumns extends Record<string, FunctionComponent> = {}
 >(
-  table: TableComposable<ExtendingColumns>,
+  table: TableComposable<Data, ExtendingColumns>,
   extendingColumns?: ExtendingColumns
 ): G2ColumnDef<Data>[] => {
   const generators = {

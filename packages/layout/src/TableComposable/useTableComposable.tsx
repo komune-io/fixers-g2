@@ -9,7 +9,7 @@ export interface UseTableComposableOptions<
   /**
    * The composable template
    */
-  tableComposable: TableComposable<ExtendingColumns>
+  tableComposable?: TableComposable<Data, ExtendingColumns>
   extendingColumns?: ExtendingColumns
 }
 
@@ -23,10 +23,12 @@ export const useTableComposable = <
 
   const columns = useMemo(
     () =>
-      composableToColumns<Data, ExtendingColumns>(
-        tableComposable,
-        extendingColumns
-      ),
+      tableComposable
+        ? composableToColumns<Data, ExtendingColumns>(
+            tableComposable,
+            extendingColumns
+          )
+        : [],
     [tableComposable, extendingColumns]
   )
 
