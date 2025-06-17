@@ -5,6 +5,7 @@ import { useTableComposable } from './useTableComposable'
 
 import { TableComposable as TableComposableType } from './composable'
 import { BrowserRouter } from 'react-router-dom'
+import { TableCellText } from '../ColumnFactory'
 
 export default {
   title: 'Layout/TableComposable',
@@ -62,58 +63,48 @@ const data: any[] = [
 export const TableComposable: StoryFn<TableV2BasicProps> = (
   args: TableV2BasicProps
 ) => {
-  const table: TableComposableType = {
+  const extendings = { test: TableCellText }
+  const table: TableComposableType<typeof extendings> = {
     id: 'projectsTable',
-    name: {
-      en: 'Projects table',
-      fr: 'Tableau des projets'
-    },
+    label: 'Tableau des projets',
+
     columns: [
       {
-        identifier: 'name',
-        name: {
-          en: 'Project name',
-          fr: 'Nom du projet'
-        },
-        type: 'text'
+        label: 'Nom du projet',
+        type: 'text',
+        value: 'name'
       },
       {
-        identifier: 'description',
-        name: {
-          en: 'Project description',
-          fr: 'Description du projet'
-        },
-        type: 'text'
+        label: 'Description du projet',
+        type: 'text',
+        value: 'description'
       },
       {
-        identifier: 'contact',
-        name: {
-          en: 'Contacts',
-          fr: 'Contacts'
-        },
+        label: 'Contacts',
         type: 'contact',
+        value: {
+          email: 'contact.email',
+          phone: 'contact.phone'
+        },
         style: {
           width: 150
         }
       },
       {
-        identifier: 'homepage',
-        name: {
-          en: 'Home Page',
-          fr: "Page d'acceuil"
-        },
+        label: "Page d'acceuil",
         type: 'link',
+        value: {
+          label: 'homePage.label',
+          url: 'homePage.url'
+        },
         style: {
           width: 150
         }
       },
       {
-        identifier: 'type',
-        name: {
-          en: 'Type',
-          fr: 'Type'
-        },
+        label: 'Type',
         type: 'chip',
+        value: 'type',
         properties: {
           multiple: true,
           options: [
@@ -136,12 +127,9 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
         }
       },
       {
-        identifier: 'status',
-        name: {
-          en: 'Status',
-          fr: 'Status'
-        },
+        label: 'Status',
         type: 'status',
+        value: 'status',
         properties: {
           options: [
             {
@@ -165,9 +153,10 @@ export const TableComposable: StoryFn<TableV2BasicProps> = (
     ]
   }
 
-  const tableState = useTableComposable({
+  const tableState = useTableComposable<typeof data, typeof extendings>({
     data: data,
-    tableComposable: table
+    tableComposable: table,
+    extendingColumns: extendings
   })
   return (
     <BrowserRouter>
