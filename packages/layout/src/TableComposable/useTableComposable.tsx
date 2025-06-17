@@ -33,6 +33,7 @@ export const useTableComposable = <
   )
 
   return useTable<Data>({
+    ...tableComposable,
     columns,
     ...rest
   })
