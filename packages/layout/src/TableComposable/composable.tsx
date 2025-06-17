@@ -6,7 +6,7 @@ import React, { FunctionComponent } from 'react'
 export interface TableComposable<
   Data extends {} = {},
   ExtendingColumns extends Record<string, FunctionComponent> = {}
-> extends Omit<UseTableOptions<Data>, 'columns'> {
+> extends Omit<UseTableOptions<Data>, 'columns' | 'data'> {
   id?: string
   label?: string
   columns: ComposableColumn<ExtendingColumns>[]
