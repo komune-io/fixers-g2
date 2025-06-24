@@ -64,11 +64,12 @@ export const TableContainer = styled(BasicTableContainer)((props) => {
           pointerEvents: 'none'
         }
       : undefined,
-    '& .AruiTable-tableCell :is(button, a, label)': getRowLink
-      ? {
-          pointerEvents: 'auto'
-        }
-      : undefined
+    '& .AruiTable-tableCell :is(button, a, label, .AruiTooltip-root)':
+      getRowLink
+        ? {
+            pointerEvents: 'auto'
+          }
+        : undefined
   }
   if (variant === 'grounded') {
     return {

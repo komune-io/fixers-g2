@@ -1,5 +1,6 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
-import React, { useMemo } from 'react'
+import React from 'react'
+import { ElevatedRowsLoading } from './ElevatedRowsLoading'
 
 interface ElevatedLoadingProps {
   expectedSize: number
@@ -7,25 +8,6 @@ interface ElevatedLoadingProps {
 
 export const ElevatedLoading = (props: ElevatedLoadingProps) => {
   const { expectedSize } = props
-  const rows = useMemo(() => {
-    const display: JSX.Element[] = []
-    for (let i = 0; i < expectedSize; i++) {
-      display.push(
-        <Skeleton
-          key={i}
-          animation='wave'
-          variant='rectangular'
-          sx={{
-            height: '42px',
-            width: '100%',
-            margin: '10px 0',
-            borderRadius: (theme) => `${theme.shape.borderRadius}px`
-          }}
-        />
-      )
-    }
-    return display
-  }, [expectedSize])
   return (
     <Stack
       sx={{
@@ -56,7 +38,7 @@ export const ElevatedLoading = (props: ElevatedLoadingProps) => {
           <Skeleton animation='wave' />
         </Typography>
       </Stack>
-      {rows}
+      <ElevatedRowsLoading expectedSize={expectedSize} />
     </Stack>
   )
 }

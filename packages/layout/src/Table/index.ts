@@ -1,3 +1,7 @@
 export * from './types'
 export * from './Table'
 export * from './TableContainer'
+export * from './ElevatedLoading'
+export * from './ElevatedRowsLoading'
+export * from './GroundedLoading'
+export * from './GroundedRowsLoading'
