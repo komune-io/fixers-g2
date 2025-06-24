@@ -45,20 +45,20 @@ export const composableToColumns = <
       id: value ? JSON.stringify(value) : type.toString(),
       header: label,
       cell: ({ row }) => {
-        let value: any = undefined
+        let retrievedValue: any = undefined
         const path = value
 
         if (typeof path === 'string') {
-          value = getIn(row.original, path)
+          retrievedValue = getIn(row.original, path)
         } else if (typeof path === 'object' && Object.keys(path).length > 0) {
-          value = Object.keys(path).reduce((acc, key) => {
+          retrievedValue = Object.keys(path).reduce((acc, key) => {
             acc[key] = getIn(row.original, path[key])
             return acc
           }, {})
         }
         const props: any = {
           ...properties,
-          value
+          value: retrievedValue
         }
         return <Component {...props} />
       },
