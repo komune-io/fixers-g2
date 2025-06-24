@@ -4,13 +4,13 @@ import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { TableContainerProps } from '@mui/material'
 import { TableContainer } from '../Table/TableContainer'
 import { cx } from '@emotion/css'
-import { ElevatedLoading } from '../Table/ElevatedLoading'
-import { GroundedLoading } from '../Table/GroundedLoading'
 import { TableBase } from './TableBase'
 import { Pagination } from '@komune-io/g2-components'
 import { TableClasses, TableStyles } from '../Table/Table'
 import { LinkProps } from 'react-router-dom'
 import { DndContainer } from './DndContainer'
+
+export type SortOrder = 'ASC' | 'DSC' | undefined
 
 export type TableState<Data extends {}> = Table<Data>
 
@@ -96,6 +96,14 @@ export interface TableV2BasicProps<Data extends {}> extends BasicProps {
    */
   onDragRow?: (oldRowId: string | number, newRowId: string | number) => void
   /**
+   * The callback when a column is sorted
+   */
+  onSortingChange?: (sorting: Record<string, SortOrder>) => void
+  /**
+   * The state of the sorting in the table
+   */
+  sortState?: Record<string, SortOrder>
+  /**
    * The list of the data ids, only required for DnD features
    */
   dataIds?: string[]
@@ -138,6 +146,8 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
     onDragRow,
     sx,
     dataIds,
+    onSortingChange,
+    sortState,
     ...other
   } = props
 
@@ -179,27 +189,23 @@ export const TableV2 = <Data extends {}>(props: TableV2Props<Data>) => {
         {...other}
       >
         {header}
-        {isLoading &&
-          (variant === 'elevated' ? (
-            <ElevatedLoading expectedSize={expectedSize} />
-          ) : (
-            <GroundedLoading expectedSize={expectedSize} />
-          ))}
-        {!isLoading && (
-          <TableBase
-            getRowLink={getRowLink}
-            tableState={tableState}
-            withFooter={withFooter}
-            classes={classes}
-            onRowClicked={onRowClicked}
-            variant={variant}
-            renderSubComponent={renderSubComponent}
-            renderRowHoveredComponent={renderRowHoveredComponent}
-            styles={styles}
-            expandInRow={expandInElevatedRow}
-            additionalRowsProps={additionalRowsProps}
-          />
-        )}
+        <TableBase
+          getRowLink={getRowLink}
+          tableState={tableState}
+          withFooter={withFooter}
+          classes={classes}
+          onRowClicked={onRowClicked}
+          variant={variant}
+          renderSubComponent={renderSubComponent}
+          renderRowHoveredComponent={renderRowHoveredComponent}
+          styles={styles}
+          expandInRow={expandInElevatedRow}
+          additionalRowsProps={additionalRowsProps}
+          onSortingChange={onSortingChange}
+          sortState={sortState}
+          isLoading={isLoading}
+          expectedSize={expectedSize}
+        />
       </TableContainer>
       {isPaginated ? (
         <Pagination

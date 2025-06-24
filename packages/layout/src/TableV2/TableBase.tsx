@@ -1,6 +1,7 @@
 import { cx } from '@emotion/css'
 import {
   Table as MuiTable,
+  Stack,
   TableBody,
   TableCell,
   TableCellBaseProps,
@@ -13,8 +14,15 @@ import { TableRow as G2TableRow } from './TableRow'
 import { Table, flexRender, Row } from '@tanstack/react-table'
 import React from 'react'
 import { LinkProps } from 'react-router-dom'
-import { TableClasses, TableStyles } from '../Table'
+import {
+  ElevatedRowsLoading,
+  GroundedRowsLoading,
+  TableClasses,
+  TableStyles
+} from '../Table'
 import { G2ColumnDef } from './useTable'
+import { SortOrder } from './TableV2'
+import { SouthRounded } from '@mui/icons-material'
 
 export interface TableBaseProps<Data extends {}> {
   /**
@@ -40,6 +48,14 @@ export interface TableBaseProps<Data extends {}> {
    */
   getRowLink?: (row: Row<Data>) => LinkProps
   /**
+   * The callback when a column is sorted
+   */
+  onSortingChange?: (sorting: Record<string, SortOrder>) => void
+  /**
+   * The state of the sorting in the table
+   */
+  sortState?: Record<string, SortOrder>
+  /**
    * The classes applied to the different part of the component
    */
   classes?: TableClasses
@@ -55,10 +71,22 @@ export interface TableBaseProps<Data extends {}> {
   expandInRow: boolean
   renderRowHoveredComponent?: (row: Row<Data>) => JSX.Element
   additionalRowsProps?: Record<string, any>
+  isLoading?: boolean
+  expectedSize: number
 }
 
 export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
-  const { classes, styles, tableState, withFooter, variant } = props
+  const {
+    classes,
+    styles,
+    tableState,
+    withFooter,
+    variant,
+    sortState,
+    onSortingChange,
+    isLoading,
+    expectedSize
+  } = props
 
   //@ts-ignore
   const TableComponent: React.ElementType =
@@ -79,17 +107,34 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
   const TableCellComponent: React.ElementType<TableCellBaseProps> =
     variant === 'elevated' ? 'div' : undefined
 
-  const rowsDisplay = tableState.getRowModel().rows.map((row) => {
-    return (
-      <G2TableRow
-        {...props}
-        key={tableState._getRowId(row.original, row.index)}
-        tableCellComponent={TableCellComponent}
-        tableRowComponent={TableRowComponent}
-        row={row}
+  const columnsNumber =
+    tableState.getAllColumns().length > 0
+      ? tableState.getAllColumns().length
+      : 4
+
+  const loadingDisplay =
+    variant === 'elevated' ? (
+      <ElevatedRowsLoading expectedSize={expectedSize} />
+    ) : (
+      <GroundedRowsLoading
+        expectedSize={expectedSize}
+        columnsNumber={columnsNumber}
       />
     )
-  })
+
+  const rowsDisplay = isLoading
+    ? loadingDisplay
+    : tableState.getRowModel().rows.map((row) => {
+        return (
+          <G2TableRow
+            {...props}
+            key={tableState._getRowId(row.original, row.index)}
+            tableCellComponent={TableCellComponent}
+            tableRowComponent={TableRowComponent}
+            row={row}
+          />
+        )
+      })
 
   const headerDisplay = tableState.getHeaderGroups().map((headerGroup) => (
     <TableRow
@@ -107,6 +152,17 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
     >
       {headerGroup.headers.map((header) => {
         const column = header.column.columnDef as G2ColumnDef<Data>
+        const sort = column.id && sortState ? sortState[column.id] : undefined
+        const sortable = column.sortable
+        const onSort = () => {
+          if (sortable && onSortingChange && column.id) {
+            onSortingChange({
+              ...sortState,
+              [column.id]:
+                sort === 'ASC' ? 'DSC' : sort === 'DSC' ? undefined : 'ASC'
+            })
+          }
+        }
         return (
           <TableCell
             component={TableCellComponent}
@@ -116,24 +172,40 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
               'AruiTable-tableHeaderCell',
               classes?.tableHeaderCell
             )}
+            role={sortable ? 'button' : undefined}
+            tabIndex={sortable ? 0 : undefined}
+            onClick={onSort}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') onSort()
+            }}
             style={{ ...column.style, ...styles?.tableHeaderCell }}
-            sx={
-              variant === 'elevated'
+            sx={{
+              ...(variant === 'elevated'
                 ? {
                     flex: '100 0 auto',
                     width: '100px'
                   }
-                : undefined
-            }
+                : undefined),
+              cursor: sortable ? 'pointer' : undefined
+            }}
             variant={variant === 'grounded' ? 'head' : undefined}
           >
-            {header.id !== 'selection' ? (
-              <Typography variant='subtitle1'>
-                {flexRender(column.header, header.getContext())}
-              </Typography>
-            ) : (
-              flexRender(column.header, header.getContext())
-            )}
+            <Stack direction='row' alignItems='center' gap={2}>
+              {header.id !== 'selection' ? (
+                <Typography variant='subtitle1'>
+                  {flexRender(column.header, header.getContext())}
+                </Typography>
+              ) : (
+                flexRender(column.header, header.getContext())
+              )}
+              <SouthRounded
+                sx={{
+                  transform: sort === 'DSC' ? 'rotate(0deg)' : 'rotate(180deg)',
+                  transition: 'transform 0.2s',
+                  visibility: sort ? 'visible' : 'hidden'
+                }}
+              />
+            </Stack>
           </TableCell>
         )
       })}

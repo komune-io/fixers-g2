@@ -57,16 +57,18 @@ const data2: Data[] = [
   }
 ]
 
-const columns: ColumnDef<Data>[] = [
+const columns: G2ColumnDef<Data>[] = [
   {
     header: 'Id',
     id: 'id',
-    cell: ({ row }) => <Typography>{row.original.id}</Typography>
+    cell: ({ row }) => <Typography>{row.original.id}</Typography>,
+    sortable: true
   },
   {
     header: 'Name',
     id: 'name',
-    cell: ({ row }) => <Typography>{row.original.name}</Typography>
+    cell: ({ row }) => <Typography>{row.original.name}</Typography>,
+    sortable: true
   },
   {
     header: 'Is he relax ?',
@@ -81,6 +83,7 @@ export const TableV2: StoryFn<TableV2BasicProps<Data>> = (
   args: TableV2BasicProps<Data>
 ) => {
   const [page, setPage] = useState<number>(1)
+  const [sort, setSort] = useState({})
   const tableState = useTable({
     data: page === 1 ? data1 : data2,
     columns: columns,
@@ -94,6 +97,8 @@ export const TableV2: StoryFn<TableV2BasicProps<Data>> = (
       totalPages={2}
       onPageChange={(newPage) => setPage(newPage)}
       tableState={tableState}
+      onSortingChange={setSort}
+      sortState={sort}
       {...args}
     />
   )

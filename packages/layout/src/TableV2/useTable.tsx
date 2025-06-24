@@ -18,6 +18,7 @@ import { DragIndicator } from '@mui/icons-material'
 export type G2ColumnDef<Data extends {}> = ColumnDef<Data> & {
   className?: string
   style?: React.CSSProperties
+  sortable?: boolean
 }
 
 export interface UseTableOptions<Data extends {}>
