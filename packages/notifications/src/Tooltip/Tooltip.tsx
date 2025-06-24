@@ -3,6 +3,7 @@ import {
   Tooltip as MuiTooltip,
   TooltipProps as MuiTooltipProps
 } from '@mui/material'
+import { cx } from '@emotion/css'
 
 export interface TooltipProps extends Omit<MuiTooltipProps, 'title'> {
   /**
@@ -26,7 +27,7 @@ const TooltipBase = (
   props: TooltipProps,
   ref: React.ForwardedRef<HTMLElement>
 ) => {
-  const { children, helperText, classes, open, ...other } = props
+  const { children, helperText, classes, open, className, ...other } = props
 
   return (
     <MuiTooltip
@@ -58,6 +59,7 @@ const TooltipBase = (
       open={open}
       title={helperText}
       placement='bottom'
+      className={cx('AruiTooltip-root', className)}
     >
       {children}
     </MuiTooltip>
