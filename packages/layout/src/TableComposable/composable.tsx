@@ -1,6 +1,6 @@
 import { getIn } from '@komune-io/g2-utils'
 import { basicColumns, ComposableColumns } from '../ColumnFactory'
-import { G2ColumnDef, UseTableOptions } from '../TableV2'
+import { ColumnBase, G2ColumnDef, UseTableOptions } from '../TableV2'
 import React, { FunctionComponent } from 'react'
 
 export interface TableComposable<
@@ -12,11 +12,9 @@ export interface TableComposable<
   columns: ComposableColumn<ExtendingColumns>[]
 }
 
-export interface ComposableColumnBase {
+export interface ComposableColumnBase extends ColumnBase {
   label?: string
   value?: string | Record<string, string>
-  className?: string
-  style?: React.CSSProperties
 }
 
 export type ComposableColumn<
@@ -37,18 +35,18 @@ export const composableToColumns = <
   }
 
   return table.columns.map((column) => {
-    const Component = generators[column.type as keyof typeof generators]
+    const { value, label, properties, type, ...base } = column
+    const Component = generators[type as keyof typeof generators]
     if (!Component) {
-      throw new Error(
-        `Column type "${column.type.toString()}" is not supported`
-      )
+      throw new Error(`Column type "${type.toString()}" is not supported`)
     }
+
     const columnDef: G2ColumnDef<Data> = {
-      id: column.value ? JSON.stringify(column.value) : column.type.toString(),
-      header: column.label,
+      id: value ? JSON.stringify(value) : type.toString(),
+      header: label,
       cell: ({ row }) => {
         let value: any = undefined
-        const path = column.value
+        const path = value
 
         if (typeof path === 'string') {
           value = getIn(row.original, path)
@@ -59,11 +57,12 @@ export const composableToColumns = <
           }, {})
         }
         const props: any = {
-          ...column.properties,
+          ...properties,
           value
         }
         return <Component {...props} />
-      }
+      },
+      ...base
     }
     return columnDef
   })
