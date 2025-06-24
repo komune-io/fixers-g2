@@ -156,11 +156,14 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
         const sortable = column.sortable
         const onSort = () => {
           if (sortable && onSortingChange && column.id) {
-            onSortingChange({
+            const state: Record<string, SortOrder> = {
               ...sortState,
-              [column.id]:
-                sort === 'ASC' ? 'DSC' : sort === 'DSC' ? undefined : 'ASC'
-            })
+              [column.id]: sort === 'ASC' ? 'DSC' : 'ASC'
+            }
+            if (sort === 'DSC') {
+              delete state[column.id]
+            }
+            onSortingChange(state)
           }
         }
         return (

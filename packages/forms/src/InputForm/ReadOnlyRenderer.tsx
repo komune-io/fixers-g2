@@ -4,6 +4,7 @@ import React, { useMemo } from 'react'
 import { InputFormProps } from './InputForm'
 import { Link, LinkProps } from 'react-router-dom'
 import { Option } from '../Select'
+import { LimitedList } from '../LimitedList'
 
 const getLabelOfOption = (
   option: any,
@@ -30,6 +31,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     getOptionLabel,
     readOnlyElement,
     emptyValueInReadOnly,
+    chipLimit,
     size
   } = props
 
@@ -73,35 +75,34 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     valuesIsEmpty
   ])
 
-  const renderTag = useMemo(() => {
+  const renderTag = useMemo((): Option[] | undefined => {
     if (readOnlyType !== 'chip') return undefined
     if (!multiple || valuesIsEmpty) {
       const option = hoptions?.find((o) => o.key === value)
-      return (
-        <Chip
-          label={textToDisplay}
-          color={
+      return [
+        {
+          key: option?.key ?? value,
+          label: textToDisplay,
+          color:
             option?.color ??
             (getReadOnlyChipColor && getReadOnlyChipColor(textToDisplay))
-          }
-        />
-      )
+        }
+      ]
     } else if (hoptions && values) {
-      return values.map((value) => {
-        const option = hoptions.find((o) => o.key === value)
-        if (!option) return undefined
-        const label = getLabelOfOption(option, getOptionLabel)
-        return (
-          <Chip
-            key={option.key.toString()}
-            label={`${label}`}
-            color={
+      return values
+        .map((value) => {
+          const option = hoptions.find((o) => o.key === value)
+          if (!option) return undefined
+          const label = getLabelOfOption(option, getOptionLabel)
+          return {
+            key: option.key.toString(),
+            label: `${label}`,
+            color:
               option?.color ??
               (getReadOnlyChipColor && getReadOnlyChipColor(option?.key))
-            }
-          />
-        )
-      })
+          }
+        })
+        .filter(Boolean) as Option[]
     }
     return
   }, [readOnlyType, textToDisplay, value, values, hoptions, valuesIsEmpty])
@@ -171,16 +172,11 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
   }
   if (readOnlyType === 'chip') {
     return (
-      <Stack
-        direction='row'
-        alignItems='center'
-        flexWrap='wrap'
-        sx={{
-          gap: (theme) => theme.spacing(0.5)
-        }}
-      >
-        {renderTag}
-      </Stack>
+      <LimitedList
+        limit={chipLimit}
+        values={renderTag}
+        listedComponent={Chip}
+      />
     )
   }
   if (readOnlyType === 'customElement') {

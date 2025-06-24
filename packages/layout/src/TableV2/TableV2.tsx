@@ -10,7 +10,7 @@ import { TableClasses, TableStyles } from '../Table/Table'
 import { LinkProps } from 'react-router-dom'
 import { DndContainer } from './DndContainer'
 
-export type SortOrder = 'ASC' | 'DSC' | undefined
+export type SortOrder = 'ASC' | 'DSC'
 
 export type TableState<Data extends {}> = Table<Data>
 
