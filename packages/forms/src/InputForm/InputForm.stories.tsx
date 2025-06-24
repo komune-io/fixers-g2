@@ -10,10 +10,10 @@ import {
   Stories
 } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { StatusTag } from '@komune-io/g2-notifications'
 import { InputFormClasses, InputFormStyles } from './docs'
-import { Option } from '../Select'
+import { LimitedList } from '../LimitedList'
 
 export default {
   title: 'Forms/InputForm',
@@ -131,18 +131,13 @@ export const InputFormReadOnlyChip: StoryFn<InputFormBasicProps> = (
       readOnly
       readOnlyType='chip'
       getReadOnlyChipColor={() => '#E56643'}
+      chipLimit={1}
     />
   )
 }
 
 const CustomStatusTag = ({ values }) => {
-  return (
-    <Stack>
-      {values.map((value: Option) => (
-        <StatusTag label={value.label} />
-      ))}
-    </Stack>
-  )
+  return <LimitedList listedComponent={StatusTag} values={values} />
 }
 
 export const InputFormReadOnlyCustom: StoryFn<InputFormBasicProps> = (

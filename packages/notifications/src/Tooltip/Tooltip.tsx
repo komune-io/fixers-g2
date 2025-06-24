@@ -3,31 +3,8 @@ import {
   Tooltip as MuiTooltip,
   TooltipProps as MuiTooltipProps
 } from '@mui/material'
-import {
-  MergeMuiElementProps,
-  BasicProps,
-  makeG2STyles
-} from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()((theme) => ({
-  root: {
-    background: theme.colors.primary,
-    fontSize: '13px',
-    padding: theme.spacing,
-    boxShadow: theme.shadows[1]
-  },
-  arrow: {
-    color: theme.colors.primary,
-    width: '16px !important',
-    height: '12px !important',
-    marginTop: '-11px !important',
-    '&::before': {
-      borderRadius: '2px'
-    }
-  }
-}))
-
-export interface TooltipBasicProps extends BasicProps {
+export interface TooltipProps extends Omit<MuiTooltipProps, 'title'> {
   /**
    * The element to tooltiped
    */
@@ -35,7 +12,7 @@ export interface TooltipBasicProps extends BasicProps {
   /**
    * The text that will be displayed in the tooltip
    */
-  helperText: string
+  helperText: React.ReactNode
   /**
    * Indicates wether the tooltip is open or not. If open is undefined the openning of the tooltip
    * will be actionned by the hover on the given element.
@@ -45,38 +22,37 @@ export interface TooltipBasicProps extends BasicProps {
   open?: boolean
 }
 
-export type TooltipProps = MergeMuiElementProps<
-  Omit<MuiTooltipProps, 'title'>,
-  TooltipBasicProps
->
-
 const TooltipBase = (
   props: TooltipProps,
   ref: React.ForwardedRef<HTMLElement>
 ) => {
-  const {
-    children,
-    helperText,
-    style,
-    className,
-    id,
-    classes,
-    open,
-    ...other
-  } = props
+  const { children, helperText, classes, open, ...other } = props
 
-  const defaultStyles = useStyles()
   return (
     <MuiTooltip
       ref={ref}
-      id={id}
-      className={defaultStyles.cx('AruiTooltip-root', className)}
-      style={style}
       arrow
-      classes={{
-        ...classes,
-        tooltip: defaultStyles.classes.root,
-        arrow: defaultStyles.classes.arrow
+      slotProps={{
+        tooltip: {
+          sx: {
+            bgcolor: 'white',
+            fontSize: '13px',
+            color: (theme) => theme.palette.text.primary,
+            padding: 1,
+            boxShadow: (theme) => theme.shadows[3]
+          }
+        },
+        arrow: {
+          sx: {
+            color: 'white',
+            width: '16px !important',
+            height: '12px !important',
+            marginTop: '-11px !important',
+            '&::before': {
+              borderRadius: '2px'
+            }
+          }
+        }
       }}
       {...other}
       open={open}
