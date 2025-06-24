@@ -74,7 +74,10 @@ export {
   TableV2,
   TableV2Props,
   useTable,
-  UseTableOptions
+  UseTableOptions,
+  ColumnBase,
+  SortOrder,
+  TableState
 } from './TableV2'
 export {
   ComposableColumn,
