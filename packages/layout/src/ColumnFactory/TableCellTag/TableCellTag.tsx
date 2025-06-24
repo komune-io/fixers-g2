@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react'
-import { LimitedList, LimitedListProps } from '../../LimitedList'
-import { Option, SmartKey } from '@komune-io/g2-forms'
+import {
+  Option,
+  SmartKey,
+  LimitedList,
+  LimitedListProps
+} from '@komune-io/g2-forms'
 import { Chip } from '@komune-io/g2-components'
 import { StatusTag } from '@komune-io/g2-notifications'
 
