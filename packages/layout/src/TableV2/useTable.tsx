@@ -15,11 +15,13 @@ import { Arrow } from '../icons'
 import { useSortable } from '@dnd-kit/sortable'
 import { DragIndicator } from '@mui/icons-material'
 
-export type G2ColumnDef<Data extends {}> = ColumnDef<Data> & {
+export type ColumnBase = {
   className?: string
   style?: React.CSSProperties
   sortable?: boolean
 }
+
+export type G2ColumnDef<Data extends {}> = ColumnDef<Data> & ColumnBase
 
 export interface UseTableOptions<Data extends {}>
   extends Omit<TableOptions<Data>, 'getCoreRowModel' | 'columns'> {
