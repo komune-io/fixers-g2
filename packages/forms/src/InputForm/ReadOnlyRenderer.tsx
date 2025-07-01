@@ -54,6 +54,10 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       label: getLabelOfOption(option, getOptionLabel)
     }))
   }, [options, getOptionKey, getOptionLabel, value, values])
+  console.log('value', value)
+  console.log('values', values)
+  console.log('options', options)
+  console.log('hoptions', hoptions)
 
   const valuesIsEmpty =
     (props.value == undefined || props.value === '') &&
