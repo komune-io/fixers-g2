@@ -274,7 +274,6 @@ export const InputForm: InputFormComponent = React.forwardRef(
       id
     }
 
-    console.log(props)
     const inputUi = isLoading ? (
       <LoadingRenderer {...props} />
     ) : readOnly ? (
