@@ -126,7 +126,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
   const renderTag = useMemo((): Option[] | undefined => {
     if (readOnlyType !== 'chip') return undefined
     if (!multiple || valuesIsEmpty) {
-      const option = hoptions?.find((o) => o.key === hValue)
+      const option = hoptions?.find(
+        (o) => o.key === hValue || o.key === hValue.key
+      )
       return [
         {
           key: option?.key ?? hValue,
@@ -139,7 +141,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     } else if (hoptions.length > 0 && hValues) {
       return hValues
         .map((value) => {
-          const option = hoptions.find((o) => o.key === value)
+          const option = hoptions.find(
+            (o) => o.key === value || o.key === value.key
+          )
           if (!option) return undefined
           return {
             key: option.key.toString(),
@@ -170,7 +174,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       readOnlyType === 'customElement'
     ) {
       return hValues.map((value) => {
-        const option = hoptions.find((o) => o.key === value)
+        const option = hoptions.find(
+          (o) => o.key === value || o.key === value.key
+        )
         if (!option) return undefined
         return (
           <Element
@@ -187,7 +193,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     ) {
       const completeValues: Option[] = []
       hValues.forEach((value) => {
-        const option = hoptions.find((o) => o.key === value)
+        const option = hoptions.find(
+          (o) => o.key === value || o.key === value.key
+        )
         if (option) completeValues.push(option)
       })
       return <Element values={completeValues} />
