@@ -87,8 +87,6 @@ export {
   UseTableComposableOptions,
   useTableComposable
 } from './TableComposable'
-
-export { LimitedList, LimitedListProps } from './LimitedList'
 export {
   SidePageStepper,
   SidePageStepperProps,

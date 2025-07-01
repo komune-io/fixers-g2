@@ -105,6 +105,10 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
    */
   readOnlyElement?: React.ElementType
   /**
+   * The limit of the chips displayed in the input when `readOnlyType` is `"chip"`.
+   */
+  chipLimit?: number
+  /**
    * If you want to add additionals element near to the input use this prop
    */
   createInputContainer?: (input: JSX.Element) => JSX.Element
