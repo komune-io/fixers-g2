@@ -12,7 +12,8 @@ import {
   SelectProps,
   SelectClasses,
   SelectStyles,
-  SmartKey
+  SmartKey,
+  Option
 } from '../Select'
 import {
   TextField,
@@ -93,7 +94,7 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
   /**
    * This function is used to attribute a chip color to the value to be displayed (if not provided the default color will be used)
    */
-  getReadOnlyChipColor?: (value: SmartKey) => string | undefined
+  getReadOnlyChipColor?: (option: Option | any) => string | undefined
   /**
    * attribute a link to a readOnly text
    */

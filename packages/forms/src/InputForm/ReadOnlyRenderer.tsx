@@ -23,19 +23,37 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     inputType,
     value,
     values,
-    choices,
     options,
     multiple,
     getReadOnlyChipColor,
     getReadOnlyTextUrl,
     getOptionLabel,
+    getOptionKey,
     readOnlyElement,
     emptyValueInReadOnly,
     chipLimit,
     size
   } = props
 
-  const hoptions = options ?? choices
+  const hoptions = useMemo(() => {
+    const optionsCopy = options ? [...options] : []
+    if (typeof value === 'object') {
+      optionsCopy.push(value)
+    } else if (values && values?.length > 0 && typeof values[0] === 'object') {
+      optionsCopy.push(...values)
+    }
+    if (optionsCopy.length > 0 && !optionsCopy[0].key && getOptionKey) {
+      return optionsCopy.map((option) => ({
+        ...option,
+        label: getLabelOfOption(option, getOptionLabel),
+        key: getOptionKey(option)
+      }))
+    }
+    return optionsCopy.map((option) => ({
+      ...option,
+      label: getLabelOfOption(option, getOptionLabel)
+    }))
+  }, [options, getOptionKey, getOptionLabel, value, values])
 
   const valuesIsEmpty =
     (props.value == undefined || props.value === '') &&
@@ -49,11 +67,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     if (multiple) {
       if (hoptions && values) {
         return values
-          .map((v: any) =>
-            getLabelOfOption(
-              hoptions.find((o) => o.key === v || o.key === v.key),
-              getOptionLabel
-            )
+          .map(
+            (v: any) =>
+              hoptions.find((o) => o.key === v || o.key === v.key)?.label
           )
           .join(', ')
       }
@@ -61,7 +77,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       const option = hoptions.find(
         (c) => c.key === value || c.key === value?.key
       )
-      return getLabelOfOption(option, getOptionLabel)
+      return option?.label
     }
     return typeof value === 'string' || typeof value === 'number' ? value : ''
   }, [
@@ -70,7 +86,6 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     values,
     multiple,
     hoptions,
-    getOptionLabel,
     emptyValueInReadOnly,
     valuesIsEmpty
   ])
@@ -85,7 +100,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
           label: textToDisplay,
           color:
             option?.color ??
-            (getReadOnlyChipColor && getReadOnlyChipColor(textToDisplay))
+            (getReadOnlyChipColor && getReadOnlyChipColor(option))
         }
       ]
     } else if (hoptions && values) {
@@ -93,13 +108,12 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
         .map((value) => {
           const option = hoptions.find((o) => o.key === value)
           if (!option) return undefined
-          const label = getLabelOfOption(option, getOptionLabel)
           return {
             key: option.key.toString(),
-            label: `${label}`,
+            label: `${option.label}`,
             color:
               option?.color ??
-              (getReadOnlyChipColor && getReadOnlyChipColor(option?.key))
+              (getReadOnlyChipColor && getReadOnlyChipColor(option))
           }
         })
         .filter(Boolean) as Option[]
@@ -121,12 +135,11 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       return values.map((value) => {
         const option = hoptions.find((o) => o.key === value)
         if (!option) return undefined
-        const label = getLabelOfOption(option, getOptionLabel)
         return (
           <Element
             key={option.key.toString()}
             valueKey={option.key}
-            value={`${label}`}
+            value={`${option.label}`}
           />
         )
       })
