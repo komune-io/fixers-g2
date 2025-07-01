@@ -264,45 +264,35 @@ export const InputForm: InputFormComponent = React.forwardRef(
       )
     }, [label, classes?.label, id, styles?.label, size, description])
 
-    const inputUi = useMemo(() => {
-      const commonProps = {
-        size,
-        className: cx(classes?.input, 'AruiInputForm-input'),
-        style: styles?.input,
-        classes: inputClasses,
-        styles: inputStyles,
-        ref,
-        id
-      }
-      return isLoading ? (
-        <LoadingRenderer {...props} />
-      ) : readOnly ? (
-        <ReadOnlyRenderer {...props} />
-      ) : inputType === 'textField' ? (
-        <TextField {...other} {...commonProps} />
-      ) : inputType === 'select' ? (
-        <Select {...other} {...commonProps} />
-      ) : inputType === 'radioChoices' ? (
-        <RadioChoices {...other} {...commonProps} />
-      ) : inputType === 'multiChoices' ? (
-        <MultiChoices {...other} {...commonProps} />
-      ) : inputType === 'autoComplete' ? (
-        //@ts-ignore
-        <AutoComplete {...other} {...commonProps} />
-      ) : (
-        <DatePicker {...other} {...commonProps} />
-      )
-    }, [
-      readOnly,
-      inputType,
-      classes?.input,
-      id,
-      styles?.input,
-      ref,
+    const commonProps = {
       size,
-      emptyValueInReadOnly,
-      Object.values({ ...other })
-    ])
+      className: cx(classes?.input, 'AruiInputForm-input'),
+      style: styles?.input,
+      classes: inputClasses,
+      styles: inputStyles,
+      ref,
+      id
+    }
+
+    console.log(props)
+    const inputUi = isLoading ? (
+      <LoadingRenderer {...props} />
+    ) : readOnly ? (
+      <ReadOnlyRenderer {...props} />
+    ) : inputType === 'textField' ? (
+      <TextField {...other} {...commonProps} />
+    ) : inputType === 'select' ? (
+      <Select {...other} {...commonProps} />
+    ) : inputType === 'radioChoices' ? (
+      <RadioChoices {...other} {...commonProps} />
+    ) : inputType === 'multiChoices' ? (
+      <MultiChoices {...other} {...commonProps} />
+    ) : inputType === 'autoComplete' ? (
+      //@ts-ignore
+      <AutoComplete {...other} {...commonProps} />
+    ) : (
+      <DatePicker {...other} {...commonProps} />
+    )
 
     const container = useMemo(
       () => (createInputContainer ? createInputContainer(inputUi) : undefined),

@@ -62,10 +62,10 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
   const textToDisplay = useMemo(() => {
     if (valuesIsEmpty) return emptyValueInReadOnly
     if (inputType === 'datePicker') return new Date(value).toLocaleDateString()
-    if (inputType === 'radioChoices' && hoptions && value)
+    if (inputType === 'radioChoices' && value)
       return hoptions.find((c) => c.key === value)?.label
     if (multiple) {
-      if (hoptions && values) {
+      if (hoptions.length > 0 && values) {
         return values
           .map(
             (v: any) =>
@@ -73,7 +73,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
           )
           .join(', ')
       }
-    } else if (hoptions && value !== undefined) {
+    } else if (hoptions.length > 0 && value !== undefined) {
       const option = hoptions.find(
         (c) => c.key === value || c.key === value?.key
       )
@@ -103,7 +103,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
             (getReadOnlyChipColor && getReadOnlyChipColor(option))
         }
       ]
-    } else if (hoptions && values) {
+    } else if (hoptions.length > 0 && values) {
       return values
         .map((value) => {
           const option = hoptions.find((o) => o.key === value)
@@ -131,7 +131,11 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     const Element = readOnlyElement
     if (!multiple) {
       return <Element valueKey={value} value={textToDisplay} />
-    } else if (hoptions && values && readOnlyType === 'customElement') {
+    } else if (
+      hoptions.length > 0 &&
+      values &&
+      readOnlyType === 'customElement'
+    ) {
       return values.map((value) => {
         const option = hoptions.find((o) => o.key === value)
         if (!option) return undefined
@@ -143,7 +147,11 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
           />
         )
       })
-    } else if (hoptions && values && readOnlyType === 'customContainer') {
+    } else if (
+      hoptions.length > 0 &&
+      values &&
+      readOnlyType === 'customContainer'
+    ) {
       const completeValues: Option[] = []
       values.forEach((value) => {
         const option = hoptions.find((o) => o.key === value)
