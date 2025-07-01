@@ -47,14 +47,6 @@ export interface RadioChoicesBasicProps extends BasicProps {
   onChange?: (value: SmartKey) => void
 
   /**
-   * @deprecated use `options` instead
-   * List of options available in the option
-   *
-   * @default []
-   */
-  choices?: Choice[]
-
-  /**
    * List of options available in the option
    *
    * @default []
@@ -96,7 +88,6 @@ export const RadioChoices = React.forwardRef(
     const {
       value = '',
       name,
-      choices,
       options = [],
       className,
       onChange,
@@ -118,7 +109,7 @@ export const RadioChoices = React.forwardRef(
     })
 
     useEffect(() => {
-      ;(choices ?? options).forEach((choice) => {
+      options.forEach((choice) => {
         if (choice.editableLabel && !editableLabel.label) {
           setEditableLabel({
             key: choice.key,
@@ -126,16 +117,11 @@ export const RadioChoices = React.forwardRef(
           })
         }
       })
-    }, [options, choices])
+    }, [options])
 
     useEffect(() => {
-      if (
-        value &&
-        !(choices ?? options).find((option) => option.key === value)
-      ) {
-        const editable = (choices ?? options).find(
-          (choice) => choice.editableLabel
-        )
+      if (value && options.find((option) => option.key === value)) {
+        const editable = options.find((choice) => choice.editableLabel)
         if (editable) {
           setEditableLabel({
             key: editable.key,
@@ -164,7 +150,7 @@ export const RadioChoices = React.forwardRef(
     const defaultStyles = useInputStyles()
 
     const choicesMemoized = useMemo(() => {
-      return (choices ?? options).map((choice) => (
+      return options.map((choice) => (
         <FormControlLabel
           key={choice.key.toString()}
           value={choice.key}
@@ -195,7 +181,7 @@ export const RadioChoices = React.forwardRef(
           style={styles?.choice}
         />
       ))
-    }, [choices, options, classes?.choice, styles?.choice, editableLabel])
+    }, [options, classes?.choice, styles?.choice, editableLabel])
 
     const errorText = useMemo(
       () =>

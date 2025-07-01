@@ -178,7 +178,6 @@ TextFieldForm.args = {
       label: 'Description',
       type: 'textField',
       params: {
-        choices: [],
         disabled: true
       },
       validator: (value: string) => (!value ? 'required' : undefined),
@@ -263,7 +262,7 @@ RadioSelectForm.args = {
       label: 'From',
       type: 'radioChoices',
       params: {
-        choices: [
+        options: [
           { key: 'dollar', label: '$' },
           { key: 'euro', label: '€' }
         ]
@@ -277,7 +276,7 @@ RadioSelectForm.args = {
       type: 'radioChoices',
       params: {
         multiple: true,
-        choices: [
+        options: [
           { key: 'dollar', label: '$' },
           { key: 'euro', label: '€' }
         ]
@@ -290,7 +289,7 @@ RadioSelectForm.args = {
       label: 'Value',
       type: 'radioChoices',
       params: {
-        choices: [
+        options: [
           { key: '100', label: '100' },
           { key: '200', label: '200' }
         ],
@@ -366,7 +365,7 @@ const fullFields: AllFormComposableField[] = [
     defaultValue: '',
     validator: requiredField('Answer the question'),
     params: {
-      choices: [
+      options: [
         { key: true, label: 'Yes' },
         { key: false, label: 'No' }
       ],
@@ -471,7 +470,7 @@ const FullFieldsWithCustomDisplayField: AllFormComposableField[] = [
     customDisplay: withCustomDisplay,
     validator: requiredField('Answer the question'),
     params: {
-      choices: [
+      options: [
         { key: 'yes', label: 'Yes' },
         { key: 'no', label: 'No' }
       ]

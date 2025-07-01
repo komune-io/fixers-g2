@@ -233,7 +233,7 @@ const fields: FormField[] = [
         ? 'answer the question because you have to in order to validate this beautiful looking form'
         : undefined,
     radioChoicesProps: {
-      choices: [
+      options: [
         { key: 'yes', label: 'Yes' },
         { key: 'no', label: 'No' }
       ]

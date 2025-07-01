@@ -264,7 +264,7 @@ export const FormExample: StoryFn<InputFormBasicProps> = () => {
         label='nationality:'
         inputType='radioChoices'
         onChange={(value: string) => setform({ ...form, nationality: value })}
-        choices={[
+        options={[
           { key: 'fr', label: 'I have the french nationnality' },
           { key: 'other', label: "I don't have the french nationnality" }
         ]}
