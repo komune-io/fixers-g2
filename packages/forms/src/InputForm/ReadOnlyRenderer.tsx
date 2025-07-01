@@ -35,12 +35,42 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     size
   } = props
 
+  const hValue = useMemo(() => {
+    if (typeof value === 'object' && !value.key && getOptionKey) {
+      return {
+        ...value,
+        key: getOptionKey(value)
+      }
+    }
+    return value
+  }, [value, getOptionKey])
+
+  const hValues = useMemo(() => {
+    if (
+      values &&
+      values.length > 0 &&
+      typeof values[0] === 'object' &&
+      !values[0].key &&
+      getOptionKey
+    ) {
+      return values.map((v: any) => ({
+        ...v,
+        key: getOptionKey(v)
+      }))
+    }
+    return values
+  }, [values, getOptionKey])
+
   const hoptions = useMemo(() => {
     const optionsCopy = options ? [...options] : []
-    if (typeof value === 'object') {
-      optionsCopy.push(value)
-    } else if (values && values?.length > 0 && typeof values[0] === 'object') {
-      optionsCopy.push(...values)
+    if (typeof hValue === 'object') {
+      optionsCopy.push(hValue)
+    } else if (
+      hValues &&
+      hValues?.length > 0 &&
+      typeof hValues[0] === 'object'
+    ) {
+      optionsCopy.push(...hValues)
     }
     if (optionsCopy.length > 0 && !optionsCopy[0].key && getOptionKey) {
       return optionsCopy.map((option) => ({
@@ -53,11 +83,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       ...option,
       label: getLabelOfOption(option, getOptionLabel)
     }))
-  }, [options, getOptionKey, getOptionLabel, value, values])
-  console.log('value', value)
-  console.log('values', values)
-  console.log('options', options)
-  console.log('hoptions', hoptions)
+  }, [options, getOptionKey, getOptionLabel, hValue, hValues])
 
   const valuesIsEmpty =
     (props.value == undefined || props.value === '') &&
@@ -65,50 +91,53 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
 
   const textToDisplay = useMemo(() => {
     if (valuesIsEmpty) return emptyValueInReadOnly
-    if (inputType === 'datePicker') return new Date(value).toLocaleDateString()
-    if (inputType === 'radioChoices' && value)
-      return hoptions.find((c) => c.key === value)?.label
+    if (inputType === 'datePicker') return new Date(hValue).toLocaleDateString()
+    if (inputType === 'radioChoices' && hValue)
+      return hoptions.find((c) => c.key === hValue)?.label
     if (multiple) {
-      if (hoptions.length > 0 && values) {
-        return values
+      if (hoptions.length > 0 && hValues) {
+        return hValues
           .map(
             (v: any) =>
               hoptions.find((o) => o.key === v || o.key === v.key)?.label
           )
           .join(', ')
       }
-    } else if (hoptions.length > 0 && value !== undefined) {
+    } else if (hoptions.length > 0 && hValue !== undefined) {
       const option = hoptions.find(
-        (c) => c.key === value || c.key === value?.key
+        (c) => c.key === hValue || c.key === hValue?.key
       )
       return option?.label
     }
-    return typeof value === 'string' || typeof value === 'number' ? value : ''
+    return typeof hValue === 'string' || typeof hValue === 'number'
+      ? hValue
+      : ''
   }, [
     inputType,
-    value,
-    values,
+    hValue,
+    hValues,
     multiple,
     hoptions,
     emptyValueInReadOnly,
-    valuesIsEmpty
+    valuesIsEmpty,
+    getOptionKey
   ])
 
   const renderTag = useMemo((): Option[] | undefined => {
     if (readOnlyType !== 'chip') return undefined
     if (!multiple || valuesIsEmpty) {
-      const option = hoptions?.find((o) => o.key === value)
+      const option = hoptions?.find((o) => o.key === hValue)
       return [
         {
-          key: option?.key ?? value,
+          key: option?.key ?? hValue,
           label: textToDisplay,
           color:
             option?.color ??
             (getReadOnlyChipColor && getReadOnlyChipColor(option))
         }
       ]
-    } else if (hoptions.length > 0 && values) {
-      return values
+    } else if (hoptions.length > 0 && hValues) {
+      return hValues
         .map((value) => {
           const option = hoptions.find((o) => o.key === value)
           if (!option) return undefined
@@ -123,7 +152,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
         .filter(Boolean) as Option[]
     }
     return
-  }, [readOnlyType, textToDisplay, value, values, hoptions, valuesIsEmpty])
+  }, [readOnlyType, textToDisplay, hValue, hValues, hoptions, valuesIsEmpty])
 
   const renderCustom = useMemo(() => {
     if (
@@ -134,13 +163,13 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       return undefined
     const Element = readOnlyElement
     if (!multiple) {
-      return <Element valueKey={value} value={textToDisplay} />
+      return <Element valueKey={hValue} value={textToDisplay} />
     } else if (
       hoptions.length > 0 &&
-      values &&
+      hValues &&
       readOnlyType === 'customElement'
     ) {
-      return values.map((value) => {
+      return hValues.map((value) => {
         const option = hoptions.find((o) => o.key === value)
         if (!option) return undefined
         return (
@@ -153,23 +182,23 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       })
     } else if (
       hoptions.length > 0 &&
-      values &&
+      hValues &&
       readOnlyType === 'customContainer'
     ) {
       const completeValues: Option[] = []
-      values.forEach((value) => {
+      hValues.forEach((value) => {
         const option = hoptions.find((o) => o.key === value)
         if (option) completeValues.push(option)
       })
       return <Element values={completeValues} />
     }
     return
-  }, [readOnlyType, textToDisplay, value, values, hoptions, readOnlyElement])
+  }, [readOnlyType, textToDisplay, hValue, hValues, hoptions, readOnlyElement])
 
   const url = useMemo(() => {
-    if (!value || !getReadOnlyTextUrl) return undefined
-    return getReadOnlyTextUrl(value)
-  }, [value, getReadOnlyTextUrl])
+    if (!hValue || !getReadOnlyTextUrl) return undefined
+    return getReadOnlyTextUrl(hValue)
+  }, [hValue, getReadOnlyTextUrl])
 
   if (readOnlyType === 'text') {
     if (url)
