@@ -1,6 +1,7 @@
 import { t } from 'i18next'
 import { getTranslatedMessageOrUndefined } from '../common'
 import { enqueueSnackbar } from 'notistack'
+import { Navigate } from 'react-router-dom'
 export type HttpContentType =
   | 'application/json'
   | 'text/plain'
@@ -133,12 +134,36 @@ export const errorHandler =
         })
       }
     }
+    //@ts-ignore
+    const redirections = window._env_?.redirections
+
     if (c === 401 || c === 403) {
-      sendAlert('401')
+      if (redirections['401']) {
+        Navigate({
+          to: redirections['401'],
+          replace: true
+        })
+      } else {
+        sendAlert('401')
+      }
     } else if (c === 500 || c === 503 || c === 504 || c === 400 || c === 404) {
-      sendAlert('500')
+      if (redirections['500']) {
+        Navigate({
+          to: redirections['500'],
+          replace: true
+        })
+      } else {
+        sendAlert('500')
+      }
     } else if (c === 600) {
-      sendAlert('600')
+      if (redirections['600']) {
+        Navigate({
+          to: redirections['600'],
+          replace: true
+        })
+      } else {
+        sendAlert('600')
+      }
     }
   }
 
