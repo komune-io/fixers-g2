@@ -144,7 +144,7 @@ export const errorHandler =
       }
     }
     //@ts-ignore
-    const redirections = window._env_?.redirections
+    const redirections = window._env_?.config?.redirections ?? {}
 
     if (c === 401 || c === 403) {
       if (redirections['401']) {
