@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next'
 import { BrowserRouter } from 'react-router-dom'
 import initI18next from './i18n'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { DeepPartial } from '@komune-io/g2-utils'
+import { DeepPartial, NavigateSetter } from '@komune-io/g2-utils'
 import { G2Translations } from './G2Translations'
 import { LoadingProviders } from '../LoadingProviders'
 import { MantineProvider } from '@mantine/core'
@@ -61,7 +61,10 @@ export const AppProvider = <
       <QueryClientProvider client={queryClient}>
         <I18nextProvider i18n={i18n}>
           <MantineProvider>
-            <BrowserRouter>{children}</BrowserRouter>
+            <BrowserRouter>
+              <NavigateSetter />
+              {children}
+            </BrowserRouter>
           </MantineProvider>
         </I18nextProvider>
       </QueryClientProvider>

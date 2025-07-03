@@ -1,9 +1,15 @@
 import { t } from 'i18next'
 import { getTranslatedMessageOrUndefined } from '../common'
 import { enqueueSnackbar } from 'notistack'
-import { createBrowserHistory } from 'history'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
-export const history = createBrowserHistory()
+export let navigate: NavigateFunction = () => {}
+
+export const NavigateSetter = () => {
+  navigate = useNavigate()
+
+  return null
+}
 
 export type HttpContentType =
   | 'application/json'
@@ -138,23 +144,23 @@ export const errorHandler =
       }
     }
     //@ts-ignore
-    const redirections = window._env_?.config?.redirections
+    const redirections = window._env_?.redirections
 
     if (c === 401 || c === 403) {
       if (redirections['401']) {
-        history.push(redirections['401'])
+        navigate(redirections['401'], { replace: true })
       } else {
         sendAlert('401')
       }
     } else if (c === 500 || c === 503 || c === 504 || c === 400 || c === 404) {
       if (redirections['500']) {
-        history.push(redirections['500'])
+        navigate(redirections['500'], { replace: true })
       } else {
         sendAlert('500')
       }
     } else if (c === 600) {
       if (redirections['600']) {
-        history.push(redirections['600'])
+        navigate(redirections['600'], { replace: true })
       } else {
         sendAlert('600')
       }
