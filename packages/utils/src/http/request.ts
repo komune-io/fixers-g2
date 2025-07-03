@@ -1,7 +1,10 @@
 import { t } from 'i18next'
 import { getTranslatedMessageOrUndefined } from '../common'
 import { enqueueSnackbar } from 'notistack'
-import { Navigate } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+
+export const history = createBrowserHistory()
+
 export type HttpContentType =
   | 'application/json'
   | 'text/plain'
@@ -135,32 +138,23 @@ export const errorHandler =
       }
     }
     //@ts-ignore
-    const redirections = window._env_?.redirections
+    const redirections = window._env_?.config?.redirections
 
     if (c === 401 || c === 403) {
       if (redirections['401']) {
-        Navigate({
-          to: redirections['401'],
-          replace: true
-        })
+        history.push(redirections['401'])
       } else {
         sendAlert('401')
       }
     } else if (c === 500 || c === 503 || c === 504 || c === 400 || c === 404) {
       if (redirections['500']) {
-        Navigate({
-          to: redirections['500'],
-          replace: true
-        })
+        history.push(redirections['500'])
       } else {
         sendAlert('500')
       }
     } else if (c === 600) {
       if (redirections['600']) {
-        Navigate({
-          to: redirections['600'],
-          replace: true
-        })
+        history.push(redirections['600'])
       } else {
         sendAlert('600')
       }
