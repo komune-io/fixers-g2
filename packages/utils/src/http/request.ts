@@ -144,23 +144,23 @@ export const errorHandler =
       }
     }
     //@ts-ignore
-    const redirections = window._env_?.redirections
+    const redirections = window._env_?.config?.redirections ?? {}
 
     if (c === 401 || c === 403) {
       if (redirections['401']) {
-        navigate(redirections['401'], { replace: true })
+        navigate(redirections['401'])
       } else {
         sendAlert('401')
       }
     } else if (c === 500 || c === 503 || c === 504 || c === 400 || c === 404) {
       if (redirections['500']) {
-        navigate(redirections['500'], { replace: true })
+        navigate(redirections['500'])
       } else {
         sendAlert('500')
       }
     } else if (c === 600) {
       if (redirections['600']) {
-        navigate(redirections['600'], { replace: true })
+        navigate(redirections['600'])
       } else {
         sendAlert('600')
       }

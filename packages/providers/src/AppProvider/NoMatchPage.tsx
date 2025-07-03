@@ -53,6 +53,7 @@ export interface NoMatchPageBasicProps extends BasicProps {
    * The styles applied to the different part of the component
    */
   styles?: NoMatchPageStyles
+  children?: React.ReactNode
 }
 
 export type NoMatchPageProps = MergeMuiElementProps<
@@ -68,6 +69,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
     className,
     style,
     id,
+    children,
     ...other
   } = props
   const defaultStyles = useStyles()
@@ -84,6 +86,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
       justifyContent='center'
       alignItems='center'
       padding='20px'
+      gap={4}
       {...other}
     >
       <NotFoundIcon
@@ -103,6 +106,7 @@ export const NoMatchPage = (props: NoMatchPageProps) => {
       >
         {t('g2.pageNotFound')}
       </Typography>
+      {children}
       {!noGoBack && (
         <Button<LinkProps>
           className={classes?.backButton}
