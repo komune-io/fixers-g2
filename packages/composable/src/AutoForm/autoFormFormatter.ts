@@ -28,6 +28,7 @@ export type BackAutoFormData = {
 
 export const autoFormFormatter = (autoForm: BackAutoFormData): AutoFormData => {
   return {
+    ...autoForm,
     sections: autoForm.sections.map((section) => ({
       ...section,
       ...section.properties,
