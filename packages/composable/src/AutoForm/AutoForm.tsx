@@ -4,8 +4,7 @@ import {
   FormComposable,
   FormComposableBasicProps,
   FormComposableField,
-  FormComposableState,
-  FormikFormParams
+  FormComposableState
 } from '../FormComposable'
 import {
   SectionCondition,
@@ -51,7 +50,7 @@ export type AutoFormData = {
    * The different sections of the form
    */
   sections: FormSection[]
-} & Omit<FormikFormParams<{}>, 'onSubmit' | 'actions'>
+} & Omit<UseAutoFormStateParams, 'onSubmit' | 'actions'>
 
 export interface AutoFormProps extends UseAutoFormStateParams {
   formData?: AutoFormData

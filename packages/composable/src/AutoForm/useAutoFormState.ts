@@ -30,7 +30,7 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
     ...formikParams
   } = params
   const initial = useMemo(() => {
-    let initialValuesCopy = { ...initialValues }
+    let initialValuesCopy = { ...formData?.initialValues, ...initialValues }
     formData?.sections.forEach((section) =>
       section.fields.forEach((field) => {
         if (field.type === 'documentHandler') {
