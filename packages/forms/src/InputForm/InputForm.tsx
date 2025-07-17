@@ -109,6 +109,10 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
    */
   chipLimit?: number
   /**
+   * the number of fraction digits to display in readOnly when the value is a number
+   */
+  readOnlyFractionDigits?: number
+  /**
    * If you want to add additionals element near to the input use this prop
    */
   createInputContainer?: (input: JSX.Element) => JSX.Element
