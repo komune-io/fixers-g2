@@ -5,6 +5,8 @@ import { InputFormProps } from './InputForm'
 import { Link, LinkProps } from 'react-router-dom'
 import { Option } from '../Select'
 import { LimitedList } from '../LimitedList'
+import { useTranslation } from 'react-i18next'
+import { formatNumber } from '@komune-io/g2-utils'
 
 const getLabelOfOption = (
   option: any,
@@ -20,6 +22,7 @@ const getLabelOfOption = (
 export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
   const {
     readOnlyType = 'text',
+    readOnlyFractionDigits,
     inputType,
     value,
     values,
@@ -34,6 +37,8 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     chipLimit,
     size
   } = props
+
+  const { i18n } = useTranslation()
 
   const hValue = useMemo(() => {
     if (typeof value === 'object' && !value.key && getOptionKey) {
@@ -109,6 +114,12 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       )
       return option?.label
     }
+    if (
+      (typeof hValue === 'number' || !isNaN(Number(hValue))) &&
+      readOnlyFractionDigits
+    ) {
+      return formatNumber(Number(hValue), i18n.language, readOnlyFractionDigits)
+    }
     return typeof hValue === 'string' || typeof hValue === 'number'
       ? hValue
       : ''
@@ -120,7 +131,9 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
     hoptions,
     emptyValueInReadOnly,
     valuesIsEmpty,
-    getOptionKey
+    getOptionKey,
+    i18n.language,
+    readOnlyFractionDigits
   ])
 
   const renderTag = useMemo((): Option[] | undefined => {
