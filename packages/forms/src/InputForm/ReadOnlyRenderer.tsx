@@ -114,10 +114,7 @@ export const ReadOnlyRenderer = (props: Partial<InputFormProps>) => {
       )
       return option?.label
     }
-    if (
-      (typeof hValue === 'number' || !isNaN(Number(hValue))) &&
-      readOnlyFractionDigits
-    ) {
+    if (typeof hValue === 'number' || !isNaN(Number(hValue))) {
       return formatNumber(Number(hValue), i18n.language, readOnlyFractionDigits)
     }
     return typeof hValue === 'string' || typeof hValue === 'number'
