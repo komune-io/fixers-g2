@@ -348,9 +348,9 @@ export const InputForm: InputFormComponent = React.forwardRef(
       >
         {labelUi}
         {container ?? inputUi}
-        {caption && !error && (
+        {caption && (
           <Typography
-            sx={{ color: '#676879' }}
+            sx={{ color: '#676879', visibility: error ? 'hidden' : 'visible' }}
             className='AruiInputForm-caption'
             variant='caption'
           >
