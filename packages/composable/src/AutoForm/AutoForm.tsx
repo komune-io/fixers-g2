@@ -1,5 +1,5 @@
 import { Stack, Typography, Divider } from '@mui/material'
-import React, { useMemo, Fragment } from 'react'
+import React, { useMemo } from 'react'
 import {
   FormComposable,
   FormComposableBasicProps,
@@ -107,7 +107,7 @@ export const FormSection = (props: FormSectionProps) => {
   const sectionContent = (
     <>
       {section.description && (
-        <Typography variant='body2'>{section.description}</Typography>
+        <Typography variant='subtitle2'>{section.description}</Typography>
       )}
       <FormComposable
         formState={formState}
@@ -150,7 +150,7 @@ export const FormSection = (props: FormSectionProps) => {
       </Section>
     )
   return (
-    <Fragment key={section.id}>
+    <Stack gap={3} key={section.id}>
       {displayLabel && section.label && (
         <TitleDivider
           withDivider={sectionsType === 'divided'}
@@ -158,7 +158,7 @@ export const FormSection = (props: FormSectionProps) => {
         />
       )}
       {sectionContent}
-    </Fragment>
+    </Stack>
   )
 }
 
