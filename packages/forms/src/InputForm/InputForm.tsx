@@ -233,6 +233,7 @@ export const InputForm: InputFormComponent = React.forwardRef(
       orientation = 'vertical',
       emptyValueInReadOnly,
       caption,
+      error,
       sx,
       ...other
     } = props
@@ -284,7 +285,8 @@ export const InputForm: InputFormComponent = React.forwardRef(
       classes: inputClasses,
       styles: inputStyles,
       ref,
-      id
+      id,
+      error
     }
 
     const inputUi = isLoading ? (
@@ -346,7 +348,7 @@ export const InputForm: InputFormComponent = React.forwardRef(
       >
         {labelUi}
         {container ?? inputUi}
-        {caption && (
+        {caption && !error && (
           <Typography
             sx={{ color: '#676879' }}
             className='AruiInputForm-caption'
