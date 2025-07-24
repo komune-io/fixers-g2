@@ -123,7 +123,7 @@ export interface TextFieldBasicProps extends BasicProps {
   /**
    * The event called when the value of the input change
    */
-  onChange?: (value: string) => void
+  onChange?: (value: string | number) => void
 
   /**
    * The text to display as place holder
@@ -249,9 +249,13 @@ export const TextField = React.forwardRef(
 
     const onChangeMemoized = useCallback(
       (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        onChange && onChange(e.target.value)
+        const value =
+          textFieldType === 'search' || textFieldType === 'search-number'
+            ? Number(e.target.value)
+            : e.target.value
+        onChange && onChange(value)
       },
-      [onChange]
+      [onChange, textFieldType]
     )
 
     const onSearchMemoisied = useCallback(async () => {

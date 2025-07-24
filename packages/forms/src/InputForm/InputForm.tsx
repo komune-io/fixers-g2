@@ -75,6 +75,10 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
    */
   description?: React.ReactNode
   /**
+   * The caption of the input
+   */
+  caption?: React.ReactNode
+  /**
    * If true the input will be disabled and forced on type 'textfield'
    * @default false
    */
@@ -228,6 +232,7 @@ export const InputForm: InputFormComponent = React.forwardRef(
       getReadOnlyTextUrl,
       orientation = 'vertical',
       emptyValueInReadOnly,
+      caption,
       sx,
       ...other
     } = props
@@ -260,7 +265,11 @@ export const InputForm: InputFormComponent = React.forwardRef(
             </InputLabel>
           )}
           {description && (
-            <Typography className={'AruiInputForm-description'} variant='body2'>
+            <Typography
+              sx={{ color: '#666560' }}
+              className={'AruiInputForm-description'}
+              variant='body2'
+            >
               {description}
             </Typography>
           )}
@@ -337,6 +346,15 @@ export const InputForm: InputFormComponent = React.forwardRef(
       >
         {labelUi}
         {container ?? inputUi}
+        {caption && (
+          <Typography
+            sx={{ color: '#676879' }}
+            className='AruiInputForm-caption'
+            variant='caption'
+          >
+            {caption}
+          </Typography>
+        )}
       </Box>
     )
   }
