@@ -249,13 +249,9 @@ export const TextField = React.forwardRef(
 
     const onChangeMemoized = useCallback(
       (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const value =
-          textFieldType === 'search' || textFieldType === 'search-number'
-            ? Number(e.target.value)
-            : e.target.value
-        onChange && onChange(value)
+        onChange && onChange(e.target.value)
       },
-      [onChange, textFieldType]
+      [onChange]
     )
 
     const onSearchMemoisied = useCallback(async () => {
