@@ -123,7 +123,7 @@ export interface TextFieldBasicProps extends BasicProps {
   /**
    * The event called when the value of the input change
    */
-  onChange?: (value: string | number) => void
+  onChange?: (value: string) => void
 
   /**
    * The text to display as place holder
