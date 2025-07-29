@@ -1,9 +1,11 @@
 import { SpelExpressionEvaluator } from 'spel2js'
 import { FieldValidatorFnc } from '../FormComposable'
+import { AdditionalOperation, RulesLogic, apply } from 'json-logic-js'
 
 export interface ConditionBase {
   type: string
-  expression: string
+  expression?: string
+  logic?: RulesLogic<AdditionalOperation>
 }
 
 export interface DisplayCondition extends ConditionBase {
@@ -31,14 +33,19 @@ export const evalCondition = (
   condition: ConditionBase,
   locals: any
 ): boolean => {
-  const properLocals = localsUndefinedToNull(condition.expression, locals)
-  properLocals.now = Date.now()
-  // console.log(
-  //   condition.expression,
-  //   SpelExpressionEvaluator.eval(condition.expression, null, properLocals),
-  //   properLocals
-  // )
-  return SpelExpressionEvaluator.eval(condition.expression, null, properLocals)
+  if (condition.logic) {
+    return apply(condition.logic, locals)
+  }
+  if (condition.expression) {
+    const properLocals = localsUndefinedToNull(condition.expression, locals)
+    properLocals.now = Date.now()
+    return SpelExpressionEvaluator.eval(
+      condition.expression,
+      null,
+      properLocals
+    )
+  }
+  return false
 }
 
 export const evalConditions = (
