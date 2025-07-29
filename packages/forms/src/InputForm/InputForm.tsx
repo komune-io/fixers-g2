@@ -114,6 +114,7 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
   chipLimit?: number
   /**
    * the number of fraction digits to display in readOnly when the value is a number
+   * @default 2
    */
   readOnlyFractionDigits?: number
   /**
