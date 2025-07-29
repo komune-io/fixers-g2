@@ -33,12 +33,13 @@ export const evalCondition = (
   condition: ConditionBase,
   locals: any
 ): boolean => {
+  const properLocals = localsUndefinedToNull(condition.expression ?? '', locals)
+  properLocals.now = Date.now()
+  properLocals.currentYear = new Date().getFullYear()
   if (condition.logic) {
-    return apply(condition.logic, locals)
+    return apply(condition.logic, properLocals)
   }
   if (condition.expression) {
-    const properLocals = localsUndefinedToNull(condition.expression, locals)
-    properLocals.now = Date.now()
     return SpelExpressionEvaluator.eval(
       condition.expression,
       null,
