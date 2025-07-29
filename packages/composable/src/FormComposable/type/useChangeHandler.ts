@@ -11,11 +11,12 @@ export const useChangeHandler = <T>(
 ) => {
   return useCallback(
     async (value: T) => {
+      const defValue = !isNaN(Number(value)) ? Number(value) : value
       if (onValueChange) {
-        onValueChange(value, formState)
+        onValueChange(defValue, formState)
       } else {
-        await setFieldValue(value)
-        !!onChange && onChange(value)
+        await setFieldValue(defValue)
+        !!onChange && onChange(defValue)
         if (formState.submitOnChange) {
           formState.submitForm()
         }

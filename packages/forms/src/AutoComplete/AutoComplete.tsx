@@ -39,7 +39,7 @@ export interface AutoCompleteBasicProps<T> extends BasicProps {
    */
   values?: T[]
   /**
-   * The event called when the value of the slect change
+   * The event called when the value of the select change
    */
   onChangeValue?: (value?: T) => void
   /**
