@@ -1,9 +1,8 @@
-import { ImageList, ImageListItem, Stack } from '@mui/material'
+import { ImageList, ImageListItem, Stack, ImageListProps } from '@mui/material'
 import React, { useMemo } from 'react'
 import { FsFile } from '../../Domain'
 import { cx } from '@emotion/css'
 import { BasicProps } from '@komune-io/g2-themes'
-import { ImageListProps } from '@mui/material/ImageList/ImageList'
 
 export interface GalleryClasses {
   image?: string
