@@ -261,17 +261,19 @@ const TimelineBase = (
           >
             <TimelineItem
               key={line.id}
-              className={defaultStyles.cx(
-                defaultStyles.classes.item,
-                line.disabled && defaultStyles.classes.ItemDisabled,
-                !!selectedCellId &&
-                  selectedCellId !== line.id &&
-                  defaultStyles.classes.ItemDisabled,
-                isSelected && defaultStyles.classes.itemSelected,
-                'AruiTimeLine-item',
-                classes?.item
-              )}
-              style={styles?.item}
+              sx={{
+                transition: '0.3s',
+                ...(line.disabled && { opacity: '0.5' }),
+                ...(!!selectedCellId &&
+                  selectedCellId !== line.id && { opacity: '0.5' }),
+                ...(isSelected && {
+                  opacity: '1',
+                  '& .AruiTimeLine-selectorIndicator': {
+                    display: 'block'
+                  }
+                }),
+                ...styles?.item
+              }}
             >
               <FilledArrow
                 color={theme.colors.primary}
@@ -281,36 +283,36 @@ const TimelineBase = (
                 )}
               />
               <TimelineOppositeContent
-                className={defaultStyles.cx(
-                  align === 'alternate'
-                    ? defaultStyles.classes.timeContainerAlternate
-                    : defaultStyles.classes.timeContainer,
-                  'AruiTimeLine-timeContainer',
-                  classes?.timeContainer
-                )}
-                style={styles?.timeContainer}
+                sx={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  ...(align === 'alternate' ? {} : { flex: '0.2' }),
+                  ...styles?.timeContainer
+                }}
               >
                 <Typography variant='body2'>{line.startTime}</Typography>
                 <div className={defaultStyles.classes.flexSeparator} />
                 <Typography variant='body2'>{line.endTime}</Typography>
               </TimelineOppositeContent>
               <TimelineSeparator
-                className={defaultStyles.cx(
-                  defaultStyles.classes.separator,
-                  'AruiTimeLine-separator',
-                  classes?.separator
-                )}
-                style={styles?.separator}
+                sx={{
+                  minWidth: '50px',
+                  maxWidth: '50px',
+                  ...styles?.separator
+                }}
               >
                 <TimelineDot
-                  className={defaultStyles.cx(
-                    isPassed && !passedTimeLine
-                      ? defaultStyles.classes.dotPassed
-                      : defaultStyles.classes.dot,
-                    'AruiTimeLine-startDot',
-                    classes?.startDot
-                  )}
-                  style={styles?.startDot}
+                  sx={{
+                    background:
+                      isPassed && !passedTimeLine
+                        ? theme.colors.tertiary
+                        : theme.colors.secondary,
+                    position: 'relative',
+                    alignSelf: 'unset',
+                    boxShadow: 'unset',
+                    ...styles?.startDot
+                  }}
                 >
                   {line.startDot}
                   {isActive && !passedTimeLine && (
@@ -318,12 +320,10 @@ const TimelineBase = (
                   )}
                 </TimelineDot>
                 <TimelineConnector
-                  className={defaultStyles.cx(
-                    defaultStyles.classes.connector,
-                    'AruiTimeLine-connector',
-                    classes?.connector
-                  )}
-                  style={styles?.connector}
+                  sx={{
+                    background: theme.colors.tertiary,
+                    ...styles?.connector
+                  }}
                 >
                   {timeLeft && !passedTimeLine && (
                     <div
@@ -337,24 +337,19 @@ const TimelineBase = (
                 </TimelineConnector>
                 {line.endTime && (
                   <TimelineDot
-                    className={defaultStyles.cx(
-                      defaultStyles.classes.dotPassed,
-                      'AruiTimeLine-endDot',
-                      classes?.endDot
-                    )}
-                    style={styles?.endDot}
+                    sx={{
+                      background: theme.colors.tertiary,
+                      position: 'relative',
+                      alignSelf: 'unset',
+                      boxShadow: 'unset',
+                      ...styles?.endDot
+                    }}
                   >
                     {line.endDot}
                   </TimelineDot>
                 )}
               </TimelineSeparator>
-              <TimelineContent
-                className={defaultStyles.cx(
-                  'AruiTimeLine-content',
-                  classes?.content
-                )}
-                style={styles?.content}
-              >
+              <TimelineContent sx={styles?.content}>
                 {line.content}
               </TimelineContent>
             </TimelineItem>
