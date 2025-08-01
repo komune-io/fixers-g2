@@ -32,14 +32,14 @@
   },
   "peerDependencies": {
     "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
+    "@mui/material": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
     "@komune-io/g2-themes": "0.5.0-alpha",
     "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mui/icons-material": "^5.15.14",
+    "@mui/icons-material": "^6.0.0",
     "notistack": "3.0.1"
   }
 }

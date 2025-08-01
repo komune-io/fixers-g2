@@ -7,7 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   AccordionDetails,
-  ListItem,
+  ListItemButton,
   List
 } from '@mui/material'
 import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
@@ -80,8 +80,7 @@ export const ToolsPanel = (props: ToolsPanelProps) => {
           {menu.items && menu.items.length <= 1
             ? menu.items[0].items &&
               menu.items[0].items.map((item) => (
-                <ListItem
-                  button
+                <ListItemButton
                   key={item.key}
                   onClick={() => item.goto && item.goto()}
                 >
@@ -91,15 +90,14 @@ export const ToolsPanel = (props: ToolsPanelProps) => {
                     </ListItemIcon>
                   )}
                   <ListItemText primary={item.label} />
-                </ListItem>
+                </ListItemButton>
               ))
             : menu.items &&
               menu.items.map((item) => {
                 return item.items ? (
                   <ToolsPanel key={item.key} menu={item} />
                 ) : (
-                  <ListItem
-                    button
+                  <ListItemButton
                     key={item.key}
                     onClick={() => item.goto && item.goto()}
                   >
@@ -109,7 +107,7 @@ export const ToolsPanel = (props: ToolsPanelProps) => {
                       </ListItemIcon>
                     )}
                     <ListItemText primary={item.label} />
-                  </ListItem>
+                  </ListItemButton>
                 )
               })}
         </List>
