@@ -1,55 +1,54 @@
-import React from 'react'
 import {
   FilterDatePicker as AruiFilterDatePicker,
   FilterDatePickerProps
 } from './FilterDatePicker'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import addDays from 'date-fns/addDays'
 import { Box } from '@mui/material'
 
 export default {
   title: 'Forms/FilterDatePicker',
   component: AruiFilterDatePicker
-} as Meta
+} as Meta<typeof AruiFilterDatePicker>
 
 const today = new Date()
 
-export const FilterDatePicker: StoryFn<FilterDatePickerProps> = (
-  args: FilterDatePickerProps
-) => {
-  const [date, setSelectedDate] = React.useState<Date | undefined>(today)
-  const handleDateChange = (date?: Date) => {
-    setSelectedDate(date)
-  }
-  return (
-    <Box display='flex'>
-      <AruiFilterDatePicker
-        value={date}
-        label='From'
-        onChangeDate={handleDateChange}
-        onRemove={() => setSelectedDate(undefined)}
-        style={{ margin: 10 }}
-        {...args}
-      />
-      <AruiFilterDatePicker
-        value={date}
-        label='To'
-        onChangeDate={handleDateChange}
-        onRemove={() => setSelectedDate(undefined)}
-        style={{ margin: 10 }}
-        {...args}
-      />
-    </Box>
-  )
-}
+export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
+  render: (args: FilterDatePickerProps) => {
+    const [date, setSelectedDate] = React.useState<Date | undefined>(today)
+    const handleDateChange = (date?: Date) => {
+      setSelectedDate(date)
+    }
+    return (
+      <Box display='flex'>
+        <AruiFilterDatePicker
+          value={date}
+          label='From'
+          onChangeDate={handleDateChange}
+          onRemove={() => setSelectedDate(undefined)}
+          style={{ margin: 10 }}
+          {...args}
+        />
+        <AruiFilterDatePicker
+          value={date}
+          label='To'
+          onChangeDate={handleDateChange}
+          onRemove={() => setSelectedDate(undefined)}
+          style={{ margin: 10 }}
+          {...args}
+        />
+      </Box>
+    )
+  },
 
-FilterDatePicker.args = {
-  id: 'datePicker-test',
-  minDate: addDays(today, -10),
-  maxDate: addDays(today, 10)
-}
+  args: {
+    id: 'datePicker-test',
+    minDate: addDays(today, -10),
+    maxDate: addDays(today, 10)
+  },
 
-FilterDatePicker.storyName = 'FilterDatePicker'
+  name: 'FilterDatePicker'
+}
 
 export const FilterMuiDatePickerVariants: StoryFn<
   FilterDatePickerProps

@@ -1,11 +1,11 @@
 import React from 'react'
 import { KeycloakProvider as AruiKeycloakProvider } from './KeycloakProvider'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useAuth, KeycloackService, AuthedUser } from './useAuth'
 import { Button } from '@komune-io/g2-components'
 import { Typography } from '@mui/material'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
@@ -29,7 +29,7 @@ export default {
       page: () => (
         <>
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Description>
             The provider is based on the
             [react-oidc](https://github.com/AxaFrance/oidc-client) library from
@@ -82,14 +82,18 @@ export default {
       )
     }
   }
-} as Meta
+} as Meta<typeof AruiKeycloakProvider>
 
-export const KeycloakProvider: StoryFn = () => {
-  return (
-    <AruiKeycloakProvider>
-      <ConnectButton />
-    </AruiKeycloakProvider>
-  )
+export const KeycloakProvider: StoryObj = {
+  render: () => {
+    return (
+      <AruiKeycloakProvider>
+        <ConnectButton />
+      </AruiKeycloakProvider>
+    )
+  },
+
+  name: 'KeycloakProvider'
 }
 
 type Roles = 'admin' | 'user'
@@ -151,5 +155,3 @@ const ConnectButton = () => {
   }
   return <Button onClick={() => keycloak.login()}>Connect with Smartb</Button>
 }
-
-KeycloakProvider.storyName = 'KeycloakProvider'

@@ -5,7 +5,7 @@ import {
   FiltersField,
   FiltersAction
 } from '../Filters'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import { Typography } from '@mui/material'
 import { useEnhancedFilters } from './useEnhancedFilters'
@@ -28,32 +28,38 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1097%3A177'
     }
   }
-} as Meta
+} as Meta<typeof Filters>
 
 const queryClient = new QueryClient()
 
-export const EnhancedFiltersStory: StoryFn<FiltersBasicProps> = (
-  args: FiltersBasicProps
-) => {
-  interface Languages {
-    fr: string
-    en: string
-  }
+export const EnhancedFiltersStory: StoryObj<FiltersBasicProps> = {
+  render: (args: FiltersBasicProps) => {
+    interface Languages {
+      fr: string
+      en: string
+    }
 
-  const languages: Languages = {
-    fr: 'fr-FR',
-    en: 'en-US'
-  }
+    const languages: Languages = {
+      fr: 'fr-FR',
+      en: 'en-US'
+    }
 
-  return (
-    <AruiAppProvider<Languages>
-      languages={languages}
-      loadingComponent={<Typography>Loading ...</Typography>}
-      queryClient={queryClient}
-    >
-      <Router args={args} />
-    </AruiAppProvider>
-  )
+    return (
+      <AruiAppProvider<Languages>
+        languages={languages}
+        loadingComponent={<Typography>Loading ...</Typography>}
+        queryClient={queryClient}
+      >
+        <Router args={args} />
+      </AruiAppProvider>
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'EnhancedFilters'
 }
 
 const Router = (props) => {
@@ -182,9 +188,3 @@ const fields: (FiltersField | 'spacer')[] = [
     }
   }
 ]
-
-EnhancedFiltersStory.args = {
-  fields: fields
-}
-
-EnhancedFiltersStory.storyName = 'EnhancedFilters'

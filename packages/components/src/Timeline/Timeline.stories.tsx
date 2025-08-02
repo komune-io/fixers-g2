@@ -42,7 +42,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiTimeline>
 
 const now = Date.now()
 const lines = [
@@ -132,12 +132,15 @@ const Template2: StoryFn = () => {
   return <AruiTimeline lines={lines} passedTimeLine></AruiTimeline>
 }
 
-export const Timeline = Template.bind({})
+export const Timeline = {
+  render: Template,
 
-export const passedTimeLine = Template2.bind({})
-
-Timeline.args = {
-  lines: lines
+  args: {
+    lines: lines
+  }
 }
 
-passedTimeLine.storyName = 'passed timeline'
+export const passedTimeLine = {
+  render: Template2,
+  name: 'passed timeline'
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link as AruiLink, LinkProps } from './Link'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 export default {
   title: 'Components/Link',
@@ -12,15 +12,13 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1014%3A1004'
     }
   }
-} as Meta
+} as Meta<typeof AruiLink>
 
-export const Link: StoryFn<LinkProps> = (args: LinkProps) => (
-  <AruiLink {...args} />
-)
+export const Link: StoryObj<LinkProps> = {
+  args: {
+    children: 'I am a link',
+    href: '/?path=/docs/components-link--link'
+  },
 
-Link.args = {
-  children: 'I am a link',
-  href: '/?path=/docs/components-link--link'
+  name: 'Link'
 }
-
-Link.storyName = 'Link'

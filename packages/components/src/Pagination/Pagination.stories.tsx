@@ -3,7 +3,7 @@ import {
   Pagination as AruiPagination,
   PaginationBasicProps
 } from './Pagination'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { styles, classes } from './docs'
 
 export default {
@@ -34,23 +34,23 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiPagination>
 
-export const Pagination: StoryFn<PaginationBasicProps> = (
-  args: PaginationBasicProps
-) => {
-  const [page, setpage] = useState(1)
-  return (
-    <AruiPagination
-      onPageChange={(newPageNumber) => setpage(newPageNumber)}
-      page={page}
-      {...args}
-    />
-  )
+export const Pagination: StoryObj<PaginationBasicProps> = {
+  render: (args: PaginationBasicProps) => {
+    const [page, setpage] = useState(1)
+    return (
+      <AruiPagination
+        onPageChange={(newPageNumber) => setpage(newPageNumber)}
+        page={page}
+        {...args}
+      />
+    )
+  },
+
+  args: {
+    totalPage: 10
+  },
+
+  name: 'Pagination'
 }
-
-Pagination.args = {
-  totalPage: 10
-}
-
-Pagination.storyName = 'Pagination'

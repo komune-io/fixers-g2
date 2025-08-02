@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Header as AruiHeader, HeaderProps } from './Header'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { IconButton, Stack, Typography } from '@mui/material'
 import { Edit, Delete } from '@mui/icons-material'
 import { styles, classes } from './docs'
@@ -28,17 +28,69 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiHeader>
 
-export const Header: StoryFn<HeaderProps> = (args: HeaderProps) => {
-  const [tab, settab] = useState('1')
-  return (
-    <AruiHeader
-      currentTab={tab}
-      onTabChange={(_, tab) => settab(tab)}
-      {...args}
-    />
-  )
+export const Header: StoryObj<HeaderProps> = {
+  render: (args: HeaderProps) => {
+    const [tab, settab] = useState('1')
+    return (
+      <AruiHeader
+        currentTab={tab}
+        onTabChange={(_, tab) => settab(tab)}
+        {...args}
+      />
+    )
+  },
+
+  args: {
+    tabs: [
+      {
+        key: '1',
+        label: 'Tab 1'
+      },
+      {
+        key: '2',
+        label: 'Tab 2'
+      },
+      {
+        key: '3',
+        label: 'Tab 3'
+      },
+      {
+        key: '4',
+        label: 'Tab 4'
+      },
+      {
+        key: '5',
+        label: 'Tab 5'
+      },
+      {
+        key: '6',
+        label: 'Tab 6'
+      }
+    ],
+    content: [
+      {
+        leftPart: [<BackButton key='header-goback'>Go back</BackButton>],
+        rightPart: []
+      },
+      {
+        leftPart: [
+          <Typography key='header-title' variant='h4'>
+            Title
+          </Typography>
+        ],
+        rightPart: [
+          <Button key='header-cancelButton' variant='text'>
+            Cancel
+          </Button>,
+          <Button>Send A report</Button>
+        ]
+      }
+    ]
+  },
+
+  name: 'Header'
 }
 
 export const HeaderWithGoBack: StoryFn = () => {
@@ -85,53 +137,3 @@ export const HeaderFreeContent: StoryFn = () => {
     />
   )
 }
-
-Header.args = {
-  tabs: [
-    {
-      key: '1',
-      label: 'Tab 1'
-    },
-    {
-      key: '2',
-      label: 'Tab 2'
-    },
-    {
-      key: '3',
-      label: 'Tab 3'
-    },
-    {
-      key: '4',
-      label: 'Tab 4'
-    },
-    {
-      key: '5',
-      label: 'Tab 5'
-    },
-    {
-      key: '6',
-      label: 'Tab 6'
-    }
-  ],
-  content: [
-    {
-      leftPart: [<BackButton key='header-goback'>Go back</BackButton>],
-      rightPart: []
-    },
-    {
-      leftPart: [
-        <Typography key='header-title' variant='h4'>
-          Title
-        </Typography>
-      ],
-      rightPart: [
-        <Button key='header-cancelButton' variant='text'>
-          Cancel
-        </Button>,
-        <Button>Send A report</Button>
-      ]
-    }
-  ]
-}
-
-Header.storyName = 'Header'

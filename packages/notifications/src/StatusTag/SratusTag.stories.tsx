@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusTag as AruiStatusTag, StatusTagBasicProps } from './StatusTag'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import { Box } from '@mui/material'
 
@@ -14,19 +14,19 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1017%3A1805'
     }
   }
-} as Meta
+} as Meta<typeof AruiStatusTag>
 
-export const StatusTag: StoryFn<StatusTagBasicProps> = (
-  args: StatusTagBasicProps
-) => {
-  return <AruiStatusTag {...args} />
+export const StatusTag: StoryObj<StatusTagBasicProps> = {
+  render: (args: StatusTagBasicProps) => {
+    return <AruiStatusTag {...args} />
+  },
+
+  args: {
+    label: 'Status'
+  },
+
+  name: 'StatusTag'
 }
-
-StatusTag.args = {
-  label: 'Status'
-}
-
-StatusTag.storyName = 'StatusTag'
 
 export const StatusVariant: StoryFn<StatusTagBasicProps> = () => {
   return (

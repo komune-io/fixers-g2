@@ -11,7 +11,7 @@ import {
   AutocompleteGetTagProps,
   AutocompleteRenderInputParams
 } from '@mui/material'
-import React, { forwardRef, useCallback, useMemo } from 'react'
+import { forwardRef, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   makeG2STyles,

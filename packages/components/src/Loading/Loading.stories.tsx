@@ -25,13 +25,10 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiLoading>
 
-const Template: StoryFn<LoadingBasicProps> = (args: LoadingBasicProps) => (
-  <AruiLoading {...args} />
-)
-
-export const Loading = Template.bind({})
-Loading.args = {
-  icon: <img src={komune} alt='komune logo' />
+export const Loading = {
+  args: {
+    icon: <img src={komune} alt='komune logo' />
+  }
 }

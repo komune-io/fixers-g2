@@ -3,9 +3,9 @@ import {
   StandAloneAppLayout as AruiStandAloneAppLayout,
   StandAloneAppLayoutProps
 } from './StandAloneAppLayout'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Box, Divider, Link, Paper, Stack, Typography } from '@mui/material'
-import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import LinkTo from '@storybook/addon-links/react'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes } from './docs'
@@ -21,7 +21,7 @@ export default {
     docs: {
       page: () => (
         <>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -69,16 +69,69 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiStandAloneAppLayout>
 
-export const StandAloneAppLayout: StoryFn<StandAloneAppLayoutProps> = (
-  args: StandAloneAppLayoutProps
-) => {
-  return (
-    <AruiStandAloneAppLayout {...args}>
-      <Content />
-    </AruiStandAloneAppLayout>
-  )
+export const StandAloneAppLayout: StoryObj<StandAloneAppLayoutProps> = {
+  render: (args: StandAloneAppLayoutProps) => {
+    return (
+      <AruiStandAloneAppLayout {...args}>
+        <Content />
+      </AruiStandAloneAppLayout>
+    )
+  },
+
+  args: {
+    userMenuProps: {
+      defaultOpen: true,
+      currentUser: {
+        givenName: 'John',
+        familyName: 'Doe',
+        role: 'Administrator'
+      },
+      loggedMenu: [
+        {
+          key: 'my-profile',
+          goto: () => {},
+          label: 'My Profile'
+        },
+        {
+          key: 'preferances',
+          goto: () => {},
+          label: 'Preferences'
+        },
+        {
+          key: 'logout',
+          goto: () => {},
+          label: 'Log out'
+        }
+      ]
+    },
+    menu: [
+      {
+        key: 'dashboard',
+        goto: () => {},
+        label: 'dashboard',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'activities',
+        goto: () => {},
+        label: 'activities',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'application',
+        goto: () => {},
+        label: 'application',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      }
+    ],
+    defaultOpenButton: false,
+    defaultCloseButton: false,
+    drawerPaddingTop: '90px'
+  },
+
+  name: 'StandAloneAppLayout'
 }
 
 export const CustomMenu: StoryFn<StandAloneAppLayoutProps> = () => {
@@ -245,56 +298,3 @@ export const Content = () => {
     </Page>
   )
 }
-
-StandAloneAppLayout.args = {
-  userMenuProps: {
-    defaultOpen: true,
-    currentUser: {
-      givenName: 'John',
-      familyName: 'Doe',
-      role: 'Administrator'
-    },
-    loggedMenu: [
-      {
-        key: 'my-profile',
-        goto: () => {},
-        label: 'My Profile'
-      },
-      {
-        key: 'preferances',
-        goto: () => {},
-        label: 'Preferences'
-      },
-      {
-        key: 'logout',
-        goto: () => {},
-        label: 'Log out'
-      }
-    ]
-  },
-  menu: [
-    {
-      key: 'dashboard',
-      goto: () => {},
-      label: 'dashboard',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'activities',
-      goto: () => {},
-      label: 'activities',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'application',
-      goto: () => {},
-      label: 'application',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    }
-  ],
-  defaultOpenButton: false,
-  defaultCloseButton: false,
-  drawerPaddingTop: '90px'
-}
-
-StandAloneAppLayout.storyName = 'StandAloneAppLayout'

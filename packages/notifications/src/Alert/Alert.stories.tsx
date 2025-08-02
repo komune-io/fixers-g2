@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert as AruiAlert, AlertBasicProps } from './Alert'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import { Box } from '@mui/material'
 import { classes, styles } from './types'
@@ -33,14 +33,23 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiAlert>
 
-export const Alert: StoryFn<AlertBasicProps> = (args: AlertBasicProps) => {
-  return (
-    <>
-      <AruiAlert isRelative {...args} />
-    </>
-  )
+export const Alert: StoryObj<AlertBasicProps> = {
+  render: (args: AlertBasicProps) => {
+    return (
+      <>
+        <AruiAlert isRelative {...args} />
+      </>
+    )
+  },
+
+  args: {
+    message: 'Hello',
+    onClose: () => {}
+  },
+
+  name: 'Alert'
 }
 
 export const AlertSeverity: StoryFn<AlertBasicProps> = () => {
@@ -106,10 +115,3 @@ export const AlertColorBase: StoryFn<AlertBasicProps> = () => {
     </Box>
   )
 }
-
-Alert.args = {
-  message: 'Hello',
-  onClose: () => {}
-}
-
-Alert.storyName = 'Alert'

@@ -32,17 +32,14 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiTabsMenu>
 
-const Template: StoryFn<TabsMenuProps> = (args: TabsMenuProps) => (
-  <AruiTabsMenu {...args} />
-)
+export const TabsMenu = {
+  args: {
+    variant: 'fullWidth',
+    tabs: [{ label: 'section1' }, { label: 'section2' }],
+    children: ['Content 1', 'Content 2']
+  },
 
-export const TabsMenu = Template.bind({})
-TabsMenu.args = {
-  variant: 'fullWidth',
-  tabs: [{ label: 'section1' }, { label: 'section2' }],
-  children: ['Content 1', 'Content 2']
+  name: 'TabsMenu'
 }
-
-TabsMenu.storyName = 'TabsMenu'

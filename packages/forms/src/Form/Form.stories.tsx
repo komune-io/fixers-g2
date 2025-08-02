@@ -1,8 +1,7 @@
-import React from 'react'
 import { Form, FormAction, FormBasicProps, FormField } from './Form'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
@@ -31,7 +30,7 @@ export default {
             We recommand using [Formik](https://formik.org/) even for complexe
             form.
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
@@ -121,70 +120,84 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof Form>
 
-export const FormStory: StoryFn<FormBasicProps> = (args: FormBasicProps) => {
-  const formState = useForm({
-    fields: args.fields,
-    onSubmit: (values) => console.log(values)
-  })
-  const actions: FormAction[] = [
-    {
-      label: 'reset',
-      key: 'resetFiltersButton',
-      variant: 'text',
-      onClick: () => formState.resetForm()
-    },
-    {
-      label: 'validate',
-      key: 'validateFormButton',
-      type: 'submit'
-    }
-  ]
-  return (
-    <Form
-      {...args}
-      actions={actions}
-      formState={formState}
-      style={{ width: '500px' }}
-    />
-  )
+export const FormStory: StoryObj<FormBasicProps> = {
+  render: (args: FormBasicProps) => {
+    const formState = useForm({
+      fields: args.fields,
+      onSubmit: (values) => console.log(values)
+    })
+    const actions: FormAction[] = [
+      {
+        label: 'reset',
+        key: 'resetFiltersButton',
+        variant: 'text',
+        onClick: () => formState.resetForm()
+      },
+      {
+        label: 'validate',
+        key: 'validateFormButton',
+        type: 'submit'
+      }
+    ]
+    return (
+      <Form
+        {...args}
+        actions={actions}
+        formState={formState}
+        style={{ width: '500px' }}
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Form'
 }
 
-export const FormCollumnButtonStory: StoryFn<FormBasicProps> = (
-  args: FormBasicProps
-) => {
-  const formState = useForm({
-    fields: args.fields,
-    onSubmit: (values) => console.log(values)
-  })
-  const actions: FormAction[] = [
-    {
-      label: 'reset',
-      key: 'resetFiltersButton',
-      variant: 'text',
-      onClick: () => formState.resetForm()
-    },
-    {
-      label: 'validate',
-      key: 'validateFormButton',
-      type: 'submit'
-    }
-  ]
-  return (
-    <Form
-      {...args}
-      actions={actions}
-      formState={formState}
-      style={{ width: '500px' }}
-      styles={{
-        actions: {
-          flexDirection: 'column',
-          justifyContent: 'flex-start'
-        }
-      }}
-    />
-  )
+export const FormCollumnButtonStory: StoryObj<FormBasicProps> = {
+  render: (args: FormBasicProps) => {
+    const formState = useForm({
+      fields: args.fields,
+      onSubmit: (values) => console.log(values)
+    })
+    const actions: FormAction[] = [
+      {
+        label: 'reset',
+        key: 'resetFiltersButton',
+        variant: 'text',
+        onClick: () => formState.resetForm()
+      },
+      {
+        label: 'validate',
+        key: 'validateFormButton',
+        type: 'submit'
+      }
+    ]
+    return (
+      <Form
+        {...args}
+        actions={actions}
+        formState={formState}
+        style={{ width: '500px' }}
+        styles={{
+          actions: {
+            flexDirection: 'column',
+            justifyContent: 'flex-start'
+          }
+        }}
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Form Column Button'
 }
 
 const fields: FormField[] = [
@@ -248,14 +261,3 @@ const fields: FormField[] = [
     validator: (value) => (value !== true ? 'You have to agree' : undefined)
   }
 ]
-
-FormStory.args = {
-  fields: fields
-}
-
-FormStory.storyName = 'Form'
-
-FormCollumnButtonStory.args = {
-  fields: fields
-}
-FormCollumnButtonStory.storyName = 'Form Column Button'

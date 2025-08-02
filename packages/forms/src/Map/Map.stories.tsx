@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Map, MapBasicProps } from './Map'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { MapClasses, MapStyles } from './docs'
 import { Geoman } from './Geoman'
 import { BrowserRouter } from 'react-router-dom'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Primary,
   Description
@@ -46,7 +46,7 @@ export default {
           <Description>
             You can use the `MapPluginProps` to type those props
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
         </>
       )
     }
@@ -69,37 +69,38 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof Map>
 
-export const MapStory: StoryFn<MapBasicProps> = (args: MapBasicProps) => {
-  const [geoman, setGeoman] = useState<any>(undefined)
-  const [position, setPosition] = useState<any>(undefined)
-  console.log(geoman)
-  return (
-    <BrowserRouter>
-      <Map
-        {...args}
-        style={{ height: 600 }}
-        additionalPlugins={[
-          {
-            key: 'geoman',
-            value: geoman,
-            setValue: setGeoman,
-            element: Geoman
-          }
-        ]}
-        draggableMarkerPlugin={{
-          position: position,
-          onPositionChange(position, geojson) {
-            setPosition(position)
-            console.log(geojson)
-          }
-        }}
-      />
-    </BrowserRouter>
-  )
+export const MapStory: StoryObj<MapBasicProps> = {
+  render: (args: MapBasicProps) => {
+    const [geoman, setGeoman] = useState<any>(undefined)
+    const [position, setPosition] = useState<any>(undefined)
+    console.log(geoman)
+    return (
+      <BrowserRouter>
+        <Map
+          {...args}
+          style={{ height: 600 }}
+          additionalPlugins={[
+            {
+              key: 'geoman',
+              value: geoman,
+              setValue: setGeoman,
+              element: Geoman
+            }
+          ]}
+          draggableMarkerPlugin={{
+            position: position,
+            onPositionChange(position, geojson) {
+              setPosition(position)
+              console.log(geojson)
+            }
+          }}
+        />
+      </BrowserRouter>
+    )
+  },
+
+  args: {},
+  name: 'Map'
 }
-
-MapStory.args = {}
-
-MapStory.storyName = 'Map'

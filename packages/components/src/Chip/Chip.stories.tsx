@@ -1,19 +1,21 @@
 import React from 'react'
 import { Chip as AruiChip, ChipBasicProps } from './Chip'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 export default {
   title: 'Components/Chip',
   component: AruiChip
-} as Meta
+} as Meta<typeof AruiChip>
 
-export const Chip: StoryFn<ChipBasicProps> = (args: ChipBasicProps) => {
-  return <AruiChip {...args} />
+export const Chip: StoryObj<ChipBasicProps> = {
+  render: (args: ChipBasicProps) => {
+    return <AruiChip {...args} />
+  },
+
+  args: {
+    label: 'G2 chip',
+    color: '#18159D',
+    onDelete: () => {}
+  },
+
+  name: 'Chip'
 }
-
-Chip.args = {
-  label: 'G2 chip',
-  color: '#18159D',
-  onDelete: () => {}
-}
-
-Chip.storyName = 'Chip'

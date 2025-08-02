@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import React from 'react'
 import { Gallery, GalleryProps } from './Gallery'
 import { Box } from '@mui/material'
@@ -10,7 +10,7 @@ import { FsFile } from '../../Domain'
 export default {
   title: 'Fs/Gallery',
   component: Gallery
-} as Meta
+} as Meta<typeof Gallery>
 
 const files: FsFile[] = [
   {
@@ -147,47 +147,50 @@ const files: FsFile[] = [
   }
 ]
 
-export const GalleryStory: StoryFn<GalleryProps> = (args: GalleryProps) => {
-  return (
-    <Box
-      sx={{
-        width: '400px',
-        height: '500px'
-      }}
-    >
-      <Gallery {...args} />
-    </Box>
-  )
-}
-
-GalleryStory.args = {
-  files: files
-}
-
-GalleryStory.storyName = 'Gallery'
-
-export const GalleryStoryVariantQuilted: StoryFn<GalleryProps> = (
-  args: GalleryProps
-) => {
-  return (
-    <Box
-      sx={{
-        width: '400px',
-        height: '500px'
-      }}
-    >
-      <Gallery
-        gridProps={{
-          cols: 1,
-          variant: 'quilted'
+export const GalleryStory: StoryObj<GalleryProps> = {
+  render: (args: GalleryProps) => {
+    return (
+      <Box
+        sx={{
+          width: '400px',
+          height: '500px'
         }}
-        {...args}
-      />
-    </Box>
-  )
-}
-GalleryStoryVariantQuilted.args = {
-  files: files
+      >
+        <Gallery {...args} />
+      </Box>
+    )
+  },
+
+  args: {
+    files: files
+  },
+
+  name: 'Gallery'
 }
 
-GalleryStoryVariantQuilted.storyName = 'Gallery Quilted'
+export const GalleryStoryVariantQuilted: StoryObj<GalleryProps> = {
+  render: (args: GalleryProps) => {
+    return (
+      <Box
+        sx={{
+          width: '400px',
+          height: '500px'
+        }}
+      >
+        <Gallery
+          gridProps={{
+            cols: 1,
+            variant: 'quilted'
+          }}
+          {...args}
+        />
+      </Box>
+    )
+  },
+
+  args: {
+    files: files
+  },
+
+  name: 'Gallery Quilted'
+}

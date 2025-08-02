@@ -1,40 +1,41 @@
-import React from 'react'
 import { DatePicker as AruiDatePicker, DatePickerProps } from './DatePicker'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import addDays from 'date-fns/addDays'
 import { Box } from '@mui/material'
 
 export default {
   title: 'Forms/DatePicker',
   component: AruiDatePicker
-} as Meta
+} as Meta<typeof AruiDatePicker>
 
 const today = new Date()
 
-export const DatePicker: StoryFn<DatePickerProps> = (args: DatePickerProps) => {
-  const [date, setSelectedDate] = React.useState<Date | undefined>(today)
-  const handleDateChange = (date?: Date) => {
-    setSelectedDate(date)
-  }
+export const DatePicker: StoryObj<DatePickerProps> = {
+  render: (args: DatePickerProps) => {
+    const [date, setSelectedDate] = React.useState<Date | undefined>(today)
+    const handleDateChange = (date?: Date) => {
+      setSelectedDate(date)
+    }
 
-  console.log(date)
-  return (
-    <AruiDatePicker
-      value={date}
-      onChangeDate={handleDateChange}
-      onRemove={() => setSelectedDate(undefined)}
-      {...args}
-    />
-  )
+    console.log(date)
+    return (
+      <AruiDatePicker
+        value={date}
+        onChangeDate={handleDateChange}
+        onRemove={() => setSelectedDate(undefined)}
+        {...args}
+      />
+    )
+  },
+
+  args: {
+    id: 'datePicker-test',
+    minDate: addDays(today, -10),
+    maxDate: addDays(today, 10)
+  },
+
+  name: 'DatePicker'
 }
-
-DatePicker.args = {
-  id: 'datePicker-test',
-  minDate: addDays(today, -10),
-  maxDate: addDays(today, 10)
-}
-
-DatePicker.storyName = 'DatePicker'
 
 export const DatePickerStatus: StoryFn<DatePickerProps> = () => {
   const [date, setSelectedDate] = React.useState<Date | undefined>(undefined)

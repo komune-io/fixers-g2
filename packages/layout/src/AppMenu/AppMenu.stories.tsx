@@ -3,7 +3,7 @@ import { AppMenu as AruiAppMenu, AppLogoProps, AppMenuProps } from './AppMenu'
 import { Meta, StoryFn } from '@storybook/react'
 import { Box, Typography } from '@mui/material'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
@@ -22,7 +22,7 @@ export default {
       page: () => (
         <>
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -55,7 +55,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiAppMenu>
 
 const Template: StoryFn<AppMenuProps> = (args: AppMenuProps) => {
   return (
@@ -65,32 +65,34 @@ const Template: StoryFn<AppMenuProps> = (args: AppMenuProps) => {
   )
 }
 
-export const AppMenu = Template.bind({})
+export const AppMenu = {
+  render: Template,
 
-AppMenu.args = {
-  logo: {
-    src: defaultLogo
-  } as AppLogoProps,
-  menu: [
-    {
-      key: 'dashboard',
-      goto: () => {},
-      label: 'dashboard',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'activities',
-      goto: () => {},
-      label: 'activities',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'application',
-      goto: () => {},
-      label: 'application',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    }
-  ]
+  args: {
+    logo: {
+      src: defaultLogo
+    } as AppLogoProps,
+    menu: [
+      {
+        key: 'dashboard',
+        goto: () => {},
+        label: 'dashboard',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'activities',
+        goto: () => {},
+        label: 'activities',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'application',
+        goto: () => {},
+        label: 'application',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      }
+    ]
+  },
+
+  name: 'AppMenu'
 }
-
-AppMenu.storyName = 'AppMenu'

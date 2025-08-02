@@ -3,7 +3,7 @@ import {
   MoreOptions as AruiMoreOptions,
   MoreOptionsBasicProps
 } from './MoreOptions'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { styles, classes } from './docs'
 
 export default {
@@ -27,7 +27,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiMoreOptions>
 
 const options = [
   {
@@ -47,14 +47,14 @@ const options = [
   }
 ]
 
-export const MoreOptions: StoryFn<MoreOptionsBasicProps> = (
-  args: MoreOptionsBasicProps
-) => {
-  return <AruiMoreOptions {...args} />
-}
+export const MoreOptions: StoryObj<MoreOptionsBasicProps> = {
+  render: (args: MoreOptionsBasicProps) => {
+    return <AruiMoreOptions {...args} />
+  },
 
-MoreOptions.args = {
-  options: options
-}
+  args: {
+    options: options
+  },
 
-MoreOptions.storyName = 'MoreOptions'
+  name: 'MoreOptions'
+}

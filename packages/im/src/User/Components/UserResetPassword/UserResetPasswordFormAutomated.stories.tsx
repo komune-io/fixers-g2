@@ -1,5 +1,5 @@
 import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { KeycloakProvider, OidcSecure } from '@komune-io/g2-providers'
 import {
   UserResetPasswordFormAutomated,
@@ -10,30 +10,31 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 export default {
   title: 'IM/UserResetPasswordForm',
   component: UserResetPasswordFormAutomated
-} as Meta
+} as Meta<typeof UserResetPasswordFormAutomated>
 
 const queryClient = new QueryClient()
 
-export const UserResetPasswordFormAutomatedStory: StoryFn<
-  UserResetPasswordFormAutomatedProps
-> = (args: UserResetPasswordFormAutomatedProps) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <KeycloakProvider>
-        <OidcSecure>
-          <Following {...args} />
-        </OidcSecure>
-      </KeycloakProvider>
-    </QueryClientProvider>
-  )
-}
+export const UserResetPasswordFormAutomatedStory: StoryObj<UserResetPasswordFormAutomatedProps> =
+  {
+    render: (args: UserResetPasswordFormAutomatedProps) => {
+      return (
+        <QueryClientProvider client={queryClient}>
+          <KeycloakProvider>
+            <OidcSecure>
+              <Following {...args} />
+            </OidcSecure>
+          </KeycloakProvider>
+        </QueryClientProvider>
+      )
+    },
+
+    args: {
+      userId: 'userId'
+    },
+
+    name: 'UserResetPasswordFormAutomated'
+  }
 
 const Following = (args: UserResetPasswordFormAutomatedProps) => {
   return <UserResetPasswordFormAutomated {...args} />
 }
-
-UserResetPasswordFormAutomatedStory.args = {
-  userId: 'userId'
-}
-
-UserResetPasswordFormAutomatedStory.storyName = 'UserResetPasswordFormAutomated'

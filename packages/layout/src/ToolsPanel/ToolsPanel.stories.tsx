@@ -19,57 +19,54 @@ export default {
       control: null
     }
   }
-} as Meta
+} as Meta<typeof AruiToolsPanel>
 
-const Template: StoryFn<ToolsPanelProps> = (args: ToolsPanelProps) => (
-  <AruiToolsPanel {...args} />
-)
+export const ToolsPanel = {
+  args: {
+    menu: {
+      label: 'profile',
+      key: 'profile',
+      icon: <AccountCircle />,
+      items: [
+        {
+          key: 'key1',
+          goto: () => {},
+          label: 'Section 1',
+          icon: (
+            <img
+              style={{ width: '60px', height: '60px' }}
+              src={defaultLogo}
+              alt='smart b'
+            />
+          )
+        },
+        {
+          key: 'key2',
+          goto: () => {},
+          label: 'Section 2',
+          icon: (
+            <img
+              style={{ width: '60px', height: '60px' }}
+              src={defaultLogo}
+              alt='smart b'
+            />
+          )
+        },
+        {
+          key: 'key3',
+          goto: () => {},
+          label: 'Section 3',
+          icon: (
+            <img
+              style={{ width: '60px', height: '60px' }}
+              src={defaultLogo}
+              alt='smart b'
+            />
+          )
+        }
+      ]
+    }
+  },
 
-export const ToolsPanel = Template.bind({})
-ToolsPanel.args = {
-  menu: {
-    label: 'profile',
-    key: 'profile',
-    icon: <AccountCircle />,
-    items: [
-      {
-        key: 'key1',
-        goto: () => {},
-        label: 'Section 1',
-        icon: (
-          <img
-            style={{ width: '60px', height: '60px' }}
-            src={defaultLogo}
-            alt='smart b'
-          />
-        )
-      },
-      {
-        key: 'key2',
-        goto: () => {},
-        label: 'Section 2',
-        icon: (
-          <img
-            style={{ width: '60px', height: '60px' }}
-            src={defaultLogo}
-            alt='smart b'
-          />
-        )
-      },
-      {
-        key: 'key3',
-        goto: () => {},
-        label: 'Section 3',
-        icon: (
-          <img
-            style={{ width: '60px', height: '60px' }}
-            src={defaultLogo}
-            alt='smart b'
-          />
-        )
-      }
-    ]
-  }
+  name: 'ToolsPanel'
 }
-
-ToolsPanel.storyName = 'ToolsPanel'

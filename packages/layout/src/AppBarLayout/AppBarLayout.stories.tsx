@@ -5,7 +5,7 @@ import {
 } from './AppBarLayout'
 import { Meta, StoryFn } from '@storybook/react'
 import { styles, classes } from './types'
-import { ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs'
 
 export default {
   title: 'Layout/AppBarLayout',
@@ -14,7 +14,7 @@ export default {
     docs: {
       page: () => (
         <>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
         </>
       )
     }
@@ -37,15 +37,19 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiAppBarLayout>
 
 const Template: StoryFn<AppBarLayoutBasicProps> = (
   args: AppBarLayoutBasicProps
 ) => <AruiAppBarLayout {...args}></AruiAppBarLayout>
 
-export const AppBarLayout = Template.bind({})
-AppBarLayout.args = {
-  onDrawerOpen: () => {},
-  children: 'Some content'
+export const AppBarLayout = {
+  render: Template,
+
+  args: {
+    onDrawerOpen: () => {},
+    children: 'Some content'
+  },
+
+  name: 'AppBarLayout'
 }
-AppBarLayout.storyName = 'AppBarLayout'

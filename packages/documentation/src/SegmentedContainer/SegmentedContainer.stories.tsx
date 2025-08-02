@@ -3,7 +3,7 @@ import {
   SegmentedContainer as AruiSegmentedContainer,
   SegmentedContainerProps
 } from './SegmentedContainer'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { MarkdownHighlighter } from '../MarkdownHighlighter'
 //@ts-ignore
 import md from '!raw-loader!./exampleMarkdown.md'
@@ -12,16 +12,25 @@ import { CodeHighlighter } from '../CodeHighlighter'
 export default {
   title: 'Documentation/SegmentedContainer',
   component: AruiSegmentedContainer
-} as Meta
+} as Meta<typeof AruiSegmentedContainer>
 
-export const SegmentedContainer: StoryFn<SegmentedContainerProps> = (
-  args: SegmentedContainerProps
-) => (
-  <>
-    <AruiSegmentedContainer {...args} />
-    <AruiSegmentedContainer {...args} />
-  </>
-)
+export const SegmentedContainer: StoryObj<SegmentedContainerProps> = {
+  render: (args: SegmentedContainerProps) => (
+    <>
+      <AruiSegmentedContainer {...args} />
+      <AruiSegmentedContainer {...args} />
+    </>
+  ),
+
+  args: {
+    leftElement: <MarkdownHighlighter markdown={md} />,
+    rightElement: (
+      <CodeHighlighter code={code} title='Example' language='json' />
+    )
+  },
+
+  name: 'SegmentedContainer'
+}
 
 const code = `{
   "id": "dp_1J2zu82eZvKYlo2CI0ivPgUD",
@@ -44,10 +53,3 @@ const code = `{
     "uncategorized_file": null,
     "uncategorized_text": null
   }`
-
-SegmentedContainer.args = {
-  leftElement: <MarkdownHighlighter markdown={md} />,
-  rightElement: <CodeHighlighter code={code} title='Example' language='json' />
-}
-
-SegmentedContainer.storyName = 'SegmentedContainer'

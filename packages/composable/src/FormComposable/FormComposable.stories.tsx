@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Meta, StoryFn } from '@storybook/react'
 import {
-  ArgsTable,
+  ArgTypes,
   Primary,
   Description,
   Stories,
@@ -36,11 +36,11 @@ export default {
             This components is made to display a form using
             [Formik](https://formik.org/).
           </Description>
-          <ArgsTable components={{ FormComposable: FormComposable }} />
+          <ArgTypes of={FormComposable} />
           <Description>
             The form fields have common props describe below
           </Description>
-          <ArgsTable components={{ FormField: FormField }} />
+          <ArgTypes of={FormField} />
           <Description>
             the separated props of each fields are describe in the components
             documentation pages
@@ -73,7 +73,7 @@ export default {
       )
     }
   }
-} as Meta
+} as Meta<typeof FormComposable>
 
 export type DebugExtendProps = {
   formName: string
@@ -157,157 +157,166 @@ const FormComposableStory: StoryFn<FormComposableProps> = (
   )
 }
 
-export const TextFieldForm = FormComposableStory.bind({})
-TextFieldForm.args = {
-  fields: [
-    {
-      key: 'storybook-form-field-name',
-      name: 'name',
-      label: 'Name',
-      type: 'textField',
-      params: {},
-      validator: (value) =>
-        value === undefined || value === ''
-          ? 'The name is required'
-          : undefined,
-      defaultValue: 'The Default Name'
-    },
-    {
-      key: 'storybook-form-field-description',
-      name: 'description',
-      label: 'Description',
-      type: 'textField',
-      params: {
-        disabled: true
+export const TextFieldForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: [
+      {
+        key: 'storybook-form-field-name',
+        name: 'name',
+        label: 'Name',
+        type: 'textField',
+        params: {},
+        validator: (value) =>
+          value === undefined || value === ''
+            ? 'The name is required'
+            : undefined,
+        defaultValue: 'The Default Name'
       },
-      validator: (value: string) => (!value ? 'required' : undefined),
-      defaultValue: 'The description'
-    },
-    {
-      key: 'storybook-form-field-debug',
-      name: 'debug',
-      label: 'Debug',
-      type: 'debug',
-      params: {
-        formName: 'TextFieldForm'
+      {
+        key: 'storybook-form-field-description',
+        name: 'description',
+        label: 'Description',
+        type: 'textField',
+        params: {
+          disabled: true
+        },
+        validator: (value: string) => (!value ? 'required' : undefined),
+        defaultValue: 'The description'
       },
-      defaultValue: 'The description'
-    }
-  ] as AllFormComposableField[]
+      {
+        key: 'storybook-form-field-debug',
+        name: 'debug',
+        label: 'Debug',
+        type: 'debug',
+        params: {
+          formName: 'TextFieldForm'
+        },
+        defaultValue: 'The description'
+      }
+    ] as AllFormComposableField[]
+  }
 }
 
-export const SelectForm = FormComposableStory.bind({})
-SelectForm.args = {
-  fields: [
-    {
-      key: 'storybook-form-select-from',
-      name: 'from',
-      label: 'From',
-      type: 'select',
-      params: {
-        options: [
-          { key: 'dollar', label: '$' },
-          { key: 'euro', label: '€' }
-        ]
+export const SelectForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: [
+      {
+        key: 'storybook-form-select-from',
+        name: 'from',
+        label: 'From',
+        type: 'select',
+        params: {
+          options: [
+            { key: 'dollar', label: '$' },
+            { key: 'euro', label: '€' }
+          ]
+        },
+        validator: requiredField('The currency is required')
       },
-      validator: requiredField('The currency is required')
-    },
-    {
-      key: 'storybook-form-select-to',
-      name: 'to',
-      label: 'to',
-      type: 'select',
-      params: {
-        multiple: true,
-        options: [
-          { key: 'dollar', label: '$' },
-          { key: 'euro', label: '€' }
-        ]
+      {
+        key: 'storybook-form-select-to',
+        name: 'to',
+        label: 'to',
+        type: 'select',
+        params: {
+          multiple: true,
+          options: [
+            { key: 'dollar', label: '$' },
+            { key: 'euro', label: '€' }
+          ]
+        },
+        validator: requiredField('The currency is required')
       },
-      validator: requiredField('The currency is required')
-    },
-    {
-      key: 'storybook-form-select-value',
-      name: 'value',
-      label: 'Value',
-      type: 'textField',
-      params: {
-        options: [
-          { key: '100', label: '100' },
-          { key: '200', label: '200' }
-        ],
-        disabled: true
+      {
+        key: 'storybook-form-select-value',
+        name: 'value',
+        label: 'Value',
+        type: 'textField',
+        params: {
+          options: [
+            { key: '100', label: '100' },
+            { key: '200', label: '200' }
+          ],
+          disabled: true
+        },
+        defaultValue: '200'
       },
-      defaultValue: '200'
-    },
-    {
-      key: 'storybook-form-field-debug',
-      name: 'debug',
-      label: 'Debug',
-      type: 'debug',
-      params: {
-        formName: 'Select Form'
-      },
-      defaultValue: 'The description'
-    }
-  ] as AllFormComposableField[]
+      {
+        key: 'storybook-form-field-debug',
+        name: 'debug',
+        label: 'Debug',
+        type: 'debug',
+        params: {
+          formName: 'Select Form'
+        },
+        defaultValue: 'The description'
+      }
+    ] as AllFormComposableField[]
+  }
 }
 
-export const RadioSelectForm = FormComposableStory.bind({})
-RadioSelectForm.args = {
-  fields: [
-    {
-      key: 'storybook-form-radioChoices-from',
-      name: 'from',
-      label: 'From',
-      type: 'radioChoices',
-      params: {
-        options: [
-          { key: 'dollar', label: '$' },
-          { key: 'euro', label: '€' }
-        ]
+export const RadioSelectForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: [
+      {
+        key: 'storybook-form-radioChoices-from',
+        name: 'from',
+        label: 'From',
+        type: 'radioChoices',
+        params: {
+          options: [
+            { key: 'dollar', label: '$' },
+            { key: 'euro', label: '€' }
+          ]
+        },
+        validator: requiredField('The currency is required')
       },
-      validator: requiredField('The currency is required')
-    },
-    {
-      key: 'storybook-form-radioChoices-to',
-      name: 'to',
-      label: 'to',
-      type: 'radioChoices',
-      params: {
-        multiple: true,
-        options: [
-          { key: 'dollar', label: '$' },
-          { key: 'euro', label: '€' }
-        ]
+      {
+        key: 'storybook-form-radioChoices-to',
+        name: 'to',
+        label: 'to',
+        type: 'radioChoices',
+        params: {
+          multiple: true,
+          options: [
+            { key: 'dollar', label: '$' },
+            { key: 'euro', label: '€' }
+          ]
+        },
+        validator: requiredField('The currency is required')
       },
-      validator: requiredField('The currency is required')
-    },
-    {
-      key: 'storybook-form-radioChoices-value',
-      name: 'value',
-      label: 'Value',
-      type: 'radioChoices',
-      params: {
-        options: [
-          { key: '100', label: '100' },
-          { key: '200', label: '200' }
-        ],
-        disabled: true
+      {
+        key: 'storybook-form-radioChoices-value',
+        name: 'value',
+        label: 'Value',
+        type: 'radioChoices',
+        params: {
+          options: [
+            { key: '100', label: '100' },
+            { key: '200', label: '200' }
+          ],
+          disabled: true
+        },
+        defaultValue: '200'
       },
-      defaultValue: '200'
-    },
-    {
-      key: 'storybook-form-field-debug',
-      name: 'debug',
-      label: 'Debug',
-      type: 'debug',
-      params: {
-        formName: 'Radio Select Form'
-      },
-      defaultValue: 'The description'
-    }
-  ] as AllFormComposableField[]
+      {
+        key: 'storybook-form-field-debug',
+        name: 'debug',
+        label: 'Debug',
+        type: 'debug',
+        params: {
+          formName: 'Radio Select Form'
+        },
+        defaultValue: 'The description'
+      }
+    ] as AllFormComposableField[]
+  }
 }
 
 const fullFields: AllFormComposableField[] = [
@@ -419,9 +428,12 @@ const fullFields: AllFormComposableField[] = [
   }
 ] as AllFormComposableField[]
 
-export const FullForm = FormComposableStory.bind({})
-FullForm.args = {
-  fields: fullFields
+export const FullForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: fullFields
+  }
 }
 
 const withCustomDisplay = (input: ReactNode): ReactNode => {
@@ -498,16 +510,22 @@ const FullFieldsWithCustomDisplayField: AllFormComposableField[] = [
   }
 ] as AllFormComposableField[]
 
-export const FullFieldsWithCustom = FormComposableStory.bind({})
-FullFieldsWithCustom.args = {
-  fields: FullFieldsWithCustomDisplayField
+export const FullFieldsWithCustom = {
+  render: FormComposableStory,
+
+  args: {
+    fields: FullFieldsWithCustomDisplayField
+  }
 }
 
-export const GridDisplayForm = FormComposableStory.bind({})
-GridDisplayForm.args = {
-  fields: fullFields,
-  display: 'grid',
-  gridColumnNumber: 2
+export const GridDisplayForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: fullFields,
+    display: 'grid',
+    gridColumnNumber: 2
+  }
 }
 
 const conditionsFormField: FormComposableField[] = [
@@ -564,7 +582,10 @@ const conditionsFormField: FormComposableField[] = [
   }
 ]
 
-export const ConditionsForm = FormComposableStory.bind({})
-ConditionsForm.args = {
-  fields: conditionsFormField
+export const ConditionsForm = {
+  render: FormComposableStory,
+
+  args: {
+    fields: conditionsFormField
+  }
 }

@@ -13,7 +13,7 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1017%3A1671'
     }
   }
-} as Meta
+} as Meta<typeof AruiTooltip>
 
 const Template: StoryFn<TooltipBasicProps> = (args: TooltipBasicProps) => {
   return (
@@ -31,14 +31,17 @@ const Template2: StoryFn = () => {
   )
 }
 
-export const Tooltip = Template.bind({})
+export const Tooltip = {
+  render: Template,
 
-export const PermanentTooltip = Template2.bind({})
+  args: {
+    helperText: 'A helper message'
+  },
 
-Tooltip.args = {
-  helperText: 'A helper message'
+  name: 'Tooltip'
 }
 
-Tooltip.storyName = 'Tooltip'
-
-PermanentTooltip.storyName = 'permanent tooltip'
+export const PermanentTooltip = {
+  render: Template2,
+  name: 'permanent tooltip'
+}

@@ -2,7 +2,7 @@ import {
   UserAvatar as AruiUserAvatar,
   UserAvatarBasicProps
 } from './UserAvatar'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 export default {
   title: 'Components/UserAvatar',
@@ -14,16 +14,16 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1019%3A1023'
     }
   }
-} as Meta
+} as Meta<typeof AruiUserAvatar>
 
-export const UserAvatar: StoryFn<UserAvatarBasicProps> = (
-  args: UserAvatarBasicProps
-) => {
-  return <AruiUserAvatar {...args} />
+export const UserAvatar: StoryObj<UserAvatarBasicProps> = {
+  render: (args: UserAvatarBasicProps) => {
+    return <AruiUserAvatar {...args} />
+  },
+
+  args: {
+    name: 'John Doe'
+  },
+
+  name: 'UserAvatar'
 }
-
-UserAvatar.args = {
-  name: 'John Doe'
-}
-
-UserAvatar.storyName = 'UserAvatar'

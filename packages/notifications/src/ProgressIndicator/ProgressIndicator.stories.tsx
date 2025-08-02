@@ -3,7 +3,7 @@ import {
   ProgressIndicator as AruiProgressIndicator,
   ProgressIndicatorProps
 } from './ProgressIndicator'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import { classes, styles } from './docs'
 
@@ -35,14 +35,12 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiProgressIndicator>
 
-export const ProgressIndicator: StoryFn<ProgressIndicatorProps> = (
-  args: ProgressIndicatorProps
-) => <AruiProgressIndicator {...args} />
+export const ProgressIndicator: StoryObj<ProgressIndicatorProps> = {
+  args: {
+    value: 30
+  },
 
-ProgressIndicator.args = {
-  value: 30
+  name: 'ProgressIndicator'
 }
-
-ProgressIndicator.storyName = 'ProgressIndicator'

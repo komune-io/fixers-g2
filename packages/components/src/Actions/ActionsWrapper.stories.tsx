@@ -5,7 +5,7 @@ import { Meta, StoryFn } from '@storybook/react'
 export default {
   title: 'Components/ActionsWrapper',
   component: ActionsWrapper
-} as Meta
+} as Meta<typeof ActionsWrapper>
 
 const Template: StoryFn<ActionsWrapperProps> = (args: ActionsWrapperProps) => (
   <ActionsWrapper {...args}>
@@ -13,18 +13,22 @@ const Template: StoryFn<ActionsWrapperProps> = (args: ActionsWrapperProps) => (
   </ActionsWrapper>
 )
 
-export const Actions = Template.bind({})
-Actions.args = {
-  actions: [
-    {
-      key: 'action1',
-      label: 'Action1'
-    },
-    {
-      key: 'action2',
-      label: 'Action2'
-    }
-  ],
-  position: 'both'
+export const Actions = {
+  render: Template,
+
+  args: {
+    actions: [
+      {
+        key: 'action1',
+        label: 'Action1'
+      },
+      {
+        key: 'action2',
+        label: 'Action2'
+      }
+    ],
+    position: 'both'
+  },
+
+  name: 'Actions'
 }
-Actions.storyName = 'Actions'

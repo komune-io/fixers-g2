@@ -12,45 +12,42 @@ export default {
     }
   },
   component: AruiMenu
-} as Meta
+} as Meta<typeof AruiMenu>
 
-const Template: StoryFn<MenuBasicProps> = (args: MenuBasicProps) => (
-  <AruiMenu {...args} />
-)
+export const Menu = {
+  args: {
+    menu: [
+      {
+        key: 'key1',
+        goto: () => {},
+        label: 'Section 1'
+      },
+      {
+        key: 'key2',
+        goto: () => {},
+        label: 'Section 2',
+        isSelected: true,
+        items: [
+          {
+            key: 'key2-key3',
+            goto: () => {},
+            label: 'Section 3',
+            isSelected: true
+          },
+          {
+            key: 'key2-key4',
+            goto: () => {},
+            label: 'Section 4'
+          }
+        ]
+      },
+      {
+        key: 'key5',
+        goto: () => {},
+        label: 'Section 5'
+      }
+    ]
+  },
 
-export const Menu = Template.bind({})
-Menu.args = {
-  menu: [
-    {
-      key: 'key1',
-      goto: () => {},
-      label: 'Section 1'
-    },
-    {
-      key: 'key2',
-      goto: () => {},
-      label: 'Section 2',
-      isSelected: true,
-      items: [
-        {
-          key: 'key2-key3',
-          goto: () => {},
-          label: 'Section 3',
-          isSelected: true
-        },
-        {
-          key: 'key2-key4',
-          goto: () => {},
-          label: 'Section 4'
-        }
-      ]
-    },
-    {
-      key: 'key5',
-      goto: () => {},
-      label: 'Section 5'
-    }
-  ]
+  name: 'Menu'
 }
-
-Menu.storyName = 'Menu'

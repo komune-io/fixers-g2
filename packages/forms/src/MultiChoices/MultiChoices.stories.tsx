@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { MultiChoices, MultiChoicesBasicProps } from './MultiChoices'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { MultiChoicesClasses, MultiChoicesStyles } from './docs'
 
 import { Option } from '../Select'
@@ -33,20 +33,26 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof MultiChoices>
 
-export const MultiChoicesStory: StoryFn<MultiChoicesBasicProps> = (
-  args: MultiChoicesBasicProps
-) => {
-  const [values, setvalues] = useState<any[]>([])
-  return (
-    <MultiChoices
-      {...args}
-      values={values}
-      onChange={(values) => setvalues(values)}
-      style={{ width: 350 }}
-    />
-  )
+export const MultiChoicesStory: StoryObj<MultiChoicesBasicProps> = {
+  render: (args: MultiChoicesBasicProps) => {
+    const [values, setvalues] = useState<any[]>([])
+    return (
+      <MultiChoices
+        {...args}
+        values={values}
+        onChange={(values) => setvalues(values)}
+        style={{ width: 350 }}
+      />
+    )
+  },
+
+  args: {
+    options: options
+  },
+
+  name: 'MultiChoices'
 }
 
 const options: Option[] = [
@@ -79,9 +85,3 @@ const options: Option[] = [
     label: 'test7'
   }
 ]
-
-MultiChoicesStory.args = {
-  options: options
-}
-
-MultiChoicesStory.storyName = 'MultiChoices'

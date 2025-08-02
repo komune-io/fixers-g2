@@ -34,7 +34,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiDropPicture>
 
 const Template: StoryFn<DropPictureBasicProps> = (
   args: DropPictureBasicProps
@@ -49,6 +49,7 @@ const Template: StoryFn<DropPictureBasicProps> = (
   </Box>
 )
 
-export const DropPicture = Template.bind({})
-
-DropPicture.storyName = 'DropPicture'
+export const DropPicture = {
+  render: Template,
+  name: 'DropPicture'
+}

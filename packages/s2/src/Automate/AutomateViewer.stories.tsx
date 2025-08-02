@@ -9,7 +9,7 @@ import { Meta, StoryFn } from '@storybook/react'
 export default {
   title: 'S2/AutomateViewer',
   component: AruiAutomateViewer
-} as Meta
+} as Meta<typeof AruiAutomateViewer>
 
 const Template: StoryFn<AutomateViewerBasicProps> = (
   args: AutomateViewerBasicProps
@@ -17,35 +17,37 @@ const Template: StoryFn<AutomateViewerBasicProps> = (
   return <AruiAutomateViewer {...args}></AruiAutomateViewer>
 }
 
-export const AutomateViewer = Template.bind({})
+export const AutomateViewer = {
+  render: Template,
 
-AutomateViewer.args = {
-  transitions: [
-    {
-      label: 'transition 1',
-      from: 0,
-      to: 1
-    },
-    {
-      label: 'transition 2',
-      from: 1,
-      to: 1
-    },
-    {
-      label: 'transition 3',
-      from: 1,
-      to: 1
-    },
-    {
-      label: 'transition 4',
-      from: 1,
-      to: 2
-    }
-  ],
-  style: { width: '100%', height: '500px' }
+  args: {
+    transitions: [
+      {
+        label: 'transition 1',
+        from: 0,
+        to: 1
+      },
+      {
+        label: 'transition 2',
+        from: 1,
+        to: 1
+      },
+      {
+        label: 'transition 3',
+        from: 1,
+        to: 1
+      },
+      {
+        label: 'transition 4',
+        from: 1,
+        to: 2
+      }
+    ],
+    style: { width: '100%', height: '500px' }
+  },
+
+  name: 'AutomateViewer'
 }
-
-AutomateViewer.storyName = 'AutomateViewer'
 
 export const SsmViewer: StoryFn = () => {
   const automate: SSM = {

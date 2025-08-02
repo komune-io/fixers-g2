@@ -4,7 +4,7 @@ import {
   LabelSwitchBasicProps,
   Label
 } from './LabelSwitch'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 
 import { styles, classes } from './docs'
 
@@ -36,19 +36,25 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiLabelSwitch>
 
-export const LabelSwitch: StoryFn<LabelSwitchBasicProps> = (
-  args: LabelSwitchBasicProps
-) => {
-  const [labelValue, setlabelValue] = useState('3Month')
-  return (
-    <AruiLabelSwitch
-      {...args}
-      onLabelChange={setlabelValue}
-      selectedLabelValue={labelValue}
-    />
-  )
+export const LabelSwitch: StoryObj<LabelSwitchBasicProps> = {
+  render: (args: LabelSwitchBasicProps) => {
+    const [labelValue, setlabelValue] = useState('3Month')
+    return (
+      <AruiLabelSwitch
+        {...args}
+        onLabelChange={setlabelValue}
+        selectedLabelValue={labelValue}
+      />
+    )
+  },
+
+  args: {
+    labels: labels
+  },
+
+  name: 'LabelSwitch'
 }
 
 const labels: Label[] = [
@@ -73,9 +79,3 @@ const labels: Label[] = [
     key: 'LabelSwitch_all'
   }
 ]
-
-LabelSwitch.args = {
-  labels: labels
-}
-
-LabelSwitch.storyName = 'LabelSwitch'

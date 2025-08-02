@@ -8,7 +8,7 @@ import {
   Settings
 } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
-import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
 import { styles, classes, Menu } from './types'
 import LinkTo from '@storybook/addon-links/react'
 
@@ -19,7 +19,7 @@ export default {
     docs: {
       page: () => (
         <>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -77,37 +77,40 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiToolsMenu>
 
 const Template: StoryFn<ToolsMenuProps> = (args: ToolsMenuProps) => (
   <AruiToolsMenu {...args}></AruiToolsMenu>
 )
 
-export const ToolsMenu = Template.bind({})
-ToolsMenu.args = {
-  display: 'list',
-  menu: {
-    label: 'profile',
-    key: 'profile',
-    icon: <AccountCircle />,
-    items: [
-      {
-        key: 'key1',
-        label: 'Section 1',
-        icon: <Payment style={{ width: '60px', height: '60px' }} />
-      },
-      {
-        key: 'key2',
-        label: 'Section 2',
-        icon: <ContactPhone style={{ width: '60px', height: '60px' }} />
-      },
-      {
-        key: 'key3',
-        label: 'Section 3',
-        icon: <Settings style={{ width: '60px', height: '60px' }} />
-      }
-    ]
-  }
-}
+export const ToolsMenu = {
+  render: Template,
 
-ToolsMenu.storyName = 'ToolsMenu'
+  args: {
+    display: 'list',
+    menu: {
+      label: 'profile',
+      key: 'profile',
+      icon: <AccountCircle />,
+      items: [
+        {
+          key: 'key1',
+          label: 'Section 1',
+          icon: <Payment style={{ width: '60px', height: '60px' }} />
+        },
+        {
+          key: 'key2',
+          label: 'Section 2',
+          icon: <ContactPhone style={{ width: '60px', height: '60px' }} />
+        },
+        {
+          key: 'key3',
+          label: 'Section 3',
+          icon: <Settings style={{ width: '60px', height: '60px' }} />
+        }
+      ]
+    }
+  },
+
+  name: 'ToolsMenu'
+}

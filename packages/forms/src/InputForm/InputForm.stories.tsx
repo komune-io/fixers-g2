@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { InputForm, InputFormBasicProps } from './InputForm'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
@@ -33,7 +33,7 @@ export default {
             common between the textfield and the select if you want to see all
             the props of every one of them please see the references below.
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
@@ -96,211 +96,214 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof InputForm>
 
-export const InputFormStory: StoryFn<InputFormBasicProps> = (
-  args: InputFormBasicProps
-) => {
-  return <InputForm {...args} style={{ width: '500px' }} />
+export const InputFormStory: StoryObj<InputFormBasicProps> = {
+  render: (args: InputFormBasicProps) => {
+    return <InputForm {...args} style={{ width: '500px' }} />
+  },
+
+  args: {
+    label: 'un input:',
+    id: 'InputFormExample',
+    inputType: 'textField'
+  },
+
+  name: 'InputForm'
 }
 
-export const InputFormReadOnly: StoryFn<InputFormBasicProps> = (
-  args: InputFormBasicProps
-) => {
-  return (
-    <InputForm
-      {...args}
-      label='ReadOnly input'
-      value='My value'
-      inputType='textField'
-      style={{ width: '500px' }}
-      readOnly
-    />
-  )
+export const InputFormReadOnly: StoryObj<InputFormBasicProps> = {
+  render: (args: InputFormBasicProps) => {
+    return (
+      <InputForm
+        {...args}
+        label='ReadOnly input'
+        value='My value'
+        inputType='textField'
+        style={{ width: '500px' }}
+        readOnly
+      />
+    )
+  }
 }
 
-export const InputFormReadOnlyChip: StoryFn<InputFormBasicProps> = (
-  args: InputFormBasicProps
-) => {
-  return (
-    <InputForm
-      label='ReadOnly input chip'
-      value='My value'
-      inputType='textField'
-      style={{ width: '500px' }}
-      readOnly
-      readOnlyType='chip'
-      getReadOnlyChipColor={() => '#E56643'}
-      chipLimit={1}
-    />
-  )
+export const InputFormReadOnlyChip: StoryObj<InputFormBasicProps> = {
+  render: (args: InputFormBasicProps) => {
+    return (
+      <InputForm
+        label='ReadOnly input chip'
+        value='My value'
+        inputType='textField'
+        style={{ width: '500px' }}
+        readOnly
+        readOnlyType='chip'
+        getReadOnlyChipColor={() => '#E56643'}
+        chipLimit={1}
+      />
+    )
+  }
 }
 
 const CustomStatusTag = ({ values }) => {
   return <LimitedList listedComponent={StatusTag} values={values} />
 }
 
-export const InputFormReadOnlyCustom: StoryFn<InputFormBasicProps> = (
-  args: InputFormBasicProps
-) => {
-  return (
-    <InputForm
-      inputType='select'
-      label='ReadOnly input chip'
-      values={['status1', 'status2']}
-      options={[
-        {
-          key: 'status1',
-          label: 'Started'
-        },
-        {
-          key: 'status2',
-          label: 'Done dzsqf qsdf azef azef qsd fazrg azegh azrhazdhazer'
-        }
-      ]}
-      multiple
-      style={{ width: '500px' }}
-      readOnly
-      readOnlyType='customContainer'
-      readOnlyElement={CustomStatusTag}
-      getReadOnlyChipColor={() => '#E56643'}
-    />
-  )
-}
-
-export const InputFormLoading: StoryFn<InputFormBasicProps> = (
-  args: InputFormBasicProps
-) => {
-  return (
-    <InputForm
-      inputType='textField'
-      label='Loading input'
-      value='My value'
-      style={{ width: '500px' }}
-      isLoading
-    />
-  )
-}
-
-export const FormExample: StoryFn<InputFormBasicProps> = () => {
-  const [form, setform] = useState({
-    email: '',
-    password: '',
-    gender: '',
-    birthday: undefined,
-    nationality: 'fr',
-    cookies: []
-  })
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
+export const InputFormReadOnlyCustom: StoryObj<InputFormBasicProps> = {
+  render: (args: InputFormBasicProps) => {
+    return (
       <InputForm
-        label='email:'
-        value={form.email}
-        onChange={(value) => setform({ ...form, email: value })}
-        onRemove={() => setform({ ...form, email: '' })}
-        id='FormExampleEmail'
-        inputType='textField'
-        textFieldType='email'
-        placeholder='example@gmail.com'
-        orientation='horizontal'
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
-        styles={{ input: { width: '60%', flexGrow: 0 } }}
-      />
-      <InputForm
-        value={form.password}
-        onChange={(value) => setform({ ...form, password: value })}
-        onRemove={() => setform({ ...form, password: '' })}
-        label='password:'
-        id='FormExamplePassword'
-        inputType='textField'
-        textFieldType='password'
-        orientation='horizontal'
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
-        styles={{ input: { width: '60%', flexGrow: 0 } }}
-      />
-      <InputForm
-        value={form.gender}
-        label='gender:'
         inputType='select'
-        onChangeValue={(value) => setform({ ...form, gender: value })}
-        options={[
-          { key: 'male', label: 'Male' },
-          { key: 'female', label: 'Female' }
-        ]}
-        placeholder='chosse your gender'
-        orientation='horizontal'
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
-        styles={{ input: { width: '60%', flexGrow: 0 } }}
-      />
-      <InputForm
-        value={form.birthday}
-        label='birthday:'
-        inputType='datePicker'
-        onChangeDate={(date) => setform({ ...form, birthday: date })}
-        placeholder='Choose your birthday'
-        orientation='horizontal'
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
-        styles={{ input: { width: '60%', flexGrow: 0 } }}
-      />
-      <InputForm
-        value={6}
-        label='nationality:'
-        inputType='radioChoices'
-        onChange={(value: string) => setform({ ...form, nationality: value })}
-        options={[
-          { key: 'fr', label: 'I have the french nationnality' },
-          { key: 'other', label: "I don't have the french nationnality" }
-        ]}
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
-      />
-      <InputForm
-        values={form.cookies}
-        label='which cookie do you accept:'
-        inputType='multiChoices'
-        onChange={(values) => setform({ ...form, cookies: values })}
+        label='ReadOnly input chip'
+        values={['status1', 'status2']}
         options={[
           {
-            key: 'statistics',
-            label: 'I accept all the cookies for the statistics'
+            key: 'status1',
+            label: 'Started'
           },
           {
-            key: 'analitics',
-            label: 'I accept all the cookies for the analitics'
-          },
-          {
-            key: 'essential',
-            label: 'I accept the essential cookies for the platform'
+            key: 'status2',
+            label: 'Done dzsqf qsdf azef azef qsd fazrg azegh azrhazdhazer'
           }
         ]}
-        style={{
-          width: '400px',
-          margin: '20px'
-        }}
+        multiple
+        style={{ width: '500px' }}
+        readOnly
+        readOnlyType='customContainer'
+        readOnlyElement={CustomStatusTag}
+        getReadOnlyChipColor={() => '#E56643'}
       />
-    </Box>
-  )
+    )
+  }
 }
 
-InputFormStory.args = {
-  label: 'un input:',
-  id: 'InputFormExample',
-  inputType: 'textField'
+export const InputFormLoading: StoryObj<InputFormBasicProps> = {
+  render: (args: InputFormBasicProps) => {
+    return (
+      <InputForm
+        inputType='textField'
+        label='Loading input'
+        value='My value'
+        style={{ width: '500px' }}
+        isLoading
+      />
+    )
+  }
 }
 
-InputFormStory.storyName = 'InputForm'
-FormExample.storyName = 'Form example'
+export const FormExample: StoryObj<InputFormBasicProps> = {
+  render: () => {
+    const [form, setform] = useState({
+      email: '',
+      password: '',
+      gender: '',
+      birthday: undefined,
+      nationality: 'fr',
+      cookies: []
+    })
+    return (
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <InputForm
+          label='email:'
+          value={form.email}
+          onChange={(value) => setform({ ...form, email: value })}
+          onRemove={() => setform({ ...form, email: '' })}
+          id='FormExampleEmail'
+          inputType='textField'
+          textFieldType='email'
+          placeholder='example@gmail.com'
+          orientation='horizontal'
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+          styles={{ input: { width: '60%', flexGrow: 0 } }}
+        />
+        <InputForm
+          value={form.password}
+          onChange={(value) => setform({ ...form, password: value })}
+          onRemove={() => setform({ ...form, password: '' })}
+          label='password:'
+          id='FormExamplePassword'
+          inputType='textField'
+          textFieldType='password'
+          orientation='horizontal'
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+          styles={{ input: { width: '60%', flexGrow: 0 } }}
+        />
+        <InputForm
+          value={form.gender}
+          label='gender:'
+          inputType='select'
+          onChangeValue={(value) => setform({ ...form, gender: value })}
+          options={[
+            { key: 'male', label: 'Male' },
+            { key: 'female', label: 'Female' }
+          ]}
+          placeholder='chosse your gender'
+          orientation='horizontal'
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+          styles={{ input: { width: '60%', flexGrow: 0 } }}
+        />
+        <InputForm
+          value={form.birthday}
+          label='birthday:'
+          inputType='datePicker'
+          onChangeDate={(date) => setform({ ...form, birthday: date })}
+          placeholder='Choose your birthday'
+          orientation='horizontal'
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+          styles={{ input: { width: '60%', flexGrow: 0 } }}
+        />
+        <InputForm
+          value={6}
+          label='nationality:'
+          inputType='radioChoices'
+          onChange={(value: string) => setform({ ...form, nationality: value })}
+          options={[
+            { key: 'fr', label: 'I have the french nationnality' },
+            { key: 'other', label: "I don't have the french nationnality" }
+          ]}
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+        />
+        <InputForm
+          values={form.cookies}
+          label='which cookie do you accept:'
+          inputType='multiChoices'
+          onChange={(values) => setform({ ...form, cookies: values })}
+          options={[
+            {
+              key: 'statistics',
+              label: 'I accept all the cookies for the statistics'
+            },
+            {
+              key: 'analitics',
+              label: 'I accept all the cookies for the analitics'
+            },
+            {
+              key: 'essential',
+              label: 'I accept the essential cookies for the platform'
+            }
+          ]}
+          style={{
+            width: '400px',
+            margin: '20px'
+          }}
+        />
+      </Box>
+    )
+  },
+
+  name: 'Form example'
+}

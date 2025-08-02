@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { RadioChoices, Choice, RadioChoicesBasicProps } from './RadioChoices'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Box } from '@mui/material'
 import { RadioChoicesClasses, RadioChoicesStyles } from './docs'
 
@@ -32,20 +32,26 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof RadioChoices>
 
-export const RadioChoicesStory: StoryFn<RadioChoicesBasicProps> = (
-  args: RadioChoicesBasicProps
-) => {
-  const [value, setvalue] = useState('')
-  return (
-    <RadioChoices
-      {...args}
-      value={value}
-      onChange={(value) => setvalue(value)}
-      style={{ width: 350 }}
-    />
-  )
+export const RadioChoicesStory: StoryObj<RadioChoicesBasicProps> = {
+  render: (args: RadioChoicesBasicProps) => {
+    const [value, setvalue] = useState('')
+    return (
+      <RadioChoices
+        {...args}
+        value={value}
+        onChange={(value) => setvalue(value)}
+        style={{ width: 350 }}
+      />
+    )
+  },
+
+  args: {
+    options: options
+  },
+
+  name: 'RadioChoices'
 }
 
 const options: Choice[] = [
@@ -78,12 +84,6 @@ const options: Choice[] = [
     label: 'test7'
   }
 ]
-
-RadioChoicesStory.args = {
-  options: options
-}
-
-RadioChoicesStory.storyName = 'RadioChoices'
 
 export const withEditableLabel: StoryFn = () => {
   const [value, setvalue] = useState('')

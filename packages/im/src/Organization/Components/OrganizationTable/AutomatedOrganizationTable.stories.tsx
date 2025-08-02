@@ -1,5 +1,5 @@
 import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import {
   AutomatedOrganizationTable,
   AutomatedOrganizationTableBasicProps as AutomatedOrganizationTableProps
@@ -12,7 +12,7 @@ import { Organization } from '../../Domain'
 export default {
   title: 'IM/AutomatedOrganizationTable',
   component: AutomatedOrganizationTable
-} as Meta
+} as Meta<typeof AutomatedOrganizationTable>
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,18 +22,23 @@ const queryClient = new QueryClient({
   }
 })
 
-export const AutomatedOrganizationTableStory: StoryFn<
+export const AutomatedOrganizationTableStory: StoryObj<
   AutomatedOrganizationTableProps<Organization>
-> = (args: AutomatedOrganizationTableProps<Organization>) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <KeycloakProvider>
-        <OidcSecure>
-          <Following {...args} />
-        </OidcSecure>
-      </KeycloakProvider>
-    </QueryClientProvider>
-  )
+> = {
+  render: (args: AutomatedOrganizationTableProps<Organization>) => {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <KeycloakProvider>
+          <OidcSecure>
+            <Following {...args} />
+          </OidcSecure>
+        </KeycloakProvider>
+      </QueryClientProvider>
+    )
+  },
+
+  args: {},
+  name: 'AutomatedOrganizationTable'
 }
 
 const Following = (args: AutomatedOrganizationTableProps<Organization>) => {
@@ -42,7 +47,3 @@ const Following = (args: AutomatedOrganizationTableProps<Organization>) => {
   if (!keycloak.isAuthenticated) return <></>
   return <AutomatedOrganizationTable {...args} />
 }
-
-AutomatedOrganizationTableStory.args = {}
-
-AutomatedOrganizationTableStory.storyName = 'AutomatedOrganizationTable'

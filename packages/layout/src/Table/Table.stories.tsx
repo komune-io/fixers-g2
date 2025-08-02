@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Table as AruiTable, TableBasicProps } from './Table'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Title,
   Description,
@@ -56,7 +56,7 @@ export default {
             it doesn't follow the html rule.
           </Description>
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Stories />
         </>
       )
@@ -80,7 +80,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiTable>
 
 interface Data {
   id: string
@@ -124,19 +124,36 @@ const data2: Data[] = [
   }
 ]
 
-export const Table: StoryFn<TableBasicProps<Data>> = (
-  args: TableBasicProps<Data>
-) => {
-  const [page, setPage] = useState<number>(1)
-  return (
-    <AruiTable
-      page={page}
-      totalPages={2}
-      onPageChange={(newPage) => setPage(newPage)}
-      {...args}
-      data={page === 1 ? data1 : data2}
-    />
-  )
+export const Table: StoryObj<TableBasicProps<Data>> = {
+  render: (args: TableBasicProps<Data>) => {
+    const [page, setPage] = useState<number>(1)
+    return (
+      <AruiTable
+        page={page}
+        totalPages={2}
+        onPageChange={(newPage) => setPage(newPage)}
+        {...args}
+        data={page === 1 ? data1 : data2}
+      />
+    )
+  },
+
+  args: {
+    columns: columns,
+    getRowId: (row) => row.id,
+    setSelectedRowIds: (ids) => console.log(ids),
+    isSelectableRow: (row) => row.index % 2 === 0,
+    renderSubComponent: (row) => (
+      <Box
+        sx={{
+          margin: 1
+        }}
+      >
+        <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
+      </Box>
+    ),
+    onRowClicked: (row) => console.log('cliked', row)
+  }
 }
 
 const columns: Column<Data>[] = [
@@ -162,23 +179,6 @@ const columns: Column<Data>[] = [
     )
   }
 ]
-
-Table.args = {
-  columns: columns,
-  getRowId: (row) => row.id,
-  setSelectedRowIds: (ids) => console.log(ids),
-  isSelectableRow: (row) => row.index % 2 === 0,
-  renderSubComponent: (row) => (
-    <Box
-      sx={{
-        margin: 1
-      }}
-    >
-      <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
-    </Box>
-  ),
-  onRowClicked: (row) => console.log('cliked', row)
-}
 
 export const theVariants: StoryFn = () => {
   interface DataExample {

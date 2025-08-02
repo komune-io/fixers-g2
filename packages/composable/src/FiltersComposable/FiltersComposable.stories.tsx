@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Primary,
   Description,
@@ -34,38 +34,44 @@ export default {
             This components is made to display a simple form using
             [Formik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Stories />
         </>
       )
     }
   }
-} as Meta
+} as Meta<typeof FiltersComposable>
 
 const queryClient = new QueryClient()
 
-export const FiltersStory: StoryFn<FiltersComposableBasicProps<any>> = (
-  args: FiltersComposableBasicProps<any>
-) => {
-  interface Languages {
-    fr: string
-    en: string
-  }
+export const FiltersStory: StoryObj<FiltersComposableBasicProps<any>> = {
+  render: (args: FiltersComposableBasicProps<any>) => {
+    interface Languages {
+      fr: string
+      en: string
+    }
 
-  const languages: Languages = {
-    fr: 'fr-FR',
-    en: 'en-US'
-  }
+    const languages: Languages = {
+      fr: 'fr-FR',
+      en: 'en-US'
+    }
 
-  return (
-    <AruiAppProvider<Languages>
-      languages={languages}
-      loadingComponent={<Typography>Loading ...</Typography>}
-      queryClient={queryClient}
-    >
-      <Router {...args} />
-    </AruiAppProvider>
-  )
+    return (
+      <AruiAppProvider<Languages>
+        languages={languages}
+        loadingComponent={<Typography>Loading ...</Typography>}
+        queryClient={queryClient}
+      >
+        <Router {...args} />
+      </AruiAppProvider>
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Filters'
 }
 
 const Router = (props) => {
@@ -239,9 +245,3 @@ const fields: FilterComposableField[] = [
     }
   }
 ]
-
-FiltersStory.args = {
-  fields: fields
-}
-
-FiltersStory.storyName = 'Filters'

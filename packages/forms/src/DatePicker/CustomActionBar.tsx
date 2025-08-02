@@ -1,6 +1,6 @@
 import { PickersActionBarProps } from '@mui/x-date-pickers/PickersActionBar/index.js'
 import { Action, Actions } from '@komune-io/g2-components'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const CustomActionBar = (props: PickersActionBarProps) => {

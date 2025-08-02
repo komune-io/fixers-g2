@@ -5,9 +5,9 @@ import {
   FiltersField,
   FiltersAction
 } from './Filters'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
@@ -46,7 +46,7 @@ export default {
             If you want a complexe stack of filters you will have to create it
             by your self. We recommand using [Filtersik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
@@ -124,43 +124,49 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof Filters>
 
-export const FiltersStory: StoryFn<FiltersBasicProps> = (
-  args: FiltersBasicProps
-) => {
-  const formState = useFilters({
-    fields: args.fields,
-    onSubmit: (values) => {
-      console.log('submitted')
-      console.log(values)
-    }
-  })
-
-  const actions = useMemo(
-    (): FiltersAction[] => [
-      {
-        label: 'reset',
-        key: 'resetFiltersButton',
-        variant: 'text',
-        onClick: () => formState.resetForm()
-      },
-      {
-        label: 'execute',
-        key: 'executeFiltersButton'
+export const FiltersStory: StoryObj<FiltersBasicProps> = {
+  render: (args: FiltersBasicProps) => {
+    const formState = useFilters({
+      fields: args.fields,
+      onSubmit: (values) => {
+        console.log('submitted')
+        console.log(values)
       }
-    ],
-    [formState.resetForm]
-  )
+    })
 
-  return (
-    <Filters
-      {...args}
-      formState={formState}
-      actions={actions}
-      actionsPosition='right'
-    />
-  )
+    const actions = useMemo(
+      (): FiltersAction[] => [
+        {
+          label: 'reset',
+          key: 'resetFiltersButton',
+          variant: 'text',
+          onClick: () => formState.resetForm()
+        },
+        {
+          label: 'execute',
+          key: 'executeFiltersButton'
+        }
+      ],
+      [formState.resetForm]
+    )
+
+    return (
+      <Filters
+        {...args}
+        formState={formState}
+        actions={actions}
+        actionsPosition='right'
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Filters'
 }
 
 const fields: FiltersField[] = [
@@ -206,9 +212,3 @@ const fields: FiltersField[] = [
     }
   }
 ]
-
-FiltersStory.args = {
-  fields: fields
-}
-
-FiltersStory.storyName = 'Filters'
