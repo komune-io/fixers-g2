@@ -1,11 +1,10 @@
-import React from 'react'
 import {
   MarkdownHighlighter as AruiMarkdownHighlighter,
   MarkdownHighlighterProps
 } from './MarkdownHighlighter'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 //@ts-ignore
-import md from '!raw-loader!./example.md'
+import md from './example.md?raw'
 
 export default {
   title: 'Documentation/MarkdownHighlighter',

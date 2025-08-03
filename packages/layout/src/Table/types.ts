@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   TableOptions,
   TableState,
@@ -21,6 +20,7 @@ import {
   useTable,
   useFlexLayout
 } from 'react-table'
+import { CSSProperties, ReactNode } from 'react'
 
 export interface CompleteTableOptions<Data extends object>
   extends Omit<TableOptions<Data>, 'data' | 'columns'>,
@@ -58,9 +58,9 @@ export type Column<Data extends object> = Omit<
   'accessor' | 'Cell'
 > & {
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
   accessor?: keyof Data | string
-  Cell?: (props: CellProps<Data>) => React.ReactNode
+  Cell?: (props: CellProps<Data>) => ReactNode
 }
 
 export const UseCompleteTable = <Data extends object>(

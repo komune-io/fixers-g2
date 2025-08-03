@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AppLayout as AruiAppLayout, AppLayoutProps } from './AppLayout'
 import { Meta, StoryFn } from '@storybook/react'
 import { Box, Link, Typography } from '@mui/material'

@@ -13,7 +13,7 @@ import {
   styled
 } from '@mui/material'
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 /* eslint-disable react/jsx-key */
 
@@ -32,7 +32,7 @@ export type ColorPalette =
 
 export interface StepperBasicProps {
   steps: StepItem[]
-  headerComponent?: React.ReactNode
+  headerComponent?: ReactNode
   activeStep?: number
   /**
    * The component orientation (layout flow direction).

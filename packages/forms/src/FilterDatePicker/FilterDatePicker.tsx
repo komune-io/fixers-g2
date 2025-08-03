@@ -5,7 +5,14 @@ import {
   DateView
 } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
-import React, { forwardRef, useCallback, useMemo, useState } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useMemo,
+  useState
+} from 'react'
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import {
   BasicProps,
@@ -74,11 +81,11 @@ export interface FilterDatePickerClasses {
 }
 
 export interface FilterDatePickerStyles {
-  input?: React.CSSProperties
-  textField?: React.CSSProperties
-  label?: React.CSSProperties
-  calendarIcon?: React.CSSProperties
-  clearIcon?: React.CSSProperties
+  input?: CSSProperties
+  textField?: CSSProperties
+  label?: CSSProperties
+  calendarIcon?: CSSProperties
+  clearIcon?: CSSProperties
 }
 
 export interface FilterDatePickerBasicProps extends BasicProps {
@@ -157,7 +164,7 @@ export type FilterDatePickerProps = MergeMuiElementProps<
 
 const FilterDatePickerBase = (
   props: FilterDatePickerProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     value,

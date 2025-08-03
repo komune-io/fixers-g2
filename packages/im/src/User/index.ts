@@ -1,50 +1,53 @@
-export {
+export { flatUserToUser, userToFlatUser } from './Domain'
+export type {
   User,
   UserPageQuery,
   UserPageResult,
-  flatUserToUser,
-  userToFlatUser,
-  UserResetPasswordCommand,
   UserUpdateEmailCommand,
+  UserResetPasswordCommand,
   UserUpdatePasswordCommand,
   UserUpdatePasswordResult,
   UserUpdatedEmailEvent,
   FlatUser,
   UserId
 } from './Domain'
-
 export * from './Api'
 
 export {
   UserFactory,
+  useUserFormFields,
+  useUserFormState
+} from './Components/UserFactory'
+export type {
   UserFactoryProps,
   userFieldsName,
   UseUserFormStateProps,
   UseUserFormFieldsProps,
-  UserFactoryFieldsOverride,
-  useUserFormFields,
-  useUserFormState
+  UserFactoryFieldsOverride
 } from './Components/UserFactory'
-
 export {
   AutomatedUserTable,
-  AutomatedUserTableProps,
   UserTable,
-  UserTableProps,
   useUserTableState,
-  UseUserTableStateParams,
-  userTableColumns,
-  useUserColumns,
-  UseUserColumnsParams
+  useUserColumns
 } from './Components/UserTable'
 
+export type {
+  AutomatedUserTableProps,
+  UserTableProps,
+  UseUserTableStateParams,
+  userTableColumns
+} from './Components/UserTable'
 export {
-  UserResetPasswordFormProps,
   UserResetPasswordForm,
-  UserResetPasswordFormAutomated,
+  UserResetPasswordFormAutomated
+} from './Components/UserResetPassword'
+
+export type {
+  UserResetPasswordFormProps,
   UserResetPasswordFormAutomatedProps,
   UserResetPasswordFormClasses,
   UserResetPasswordFormStyles
 } from './Components/UserResetPassword'
-
-export { UserSummary, UserSummaryProps } from './Components/UserSummary'
+export { UserSummary } from './Components/UserSummary'
+export type { UserSummaryProps } from './Components/UserSummary'

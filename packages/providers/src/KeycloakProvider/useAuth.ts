@@ -234,22 +234,18 @@ function useAuth<
     [tokenParsed]
   )
 
-  const getUser = useCallback(
-    // @ts-ignore
-    (): CommonUser | undefined => {
-      if (!isAuthenticated) return
-      return {
-        id: tokenParsed?.sub,
-        email: tokenParsed?.email,
-        memberOf: tokenParsed?.memberOf,
-        firstName: tokenParsed?.given_name,
-        lastName: tokenParsed?.family_name,
-        roles: tokenParsed?.realm_access?.roles,
-        fullName: tokenParsed?.name
-      }
-    },
-    [isAuthenticated, tokenParsed]
-  )
+  const getUser = useCallback((): AuthedUser | undefined => {
+    if (!isAuthenticated) return
+    return {
+      id: tokenParsed?.sub || '',
+      email: tokenParsed?.email || '',
+      memberOf: tokenParsed?.memberOf,
+      firstName: tokenParsed?.given_name || '',
+      lastName: tokenParsed?.family_name || '',
+      roles: tokenParsed?.realm_access?.roles || [],
+      fullName: tokenParsed?.name || ''
+    }
+  }, [isAuthenticated, tokenParsed])
 
   const isMemberOf = useCallback(
     (organizationId: string): boolean =>

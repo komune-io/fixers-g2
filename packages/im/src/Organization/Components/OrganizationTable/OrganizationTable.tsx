@@ -3,9 +3,9 @@ import { MenuItem } from '@komune-io/g2-components'
 import { TableV2Props, TableV2 } from '@komune-io/g2-layout'
 import { Table as TableState } from '@tanstack/react-table'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
 import { Organization } from '../../Domain'
 import { useTranslation } from 'react-i18next'
+import { ReactNode } from 'react'
 
 export interface OrganizationTableBasicProps<T extends Organization>
   extends BasicProps {
@@ -24,7 +24,7 @@ export interface OrganizationTableBasicProps<T extends Organization>
   /**
    * The actions place on the top near the filters
    */
-  tableActions?: React.ReactNode
+  tableActions?: ReactNode
   /**
    * Used for the pagination
    */

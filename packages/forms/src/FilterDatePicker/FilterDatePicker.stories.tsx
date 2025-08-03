@@ -5,6 +5,7 @@ import {
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import addDays from 'date-fns/addDays'
 import { Box } from '@mui/material'
+import { useState } from 'react'
 
 export default {
   title: 'Forms/FilterDatePicker',
@@ -15,7 +16,7 @@ const today = new Date()
 
 export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
   render: (args: FilterDatePickerProps) => {
-    const [date, setSelectedDate] = React.useState<Date | undefined>(today)
+    const [date, setSelectedDate] = useState<Date | undefined>(today)
     const handleDateChange = (date?: Date) => {
       setSelectedDate(date)
     }
@@ -53,7 +54,7 @@ export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
 export const FilterMuiDatePickerVariants: StoryFn<
   FilterDatePickerProps
 > = () => {
-  const [date, setSelectedDate] = React.useState<Date | undefined>(undefined)
+  const [date, setSelectedDate] = useState<Date | undefined>(undefined)
   return (
     <Box display='flex' justifyContent='space-around'>
       <Box display='flex' flexDirection='column'>
@@ -119,7 +120,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
 }
 
 export const FilterDatePickerStatus: StoryFn<FilterDatePickerProps> = () => {
-  const [date, setSelectedDate] = React.useState<Date | undefined>(undefined)
+  const [date, setSelectedDate] = useState<Date | undefined>(undefined)
   return (
     <Box display='flex' flexDirection='column'>
       <AruiFilterDatePicker

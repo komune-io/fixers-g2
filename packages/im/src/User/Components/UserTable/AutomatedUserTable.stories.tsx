@@ -1,5 +1,4 @@
-import React from 'react'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   AutomatedUserTable,
   AutomatedUserTableProps

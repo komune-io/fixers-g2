@@ -1,5 +1,4 @@
 import { CommonFieldProps, FormComposableField } from './type'
-import React from 'react'
 
 const inputTypes = {} as FormComposableField
 

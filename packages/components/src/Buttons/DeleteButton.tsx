@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 import { Delete } from '../icons'
 import { makeG2STyles } from '@komune-io/g2-themes'
 import { Button, ButtonProps } from './Button'
@@ -12,7 +12,7 @@ const useStyles = makeG2STyles()({
 
 const DeleteButtonBase = function <T = {}>(
   props: ButtonProps<T>,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>
 ) {
   const { classes } = useStyles()
   return (

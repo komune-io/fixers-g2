@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   ToggleButtons as AruiToggleButtons,
   ToggleButtonsBasicProps
 } from './ToggleButtons'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { classes, styles } from './types'
 
 export default {

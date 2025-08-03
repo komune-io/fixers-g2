@@ -1,6 +1,6 @@
-import React from 'react'
 import { ReactComponent } from './arrow-left.svg'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
+import { forwardRef, Ref } from 'react'
 
 interface ArrowProps {
   color?: string
@@ -8,9 +8,7 @@ interface ArrowProps {
 
 type Props = MergeReactElementProps<'svg', ArrowProps>
 
-export const Arrow = React.forwardRef(
-  (props: Props, ref: React.Ref<SVGSVGElement>) => {
-    const { color = '#828282' } = props
-    return <ReactComponent stroke={color} ref={ref} {...props} />
-  }
-)
+export const Arrow = forwardRef((props: Props, ref: Ref<SVGSVGElement>) => {
+  const { color = '#828282' } = props
+  return <ReactComponent stroke={color} ref={ref} {...props} />
+})

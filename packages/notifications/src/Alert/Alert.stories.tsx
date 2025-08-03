@@ -1,4 +1,3 @@
-import React from 'react'
 import { Alert as AruiAlert, AlertBasicProps } from './Alert'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Map, MapBasicProps } from './Map'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { MapClasses, MapStyles } from './docs'
 import { Geoman } from './Geoman'
 import { BrowserRouter } from 'react-router-dom'

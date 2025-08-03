@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { ComponentPropsWithRef, useState } from 'react'
 import { Button as AruiButton, ButtonBasicProps } from './Button'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { Box } from '@mui/material'
 import { SwapHoriz } from '@mui/icons-material'
 import { EditButton } from './EditButton'
@@ -170,7 +170,7 @@ export const preConfigured: StoryObj = {
 
 export const buttonExtend: StoryObj = {
   render: () => {
-    type ComponentPropsType = React.ComponentPropsWithRef<'a'>
+    type ComponentPropsType = ComponentPropsWithRef<'a'>
     const componentProps: ComponentPropsType = {
       href: '/?path=/docs/components-button--button-extend'
     }

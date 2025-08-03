@@ -1,4 +1,10 @@
-import React, { forwardRef, useCallback, useState } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useState
+} from 'react'
 import { Menu as MuiMenu, IconButton, IconButtonProps } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
 import { MenuItem, Menu, MenuProps } from '../Menu'
@@ -27,8 +33,8 @@ interface MoreOptionsClasses {
 }
 
 interface MoreOptionsStyles {
-  moreOptionsIcon?: React.CSSProperties
-  menu?: React.CSSProperties
+  moreOptionsIcon?: CSSProperties
+  menu?: CSSProperties
 }
 
 export interface MoreOptionsBasicProps<T = {}> extends BasicProps {
@@ -57,7 +63,7 @@ export type MoreOptionsProps<T> = MergeMuiElementProps<
 
 const MoreOptionsBase = <T extends object = {}>(
   props: MoreOptionsProps<T>,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>
 ) => {
   const {
     options,
@@ -72,7 +78,7 @@ const MoreOptionsBase = <T extends object = {}>(
   const defaultStyles = useStyles()
 
   const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
       setAnchorEl(event.currentTarget)
       onClick && onClick(event)
     },
@@ -84,8 +90,7 @@ const MoreOptionsBase = <T extends object = {}>(
   }, [])
 
   const stopPropagation = useCallback(
-    (event: React.MouseEvent<HTMLElement, MouseEvent>) =>
-      event.stopPropagation(),
+    (event: MouseEvent<HTMLElement, MouseEvent>) => event.stopPropagation(),
     []
   )
 

@@ -9,7 +9,7 @@ import {
   alpha,
   styled
 } from '@mui/material'
-import React, { useCallback, useState } from 'react'
+import { SyntheticEvent, useCallback, useState } from 'react'
 import { MenuItems } from '../Menu'
 import { ChevronRightRounded } from '@mui/icons-material'
 
@@ -50,7 +50,7 @@ export const SpecialBehaviorAccordion = (
   }, [expanded])
 
   const onChange = useCallback(
-    (_: React.SyntheticEvent<Element, Event>, expanded: boolean) => {
+    (_: SyntheticEvent<Element, Event>, expanded: boolean) => {
       setcustomExpanded(expanded)
     },
     []

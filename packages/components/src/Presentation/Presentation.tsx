@@ -1,6 +1,5 @@
 import { Box, Stack, StackProps, Typography } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
 import { UserAvatar } from '../UserAvatar'
 
 export interface PresentationBasicProps extends BasicProps {

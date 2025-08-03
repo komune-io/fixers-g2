@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Timeline as AruiTimeline, TimelineBasicProps } from './Timeline'
 import { Meta, StoryFn } from '@storybook/react'
 import { Paper, Typography } from '@mui/material'

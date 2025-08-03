@@ -1,5 +1,4 @@
 import { FilterDatePicker, FilterDatePickerProps } from '@komune-io/g2-forms'
-import React from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getIn } from 'formik'

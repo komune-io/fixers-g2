@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   HttpDefinitionHighlighter,
   HttpDefinitionHighlighterProps
 } from './HttpDefinitionHighlighter'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'Documentation/HttpDefinitionHighlighter',

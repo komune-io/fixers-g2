@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Header as AruiHeader, HeaderProps } from './Header'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { IconButton, Stack, Typography } from '@mui/material'

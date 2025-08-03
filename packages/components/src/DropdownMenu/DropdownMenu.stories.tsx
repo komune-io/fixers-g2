@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   DropdownMenuProps,
   DropdownMenu as AruiDropdownMenu
 } from './DropdownMenu'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { ListRounded } from '@mui/icons-material'
 import { Link } from '@mui/material'
 export default {

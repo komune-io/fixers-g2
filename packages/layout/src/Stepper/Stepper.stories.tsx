@@ -3,8 +3,7 @@ import {
   SidePageStepper as AruiSidePageStepper,
   SidePageStepperProps
 } from './SidePageStepper'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import React from 'react'
+import { StoryObj, Meta } from '@storybook/react'
 import logo from '../assets/komune.png'
 
 export default {

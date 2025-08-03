@@ -1,6 +1,5 @@
-import React from 'react'
 import { MenuBasicProps, Menu as AruiMenu } from './Menu'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
 export default {
   title: 'Components/Menu',

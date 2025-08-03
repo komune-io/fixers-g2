@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Organization } from '../../Domain'
 import { useTranslation } from 'react-i18next'
 import { TableCellText, G2ColumnDef } from '@komune-io/g2-layout'

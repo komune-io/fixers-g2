@@ -14,7 +14,13 @@ import {
 } from '@mui/material'
 import { MenuItem } from '@komune-io/g2-components'
 import { ThemeContext } from '@komune-io/g2-themes'
-import React, { useContext, useMemo } from 'react'
+import {
+  ComponentPropsWithRef,
+  CSSProperties,
+  ReactNode,
+  useContext,
+  useMemo
+} from 'react'
 import { AppLogoProps, AppMenu } from '../AppMenu'
 import { UserMenu, UserMenuProps } from '../UserMenu'
 import { Menu } from '@mui/icons-material'
@@ -52,18 +58,18 @@ interface StandAloneAppLayoutClasses {
 }
 
 interface StandAloneAppLayoutStyles {
-  drawer?: React.CSSProperties
-  scrollableContainer?: React.CSSProperties
-  burgerButtonContainer?: React.CSSProperties
-  userMenu?: React.CSSProperties
-  main?: React.CSSProperties
+  drawer?: CSSProperties
+  scrollableContainer?: CSSProperties
+  burgerButtonContainer?: CSSProperties
+  userMenu?: CSSProperties
+  main?: CSSProperties
 }
 
 export interface StandAloneAppLayoutProps {
   /**
    * The application that has to be surrounded by the appbar and the drawer
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The list of the actions that will be displayed in the drawer menu
    */
@@ -104,15 +110,15 @@ export interface StandAloneAppLayoutProps {
   /**
    * The main component props
    */
-  mainProps?: React.ComponentPropsWithRef<'main'> & { sx?: SxProps<Theme> }
+  mainProps?: ComponentPropsWithRef<'main'> & { sx?: SxProps<Theme> }
   /**
    * You can add additional scrollable content to the drawer menu with this prop
    */
-  scrollableContent?: React.ReactNode
+  scrollableContent?: ReactNode
   /**
    * You can add additional content to the bottom of the drawer menu with this prop
    */
-  bottomContent?: React.ReactNode
+  bottomContent?: ReactNode
   /**
    * The classes applied to the different part of the component
    */

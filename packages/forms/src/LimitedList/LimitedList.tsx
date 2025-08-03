@@ -1,13 +1,13 @@
 import { Stack, StackProps } from '@mui/material'
 import { Chip } from '@komune-io/g2-components'
 import { MergeMuiElementProps, useTheme } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { ElementType, useMemo } from 'react'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { Option } from '../Select'
 
 export interface LimitedListBasicProps<T extends {}> extends StackProps {
   values?: (Option & T)[]
-  listedComponent: React.ElementType<any>
+  listedComponent: ElementType<any>
   /**
    * if undefined  the list is unlimited
    * @default undefined

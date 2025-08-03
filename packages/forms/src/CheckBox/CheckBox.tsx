@@ -1,4 +1,10 @@
-import { ChangeEvent, forwardRef } from 'react'
+import {
+  ChangeEvent,
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  ReactNode
+} from 'react'
 
 import {
   Checkbox,
@@ -122,12 +128,12 @@ export interface CheckBoxClasses {
 }
 
 export interface CheckBoxStyles {
-  formControl?: React.CSSProperties
-  checkbox?: React.CSSProperties
-  checkIcon?: React.CSSProperties
-  unCheckIcon?: React.CSSProperties
-  inderterminateIcon?: React.CSSProperties
-  helperText?: React.CSSProperties
+  formControl?: CSSProperties
+  checkbox?: CSSProperties
+  checkIcon?: CSSProperties
+  unCheckIcon?: CSSProperties
+  inderterminateIcon?: CSSProperties
+  helperText?: CSSProperties
 }
 
 export interface CheckBoxBasicProps extends BasicProps {
@@ -141,7 +147,7 @@ export interface CheckBoxBasicProps extends BasicProps {
   /**
    * The label displayed at the right of the checkbox
    */
-  label?: React.ReactNode
+  label?: ReactNode
 
   /**
    * If true, the checkbox will be disabled
@@ -201,7 +207,7 @@ export type CheckBoxProps = MergeMuiElementProps<
 
 const CheckBoxBase = (
   props: CheckBoxProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>
 ) => {
   const {
     checked = false,

@@ -2,7 +2,7 @@ import {
   Presentation as AruiPresentation,
   PresentationBasicProps
 } from './Presentation'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 import { Stack } from '@mui/material'
 import komuneLogo from '../assets/komune.png'

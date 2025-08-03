@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   MapContainer,
   MapContainerProps,
@@ -9,6 +8,8 @@ import { markerIcon, markerIcon2x, markerShadow } from './leafletImages'
 import 'leaflet/dist/leaflet.css'
 
 import L from 'leaflet'
+import { forwardRef, ReactNode } from 'react'
+
 //@ts-ignore
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -18,11 +19,11 @@ L.Icon.Default.mergeOptions({
 })
 
 export interface LeafletMapProps extends Partial<MapContainerProps> {
-  children?: React.ReactNode
+  children?: ReactNode
   tileLayerProps?: Partial<TileLayerProps>
 }
 
-const LeafletMap = React.forwardRef((props: LeafletMapProps, ref: any) => {
+const LeafletMap = forwardRef((props: LeafletMapProps, ref: any) => {
   const { children, tileLayerProps, ...other } = props
   return (
     <MapContainer ref={ref} {...other}>

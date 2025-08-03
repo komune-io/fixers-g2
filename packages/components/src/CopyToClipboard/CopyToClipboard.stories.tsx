@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   CopyToClipboard as AruiCopyToClipboard,
   CopyToClipboardBasicProps
 } from './CopyToClipboard'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { styles, classes } from './docs'
 
 export default {

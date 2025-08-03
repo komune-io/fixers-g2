@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import { DocumentHandler, DocumentHandlerProps } from '@komune-io/g2-components'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { FsFile } from '../../Gallery'
 
 export interface FsDocumentHandlerProps {

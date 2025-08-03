@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useCallback, forwardRef } from 'react'
+import {
+  useState,
+  useEffect,
+  useCallback,
+  forwardRef,
+  ForwardedRef,
+  CSSProperties
+} from 'react'
 import { FileRejection, DropzoneProps, useDropzone } from 'react-dropzone'
 import { Paper, Typography, Skeleton } from '@mui/material'
 import { Clear, AddPhotoAlternate } from '@mui/icons-material'
@@ -92,12 +99,12 @@ interface DropPictureClasses {
 }
 
 interface DropPictureStyles {
-  image?: React.CSSProperties
-  tooltip?: React.CSSProperties
-  dropZone?: React.CSSProperties
-  addPictureIcon?: React.CSSProperties
-  errorMessage?: React.CSSProperties
-  clearIcon?: React.CSSProperties
+  image?: CSSProperties
+  tooltip?: CSSProperties
+  dropZone?: CSSProperties
+  addPictureIcon?: CSSProperties
+  errorMessage?: CSSProperties
+  clearIcon?: CSSProperties
 }
 
 export interface DropPictureBasicProps extends BasicProps {
@@ -164,7 +171,7 @@ export type DropPictureProps = MergeMuiElementProps<
 
 const DropPictureBase = (
   props: DropPictureProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     onPictureDropped,

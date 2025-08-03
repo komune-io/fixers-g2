@@ -3,7 +3,7 @@ import { Markdown, Unstyled } from '@storybook/blocks'
 import React from 'react'
 
 // Import README as raw text
-import ReadmeContent from '../README.md'
+import ReadmeContent from '../README.md?raw'
 
 const meta: Meta = {
   title: 'Overview/Getting Started',

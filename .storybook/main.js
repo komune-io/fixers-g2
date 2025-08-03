@@ -40,69 +40,21 @@ module.exports = {
     buildStoriesJson: true
   },
   framework: {
-    name: getAbsolutePath('@storybook/react-webpack5'),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {}
   },
   docs: {
     autodocs: true
   },
 
-  webpackFinal: async (config) => {
-    // Remove existing typescript rules to avoid conflicts
-    config.module.rules = config.module.rules.filter((rule) => {
-      if (rule.test) {
-        const testStr = rule.test.toString()
-        return !testStr.includes('tsx?') && !testStr.includes('ts')
-      }
-      return true
-    })
+  async viteFinal(config) {
+    // Merge with custom Vite config
+    const { mergeConfig } = await import('vite')
+    const { default: storybookViteConfig } = await import(
+      '../storybook-vite.config.mjs'
+    )
 
-    // Add comprehensive TypeScript and JSX handling
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: { node: 'current' } }],
-              ['@babel/preset-react', { runtime: 'automatic' }],
-              ['@babel/preset-typescript', { allowDeclareFields: true }]
-            ],
-            plugins: [
-              '@babel/plugin-proposal-nullish-coalescing-operator',
-              '@babel/plugin-proposal-optional-chaining'
-            ]
-          }
-        }
-      ],
-      exclude: /node_modules/
-    })
-
-    // Add JSX support for .jsx files
-    config.module.rules.push({
-      test: /\.jsx$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: { node: 'current' } }],
-              ['@babel/preset-react', { runtime: 'automatic' }]
-            ]
-          }
-        }
-      ],
-      exclude: /node_modules/
-    })
-
-    // Handle markdown files as raw text
-    config.module.rules.push({
-      test: /\.md$/,
-      type: 'asset/source'
-    })
-
-    return config
+    return mergeConfig(config, storybookViteConfig)
   }
 }
 /**

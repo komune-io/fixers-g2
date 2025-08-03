@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Table, Row } from '@tanstack/react-table'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { TableContainerProps } from '@mui/material'
@@ -9,6 +8,7 @@ import { Pagination } from '@komune-io/g2-components'
 import { TableClasses, TableStyles } from '../Table/Table'
 import { LinkProps } from 'react-router-dom'
 import { DndContainer } from './DndContainer'
+import { ReactNode } from 'react'
 
 export type SortOrder = 'ASC' | 'DSC'
 
@@ -75,7 +75,7 @@ export interface TableV2BasicProps<Data extends {}> extends BasicProps {
   /**
    * The component to render in the table header
    */
-  header?: React.ReactNode
+  header?: ReactNode
   /**
    * Indicates if your `columns` include footers. This prop is here to avoid processing footers node for nothing
    * @default false

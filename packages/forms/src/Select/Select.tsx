@@ -1,4 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  ReactNode,
+  useCallback,
+  useMemo,
+  SyntheticEvent
+} from 'react'
 import {
   Box,
   FormControl,
@@ -31,7 +39,7 @@ export type Option = {
    * The icon of the option only used for Select component.
    * If the option is selected and the select is not multiple the icon is displayed in the Select Component.
    */
-  icon?: React.ReactNode
+  icon?: ReactNode
   color?: string
 }
 
@@ -46,13 +54,13 @@ export interface SelectClasses {
 }
 
 export interface SelectStyles {
-  select?: React.CSSProperties
-  input?: React.CSSProperties
-  helperText?: React.CSSProperties
-  selectIcon?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  option?: React.CSSProperties
-  menu?: React.CSSProperties
+  select?: CSSProperties
+  input?: CSSProperties
+  helperText?: CSSProperties
+  selectIcon?: CSSProperties
+  clearIcon?: CSSProperties
+  option?: CSSProperties
+  menu?: CSSProperties
 }
 
 const useStyles = makeG2STyles()({
@@ -193,8 +201,8 @@ export interface SelectBasicProps extends BasicProps {
 
 export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = React.forwardRef(
-  (props: SelectProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const Select = forwardRef(
+  (props: SelectProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       value = '',
       values = [],
@@ -332,7 +340,7 @@ export const Select = React.forwardRef(
     }, [name, onRemove, value, classes?.input, styles?.input, id])
 
     const onCloseMemoized = useCallback(
-      (event: React.SyntheticEvent<Element, Event>) => {
+      (event: SyntheticEvent<Element, Event>) => {
         //@ts-ignore
         const valueClicked = event.currentTarget.dataset.value
         onRemove &&

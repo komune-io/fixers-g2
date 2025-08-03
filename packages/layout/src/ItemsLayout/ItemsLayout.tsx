@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuItems } from '@komune-io/g2-components'
 import {
   MenuItem as MuiMenuItem,
@@ -8,6 +7,7 @@ import {
 } from '@mui/material'
 import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
+import { CSSProperties, forwardRef, Ref } from 'react'
 
 const useStyles = makeG2STyles()({
   gridContainer: {
@@ -63,9 +63,9 @@ interface ItemsLayoutClasses {
 }
 
 interface ItemsLayoutStyles {
-  gridContainer?: React.CSSProperties
-  gridItem?: React.CSSProperties
-  listItem?: React.CSSProperties
+  gridContainer?: CSSProperties
+  gridItem?: CSSProperties
+  listItem?: CSSProperties
 }
 
 export interface ItemsLayoutBasicProps extends BasicProps {
@@ -92,8 +92,8 @@ export type ItemsLayoutProps = MergeReactElementProps<
   ItemsLayoutBasicProps
 >
 
-export const ItemsLayout = React.forwardRef(
-  (props: ItemsLayoutProps, ref: React.Ref<HTMLDivElement>) => {
+export const ItemsLayout = forwardRef(
+  (props: ItemsLayoutProps, ref: Ref<HTMLDivElement>) => {
     const {
       menu,
       display = 'list',

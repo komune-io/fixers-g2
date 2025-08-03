@@ -1,6 +1,6 @@
 import { Box, BoxProps, useTheme, useMediaQuery } from '@mui/material'
 import { Actions, ActionsProps } from '@komune-io/g2-components'
-import React, { useContext, useMemo, useState } from 'react'
+import { useContext, useMemo, useState, ReactNode } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
@@ -41,7 +41,7 @@ export interface PageBasicProps extends BasicProps {
   /**
    * the page content
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * the props passed to the header
    */

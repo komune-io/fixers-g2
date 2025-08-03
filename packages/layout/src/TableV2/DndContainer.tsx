@@ -10,10 +10,10 @@ import {
 } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import React, { useCallback } from 'react'
+import { ReactNode, useCallback } from 'react'
 
 export interface DndContainerProps {
-  children?: React.ReactNode
+  children?: ReactNode
   onDragRow?: (oldRowId: string | number, newRowId: string | number) => void
   dataIds?: string[]
 }

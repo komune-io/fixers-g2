@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Select, Option, SelectBasicProps } from './Select'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { Box } from '@mui/material'
 import { SelectClasses, SelectStyles } from './docs'
 
@@ -40,6 +40,40 @@ export default {
     }
   }
 } as Meta<typeof Select>
+
+const options: Option[] = [
+  {
+    key: 1,
+    label: 'test1'
+  },
+  {
+    key: 2,
+    label: 'test2',
+    icon: <ContentCut fontSize='small' />
+  },
+  {
+    key: 3,
+    label: 'test3',
+    icon: <ContentCopy fontSize='small' />
+  },
+  {
+    key: 4,
+    label: 'test4',
+    icon: <ContentPaste fontSize='small' />
+  },
+  {
+    key: 5,
+    label: 'test5'
+  },
+  {
+    key: 6,
+    label: 'test6'
+  },
+  {
+    key: 7,
+    label: 'test7'
+  }
+]
 
 export const SelectStory: StoryObj<SelectBasicProps> = {
   render: (args: SelectBasicProps) => {
@@ -155,37 +189,3 @@ export const MultipleSelect: StoryObj<SelectBasicProps> = {
 
   name: 'Multiple select'
 }
-
-const options: Option[] = [
-  {
-    key: 1,
-    label: 'test1'
-  },
-  {
-    key: 2,
-    label: 'test2',
-    icon: <ContentCut fontSize='small' />
-  },
-  {
-    key: 3,
-    label: 'test3',
-    icon: <ContentCopy fontSize='small' />
-  },
-  {
-    key: 4,
-    label: 'test4',
-    icon: <ContentPaste fontSize='small' />
-  },
-  {
-    key: 5,
-    label: 'test5'
-  },
-  {
-    key: 6,
-    label: 'test6'
-  },
-  {
-    key: 7,
-    label: 'test7'
-  }
-]

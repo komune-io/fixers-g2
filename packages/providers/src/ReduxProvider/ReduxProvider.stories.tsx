@@ -1,5 +1,5 @@
 import { ReduxProvider as AruiReduxProvider } from './ReduxProvider'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { ArgTypes, Title, Primary, Description } from '@storybook/addon-docs'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import initRedux from './store'

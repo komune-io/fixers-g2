@@ -1,5 +1,5 @@
 import { ImageList, ImageListItem, Stack } from '@mui/material'
-import React, { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 import { FsFile } from '../../Domain'
 import { cx } from '@emotion/css'
 import { BasicProps } from '@komune-io/g2-themes'
@@ -11,8 +11,8 @@ export interface GalleryClasses {
 }
 
 export interface GalleryStyles {
-  image?: React.CSSProperties
-  item?: React.CSSProperties
+  image?: CSSProperties
+  item?: CSSProperties
 }
 
 export type GridProps = Omit<ImageListProps, 'children'>

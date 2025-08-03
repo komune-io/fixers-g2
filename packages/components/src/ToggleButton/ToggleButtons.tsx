@@ -6,11 +6,17 @@ import {
   ToggleButtonGroupProps
 } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useMemo
+} from 'react'
 
 export type ToggleOption = {
   key: string | number
-  content: React.ReactNode
+  content: ReactNode
 }
 
 interface ToggleButtonsClasses {
@@ -18,7 +24,7 @@ interface ToggleButtonsClasses {
 }
 
 interface ToggleButtonsStyles {
-  button?: React.CSSProperties
+  button?: CSSProperties
 }
 
 export interface ToggleButtonsBasicProps extends BasicProps {
@@ -38,14 +44,14 @@ export interface ToggleButtonsBasicProps extends BasicProps {
    * The event trigered when the toggle state changes and the prop `exclusive` is set to true
    */
   onChangeExclusive?: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: MouseEvent<HTMLElement, MouseEvent>,
     key: string | number
   ) => void
   /**
    * The event trigered when the toggle state changes and the prop `exclusive` is set to false
    */
   onChangeNonExclusive?: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: MouseEvent<HTMLElement, MouseEvent>,
     keys: (string | number)[]
   ) => void
   /**
@@ -78,7 +84,7 @@ export const ToggleButtons = styled((props: ToggleButtonsProps) => {
   } = props
 
   const onChangeMemoized = useCallback(
-    (event: React.MouseEvent<HTMLElement, MouseEvent>, value: any) => {
+    (event: MouseEvent<HTMLElement, MouseEvent>, value: any) => {
       if (exclusive) {
         onChangeExclusive && onChangeExclusive(event, value)
       } else {

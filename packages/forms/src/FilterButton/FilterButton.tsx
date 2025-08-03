@@ -1,7 +1,7 @@
 import { FilterAltOutlined } from '@mui/icons-material'
 import { Button, ButtonProps } from '@komune-io/g2-components'
 import { MergeMuiElementProps, useTheme } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { useFilterColorStyle } from '../style'
 
 export interface FilterButtonBasicProps {

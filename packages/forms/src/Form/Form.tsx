@@ -1,4 +1,10 @@
-import React, { useMemo } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithRef,
+  CSSProperties,
+  ReactNode,
+  useMemo
+} from 'react'
 import { Action, Actions } from '@komune-io/g2-components'
 import { InputForm, InputFormBasicProps } from '../InputForm'
 import { SelectProps } from '../Select'
@@ -61,7 +67,7 @@ export type FormField = {
   /**
    * if you want to add other nodes around the input use this function
    */
-  customDisplay?: (input: React.ReactNode) => React.ReactNode
+  customDisplay?: (input: ReactNode) => ReactNode
   /**
    * the props of the textfield if you choosed it
    */
@@ -135,10 +141,10 @@ interface FormClasses {
 }
 
 interface FormStyles {
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
-  field?: React.CSSProperties
-  fieldsContainer?: React.CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
+  field?: CSSProperties
+  fieldsContainer?: CSSProperties
 }
 
 export interface FormBasicProps extends BasicProps {
@@ -197,7 +203,7 @@ const useStyles = makeG2STyles()((theme) => ({
 }))
 
 export type FormProps = MergeMuiElementProps<
-  React.ComponentPropsWithRef<'form'> & { sx?: SxProps<Theme> },
+  ComponentPropsWithRef<'form'> & { sx?: SxProps<Theme> },
   FormBasicProps
 >
 
@@ -416,10 +422,7 @@ const getInput = (
       return (
         <CheckBox
           checked={formState.getFieldProps(field.name).value}
-          onChange={(
-            _: React.ChangeEvent<HTMLInputElement>,
-            value: boolean
-          ) => {
+          onChange={(_: ChangeEvent<HTMLInputElement>, value: boolean) => {
             formState.setFieldValue(field.name, value, false)
             !!field.onChange && field.onChange(value)
           }}

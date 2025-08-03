@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Pagination as AruiPagination,
   PaginationBasicProps
 } from './Pagination'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { styles, classes } from './docs'
 
 export default {

@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css'
 import { BasicProps } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
-import React, { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export interface SmoothAnchorBasicProps extends BasicProps {

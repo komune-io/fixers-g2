@@ -3,7 +3,7 @@ import {
   DatePickerProps,
   InputForm
 } from '@komune-io/g2-forms'
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'

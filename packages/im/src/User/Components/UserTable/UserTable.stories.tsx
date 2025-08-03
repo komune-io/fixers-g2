@@ -1,5 +1,4 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import React from 'react'
+import { StoryObj, Meta } from '@storybook/react'
 import { UserTable, UserTableProps } from './UserTable'
 
 import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'

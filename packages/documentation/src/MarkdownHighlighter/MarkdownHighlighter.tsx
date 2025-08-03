@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { CodeHighlighter } from '../CodeHighlighter'
 import 'github-markdown-css'

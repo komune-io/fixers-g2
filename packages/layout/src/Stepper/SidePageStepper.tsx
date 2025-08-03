@@ -1,10 +1,10 @@
 import { Drawer, DrawerProps } from '@mui/material'
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
 import { Stepper, StepperProps } from './Stepper'
+import { ReactNode } from 'react'
 
 export interface SidePageStepperBasicProps {
-  headerComponent?: React.ReactNode
+  headerComponent?: ReactNode
   stepperProps: StepperProps
 }
 

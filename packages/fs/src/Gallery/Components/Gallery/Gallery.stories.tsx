@@ -1,5 +1,4 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import React from 'react'
+import { StoryObj, Meta } from '@storybook/react'
 import { Gallery, GalleryProps } from './Gallery'
 import { Box } from '@mui/material'
 import horizontalSrc from './horizontal.jpg'

@@ -1,6 +1,6 @@
-import React from 'react'
 import { makeG2STyles } from '@komune-io/g2-themes'
 import { Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
 const useStyles = makeG2STyles()(() => ({
   card: {
@@ -46,7 +46,7 @@ const useStyles = makeG2STyles()(() => ({
 export interface ColorProps {
   colors: string[]
   image?: string
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export const Color = (props: ColorProps) => {

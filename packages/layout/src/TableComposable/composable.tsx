@@ -1,7 +1,7 @@
 import { getIn } from '@komune-io/g2-utils'
 import { basicColumns, ComposableColumns } from '../ColumnFactory'
 import { ColumnBase, G2ColumnDef, UseTableOptions } from '../TableV2'
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 
 export interface TableComposable<
   Data extends {} = {},

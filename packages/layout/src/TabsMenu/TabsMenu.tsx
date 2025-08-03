@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { ChangeEvent, CSSProperties, ReactNode, useState } from 'react'
 import { AppBar, Tab, Tabs, styled } from '@mui/material'
 import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
 
@@ -53,10 +53,10 @@ interface TabsMenuClasses {
 }
 
 interface TabsMenuStyles {
-  appBar?: React.CSSProperties
-  tabs?: React.CSSProperties
-  tab?: React.CSSProperties
-  content?: React.CSSProperties
+  appBar?: CSSProperties
+  tabs?: CSSProperties
+  tab?: CSSProperties
+  content?: CSSProperties
 }
 
 export interface TabsMenuProps extends BasicProps {
@@ -67,7 +67,7 @@ export interface TabsMenuProps extends BasicProps {
   /**
    * Every nodes will fill the tab at the same index
    */
-  children: React.ReactNode[]
+  children: ReactNode[]
   /**
    * If 'fullWidth' the tabs will take the all the space of the parent if 'fixedWidth' every tab will have 100px of width
    */
@@ -96,7 +96,7 @@ export const TabsMenu = (props: TabsMenuProps) => {
   const defaultStyles = useStyles()
   const [value, setValue] = useState(0)
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: ChangeEvent<{}>, newValue: number) => {
     event.stopPropagation()
     setValue(newValue)
   }

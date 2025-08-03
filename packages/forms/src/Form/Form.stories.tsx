@@ -1,5 +1,5 @@
 import { Form, FormAction, FormBasicProps, FormField } from './Form'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -122,6 +122,68 @@ export default {
   }
 } as Meta<typeof Form>
 
+const fields: FormField[] = [
+  {
+    key: 'storybook-form-field-name',
+    name: 'name',
+    label: 'Name',
+    type: 'textfield',
+    validator: (value) =>
+      value === undefined || value === ''
+        ? 'The name is required because you have to in order to validate this beautiful looking form'
+        : undefined
+  },
+  {
+    key: 'storybook-form-field-gender',
+    name: 'gender',
+    label: 'Gender',
+    type: 'select',
+    defaultValue: '',
+    validator: (value) =>
+      value === undefined || value === ''
+        ? 'The gender is required'
+        : undefined,
+    selectProps: {
+      options: [
+        { key: 'male', label: 'male' },
+        { key: 'female', label: 'female' }
+      ]
+    }
+  },
+  {
+    key: 'storybook-form-field-birthdate',
+    name: 'birthdate',
+    label: 'Birthdate',
+    type: 'datepicker',
+    defaultValue: ''
+  },
+  {
+    key: 'storybook-form-field-yesOrNo',
+    name: 'yesOrNo',
+    label: 'Yes or no?',
+    type: 'radioChoices',
+    defaultValue: '',
+    validator: (value) =>
+      value === undefined || value === ''
+        ? 'answer the question because you have to in order to validate this beautiful looking form'
+        : undefined,
+    radioChoicesProps: {
+      options: [
+        { key: 'yes', label: 'Yes' },
+        { key: 'no', label: 'No' }
+      ]
+    }
+  },
+  {
+    key: 'storybook-form-field-terms',
+    name: 'terms',
+    label: 'I agree to the terms and conditions',
+    type: 'checkbox',
+    defaultValue: false,
+    validator: (value) => (value !== true ? 'You have to agree' : undefined)
+  }
+]
+
 export const FormStory: StoryObj<FormBasicProps> = {
   render: (args: FormBasicProps) => {
     const formState = useForm({
@@ -199,65 +261,3 @@ export const FormCollumnButtonStory: StoryObj<FormBasicProps> = {
 
   name: 'Form Column Button'
 }
-
-const fields: FormField[] = [
-  {
-    key: 'storybook-form-field-name',
-    name: 'name',
-    label: 'Name',
-    type: 'textfield',
-    validator: (value) =>
-      value === undefined || value === ''
-        ? 'The name is required because you have to in order to validate this beautiful looking form'
-        : undefined
-  },
-  {
-    key: 'storybook-form-field-gender',
-    name: 'gender',
-    label: 'Gender',
-    type: 'select',
-    defaultValue: '',
-    validator: (value) =>
-      value === undefined || value === ''
-        ? 'The gender is required'
-        : undefined,
-    selectProps: {
-      options: [
-        { key: 'male', label: 'male' },
-        { key: 'female', label: 'female' }
-      ]
-    }
-  },
-  {
-    key: 'storybook-form-field-birthdate',
-    name: 'birthdate',
-    label: 'Birthdate',
-    type: 'datepicker',
-    defaultValue: ''
-  },
-  {
-    key: 'storybook-form-field-yesOrNo',
-    name: 'yesOrNo',
-    label: 'Yes or no?',
-    type: 'radioChoices',
-    defaultValue: '',
-    validator: (value) =>
-      value === undefined || value === ''
-        ? 'answer the question because you have to in order to validate this beautiful looking form'
-        : undefined,
-    radioChoicesProps: {
-      options: [
-        { key: 'yes', label: 'Yes' },
-        { key: 'no', label: 'No' }
-      ]
-    }
-  },
-  {
-    key: 'storybook-form-field-terms',
-    name: 'terms',
-    label: 'I agree to the terms and conditions',
-    type: 'checkbox',
-    defaultValue: false,
-    validator: (value) => (value !== true ? 'You have to agree' : undefined)
-  }
-]

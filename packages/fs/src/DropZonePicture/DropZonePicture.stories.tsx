@@ -1,7 +1,5 @@
-import React from 'react'
 import { DropZonePicture as AruiDropZonePicture } from './DropZonePicture'
-import { Meta, StoryFn } from '@storybook/react'
-import { DropPictureProps } from '@komune-io/g2-components'
+import { Meta } from '@storybook/react'
 
 export default {
   title: 'Fs/DropZonePicture',

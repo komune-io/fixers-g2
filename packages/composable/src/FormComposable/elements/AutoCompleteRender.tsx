@@ -3,7 +3,7 @@ import {
   AutoCompleteProps,
   InputForm
 } from '@komune-io/g2-forms'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'

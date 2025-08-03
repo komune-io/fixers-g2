@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { useMemo } from 'react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -11,7 +11,7 @@ import {
 import { AutoForm, AutoFormData, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
 // @ts-ignore
-import json from './autoForm.json'
+import json from './autoForm-stories.json'
 import { autoFormFormatter } from './autoFormFormatter'
 import { Button } from '@komune-io/g2-components'
 import { Box, Stack, Typography } from '@mui/material'

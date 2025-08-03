@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Actions as AruiActions, ActionsBasicProps } from './Actions'
 import { Meta, StoryFn } from '@storybook/react'
 

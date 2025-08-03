@@ -1,7 +1,6 @@
 import { Loading } from '@komune-io/g2-components'
 import { useTheme } from '@komune-io/g2-themes'
 import { Box } from '@mui/material'
-import React from 'react'
 
 export const LoadingProviders = () => {
   const theme = useTheme()

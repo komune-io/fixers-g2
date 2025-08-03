@@ -1,5 +1,5 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import React, { useState } from 'react'
+import { StoryObj, Meta } from '@storybook/react'
+import { useState } from 'react'
 import { GalleryFactory, GalleryFactoryProps } from './GalleryFactory'
 import { fileToBase64 } from '@komune-io/g2-utils'
 import { FsFile } from '../../Domain'

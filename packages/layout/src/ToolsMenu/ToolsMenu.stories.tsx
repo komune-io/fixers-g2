@@ -1,4 +1,3 @@
-import React from 'react'
 import { ToolsMenu as AruiToolsMenu, ToolsMenuProps } from './ToolsMenu'
 import { Meta, StoryFn } from '@storybook/react'
 import {

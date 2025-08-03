@@ -1,9 +1,5 @@
-import React from 'react'
-import {
-  ItemsLayout as AruiItemsLayout,
-  ItemsLayoutBasicProps
-} from './ItemsLayout'
-import { Meta, StoryFn } from '@storybook/react'
+import { ItemsLayout as AruiItemsLayout } from './ItemsLayout'
+import { Meta } from '@storybook/react'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes, Menu } from './types'
 

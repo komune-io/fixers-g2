@@ -1,4 +1,3 @@
-import React from 'react'
 import { ReactComponent } from './select.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 

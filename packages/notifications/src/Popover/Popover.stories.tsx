@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { Popover as AruiPopover, PopoverBasicProps } from './Popover'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { Box, Typography } from '@mui/material'
 import { Button } from '@komune-io/g2-components'
 

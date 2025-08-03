@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { useCallback, useEffect, useMemo } from 'react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -43,6 +43,61 @@ export default {
 } as Meta<typeof FiltersComposable>
 
 const queryClient = new QueryClient()
+
+const fields: FilterComposableField[] = [
+  {
+    name: 'from',
+    label: 'From',
+    type: 'datePicker'
+  },
+  {
+    name: 'to',
+    label: 'To',
+    type: 'datePicker'
+  },
+  {
+    name: 'spacer',
+    type: 'spacer'
+  },
+  {
+    name: 'keyword',
+    label: 'Keyword',
+    type: 'textField',
+    params: { textFieldType: 'search' },
+    mandatory: true
+  },
+  {
+    name: 'country',
+    label: 'Country',
+    type: 'select',
+    params: {
+      multiple: true,
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ]
+    }
+  },
+  {
+    name: 'countries',
+    label: 'Countries',
+    type: 'select',
+    params: {
+      multiple: true,
+      displaySelected: true,
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ]
+    }
+  }
+]
 
 export const FiltersStory: StoryObj<FiltersComposableBasicProps<any>> = {
   render: (args: FiltersComposableBasicProps<any>) => {
@@ -190,58 +245,3 @@ const Example = (args: any) => {
     </>
   )
 }
-
-const fields: FilterComposableField[] = [
-  {
-    name: 'from',
-    label: 'From',
-    type: 'datePicker'
-  },
-  {
-    name: 'to',
-    label: 'To',
-    type: 'datePicker'
-  },
-  {
-    name: 'spacer',
-    type: 'spacer'
-  },
-  {
-    name: 'keyword',
-    label: 'Keyword',
-    type: 'textField',
-    params: { textFieldType: 'search' },
-    mandatory: true
-  },
-  {
-    name: 'country',
-    label: 'Country',
-    type: 'select',
-    params: {
-      multiple: true,
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ]
-    }
-  },
-  {
-    name: 'countries',
-    label: 'Countries',
-    type: 'select',
-    params: {
-      multiple: true,
-      displaySelected: true,
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ]
-    }
-  }
-]

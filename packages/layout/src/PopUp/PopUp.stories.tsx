@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { PopUp as AruiPopUp, PopUpBasicProps } from './PopUp'
 import {
   ConfirmationPopUp as AruiConfirmationPopUp,
   ConfirmationPopUpBasicProps
 } from './ConfirmationPopUp'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { ArgTypes, Title, Primary, Stories } from '@storybook/addon-docs'
 import { styles, classes, Action } from './types'

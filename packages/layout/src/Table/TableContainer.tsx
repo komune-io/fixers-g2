@@ -3,13 +3,13 @@ import {
   TableContainer as MuiTableContainer,
   TableContainerProps as MuiTableContainerProps
 } from '@mui/material'
-import React from 'react'
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import { LinkProps } from 'react-router-dom'
+import { ReactNode } from 'react'
 
 interface BasicTableContainerBasicProps {
   variant: 'grounded' | 'elevated'
-  children: React.ReactNode
+  children: ReactNode
   expandInElevatedRow?: boolean
   getRowLink?: (row: any) => LinkProps
 }

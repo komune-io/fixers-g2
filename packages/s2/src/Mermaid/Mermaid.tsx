@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import mermaid from 'mermaid'
 import { BasicProps } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'

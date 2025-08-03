@@ -1,6 +1,5 @@
-import React from 'react'
 import { KeycloakProvider as AruiKeycloakProvider } from './KeycloakProvider'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { useAuth, KeycloackService, AuthedUser } from './useAuth'
 import { Button } from '@komune-io/g2-components'
 import { Typography } from '@mui/material'

@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from 'react'
+import { ReactNode, Suspense, useMemo } from 'react'
 import { i18n as I18nType, InitOptions } from 'i18next'
 import { I18nextProvider } from 'react-i18next'
 import { BrowserRouter } from 'react-router-dom'
@@ -15,7 +15,7 @@ export interface AppProviderProps<
   /**
    * The application that will be provided
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The languages used to init the i18n instance
    */

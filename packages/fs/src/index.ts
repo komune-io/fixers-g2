@@ -1,31 +1,30 @@
-export {
-  useDropZonePicture,
-  DropZonePictureActions,
-  DropZonePicture
-} from './DropZonePicture'
+export { useDropZonePicture, DropZonePicture } from './DropZonePicture'
+export type { DropZonePictureActions } from './DropZonePicture'
 
 export {
-  DirectoryPath,
-  FsFile,
-  FilePath,
   Gallery,
-  GalleryProps,
-  deleteFilesParams,
-  getGalleryParams,
-  UploadFilesParams,
   useDeleteFiles,
   useGetGallery,
   useUploadFiles,
   AutomatedGallery,
-  AutomatedGalleryProps,
   AutomatedGalleryFactory,
-  AutomatedGalleryFactoryProps,
   GalleryFactory,
+  useLocalGalleryState
+} from './Gallery'
+export type {
+  DirectoryPath,
+  FsFile,
+  FilePath,
+  GalleryProps,
+  deleteFilesParams,
+  getGalleryParams,
+  UploadFilesParams,
+  AutomatedGalleryProps,
+  AutomatedGalleryFactoryProps,
   GalleryFactoryProps,
   GetGalleryOptions,
   DeleteFilesOptions,
   UploadFilesOptions,
-  useLocalGalleryState,
   TrackedFsFile,
   useLocalGalleryStateParams
 } from './Gallery'

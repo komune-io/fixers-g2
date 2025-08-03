@@ -1,6 +1,5 @@
-import React from 'react'
 import { Chip as AruiChip, ChipBasicProps } from './Chip'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 export default {
   title: 'Components/Chip',
   component: AruiChip

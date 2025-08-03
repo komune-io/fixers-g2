@@ -1,5 +1,4 @@
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
 import { Gallery, GalleryProps } from './Gallery'
 import { DirectoryPath } from '../../Domain'
 import { GetGalleryOptions, useGetGallery } from '../..'

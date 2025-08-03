@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   AutomateViewer as AruiAutomateViewer,
   AutomateViewerBasicProps

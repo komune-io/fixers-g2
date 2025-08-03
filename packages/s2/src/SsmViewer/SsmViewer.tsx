@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { SSM } from './SSM'
 import { AutomateViewerProps, Transition, AutomateViewer } from '../Automate'
 

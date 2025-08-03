@@ -1,4 +1,3 @@
-import React from 'react'
 import { AppMenu as AruiAppMenu, AppLogoProps, AppMenuProps } from './AppMenu'
 import { Meta, StoryFn } from '@storybook/react'
 import { Box, Typography } from '@mui/material'

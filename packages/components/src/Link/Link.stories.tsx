@@ -1,6 +1,5 @@
-import React from 'react'
 import { Link as AruiLink, LinkProps } from './Link'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'Components/Link',

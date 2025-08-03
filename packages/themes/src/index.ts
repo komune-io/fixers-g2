@@ -1,13 +1,19 @@
 export {
-  ThemePermanentHeaderProps,
-  Theme,
-  ThemeColors,
   ThemeContextProvider,
-  ThemeContextProviderProps,
   ThemeContext,
   useTheme,
   useThemeContext,
   defaultMaterialUiTheme,
   defaultTheme
 } from './ThemeContextProvider'
-export { BasicProps, makeG2STyles, MergeMuiElementProps } from './Types'
+export type {
+  Theme,
+  ThemeColors,
+  ThemeContextProps
+} from './ThemeContextProvider'
+export type {
+  ThemePermanentHeaderProps,
+  ThemeContextProviderProps
+} from './ThemeContextProvider'
+export { makeG2STyles } from './Types'
+export type { BasicProps, MergeMuiElementProps } from './Types'

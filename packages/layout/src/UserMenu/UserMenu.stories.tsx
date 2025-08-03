@@ -1,6 +1,5 @@
-import React from 'react'
 import { UserMenu as AruiUserMenu, UserMenuProps } from './UserMenu'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import {
   ArgTypes,

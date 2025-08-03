@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Node, Network, Edge } from 'vis-network'
 import { BasicProps, makeG2STyles, useTheme } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'

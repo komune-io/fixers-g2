@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { CSSProperties, useCallback, ReactNode, useMemo } from 'react'
 import {
   Drawer,
   Theme as MuiTheme,
@@ -124,7 +124,7 @@ interface AppLayoutClasses {
 }
 
 interface AppLayoutStyles {
-  main?: React.CSSProperties
+  main?: CSSProperties
 }
 
 export interface AppLayoutProps {
@@ -143,11 +143,11 @@ export interface AppLayoutProps {
   /**
    * The content that will be displayed in the appBAr
    */
-  appBarContent?: React.ReactNode
+  appBarContent?: ReactNode
   /**
    * The application that has to be surrounded by the appbar and the drawer
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * Defined if the drawer is open or not
    */
@@ -167,7 +167,7 @@ export interface AppLayoutProps {
   /**
    * The content that will be displayed in the drawer
    */
-  drawerContent?: React.ReactNode
+  drawerContent?: ReactNode
   /**
    * The function that is called when the hamburger button is clicked
    */

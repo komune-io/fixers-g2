@@ -1,4 +1,11 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  SyntheticEvent,
+  useCallback,
+  useMemo
+} from 'react'
 import {
   Box,
   Chip,
@@ -38,13 +45,13 @@ export interface FilterSelectClasses {
 }
 
 export interface FilterSelectStyles {
-  label?: React.CSSProperties
-  select?: React.CSSProperties
-  input?: React.CSSProperties
-  chip?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  option?: React.CSSProperties
-  menu?: React.CSSProperties
+  label?: CSSProperties
+  select?: CSSProperties
+  input?: CSSProperties
+  chip?: CSSProperties
+  clearIcon?: CSSProperties
+  option?: CSSProperties
+  menu?: CSSProperties
 }
 
 const useStyles = makeG2STyles()((theme) => ({
@@ -216,8 +223,8 @@ export type FilterSelectProps = MergeMuiElementProps<
   FilterSelectBasicProps
 >
 
-export const FilterSelect = React.forwardRef(
-  (props: FilterSelectProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const FilterSelect = forwardRef(
+  (props: FilterSelectProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       value = '',
       values = [],
@@ -345,7 +352,7 @@ export const FilterSelect = React.forwardRef(
     }
 
     const onCloseMemoized = useCallback(
-      (event: React.SyntheticEvent<Element, Event>) => {
+      (event: SyntheticEvent<Element, Event>) => {
         //@ts-ignore
         const valueClicked = event.currentTarget.dataset.value
         onRemove &&

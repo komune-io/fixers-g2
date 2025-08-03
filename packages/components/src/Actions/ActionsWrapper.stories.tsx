@@ -1,4 +1,3 @@
-import React from 'react'
 import { ActionsWrapper, ActionsWrapperProps } from './ActionsWrapper'
 import { Meta, StoryFn } from '@storybook/react'
 

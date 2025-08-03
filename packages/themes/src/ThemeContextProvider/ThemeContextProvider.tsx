@@ -1,5 +1,6 @@
-import React, {
+import {
   createContext,
+  ReactNode,
   useCallback,
   useContext,
   useMemo,
@@ -40,7 +41,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
 })
 
 export interface ThemeContextProviderProps<T extends {} = {}> {
-  children: React.ReactNode
+  children: ReactNode
   theme?: DeepPartial<Theme<T>>
   customMuiTheme?: Partial<ThemeOptions>
   defaultOpenDrawer?: boolean
@@ -50,7 +51,7 @@ export const ThemeContextProvider = <T extends {} = {}>(
   props: ThemeContextProviderProps<T>
 ) => {
   const { children, customMuiTheme, theme, defaultOpenDrawer } = props
-  const [localTheme, setLocalTheme] = React.useState<Theme>(
+  const [localTheme, setLocalTheme] = useState<Theme>(
     theme ? mergeDeepRight(defaultTheme, theme as any) : defaultTheme
   )
 

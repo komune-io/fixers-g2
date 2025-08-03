@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FilterSelect, FilterSelectBasicProps } from './FilterSelect'
 import { Option, SmartKey } from '../Select'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
@@ -36,6 +36,37 @@ export default {
     }
   }
 } as Meta<typeof FilterSelect>
+
+const options: Option[] = [
+  {
+    key: 1,
+    label: 'test1'
+  },
+  {
+    key: 2,
+    label: 'test2'
+  },
+  {
+    key: 3,
+    label: 'test3'
+  },
+  {
+    key: 4,
+    label: 'test4'
+  },
+  {
+    key: 5,
+    label: 'test5'
+  },
+  {
+    key: 6,
+    label: 'test6'
+  },
+  {
+    key: 7,
+    label: 'test7'
+  }
+]
 
 export const FilterSelectStory: StoryObj<FilterSelectBasicProps> = {
   render: (args: FilterSelectBasicProps) => {
@@ -325,37 +356,6 @@ export const SortSelect: StoryFn<FilterSelectBasicProps> = () => {
     </Box>
   )
 }
-
-const options: Option[] = [
-  {
-    key: 1,
-    label: 'test1'
-  },
-  {
-    key: 2,
-    label: 'test2'
-  },
-  {
-    key: 3,
-    label: 'test3'
-  },
-  {
-    key: 4,
-    label: 'test4'
-  },
-  {
-    key: 5,
-    label: 'test5'
-  },
-  {
-    key: 6,
-    label: 'test6'
-  },
-  {
-    key: 7,
-    label: 'test7'
-  }
-]
 
 export const VariantsMultipleSelectDisplaySelected: StoryObj<FilterSelectBasicProps> =
   {

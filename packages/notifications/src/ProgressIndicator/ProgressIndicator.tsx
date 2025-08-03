@@ -9,7 +9,7 @@ import {
   makeG2STyles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 
 const useStyles = makeG2STyles()((theme) => ({
   root: {
@@ -37,8 +37,8 @@ interface ProgressIndicatorClasses {
 }
 
 interface ProgressIndicatorStyles {
-  linearProgress?: React.CSSProperties
-  label?: React.CSSProperties
+  linearProgress?: CSSProperties
+  label?: CSSProperties
 }
 
 export interface ProgressIndicatorBasicProps extends BasicProps {

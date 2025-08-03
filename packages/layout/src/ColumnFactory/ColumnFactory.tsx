@@ -1,4 +1,4 @@
-import React from 'react'
+import { ElementType } from 'react'
 import { G2ColumnDef } from '../TableV2'
 import {
   TableCellContact,
@@ -45,7 +45,7 @@ const getColumnGenerator =
     Data extends {} = {},
     ColumnType extends G2ColumnDef<Data> | Column<Data> = any
   >(
-    CellElement: React.ElementType
+    CellElement: ElementType
   ): ColumnGenerator<CellProps, Data, ColumnType> =>
   (params) => {
     const { getCellProps, ...other } = params

@@ -1,5 +1,5 @@
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { OrganizationTable, OrganizationTableProps } from './OrganizationTable'
 import { useGetOrganizations } from '../../Api'
 import { Organization, OrganizationId } from '../../Domain'

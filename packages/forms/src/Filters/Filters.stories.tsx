@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   Filters,
   FiltersBasicProps,
   FiltersField,
   FiltersAction
 } from './Filters'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -126,49 +126,6 @@ export default {
   }
 } as Meta<typeof Filters>
 
-export const FiltersStory: StoryObj<FiltersBasicProps> = {
-  render: (args: FiltersBasicProps) => {
-    const formState = useFilters({
-      fields: args.fields,
-      onSubmit: (values) => {
-        console.log('submitted')
-        console.log(values)
-      }
-    })
-
-    const actions = useMemo(
-      (): FiltersAction[] => [
-        {
-          label: 'reset',
-          key: 'resetFiltersButton',
-          variant: 'text',
-          onClick: () => formState.resetForm()
-        },
-        {
-          label: 'execute',
-          key: 'executeFiltersButton'
-        }
-      ],
-      [formState.resetForm]
-    )
-
-    return (
-      <Filters
-        {...args}
-        formState={formState}
-        actions={actions}
-        actionsPosition='right'
-      />
-    )
-  },
-
-  args: {
-    fields: fields
-  },
-
-  name: 'Filters'
-}
-
 const fields: FiltersField[] = [
   {
     key: 'storybook-filters-field-from',
@@ -212,3 +169,46 @@ const fields: FiltersField[] = [
     }
   }
 ]
+
+export const FiltersStory: StoryObj<FiltersBasicProps> = {
+  render: (args: FiltersBasicProps) => {
+    const formState = useFilters({
+      fields: args.fields,
+      onSubmit: (values) => {
+        console.log('submitted')
+        console.log(values)
+      }
+    })
+
+    const actions = useMemo(
+      (): FiltersAction[] => [
+        {
+          label: 'reset',
+          key: 'resetFiltersButton',
+          variant: 'text',
+          onClick: () => formState.resetForm()
+        },
+        {
+          label: 'execute',
+          key: 'executeFiltersButton'
+        }
+      ],
+      [formState.resetForm]
+    )
+
+    return (
+      <Filters
+        {...args}
+        formState={formState}
+        actions={actions}
+        actionsPosition='right'
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Filters'
+}

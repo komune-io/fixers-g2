@@ -1,7 +1,7 @@
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getIn } from 'formik'
-import React, { useMemo, useCallback } from 'react'
+import { useMemo, useCallback } from 'react'
 import {
   DraggableMarkerNeeds,
   Map,

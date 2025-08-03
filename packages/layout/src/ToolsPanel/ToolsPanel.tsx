@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuItems } from '@komune-io/g2-components'
 import { ExpandMore } from '@mui/icons-material'
 import {

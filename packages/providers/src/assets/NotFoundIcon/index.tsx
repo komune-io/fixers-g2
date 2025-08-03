@@ -1,11 +1,8 @@
-import React from 'react'
 import { ReactComponent } from './404.svg'
+import { ComponentPropsWithRef, forwardRef, Ref } from 'react'
 
-export const NotFoundIcon = React.forwardRef(
-  (
-    props: React.ComponentPropsWithRef<'svg'>,
-    ref: React.Ref<SVGSVGElement>
-  ) => {
+export const NotFoundIcon = forwardRef(
+  (props: ComponentPropsWithRef<'svg'>, ref: Ref<SVGSVGElement>) => {
     return <ReactComponent ref={ref} {...props} />
   }
 )

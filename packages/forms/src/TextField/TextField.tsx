@@ -1,4 +1,14 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import {
+  CSSProperties,
+  ChangeEvent,
+  KeyboardEvent,
+  forwardRef,
+  ForwardedRef,
+  useCallback,
+  useMemo,
+  useState,
+  ReactNode
+} from 'react'
 import {
   Box,
   CircularProgress,
@@ -70,13 +80,13 @@ export interface TextFieldClasses {
 }
 
 export interface TextFieldStyles {
-  textfield?: React.CSSProperties
-  input?: React.CSSProperties
-  helperText?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  validIcon?: React.CSSProperties
-  loadingIcon?: React.CSSProperties
-  searchIcon?: React.CSSProperties
+  textfield?: CSSProperties
+  input?: CSSProperties
+  helperText?: CSSProperties
+  clearIcon?: CSSProperties
+  validIcon?: CSSProperties
+  loadingIcon?: CSSProperties
+  searchIcon?: CSSProperties
 }
 
 export interface TextFieldBasicProps extends BasicProps {
@@ -163,7 +173,7 @@ export interface TextFieldBasicProps extends BasicProps {
    * The icon of the icon. It happen sometimes when your icon is to large that the clear icon overflow the input icon.
    * To change that you can use the props `styles` or `classes` to move it on the side or you can use `noCheckOrClearIcon` to supress it.
    */
-  inputIcon?: React.ReactNode
+  inputIcon?: ReactNode
 
   /**
    * The event called when the value of the input is removed
@@ -210,8 +220,8 @@ export type TextFieldProps = MergeMuiElementProps<
   TextFieldBasicProps
 >
 
-export const TextField = React.forwardRef(
-  (props: TextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const TextField = forwardRef(
+  (props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       className,
       error = false,
@@ -248,7 +258,7 @@ export const TextField = React.forwardRef(
     const [loading, setloading] = useState(false)
 
     const onChangeMemoized = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onChange && onChange(e.target.value)
       },
       [onChange]
@@ -263,7 +273,7 @@ export const TextField = React.forwardRef(
     }, [onSearch])
 
     const downHandler = useCallback(
-      (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (
           (textFieldType === 'search' || textFieldType === 'search-number') &&
           event.key === 'Enter'

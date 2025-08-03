@@ -1,9 +1,8 @@
-import React from 'react'
 import { AlertHub as AruiAlertHub, AlertHubProps } from './AlertHub'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-
+import { StoryObj, Meta } from '@storybook/react'
 import { useAlertHub } from './useAlertHub'
 import { Button } from '@komune-io/g2-components'
+import { Fragment } from 'react'
 
 export default {
   title: 'Notifications/AlertHub',
@@ -29,10 +28,10 @@ function Example() {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Button onClick={handleClick}>Show snackbar</Button>
       <Button onClick={handleClickSuccess}>Show success snackbar</Button>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

@@ -11,8 +11,10 @@ import {
   styled
 } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, {
+import {
+  CSSProperties,
   forwardRef,
+  RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -61,8 +63,8 @@ interface ContextMenuClasses {
 
 interface ContextMenuStyles {
   item?: ItemStyles
-  paper?: React.CSSProperties
-  list?: React.CSSProperties
+  paper?: CSSProperties
+  list?: CSSProperties
 }
 
 export interface ContextMenuBasicProps extends BasicProps {
@@ -94,7 +96,7 @@ export type ContextMenuProps = MergeMuiElementProps<
 
 export const ContextMenuBase = (
   props: ContextMenuProps,
-  ref: React.RefObject<HTMLDivElement>
+  ref: RefObject<HTMLDivElement>
 ) => {
   const {
     menu,
@@ -205,10 +207,10 @@ interface ItemClasses {
 }
 
 interface ItemStyles {
-  root?: React.CSSProperties
-  icon?: React.CSSProperties
-  text?: React.CSSProperties
-  arrow?: React.CSSProperties
+  root?: CSSProperties
+  icon?: CSSProperties
+  text?: CSSProperties
+  arrow?: CSSProperties
 }
 
 interface ItemBasicProps extends BasicProps {
@@ -218,58 +220,56 @@ interface ItemBasicProps extends BasicProps {
 
 type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & MenuItems>
 
-const Item = forwardRef(
-  (props: ItemProps, ref: React.RefObject<HTMLElement>) => {
-    const {
-      goto,
-      icon,
-      label,
-      href,
-      onClick,
-      componentProps,
-      items,
-      component,
-      isSelected = false,
-      classes,
-      styles,
-      ...other
-    } = props
-    const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
+const Item = forwardRef((props: ItemProps, ref: RefObject<HTMLElement>) => {
+  const {
+    goto,
+    icon,
+    label,
+    href,
+    onClick,
+    componentProps,
+    items,
+    component,
+    isSelected = false,
+    classes,
+    styles,
+    ...other
+  } = props
+  const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
 
-    return (
-      <ListItemButton
-        ref={ref}
-        component={component ? component : href ? 'a' : 'div'}
-        onClick={onItemClick}
-        href={href}
-        style={styles?.item?.root}
-        {...componentProps}
-        {...other}
-        className={classes?.item?.root}
-      >
-        {!!icon && (
-          <ListItemIcon
-            className={classes?.item?.icon}
-            style={styles?.item?.icon}
-          >
-            {icon}
-          </ListItemIcon>
-        )}
-        <ListItemText
-          primaryTypographyProps={{ color: 'inherit', variant: 'body2' }}
-          primary={label}
-          className={classes?.item?.text}
-          style={styles?.item?.text}
+  return (
+    <ListItemButton
+      ref={ref}
+      component={component ? component : href ? 'a' : 'div'}
+      onClick={onItemClick}
+      href={href}
+      style={styles?.item?.root}
+      {...componentProps}
+      {...other}
+      className={classes?.item?.root}
+    >
+      {!!icon && (
+        <ListItemIcon
+          className={classes?.item?.icon}
+          style={styles?.item?.icon}
+        >
+          {icon}
+        </ListItemIcon>
+      )}
+      <ListItemText
+        primaryTypographyProps={{ color: 'inherit', variant: 'body2' }}
+        primary={label}
+        className={classes?.item?.text}
+        style={styles?.item?.text}
+      />
+      {!!items && (
+        <RoundedArrow
+          className={cx('AruiContextMenu-arrow', classes?.item?.arrow)}
+          style={styles?.item?.arrow}
         />
-        {!!items && (
-          <RoundedArrow
-            className={cx('AruiContextMenu-arrow', classes?.item?.arrow)}
-            style={styles?.item?.arrow}
-          />
-        )}
-      </ListItemButton>
-    )
-  }
-)
+      )}
+    </ListItemButton>
+  )
+})
 
 export const ContextMenu = forwardRef(ContextMenuBase) as typeof ContextMenuBase

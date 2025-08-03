@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import { Link as G2Link, Chip } from '@komune-io/g2-components'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { InputFormProps } from './InputForm'
 import { Link, LinkProps } from 'react-router-dom'
 import { Option } from '../Select'

@@ -1,10 +1,8 @@
-export { CodeHighlighter, CodeHighlighterProps } from './CodeHighlighter'
-export {
-  MarkdownHighlighter,
-  MarkdownHighlighterProps
-} from './MarkdownHighlighter'
-export {
-  SegmentedContainer,
-  SegmentedContainerProps
-} from './SegmentedContainer'
-export { DocsTable, DocsTableProps } from './DocsTable'
+export { CodeHighlighter } from './CodeHighlighter'
+export type { CodeHighlighterProps } from './CodeHighlighter'
+export { MarkdownHighlighter } from './MarkdownHighlighter'
+export type { MarkdownHighlighterProps } from './MarkdownHighlighter'
+export { SegmentedContainer } from './SegmentedContainer'
+export type { SegmentedContainerProps } from './SegmentedContainer'
+export { DocsTable } from './DocsTable'
+export type { DocsTableProps } from './DocsTable'

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { InputForm, InputFormBasicProps } from './InputForm'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import {
   ArgTypes,
   PRIMARY_STORY,

@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import { forwardRef, ReactNode, useCallback } from 'react'
 import {
   SnackbarProvider,
   useSnackbar,
@@ -23,7 +23,7 @@ export interface AlertHubProps extends SnackbarProviderProps {
   /**
    * The rest of the app inside the provider
    */
-  children: React.ReactNode
+  children: ReactNode
 }
 
 declare module 'notistack' {

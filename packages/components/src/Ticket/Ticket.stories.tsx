@@ -1,4 +1,3 @@
-import React from 'react'
 import { Ticket as AruiTicket, TicketBasicProps } from './Ticket'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 

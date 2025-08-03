@@ -1,11 +1,14 @@
-import React, {
+import {
+  CSSProperties,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
+  ReactNode,
   Suspense,
-  lazy
+  lazy,
+  ElementType
 } from 'react'
 import { LatLngExpression, Map as LMap } from 'leaflet'
 import {
@@ -34,7 +37,7 @@ export interface MapPlugin {
   key: string
   value?: any
   setValue?: (value: any) => void
-  element: React.ElementType<any>
+  element: ElementType<any>
 }
 
 export interface MapPluginProps extends MapPlugin {
@@ -52,17 +55,17 @@ export interface MapClasses {
 }
 
 export interface MapStyles {
-  map?: React.CSSProperties
-  openFullScreenButton?: React.CSSProperties
-  closeFullScreenIcon?: React.CSSProperties
-  errorMessage?: React.CSSProperties
+  map?: CSSProperties
+  openFullScreenButton?: CSSProperties
+  closeFullScreenIcon?: CSSProperties
+  errorMessage?: CSSProperties
 }
 
 export interface MapBasicProps extends BasicProps {
   /**
    * the children wil be put under the map in the element tree you can pass absolute element that you want to apply above the map
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * the pluggins you want to have inside the map they should be compatible with leaflet.
    * They should use the two required props `value` and `setValue` to handle their custom states

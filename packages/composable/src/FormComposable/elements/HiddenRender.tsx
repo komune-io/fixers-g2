@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useMemo } from 'react'
+import { ChangeEventHandler, InputHTMLAttributes, useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
@@ -6,7 +6,7 @@ import { useChangeHandler } from '../type/useChangeHandler'
 
 export type HiddenRenderProps = FieldRenderProps<
   'hidden',
-  React.InputHTMLAttributes<HTMLInputElement>
+  InputHTMLAttributes<HTMLInputElement>
 >
 
 export const HiddenRender: ElementRendererFunction<HiddenRenderProps> = (

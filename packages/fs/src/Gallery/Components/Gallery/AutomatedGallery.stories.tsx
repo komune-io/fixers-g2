@@ -1,8 +1,7 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { AutomatedGallery, AutomatedGalleryProps } from './AutomatedGallery'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Box } from '@mui/material'
-import React from 'react'
 
 export default {
   title: 'Fs/AutomatedGallery',

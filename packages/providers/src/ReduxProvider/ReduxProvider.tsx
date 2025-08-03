@@ -1,12 +1,12 @@
-import React from 'react'
 import { Provider } from 'react-redux'
 import { AnyAction, Store } from 'redux'
+import { ReactNode } from 'react'
 
 export interface ReduxProviderProps {
   /**
    * The application that will be provided
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The instance of the redux store
    */

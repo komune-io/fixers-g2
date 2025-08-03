@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { ReactNode, useCallback, useMemo } from 'react'
 import { FormikHelpers } from 'formik'
 import { AutoForm, AutoFormData } from './AutoForm'
 import { FormComposableState } from '../FormComposable'
@@ -27,7 +27,7 @@ export interface UseAutoFormProps<INITIAL, CMD = INITIAL> {
    * @param formState - The current state of the form.
    * @returns A React node representing the actions.
    */
-  actions: (formState: FormComposableState) => React.ReactNode
+  actions: (formState: FormComposableState) => ReactNode
 
   /**
    * A function that handles the form submission.

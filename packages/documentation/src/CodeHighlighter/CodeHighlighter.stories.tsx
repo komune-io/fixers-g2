@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   CodeHighlighter as AruiCodeHighlighter,
   CodeHighlighterProps
 } from './CodeHighlighter'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 const style = `export type darkStyles =
 | 'atomOneDark'

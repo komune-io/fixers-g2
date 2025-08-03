@@ -2,15 +2,17 @@ export * from './ComposableRender'
 export * from './FormComposable'
 export {
   useFiltersComposable,
+  FiltersComposable,
+  useCompleteFilters
+} from './FiltersComposable'
+export type {
   FiltersComposableStyles,
   FiltersComposableState,
   FiltersComposableProps,
   FiltersComposableClasses,
-  FiltersComposable,
   FilterComposableField,
   FilterRenderType,
-  FiltersComposableActionsProps,
-  useCompleteFilters
+  FiltersComposableActionsProps
 } from './FiltersComposable'
 export * from './AutoForm'
 export * from './Conditions'

@@ -1,21 +1,21 @@
 import { Box, Stack, useMediaQuery, useTheme } from '@mui/material'
 import { BasicProps } from '@komune-io/g2-themes'
 import { cx } from '@emotion/css'
-import React from 'react'
+import { ReactNode } from 'react'
 
 export interface SegmentedContainerProps extends BasicProps {
   /**
    * The description paragraph
    */
-  description?: React.ReactNode
+  description?: ReactNode
   /**
    * The left element placed under the description
    */
-  leftElement?: React.ReactNode
+  leftElement?: ReactNode
   /**
    * The right element placed in a sticky container
    */
-  rightElement?: React.ReactNode
+  rightElement?: ReactNode
   /**
    * The left segment portion in the screen between 0 and 1
    * @default 0.6

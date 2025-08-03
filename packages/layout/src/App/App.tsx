@@ -1,4 +1,3 @@
-import React from 'react'
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
 import { makeG2STyles } from '@komune-io/g2-themes'
 import { MenuItem } from '@komune-io/g2-components'
@@ -7,6 +6,7 @@ import { TitleContainer } from './TitleContainer'
 import { AppMenu, AppLogoProps } from '../AppMenu'
 import { AppLayout, AppLayoutProps } from '..'
 import { useMediaQuery } from '@mui/material'
+import { ReactNode } from 'react'
 
 const useStyles = makeG2STyles()({
   grow: {
@@ -24,7 +24,7 @@ export interface AppProps extends AppLayoutProps {
   /**
    * The content that will be displayed in the navBAr at the left of the profile
    */
-  navBarContent?: React.ReactNode
+  navBarContent?: ReactNode
   /**
    * The list of the actions that will be displayed in the drawer menu
    */

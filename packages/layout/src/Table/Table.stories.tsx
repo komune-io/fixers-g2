@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Table as AruiTable, TableBasicProps } from './Table'
 
@@ -124,6 +124,30 @@ const data2: Data[] = [
   }
 ]
 
+const columns: Column<Data>[] = [
+  {
+    Header: 'Id',
+    accessor: 'id',
+    Cell: ({ row }: CellProps<Data>) => (
+      <Typography>{row.original.id}</Typography>
+    )
+  },
+  {
+    Header: 'Name',
+    accessor: 'name',
+    Cell: ({ row }: CellProps<Data>) => (
+      <Typography>{row.original.name}</Typography>
+    )
+  },
+  {
+    Header: 'Is he relax ?',
+    accessor: 'isRelaxed',
+    Cell: ({ row }: CellProps<Data>) => (
+      <Typography>{row.original.isRelaxed ? 'yes' : 'no'}</Typography>
+    )
+  }
+]
+
 export const Table: StoryObj<TableBasicProps<Data>> = {
   render: (args: TableBasicProps<Data>) => {
     const [page, setPage] = useState<number>(1)
@@ -155,30 +179,6 @@ export const Table: StoryObj<TableBasicProps<Data>> = {
     onRowClicked: (row) => console.log('cliked', row)
   }
 }
-
-const columns: Column<Data>[] = [
-  {
-    Header: 'Id',
-    accessor: 'id',
-    Cell: ({ row }: CellProps<Data>) => (
-      <Typography>{row.original.id}</Typography>
-    )
-  },
-  {
-    Header: 'Name',
-    accessor: 'name',
-    Cell: ({ row }: CellProps<Data>) => (
-      <Typography>{row.original.name}</Typography>
-    )
-  },
-  {
-    Header: 'Is he relax ?',
-    accessor: 'isRelaxed',
-    Cell: ({ row }: CellProps<Data>) => (
-      <Typography>{row.original.isRelaxed ? 'yes' : 'no'}</Typography>
-    )
-  }
-]
 
 export const theVariants: StoryFn = () => {
   interface DataExample {

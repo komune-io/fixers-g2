@@ -1,13 +1,13 @@
-import React from 'react'
 import {
   ContextMenu as AruiContextMenu,
   ContextMenuBasicProps
 } from './ContextMenu'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { styles, classes } from './docs'
 import { MenuItems } from '../Menu'
 import { Box, Typography } from '@mui/material'
 import { VirtualElement } from '@popperjs/core'
+import { useState, MouseEvent } from 'react'
 
 export default {
   title: 'Components/ContextMenu',
@@ -31,34 +31,6 @@ export default {
     }
   }
 } as Meta<typeof AruiContextMenu>
-
-export const ContextMenu: StoryObj<ContextMenuBasicProps> = {
-  render: (args: ContextMenuBasicProps) => {
-    const [anchorEl, setAnchorEl] = React.useState(null)
-
-    const handleClick = (event) => {
-      setAnchorEl(anchorEl ? null : event.currentTarget)
-    }
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={handleClick}>click</button>
-        <AruiContextMenu
-          anchorEl={anchorEl}
-          onClose={() => setAnchorEl(null)}
-          open={!!anchorEl}
-          {...args}
-          placement='bottom'
-        />
-      </Box>
-    )
-  },
-
-  args: {
-    menu: menu
-  },
-
-  name: 'ContextMenu'
-}
 
 const menu: MenuItems[] = [
   {
@@ -97,7 +69,6 @@ const menu: MenuItems[] = [
       }
     ]
   },
-  ,
   {
     key: 'test3',
     label: 'test3',
@@ -132,12 +103,40 @@ const menu: MenuItems[] = [
   }
 ]
 
+export const ContextMenu: StoryObj<ContextMenuBasicProps> = {
+  render: (args: ContextMenuBasicProps) => {
+    const [anchorEl, setAnchorEl] = useState(null)
+
+    const handleClick = (event) => {
+      setAnchorEl(anchorEl ? null : event.currentTarget)
+    }
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <button onClick={handleClick}>click</button>
+        <AruiContextMenu
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          open={!!anchorEl}
+          {...args}
+          placement='bottom'
+        />
+      </Box>
+    )
+  },
+
+  args: {
+    menu: menu
+  },
+
+  name: 'ContextMenu'
+}
+
 export const RightClickContextMenu: StoryObj<ContextMenuBasicProps> = {
   render: (args: ContextMenuBasicProps) => {
-    const [anchorEl, setAnchorEl] = React.useState<VirtualElement | null>(null)
+    const [anchorEl, setAnchorEl] = useState<VirtualElement | null>(null)
 
     const handleContextMenu = (
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>
+      event: MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
       const x = event.clientX + 5
       const y = event.clientY - 5

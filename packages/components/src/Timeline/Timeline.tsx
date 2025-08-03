@@ -8,7 +8,13 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@mui/lab'
-import React, { forwardRef, useMemo } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  ReactNode,
+  useMemo
+} from 'react'
 import { Typography } from '@mui/material'
 import {
   MergeMuiElementProps,
@@ -134,9 +140,9 @@ export interface TimeLineCell {
   endTime?: string
   startDate?: number
   endDate?: number
-  content: React.ReactNode
-  startDot?: React.ReactNode
-  endDot?: React.ReactNode
+  content: ReactNode
+  startDot?: ReactNode
+  endDot?: ReactNode
   disabled?: boolean
 }
 
@@ -151,13 +157,13 @@ interface TimelineClasses {
 }
 
 interface TimelineStyles {
-  item?: React.CSSProperties
-  content?: React.CSSProperties
-  timeContainer?: React.CSSProperties
-  startDot?: React.CSSProperties
-  endDot?: React.CSSProperties
-  connector?: React.CSSProperties
-  separator?: React.CSSProperties
+  item?: CSSProperties
+  content?: CSSProperties
+  timeContainer?: CSSProperties
+  startDot?: CSSProperties
+  endDot?: CSSProperties
+  connector?: CSSProperties
+  separator?: CSSProperties
 }
 
 export interface TimelineBasicProps extends BasicProps {
@@ -205,7 +211,7 @@ export type TimelineProps = MergeMuiElementProps<
  */
 const TimelineBase = (
   props: TimelineProps,
-  ref?: React.ForwardedRef<HTMLUListElement>
+  ref?: ForwardedRef<HTMLUListElement>
 ) => {
   const {
     lines,

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FiltersComposable, FiltersComposableProps } from './FiltersComposable'
 import { FormikFormParams, useFiltersComposable } from './useFiltersComposable'

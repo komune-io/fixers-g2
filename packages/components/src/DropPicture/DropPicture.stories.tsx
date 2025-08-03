@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   DropPicture as AruiDropPicture,
   DropPictureBasicProps

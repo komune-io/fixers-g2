@@ -1,4 +1,3 @@
-import React from 'react'
 import { ReactComponent } from './IndeterminateIcon.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 

@@ -4,7 +4,7 @@ import {
   makeG2STyles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
-import React, { forwardRef } from 'react'
+import { CSSProperties, ForwardedRef, forwardRef, ReactNode } from 'react'
 
 const useStyles = makeG2STyles()((theme) => ({
   root: {
@@ -43,25 +43,25 @@ interface TicketClasses {
 }
 
 interface TicketStyles {
-  baseContainer?: React.CSSProperties
-  textContainer?: React.CSSProperties
-  title?: React.CSSProperties
-  content?: React.CSSProperties
+  baseContainer?: CSSProperties
+  textContainer?: CSSProperties
+  title?: CSSProperties
+  content?: CSSProperties
 }
 
 export interface TicketBasicProps extends BasicProps {
   /**
    * The title displayed in the component
    */
-  title?: React.ReactNode
+  title?: ReactNode
   /**
    * The content displayed in the component
    */
-  content?: React.ReactNode
+  content?: ReactNode
   /**
    * The icon displayed in the component
    */
-  icon?: React.ReactNode
+  icon?: ReactNode
   /**
    * The different variants of the component
    *
@@ -92,10 +92,7 @@ export interface TicketBasicProps extends BasicProps {
 
 export type TicketProps = MergeMuiElementProps<PaperProps, TicketBasicProps>
 
-const TicketBase = (
-  props: TicketProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) => {
+const TicketBase = (props: TicketProps, ref: ForwardedRef<HTMLDivElement>) => {
   const {
     title,
     content,

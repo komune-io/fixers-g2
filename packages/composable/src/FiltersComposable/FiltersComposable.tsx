@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { CSSProperties, useCallback, useMemo, useState } from 'react'
 import { ContainerRenderer, ElementRenderersConfig } from '../ComposableRender'
 import { cx } from '@emotion/css'
 import { Box, Divider, Stack, StackProps } from '@mui/material'
@@ -26,10 +26,10 @@ export interface FiltersComposableClasses {
 }
 
 export interface FiltersComposableStyles {
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
-  field?: React.CSSProperties
-  fieldsContainer?: React.CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
+  field?: CSSProperties
+  fieldsContainer?: CSSProperties
 }
 
 export type FiltersComposableActionsProps = Omit<ActionsWrapperProps, 'actions'>

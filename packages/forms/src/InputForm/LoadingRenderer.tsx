@@ -1,5 +1,4 @@
 import { Skeleton } from '@mui/material'
-import React from 'react'
 import { InputFormProps } from './InputForm'
 
 export const LoadingRenderer = (props: Partial<InputFormProps>) => {

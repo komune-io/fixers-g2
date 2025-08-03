@@ -1,4 +1,13 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  ChangeEvent,
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useMemo
+} from 'react'
 import {
   InputAdornment,
   TextField as MuiTextField,
@@ -51,11 +60,11 @@ export interface FilterTextFieldClasses {
 }
 
 export interface FilterTextFieldStyles {
-  label?: React.CSSProperties
-  textfield?: React.CSSProperties
-  input?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  searchIcon?: React.CSSProperties
+  label?: CSSProperties
+  textfield?: CSSProperties
+  input?: CSSProperties
+  clearIcon?: CSSProperties
+  searchIcon?: CSSProperties
 }
 
 export interface FilterTextFieldBasicProps extends BasicProps {
@@ -110,7 +119,7 @@ export interface FilterTextFieldBasicProps extends BasicProps {
   /**
    * The icon of the input
    */
-  inputIcon?: React.ReactNode
+  inputIcon?: ReactNode
 
   /**
    * The event called when the value of the input is removed
@@ -148,8 +157,8 @@ export type FilterTextFieldProps = MergeMuiElementProps<
   FilterTextFieldBasicProps
 >
 
-export const FilterTextField = React.forwardRef(
-  (props: FilterTextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const FilterTextField = forwardRef(
+  (props: FilterTextFieldProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       className,
       error = false,
@@ -183,13 +192,13 @@ export const FilterTextField = React.forwardRef(
     })
 
     const onChangeMemoized = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
         onChange && onChange(e.target.value),
       [onChange]
     )
 
     const upHandler = useCallback(
-      (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
           event.currentTarget.blur()
           onSearch && onSearch()

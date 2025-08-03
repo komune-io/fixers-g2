@@ -1,5 +1,7 @@
 import { createMakeStyles } from 'tss-react'
 import { useTheme } from '../ThemeContextProvider'
+import { CSSProperties } from 'react'
+
 export interface BasicProps {
   /**
    * The id of the root component
@@ -8,7 +10,7 @@ export interface BasicProps {
   /**
    * The style of the root component
    */
-  style?: React.CSSProperties
+  style?: CSSProperties
   /**
    * The className of the root component
    */

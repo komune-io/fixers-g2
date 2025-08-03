@@ -1,4 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  ChangeEvent
+} from 'react'
 import {
   FormHelperText,
   RadioGroup,
@@ -29,8 +38,8 @@ export interface RadioChoicesClasses {
 }
 
 export interface RadioChoicesStyles {
-  helperText?: React.CSSProperties
-  choice?: React.CSSProperties
+  helperText?: CSSProperties
+  choice?: CSSProperties
 }
 
 export interface RadioChoicesBasicProps extends BasicProps {
@@ -83,8 +92,8 @@ export type RadioChoicesProps = MergeMuiElementProps<
   RadioChoicesBasicProps
 >
 
-export const RadioChoices = React.forwardRef(
-  (props: RadioChoicesProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const RadioChoices = forwardRef(
+  (props: RadioChoicesProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       value = '',
       name,
@@ -139,7 +148,7 @@ export const RadioChoices = React.forwardRef(
     }, [value, editableLabel.label])
 
     const onChangeMemoized = useCallback(
-      (_: React.ChangeEvent<HTMLInputElement>, value: string) => {
+      (_: ChangeEvent<HTMLInputElement>, value: string) => {
         const edited =
           value === editableLabel.key ? editableLabel.label : undefined
         onChange && onChange(edited ?? extractNumberOrBooleanFromString(value))

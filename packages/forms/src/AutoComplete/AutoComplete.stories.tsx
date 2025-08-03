@@ -2,7 +2,7 @@ import {
   AutoComplete as AruiAutoComplete,
   AutoCompleteBasicProps
 } from './AutoComplete'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'Forms/AutoComplete',

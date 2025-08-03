@@ -1,6 +1,5 @@
-import React from 'react'
-import { TabsMenu as AruiTabsMenu, TabsMenuProps } from './TabsMenu'
-import { Meta, StoryFn } from '@storybook/react'
+import { TabsMenu as AruiTabsMenu } from './TabsMenu'
+import { Meta } from '@storybook/react'
 import { styles, classes, Tab } from './types'
 
 export default {

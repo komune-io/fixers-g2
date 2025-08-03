@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { ComponentPropsWithRef, useMemo } from 'react'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Menu, MenuProps, MenuItem } from '@komune-io/g2-components'
 import clsx from 'clsx'
@@ -11,7 +11,7 @@ export interface AppLogoProps {
   /**
    * The props of the image
    */
-  imgProps?: React.ComponentPropsWithRef<'img'>
+  imgProps?: ComponentPropsWithRef<'img'>
   /**
    * The item props. Use it to logo interactions behavior
    */

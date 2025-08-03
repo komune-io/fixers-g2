@@ -1,4 +1,12 @@
 import {
+  ForwardedRef,
+  forwardRef,
+  HTMLAttributes,
+  SyntheticEvent,
+  useCallback,
+  useMemo
+} from 'react'
+import {
   AutocompleteRenderOptionState,
   createFilterOptions,
   FilterOptionsState,
@@ -11,7 +19,6 @@ import {
   AutocompleteGetTagProps,
   AutocompleteRenderInputParams
 } from '@mui/material'
-import { forwardRef, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   makeG2STyles,
@@ -138,7 +145,7 @@ export const defaultGetOptionLabel =
 
 const AutoCompleteBase = function <T>(
   props: AutoCompleteProps<T>,
-  ref: React.ForwardedRef<HTMLElement>
+  ref: ForwardedRef<HTMLElement>
 ) {
   const {
     className,
@@ -180,7 +187,7 @@ const AutoCompleteBase = function <T>(
   const defaultStyles = useStyles()
 
   const onChangeMemoized = useCallback(
-    (_: React.SyntheticEvent<Element, Event>, value: T | T[] | null) => {
+    (_: SyntheticEvent<Element, Event>, value: T | T[] | null) => {
       if (Array.isArray(value) && onChangeValues) {
         //@ts-ignore
         if (hasKey && !getOptionLabel && !returnFullObject) {
@@ -237,7 +244,7 @@ const AutoCompleteBase = function <T>(
 
   const renderOption = useCallback(
     (
-      props: React.HTMLAttributes<HTMLLIElement>,
+      props: HTMLAttributes<HTMLLIElement>,
       option: T,
       { selected }: AutocompleteRenderOptionState
     ) => {

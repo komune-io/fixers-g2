@@ -1,6 +1,5 @@
-import React from 'react'
-import { Loading as AruiLoading, LoadingBasicProps } from './Loading'
-import { Meta, StoryFn } from '@storybook/react'
+import { Loading as AruiLoading } from './Loading'
+import { Meta } from '@storybook/react'
 import komune from '../assets/komune.png'
 import { styles, classes } from './types'
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { TableV2 as AruiTableV2, TableV2BasicProps } from './TableV2'
 import { G2ColumnDef, useTable } from './useTable'

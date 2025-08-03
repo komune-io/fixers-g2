@@ -1,4 +1,3 @@
-import React from 'react'
 import { Tooltip as AruiTooltip, TooltipBasicProps } from './Tooltip'
 import { Meta, StoryFn } from '@storybook/react'
 import { Typography } from '@mui/material'

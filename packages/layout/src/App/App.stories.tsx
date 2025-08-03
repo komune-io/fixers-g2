@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { App as AruiApp, AppProps } from './App'
 import { Meta, StoryFn } from '@storybook/react'
 import { action } from '@storybook/addon-actions'

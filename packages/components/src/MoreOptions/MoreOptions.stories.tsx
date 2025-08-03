@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   MoreOptions as AruiMoreOptions,
   MoreOptionsBasicProps
 } from './MoreOptions'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 import { styles, classes } from './docs'
 
 export default {

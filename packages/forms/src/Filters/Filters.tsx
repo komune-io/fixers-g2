@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from 'react'
+import { CSSProperties, useLayoutEffect, useMemo, useState } from 'react'
 import { Action, Actions } from '@komune-io/g2-components'
 import { FilterSelectProps, FilterSelect } from '../FilterSelect'
 import { FilterTextFieldProps, FilterTextField } from '../FilterTextField'
@@ -59,10 +59,10 @@ interface FiltersClasses {
 }
 
 interface FiltersStyles {
-  actions?: React.CSSProperties
-  fieldsContainer?: React.CSSProperties
-  button?: React.CSSProperties
-  field?: React.CSSProperties
+  actions?: CSSProperties
+  fieldsContainer?: CSSProperties
+  button?: CSSProperties
+  field?: CSSProperties
 }
 
 export interface FiltersBasicProps extends BasicProps {

@@ -12,7 +12,6 @@ import {
 } from '@mui/material'
 import { TableRow as G2TableRow } from './TableRow'
 import { Table, flexRender, Row } from '@tanstack/react-table'
-import React from 'react'
 import { LinkProps } from 'react-router-dom'
 import {
   ElevatedRowsLoading,
@@ -23,6 +22,7 @@ import {
 import { G2ColumnDef } from './useTable'
 import { SortOrder } from './TableV2'
 import { SouthRounded } from '@mui/icons-material'
+import { ElementType } from 'react'
 
 export interface TableBaseProps<Data extends {}> {
   /**
@@ -89,22 +89,21 @@ export const TableBase = <Data extends {}>(props: TableBaseProps<Data>) => {
   } = props
 
   //@ts-ignore
-  const TableComponent: React.ElementType =
+  const TableComponent: ElementType = variant === 'elevated' ? 'div' : undefined
+  //@ts-ignore
+  const TableHeadComponent: ElementType =
     variant === 'elevated' ? 'div' : undefined
   //@ts-ignore
-  const TableHeadComponent: React.ElementType =
+  const TableBodyComponent: ElementType =
     variant === 'elevated' ? 'div' : undefined
   //@ts-ignore
-  const TableBodyComponent: React.ElementType =
+  const TableFooterComponent: ElementType =
     variant === 'elevated' ? 'div' : undefined
   //@ts-ignore
-  const TableFooterComponent: React.ElementType =
+  const TableRowComponent: ElementType =
     variant === 'elevated' ? 'div' : undefined
   //@ts-ignore
-  const TableRowComponent: React.ElementType =
-    variant === 'elevated' ? 'div' : undefined
-  //@ts-ignore
-  const TableCellComponent: React.ElementType<TableCellBaseProps> =
+  const TableCellComponent: ElementType<TableCellBaseProps> =
     variant === 'elevated' ? 'div' : undefined
 
   const columnsNumber =

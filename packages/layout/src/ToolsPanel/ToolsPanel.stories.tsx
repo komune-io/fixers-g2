@@ -1,6 +1,5 @@
-import React from 'react'
-import { ToolsPanel as AruiToolsPanel, ToolsPanelProps } from './ToolsPanel'
-import { Meta, StoryFn } from '@storybook/react'
+import { ToolsPanel as AruiToolsPanel } from './ToolsPanel'
+import { Meta } from '@storybook/react'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { AccountCircle } from '@mui/icons-material'
 import { Menu } from './types'

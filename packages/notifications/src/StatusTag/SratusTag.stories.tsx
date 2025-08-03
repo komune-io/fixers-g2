@@ -1,4 +1,3 @@
-import React from 'react'
 import { StatusTag as AruiStatusTag, StatusTagBasicProps } from './StatusTag'
 import { StoryObj, Meta, StoryFn } from '@storybook/react'
 

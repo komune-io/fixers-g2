@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   ProgressIndicator as AruiProgressIndicator,
   ProgressIndicatorProps
 } from './ProgressIndicator'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 import { classes, styles } from './docs'
 

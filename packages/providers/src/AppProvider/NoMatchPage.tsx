@@ -1,4 +1,4 @@
-import React from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { Box, BoxProps, Typography } from '@mui/material'
 import { NotFoundIcon } from '../assets/NotFoundIcon'
 import {
@@ -33,9 +33,9 @@ interface NoMatchPageClasses {
 }
 
 interface NoMatchPageStyles {
-  notFoundIcon?: React.CSSProperties
-  title?: React.CSSProperties
-  backButton?: React.CSSProperties
+  notFoundIcon?: CSSProperties
+  title?: CSSProperties
+  backButton?: CSSProperties
 }
 
 export interface NoMatchPageBasicProps extends BasicProps {
@@ -53,7 +53,7 @@ export interface NoMatchPageBasicProps extends BasicProps {
    * The styles applied to the different part of the component
    */
   styles?: NoMatchPageStyles
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export type NoMatchPageProps = MergeMuiElementProps<

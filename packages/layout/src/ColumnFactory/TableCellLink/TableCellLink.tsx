@@ -1,14 +1,14 @@
 import { Link as G2Link } from '@komune-io/g2-components'
 import { Link } from 'react-router-dom'
-import React from 'react'
 import { Typography } from '@mui/material'
+import { HTMLAttributeAnchorTarget } from 'react'
 
 export interface TableCellLinkProps {
   value?: {
     url: string
     label: string
   }
-  target?: React.HTMLAttributeAnchorTarget
+  target?: HTMLAttributeAnchorTarget
 }
 
 export const stopPropagation = (e: any) => e.stopPropagation()

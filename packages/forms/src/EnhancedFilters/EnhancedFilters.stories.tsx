@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import {
   Filters,
   FiltersBasicProps,
   FiltersField,
   FiltersAction
 } from '../Filters'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 import { Typography } from '@mui/material'
 import { useEnhancedFilters } from './useEnhancedFilters'
@@ -31,6 +31,63 @@ export default {
 } as Meta<typeof Filters>
 
 const queryClient = new QueryClient()
+
+const fields: (FiltersField | 'spacer')[] = [
+  {
+    key: 'storybook-enhanced-filters-field-from',
+    name: 'from',
+    label: 'From',
+    type: 'datepicker',
+    datePickerProps: { variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-to',
+    name: 'to',
+    label: 'To',
+    type: 'datepicker',
+    datePickerProps: { variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-keyword',
+    name: 'keyword',
+    label: 'Keyword',
+    type: 'textfield',
+    textFieldProps: { textFieldType: 'search', variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-fruits',
+    name: 'fruits',
+    label: 'Fruits',
+    type: 'select',
+    selectProps: {
+      options: [
+        { key: 'pomme', label: 'Pomme' },
+        { key: 'banane', label: 'Banane' },
+        { key: 'orange', label: 'Orange' },
+        { key: 'kiwi', label: 'Kiwi' },
+        { key: 'fraise', label: 'fraise' }
+      ],
+      variant: 'outlined',
+      multiple: true
+    }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-country',
+    name: 'country',
+    label: 'Country',
+    type: 'select',
+    selectProps: {
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ],
+      variant: 'outlined'
+    }
+  }
+]
 
 export const EnhancedFiltersStory: StoryObj<FiltersBasicProps> = {
   render: (args: FiltersBasicProps) => {
@@ -131,60 +188,3 @@ const Example = (props) => {
     </>
   )
 }
-
-const fields: (FiltersField | 'spacer')[] = [
-  {
-    key: 'storybook-enhanced-filters-field-from',
-    name: 'from',
-    label: 'From',
-    type: 'datepicker',
-    datePickerProps: { variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-to',
-    name: 'to',
-    label: 'To',
-    type: 'datepicker',
-    datePickerProps: { variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-keyword',
-    name: 'keyword',
-    label: 'Keyword',
-    type: 'textfield',
-    textFieldProps: { textFieldType: 'search', variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-fruits',
-    name: 'fruits',
-    label: 'Fruits',
-    type: 'select',
-    selectProps: {
-      options: [
-        { key: 'pomme', label: 'Pomme' },
-        { key: 'banane', label: 'Banane' },
-        { key: 'orange', label: 'Orange' },
-        { key: 'kiwi', label: 'Kiwi' },
-        { key: 'fraise', label: 'fraise' }
-      ],
-      variant: 'outlined',
-      multiple: true
-    }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-country',
-    name: 'country',
-    label: 'Country',
-    type: 'select',
-    selectProps: {
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ],
-      variant: 'outlined'
-    }
-  }
-]

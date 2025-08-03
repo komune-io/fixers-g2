@@ -1,5 +1,5 @@
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { UserTable, UserTableProps } from './UserTable'
 import { useGetUsers } from '../../Api'
 import { User } from '../../Domain'

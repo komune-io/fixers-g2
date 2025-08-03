@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import { formatNumber } from '@komune-io/g2-utils'
-import React from 'react'
 
 export interface TableCellNumberProps {
   value?: number
