@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, useState } from 'react'
 import { Button as AruiButton, ButtonBasicProps } from './Button'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { Box } from '@mui/material'
 import { SwapHoriz } from '@mui/icons-material'
 import { EditButton } from './EditButton'

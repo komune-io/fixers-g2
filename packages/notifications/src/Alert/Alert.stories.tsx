@@ -1,5 +1,5 @@
 import { Alert as AruiAlert, AlertBasicProps } from './Alert'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 
 import { Box } from '@mui/material'
 import { classes, styles } from './types'

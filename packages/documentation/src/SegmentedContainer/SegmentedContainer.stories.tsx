@@ -2,7 +2,7 @@ import {
   SegmentedContainer as AruiSegmentedContainer,
   SegmentedContainerProps
 } from './SegmentedContainer'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { MarkdownHighlighter } from '../MarkdownHighlighter'
 //@ts-ignore
 import md from './exampleMarkdown.md?raw'
@@ -13,42 +13,46 @@ export default {
   component: AruiSegmentedContainer
 } as Meta<typeof AruiSegmentedContainer>
 
-const code = `{
-  "id": "dp_1J2zu82eZvKYlo2CI0ivPgUD",
-  "object": "dispute",
-  "amount": 1000,
-  "balance_transactions": [],
-  "charge": "ch_1AZtxr2eZvKYlo2CJDX8whov",
-  "created": 1623854384,
-  "currency": "usd",
-  "evidence": {
-    "access_activity_log": null,
-    "billing_address": null,
-    "cancellation_policy": null,
-    "receipt": null,
-    "shipping_address": null,
-    "shipping_carrier": null,
-    "shipping_date": null,
-    "shipping_documentation": null,
-    "shipping_tracking_number": null,
-    "uncategorized_file": null,
-    "uncategorized_text": null
-  }`
-
 export const SegmentedContainer: StoryObj<SegmentedContainerProps> = {
-  render: (args: SegmentedContainerProps) => (
+  render: () => (
     <>
-      <AruiSegmentedContainer {...args} />
-      <AruiSegmentedContainer {...args} />
+      <AruiSegmentedContainer
+        leftElement={<MarkdownHighlighter markdown={md} />}
+        rightElement={
+          <CodeHighlighter
+            object={{
+              id: 'dp_1J2zu82eZvKYlo2CI0ivPgUD',
+              object: 'dispute',
+              amount: 1000,
+              balance_transactions: [],
+              charge: 'ch_1AZtxr2eZvKYlo2CJDX8whov',
+              created: 1623854384,
+              currency: 'usd'
+            }}
+            title='Example'
+            language='json'
+          />
+        }
+      />
+      <AruiSegmentedContainer
+        leftElement={<MarkdownHighlighter markdown={md} />}
+        rightElement={
+          <CodeHighlighter
+            object={{
+              id: 'dp_1J2zu82eZvKYlo2CI0ivPgUD',
+              object: 'dispute',
+              amount: 1000,
+              balance_transactions: [],
+              charge: 'ch_1AZtxr2eZvKYlo2CJDX8whov',
+              created: 1623854384,
+              currency: 'usd'
+            }}
+            title='Example'
+            language='json'
+          />
+        }
+      />
     </>
   ),
-
-  args: {
-    leftElement: <MarkdownHighlighter markdown={md} />,
-    rightElement: (
-      <CodeHighlighter code={code} title='Example' language='json' />
-    )
-  },
-
   name: 'SegmentedContainer'
 }

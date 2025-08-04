@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Timeline as AruiTimeline, TimelineBasicProps } from './Timeline'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Paper, Typography } from '@mui/material'
 import { Fastfood } from '@mui/icons-material'
 import { styles, classes, TimeLineCell } from './types'
@@ -44,7 +44,10 @@ export default {
   }
 } as Meta<typeof AruiTimeline>
 
-const now = Date.now()
+// Fixed date for consistent story rendering
+const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+const now = fixedDate.getTime()
+
 const lines = [
   {
     id: 'cell-1',

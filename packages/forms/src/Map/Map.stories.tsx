@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Map, MapBasicProps } from './Map'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { MapClasses, MapStyles } from './docs'
 import { Geoman } from './Geoman'
 import { BrowserRouter } from 'react-router-dom'
@@ -9,7 +9,7 @@ import {
   PRIMARY_STORY,
   Primary,
   Description
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 
 export default {
   title: 'Forms/Map',

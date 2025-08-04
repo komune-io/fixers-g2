@@ -1,5 +1,5 @@
 import { Chip as AruiChip, ChipBasicProps } from './Chip'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 export default {
   title: 'Components/Chip',
   component: AruiChip

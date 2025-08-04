@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { AutomatedGallery, AutomatedGalleryProps } from './AutomatedGallery'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Box } from '@mui/material'

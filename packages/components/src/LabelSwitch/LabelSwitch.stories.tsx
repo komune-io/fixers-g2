@@ -4,7 +4,7 @@ import {
   LabelSwitchBasicProps,
   Label
 } from './LabelSwitch'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 import { styles, classes } from './docs'
 

@@ -2,7 +2,7 @@ import {
   CopyToClipboard as AruiCopyToClipboard,
   CopyToClipboardBasicProps
 } from './CopyToClipboard'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { styles, classes } from './docs'
 
 export default {

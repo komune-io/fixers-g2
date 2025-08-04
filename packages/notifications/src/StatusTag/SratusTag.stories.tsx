@@ -1,5 +1,5 @@
 import { StatusTag as AruiStatusTag, StatusTagBasicProps } from './StatusTag'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 
 import { Box } from '@mui/material'
 

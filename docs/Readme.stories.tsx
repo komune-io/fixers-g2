@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Markdown, Unstyled } from '@storybook/blocks'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Markdown, Unstyled } from '@storybook/addon-docs/blocks'
 import React from 'react'
 
 // Import README as raw text

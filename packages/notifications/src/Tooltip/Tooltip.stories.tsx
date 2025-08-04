@@ -1,5 +1,5 @@
 import { Tooltip as AruiTooltip, TooltipBasicProps } from './Tooltip'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Typography } from '@mui/material'
 
 export default {

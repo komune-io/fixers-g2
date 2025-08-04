@@ -2,9 +2,9 @@ import {
   AppBarLayout as AruiAppBarLayout,
   AppBarLayoutBasicProps
 } from './AppBarLayout'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { styles, classes } from './types'
-import { ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs/blocks'
 
 export default {
   title: 'Layout/AppBarLayout',

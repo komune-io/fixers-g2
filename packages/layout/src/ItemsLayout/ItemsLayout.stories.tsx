@@ -1,5 +1,5 @@
 import { ItemsLayout as AruiItemsLayout } from './ItemsLayout'
-import { Meta } from '@storybook/react'
+import { Meta } from '@storybook/react-vite'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes, Menu } from './types'
 

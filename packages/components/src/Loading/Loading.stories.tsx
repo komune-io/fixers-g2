@@ -1,5 +1,5 @@
 import { Loading as AruiLoading } from './Loading'
-import { Meta } from '@storybook/react'
+import { Meta } from '@storybook/react-vite'
 import komune from '../assets/komune.png'
 import { styles, classes } from './types'
 

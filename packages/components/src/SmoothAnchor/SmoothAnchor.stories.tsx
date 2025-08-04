@@ -2,7 +2,7 @@ import {
   SmoothAnchor as AruiSmoothAnchor,
   SmoothAnchorBasicProps
 } from './SmoothAnchor'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { Box, Typography } from '@mui/material'
 import { Link } from '../Link'
 import { BrowserRouter } from 'react-router-dom'

@@ -2,7 +2,7 @@ import {
   DropPicture as AruiDropPicture,
   DropPictureBasicProps
 } from './DropPicture'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { styles, classes } from './types'
 import { Box } from '@mui/material'
 

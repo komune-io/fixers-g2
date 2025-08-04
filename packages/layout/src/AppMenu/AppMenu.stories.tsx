@@ -1,5 +1,5 @@
 import { AppMenu as AruiAppMenu, AppLogoProps, AppMenuProps } from './AppMenu'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Typography } from '@mui/material'
 import {
   ArgTypes,
@@ -7,7 +7,7 @@ import {
   Subtitle,
   Primary,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { styles, classes } from './types'
 import LinkTo from '@storybook/addon-links/react'
 import defaultLogo from '../assets/komune.png'

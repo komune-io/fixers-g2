@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import {
   ArgTypes,
   Primary,
   Description,
   Stories,
   Title
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { FormComposable, FormComposableProps } from './FormComposable'
 import { useFormComposable } from './useFormComposable'
 import { FormAction } from '@komune-io/g2-forms'

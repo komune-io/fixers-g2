@@ -4,9 +4,9 @@ import {
   ConfirmationPopUp as AruiConfirmationPopUp,
   ConfirmationPopUpBasicProps
 } from './ConfirmationPopUp'
-import { StoryObj, Meta } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { ArgTypes, Title, Primary, Stories } from '@storybook/addon-docs'
+import { StoryObj, Meta } from '@storybook/react-vite'
+import { action } from 'storybook/actions'
+import { ArgTypes, Title, Primary, Stories } from '@storybook/addon-docs/blocks'
 import { styles, classes, Action } from './types'
 import { Box, Typography } from '@mui/material'
 import imageHolder from '../assets/imageHolder.jpg'

@@ -2,7 +2,7 @@ import {
   MoreOptions as AruiMoreOptions,
   MoreOptionsBasicProps
 } from './MoreOptions'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { styles, classes } from './docs'
 
 export default {

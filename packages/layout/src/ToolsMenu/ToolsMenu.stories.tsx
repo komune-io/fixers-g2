@@ -1,5 +1,5 @@
 import { ToolsMenu as AruiToolsMenu, ToolsMenuProps } from './ToolsMenu'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import {
   AccountCircle,
   ContactPhone,
@@ -7,7 +7,7 @@ import {
   Settings
 } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
-import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import { styles, classes, Menu } from './types'
 import LinkTo from '@storybook/addon-links/react'
 

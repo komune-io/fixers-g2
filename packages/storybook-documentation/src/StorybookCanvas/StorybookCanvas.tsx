@@ -1,5 +1,5 @@
 import { makeG2STyles } from '@komune-io/g2-themes'
-import { DocsContainer } from '@storybook/addon-docs'
+import { DocsContainer } from '@storybook/addon-docs/blocks'
 
 const useStyles = makeG2STyles()({
   markdownBody: {

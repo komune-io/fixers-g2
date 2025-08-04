@@ -1,5 +1,5 @@
 import { DatePicker as AruiDatePicker, DatePickerProps } from './DatePicker'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import addDays from 'date-fns/addDays'
 import { Box } from '@mui/material'
 import { useState } from 'react'
@@ -9,7 +9,8 @@ export default {
   component: AruiDatePicker
 } as Meta<typeof AruiDatePicker>
 
-const today = new Date()
+const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+const today = fixedDate
 
 export const DatePicker: StoryObj<DatePickerProps> = {
   render: (args: DatePickerProps) => {

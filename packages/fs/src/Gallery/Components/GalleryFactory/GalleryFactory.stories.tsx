@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useState } from 'react'
 import { GalleryFactory, GalleryFactoryProps } from './GalleryFactory'
 import { fileToBase64 } from '@komune-io/g2-utils'

@@ -2,9 +2,9 @@ import {
   StandAloneAppLayout as AruiStandAloneAppLayout,
   StandAloneAppLayoutProps
 } from './StandAloneAppLayout'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Divider, Link, Paper, Stack, Typography } from '@mui/material'
-import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import LinkTo from '@storybook/addon-links/react'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import { styles, classes } from './docs'

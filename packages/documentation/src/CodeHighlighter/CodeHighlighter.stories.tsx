@@ -2,7 +2,7 @@ import {
   CodeHighlighter as AruiCodeHighlighter,
   CodeHighlighterProps
 } from './CodeHighlighter'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 const style = `export type darkStyles =
 | 'atomOneDark'

@@ -72,8 +72,7 @@ export interface MarkdownHighlighterProps {
 }
 
 const components = {
-  //@ts-ignore
-  code: ({ node, inline, className, children, ...props }) => {
+  code: ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '')
     return !inline && match ? (
       <CodeHighlighter
@@ -87,10 +86,8 @@ const components = {
       </code>
     )
   },
-  mark: (object: any) => {
-    return (
-      <mark style={{ backgroundColor: object.color }}>{object.children}</mark>
-    )
+  mark: ({ color, children }: any) => {
+    return <mark style={{ backgroundColor: color }}>{children}</mark>
   }
 }
 
@@ -102,8 +99,7 @@ export const MarkdownHighlighter = (props: MarkdownHighlighterProps) => {
       className={cx(classes.markdown, 'markdown-body', className)}
       remarkPlugins={[[gfm, { singleTilde: false }]]}
       rehypePlugins={[raw]}
-      //@ts-ignore
-      components={components}
+      components={components as any}
     >
       {markdown}
     </ReactMarkdown>

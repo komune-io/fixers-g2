@@ -2,7 +2,7 @@ import {
   MarkdownHighlighter as AruiMarkdownHighlighter,
   MarkdownHighlighterProps
 } from './MarkdownHighlighter'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 //@ts-ignore
 import md from './example.md?raw'
 
@@ -11,24 +11,20 @@ export default {
   component: AruiMarkdownHighlighter
 } as Meta<typeof AruiMarkdownHighlighter>
 
-export const MarkdownHighlighter: StoryObj<MarkdownHighlighterProps> = {
+export const MarkdownHighlighter2: StoryObj<MarkdownHighlighterProps> = {
   args: {
-    markdown: `
-    # Example
-    - 1
-    - 2 
-    - \`3\`
-    `
+    markdown: `# Example
+  - 1
+  - 2
+  - \`3\`
+`
   },
-
   name: 'MarkdownHighlighter'
 }
 
-export const MarkdownHighlighterFromFile: StoryObj = {
-  render: () => (
-    //import md from './example.md'
-    <AruiMarkdownHighlighter markdown={md} />
-  ),
-
+export const MarkdownHighlighterFromFile: StoryObj<MarkdownHighlighterProps> = {
+  args: {
+    markdown: md
+  },
   name: 'MarkdownHighlighterFromFile'
 }

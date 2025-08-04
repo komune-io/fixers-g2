@@ -2,7 +2,7 @@ import {
   AutoComplete as AruiAutoComplete,
   AutoCompleteBasicProps
 } from './AutoComplete'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Forms/AutoComplete',

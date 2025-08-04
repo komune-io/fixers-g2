@@ -1,5 +1,5 @@
 import { KeycloakProvider as AruiKeycloakProvider } from './KeycloakProvider'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useAuth, KeycloackService, AuthedUser } from './useAuth'
 import { Button } from '@komune-io/g2-components'
 import { Typography } from '@mui/material'
@@ -9,7 +9,7 @@ import {
   Subtitle,
   Primary,
   Description
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import {
   localUseAuth,

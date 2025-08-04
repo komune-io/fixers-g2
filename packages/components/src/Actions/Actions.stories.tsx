@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Actions as AruiActions, ActionsBasicProps } from './Actions'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 
 export default {
   title: 'Components/Actions',

@@ -1,7 +1,7 @@
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { UserTable, UserTableProps } from './UserTable'
 
-import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import LinkTo from '@storybook/addon-links/react'
 import { Stack, Typography } from '@mui/material'
 import { User } from '../../Domain'

@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useState } from 'react'
 import { FilterTextField, FilterTextFieldProps } from './FilterTextField'
 import { FilterTextFieldClasses, FilterTextFieldStyles } from './docs'

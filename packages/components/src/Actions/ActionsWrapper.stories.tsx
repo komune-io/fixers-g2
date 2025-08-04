@@ -1,5 +1,5 @@
 import { ActionsWrapper, ActionsWrapperProps } from './ActionsWrapper'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 
 export default {
   title: 'Components/ActionsWrapper',

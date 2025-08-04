@@ -2,7 +2,7 @@ import {
   DocumentHandler as AruiDocumentHandler,
   DocumentHandlerBasicProps
 } from './DocumentHandler'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Stack } from '@mui/material'
 import { useLocalDocumentHandler } from './useLocalDocumentHandler'
 import { useLocalStorageDocumentHandler } from './useLocalStorageDocumentHandler'

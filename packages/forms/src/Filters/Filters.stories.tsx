@@ -5,7 +5,7 @@ import {
   FiltersField,
   FiltersAction
 } from './Filters'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -13,7 +13,7 @@ import {
   Primary,
   Description,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import LinkTo from '@storybook/addon-links/react'
 import { Typography } from '@mui/material'
 import {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Table as AruiTable, TableBasicProps } from './Table'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material'
@@ -10,7 +10,7 @@ import {
   Description,
   Primary,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import { customCellExample, classes, styles, Column, CellProps } from './types'
 import { Info } from '@mui/icons-material'
@@ -277,6 +277,9 @@ export const LoadingStates: StoryFn = () => {
 }
 
 export const NotificationList: StoryFn = () => {
+  const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+  const now = fixedDate.getTime()
+
   interface Notification {
     id: string
     message: string
@@ -287,22 +290,22 @@ export const NotificationList: StoryFn = () => {
     {
       id: '1',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 5 * 24 * 60 * 60 * 1000 // 5 days ago
     },
     {
       id: '2',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 3 * 24 * 60 * 60 * 1000 // 3 days ago
     },
     {
       id: '3',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 1 * 24 * 60 * 60 * 1000 // 1 day ago
     },
     {
       id: '4',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now + 1 * 24 * 60 * 60 * 1000 // 1 day in future
     }
   ]
 
@@ -559,7 +562,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '1',
       firstName: 'Jack',
       lastName: 'Burdon',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-10T14:00:00.000Z').getTime(),
       email: 'jack@burdon.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -568,7 +571,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '2',
       firstName: 'Alice',
       lastName: 'Brace',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-12T14:00:00.000Z').getTime(),
       email: 'alice@brace.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -577,7 +580,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '3',
       firstName: 'Henri',
       lastName: 'Rutelle',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-14T14:00:00.000Z').getTime(),
       email: 'heanri@rutelle.com',
       phone: '0610203040',
       city: 'Montpellier'

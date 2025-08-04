@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Header as AruiHeader, HeaderProps } from './Header'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { IconButton, Stack, Typography } from '@mui/material'
 import { Edit, Delete } from '@mui/icons-material'
 import { styles, classes } from './docs'

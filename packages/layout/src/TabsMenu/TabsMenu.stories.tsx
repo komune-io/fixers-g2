@@ -1,5 +1,5 @@
 import { TabsMenu as AruiTabsMenu } from './TabsMenu'
-import { Meta } from '@storybook/react'
+import { Meta } from '@storybook/react-vite'
 import { styles, classes, Tab } from './types'
 
 export default {

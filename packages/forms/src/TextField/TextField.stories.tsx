@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useState } from 'react'
 import { TextField, TextFieldProps } from './TextField'
 import { TextFieldClasses, TextFieldStyles } from './docs'

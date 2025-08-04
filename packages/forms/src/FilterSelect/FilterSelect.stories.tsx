@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FilterSelect, FilterSelectBasicProps } from './FilterSelect'
 import { Option, SmartKey } from '../Select'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Box } from '@mui/material'
 import { FilterSelectClasses, FilterSelectStyles } from './docs'
 
@@ -359,7 +359,120 @@ export const SortSelect: StoryFn<FilterSelectBasicProps> = () => {
 
 export const VariantsMultipleSelectDisplaySelected: StoryObj<FilterSelectBasicProps> =
   {
-    render: FilterSelectSizes,
+    render: (args: Partial<FilterSelectBasicProps>) => {
+      const [value, setvalue] = useState<SmartKey>()
+      const [values, setvalues] = useState<SmartKey[]>()
+      return (
+        <Box display='flex' justifyContent='space-around' alignItems='center'>
+          <Box display='flex' flexDirection='column' alignItems='center'>
+            <FilterSelect
+              {...args}
+              label='Primary outlined'
+              color='primary'
+              variant='outlined'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+            <FilterSelect
+              {...args}
+              label='Secondary outlined'
+              color='secondary'
+              variant='outlined'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+            <FilterSelect
+              {...args}
+              label='Default outlined'
+              color='default'
+              variant='outlined'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+          </Box>
+          <Box display='flex' flexDirection='column' alignItems='center'>
+            <FilterSelect
+              {...args}
+              label='Primary filled'
+              color='primary'
+              variant='filled'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+            <FilterSelect
+              {...args}
+              label='Secondary filled'
+              color='secondary'
+              variant='filled'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+            <FilterSelect
+              {...args}
+              label='Default filled'
+              color='default'
+              variant='filled'
+              value={value}
+              onChangeValue={(value) =>
+                setvalue((oldValue) => (oldValue === value ? '' : value))
+              }
+              values={values}
+              onChangeValues={(values) => setvalues(values)}
+              onRemove={() => {
+                setvalue('')
+              }}
+              options={options}
+              style={{ margin: 20, width: '200px' }}
+            />
+          </Box>
+        </Box>
+      )
+    },
 
     args: {
       displaySelected: true,

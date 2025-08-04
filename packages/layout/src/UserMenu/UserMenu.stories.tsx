@@ -1,5 +1,5 @@
 import { UserMenu as AruiUserMenu, UserMenuProps } from './UserMenu'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import {
   ArgTypes,
@@ -7,7 +7,7 @@ import {
   Subtitle,
   Primary,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { styles, classes } from './docs'
 import { Box, Typography } from '@mui/material'
 import LinkTo from '@storybook/addon-links/react'

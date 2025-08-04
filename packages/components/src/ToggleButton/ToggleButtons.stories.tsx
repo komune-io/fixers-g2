@@ -3,7 +3,7 @@ import {
   ToggleButtons as AruiToggleButtons,
   ToggleButtonsBasicProps
 } from './ToggleButtons'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { classes, styles } from './types'
 
 export default {

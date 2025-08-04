@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Section as AruiSection, SectionBasicProps } from './Section'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { Filters, useFilters, FiltersField } from '@komune-io/g2-forms'
 import { Action, Button } from '@komune-io/g2-components'
 import { Box, Typography } from '@mui/material'

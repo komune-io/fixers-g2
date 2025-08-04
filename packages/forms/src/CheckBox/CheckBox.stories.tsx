@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CheckBox, CheckBoxBasicProps } from './CheckBox'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { CheckBoxClasses, CheckBoxStyles } from './docs'
 import { Box } from '@mui/material'
 

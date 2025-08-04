@@ -1,5 +1,5 @@
 import { Ticket as AruiTicket, TicketBasicProps } from './Ticket'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 
 import { Flight } from '@mui/icons-material'
 import { styles, classes } from './docs'

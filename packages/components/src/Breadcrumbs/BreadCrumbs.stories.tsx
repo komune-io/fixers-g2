@@ -1,5 +1,5 @@
 import { Breadcrumbs as AruiBreadcrumbs, BreadcrumbsProps } from './Breadcrumbs'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { BrowserRouter } from 'react-router-dom'
 export default {
   title: 'Components/Breadcrumbs',

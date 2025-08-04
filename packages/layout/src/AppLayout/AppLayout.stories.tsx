@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { AppLayout as AruiAppLayout, AppLayoutProps } from './AppLayout'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Link, Typography } from '@mui/material'
-import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import { styles, classes, StyleProps } from './types'
 import LinkTo from '@storybook/addon-links/react'
 

@@ -1,5 +1,5 @@
 import { MenuBasicProps, Menu as AruiMenu } from './Menu'
-import { Meta } from '@storybook/react'
+import { Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Components/Menu',

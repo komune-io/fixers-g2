@@ -2,7 +2,7 @@ import {
   ContextMenu as AruiContextMenu,
   ContextMenuBasicProps
 } from './ContextMenu'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { styles, classes } from './docs'
 import { MenuItems } from '../Menu'
 import { Box, Typography } from '@mui/material'

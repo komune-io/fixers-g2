@@ -5,7 +5,7 @@ import {
   FiltersField,
   FiltersAction
 } from '../Filters'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 import { Typography } from '@mui/material'
 import { useEnhancedFilters } from './useEnhancedFilters'

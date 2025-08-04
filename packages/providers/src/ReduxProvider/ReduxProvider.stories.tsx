@@ -1,6 +1,11 @@
 import { ReduxProvider as AruiReduxProvider } from './ReduxProvider'
-import { StoryObj, Meta } from '@storybook/react'
-import { ArgTypes, Title, Primary, Description } from '@storybook/addon-docs'
+import { StoryObj, Meta } from '@storybook/react-vite'
+import {
+  ArgTypes,
+  Title,
+  Primary,
+  Description
+} from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import initRedux from './store'
 import { redux } from './docs'

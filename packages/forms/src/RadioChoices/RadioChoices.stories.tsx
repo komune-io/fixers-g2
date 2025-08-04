@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { RadioChoices, Choice, RadioChoicesBasicProps } from './RadioChoices'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { RadioChoicesClasses, RadioChoicesStyles } from './docs'
 
 export default {

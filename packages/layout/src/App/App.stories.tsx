@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { App as AruiApp, AppProps } from './App'
-import { Meta, StoryFn } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import { Meta, StoryFn } from '@storybook/react-vite'
+import { action } from 'storybook/actions'
 import {
   AccountCircle,
   Description,
@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { Box, Button, Typography } from '@mui/material'
-import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import { styles, classes, StyleProps, MenuItem } from './types'
 import LinkTo from '@storybook/addon-links/react'
 import { AppLogoProps } from '../AppMenu'

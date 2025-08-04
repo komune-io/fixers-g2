@@ -2,7 +2,7 @@ import {
   HttpDefinitionHighlighter,
   HttpDefinitionHighlighterProps
 } from './HttpDefinitionHighlighter'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Documentation/HttpDefinitionHighlighter',

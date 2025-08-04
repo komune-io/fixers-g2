@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
   ArgTypes,
   PRIMARY_STORY,
@@ -7,7 +7,7 @@ import {
   Description,
   Title,
   Subtitle
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { AutoForm, AutoFormData, AutoFormProps } from './AutoForm'
 import { BrowserRouter } from 'react-router-dom'
 // @ts-ignore

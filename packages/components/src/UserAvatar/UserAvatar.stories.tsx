@@ -2,7 +2,7 @@ import {
   UserAvatar as AruiUserAvatar,
   UserAvatarBasicProps
 } from './UserAvatar'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Components/UserAvatar',

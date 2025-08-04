@@ -14,11 +14,12 @@ module.exports = {
     '../packages/im/src/**/*.stories.@(ts|tsx|mdx)',
     '../packages/fs/src/**/*.stories.@(ts|tsx|mdx)'
   ],
+
   addons: [
     getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-docs')
   ],
+
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
@@ -35,16 +36,16 @@ module.exports = {
       }
     }
   },
+
   staticDirs: ['./public'],
+
   features: {
     buildStoriesJson: true
   },
+
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {}
-  },
-  docs: {
-    autodocs: true
   },
 
   async viteFinal(config) {

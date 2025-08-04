@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo } from 'react'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
   ArgTypes,
   PRIMARY_STORY,
   Primary,
   Description,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import {
   FiltersComposableBasicProps,
   FiltersComposable

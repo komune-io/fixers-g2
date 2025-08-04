@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Select, Option, SelectBasicProps } from './Select'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { Box } from '@mui/material'
 import { SelectClasses, SelectStyles } from './docs'
 

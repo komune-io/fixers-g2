@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MultiChoices, MultiChoicesBasicProps } from './MultiChoices'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { MultiChoicesClasses, MultiChoicesStyles } from './docs'
 
 import { Option } from '../Select'

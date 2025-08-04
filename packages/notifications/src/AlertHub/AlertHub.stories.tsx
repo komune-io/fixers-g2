@@ -1,5 +1,5 @@
 import { AlertHub as AruiAlertHub, AlertHubProps } from './AlertHub'
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useAlertHub } from './useAlertHub'
 import { Button } from '@komune-io/g2-components'
 import { Fragment } from 'react'

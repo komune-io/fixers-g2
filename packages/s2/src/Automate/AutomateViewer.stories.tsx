@@ -3,7 +3,7 @@ import {
   AutomateViewerBasicProps
 } from './AutomateViewer'
 import { SSM, SsmViewer as AruiSsmViewer } from '../SsmViewer'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 
 export default {
   title: 'S2/AutomateViewer',

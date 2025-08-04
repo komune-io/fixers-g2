@@ -1,6 +1,5 @@
 import React from 'react'
 import { ThemeContextProvider } from '@komune-io/g2-themes'
-import { StorybookCanvas } from '@komune-io/g2-storybook-documentation'
 import { G2ConfigBuilder, initI18next } from '../packages/providers/src'
 import { I18nextProvider } from 'react-i18next'
 import { MantineProvider } from '@mantine/core'
@@ -11,10 +10,7 @@ import { Menu } from '@mui/icons-material'
 
 export const parameters = {
   docs: {
-    container: StorybookCanvas,
-    components: {
-      Canvas: StorybookCanvas
-    }
+    // Remove custom container to use default Storybook 9 DocsContainer
   },
   options: {
     storySort: {
@@ -97,3 +93,4 @@ export const withThemeProvider = (Story) => {
 }
 
 export const decorators = [withThemeProvider]
+export const tags = ['autodocs']
