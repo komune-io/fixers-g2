@@ -1,4 +1,4 @@
-import getGlobalViteConfig from '../../globalVite.config.mjs'
+import getGlobalViteConfig from '../../vite-global.config.mjs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
