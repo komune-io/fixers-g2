@@ -4,6 +4,32 @@ import { CommandWithFile, getIn, setIn } from '@komune-io/g2-utils'
 import { FormikHelpers } from 'formik'
 import { AutoFormData } from './AutoForm'
 
+export const autoformValuesToCommand = <COMMAND = any>(
+  formData: AutoFormData,
+  values: any
+) => {
+  let command: CommandWithFile<COMMAND> = {
+    command: {} as COMMAND,
+    files: []
+  }
+  formData.sections.forEach((section) =>
+    section.fields.forEach((field) => {
+      const fieldValue = getIn(values, field.name)
+      if (fieldValue != undefined) {
+        if (field.type === 'documentHandler') {
+          command.files.push({
+            file: fieldValue,
+            atrKey: field.name
+          })
+        } else {
+          command.command = setIn(command.command, field.name, fieldValue)
+        }
+      }
+    })
+  )
+  return command
+}
+
 export interface UseAutoFormStateParams
   extends Omit<FormikFormParams<{}>, 'onSubmit'> {
   onSubmit?: (
@@ -51,27 +77,12 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
 
   const onSubmitCommand = useCallback(
     async (values: any, formikHelpers: FormikHelpers<any>) => {
-      if (onSubmit) {
-        let command: CommandWithFile<any> = {
-          command: {},
-          files: []
-        }
-        formData?.sections.forEach((section) =>
-          section.fields.forEach((field) => {
-            const fieldValue = getIn(values, field.name)
-            if (fieldValue != undefined) {
-              if (field.type === 'documentHandler') {
-                command.files.push({
-                  file: fieldValue,
-                  atrKey: field.name
-                })
-              } else {
-                command.command = setIn(command.command, field.name, fieldValue)
-              }
-            }
-          })
+      if (onSubmit && formData) {
+        await onSubmit(
+          autoformValuesToCommand(formData, values),
+          values,
+          formikHelpers
         )
-        await onSubmit(command, values, formikHelpers)
       }
     },
     [onSubmit, formData]
