@@ -22,20 +22,19 @@
     "dist"
   ],
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@types/mermaid": "^9.2.0",
-    "@types/react": "^18.0.28"
+    "@types/mermaid": "catalog:dev-tools",
+    "@types/react": "catalog:dev-tools"
   },
   "dependencies": {
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "mermaid": "^10.9.0",
-    "vis-data": "^7.1.9",
-    "vis-network": "^9.1.9"
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "mermaid": "catalog:specialized",
+    "vis-network": "catalog:specialized"
   }
 }

@@ -22,20 +22,17 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.28"
+    "@types/react": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "notistack": "3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "notistack": "catalog:ui-components",
+    "react": "catalog:"
   },
   "dependencies": {
-    "@mantine/hooks": "^7.7.0",
-    "@tanstack/react-query": "^5.28.6",
-    "react-router-dom": "^6.22.3",
-    "i18next": "^23.10.1",
-    "lodash-es": "^4.17.21"
+    "@mantine/hooks": "catalog:ui-components",
+    "@tanstack/react-query": "catalog:state-management",
+    "react-router-dom": "catalog:",
+    "i18next": "catalog:",
+    "lodash-es": "catalog:utilities"
   }
 }

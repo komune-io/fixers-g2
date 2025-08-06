@@ -1,0 +1,89 @@
+packages:
+  - 'packages/*'
+
+# Default catalog for most common dependencies
+catalog:
+  react: ^18.2.0
+  react-dom: ^18.2.0
+  '@emotion/css': ^11.11.2
+  i18next: 23.11.3
+  react-i18next: 14.1.1
+  react-router-dom: ^6.22.3
+  '@mui/material': 5.15.16
+  '@mui/icons-material': ^5.18.0
+
+# Named catalogs for specialized dependencies
+catalogs:
+  ui-components:
+    '@mantine/core': ^7.17.8
+    '@mantine/hooks': ^7.17.8
+    '@mantine/dropzone': ^7.17.8
+    '@mui/lab': 5.0.0-alpha.122
+    '@mui/x-date-pickers': ^6.19.8
+    notistack: 3.0.1
+    '@dnd-kit/core': ^6.1.0
+    '@dnd-kit/modifiers': ^7.0.0
+    '@dnd-kit/sortable': ^8.0.0
+    '@dnd-kit/utilities': ^3.2.2
+    '@tanstack/react-table': ^8.15.0
+    react-table: ^7.8.0
+
+  state-management:
+    '@tanstack/react-query': ^5.28.6
+    react-redux: ^7.2.4
+    redux: ^4.1.0
+
+  forms:
+    formik: ^2.4.5
+    react-dropzone-esm: ^15.0.1
+    date-fns: ^3.6.0
+    leaflet: ^1.9.4
+    react-leaflet: ^4.2.1
+    geojson: ^0.5.0
+    '@axa-fr/oidc-client': ^7.25.14
+    '@axa-fr/react-oidc': ^7.20.1
+    keycloak-js: ^24.0.2
+
+  utilities:
+    ramda: ^0.29.1
+    lodash-es: ^4.17.21
+    qs: ^6.12.0
+    tinycolor2: ^1.6.0
+    clsx: ^2.1.1
+    uuid: ^9.0.1
+    spel2js: ^0.2.8
+    json-logic-js: ^2.0.5
+    tss-react: ^4.9.6
+
+  specialized:
+    mermaid: ^10.9.0
+    vis-data: ^7.1.9
+    vis-network: ^9.1.9
+    react-markdown: ^9.0.1
+    remark-gfm: ^4.0.0
+    rehype-raw: ^7.0.0
+    rehype-sanitize: ^4.0.0
+    react-syntax-highlighter: ^15.5.0
+    github-markdown-css: ^4.0.0
+    i18next-browser-languagedetector: ^7.2.0
+    i18next-http-backend: ^2.5.0
+
+  dev-tools:
+    '@storybook/addon-docs': ^7.6.17
+    '@geoman-io/leaflet-geoman-free': ^2.13.1
+    '@types/react': ^18.0.28
+    '@types/geojson': ^7946.0.10
+    '@types/leaflet': ^1.9.0
+    '@types/tinycolor2': ^1.4.3
+    '@types/mermaid': ^9.2.0
+    '@types/react-syntax-highlighter': ^15.5.6
+    '@types/stringify-object': ^4.0.1
+    '@types/react-dropzone': ^5.1.0
+    '@types/qs': ^6.9.7
+    '@types/json-logic-js': ^2.0.8
+    '@types/uuid': ^8.3.4
+    '@types/ramda': ^0.29.12
+    '@types/react-redux': ^7.1.34
+    '@types/react-table': ^7.7.12
+    '@types/react-router-dom': ^5.3.3
+    '@types/redux': ^3.6.0

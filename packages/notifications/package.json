@@ -22,20 +22,20 @@
     "dist"
   ],
   "devDependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha",
-    "@komune-io/g2-forms": "0.5.0-alpha",
-    "@types/react": "^18.0.28"
+    "@komune-io/g2-components": "workspace:*",
+    "@komune-io/g2-forms": "workspace:*",
+    "@types/react": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mui/icons-material": "^5.15.14",
-    "notistack": "3.0.1"
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "@mui/icons-material": "catalog:",
+    "notistack": "catalog:ui-components"
   }
 }

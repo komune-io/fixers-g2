@@ -5,21 +5,18 @@
   "license": "Apache-2.0",
   "type": "module",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "npmClient": "yarn",
-  "useWorkspaces": true,
   "devDependencies": {
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.14",
+    "@mui/material": "5.15.16",
     "@storybook/addon-docs": "9.1.0",
     "@storybook/addon-links": "9.1.0",
     "@storybook/react-vite": "9.1.0",
     "@tanstack/react-query": "^5.28.6",
+    "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.0.28",
+    "@types/tinycolor2": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "4",
@@ -28,6 +25,7 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-storybook": "9.1.0",
     "husky": "^9.0.11",
     "lerna": "^8.1.2",
     "npm-run-all": "^4.1.5",
@@ -41,13 +39,14 @@
     "typescript": "^5.4.2",
     "vite": "5",
     "vite-plugin-dts": "3",
-    "vite-plugin-svgr": "4",
-    "eslint-plugin-storybook": "9.1.0"
+    "vite-plugin-svgr": "4"
   },
-  "resolutions": {
-    "@types/react": "18.0.28",
-    "@types/react-transition-group": "4.4.5",
-    "jackspeak": "2.1.1"
+  "pnpm": {
+    "overrides": {
+      "@types/react": "18.0.28",
+      "@types/react-transition-group": "4.4.5",
+      "jackspeak": "2.1.1"
+    }
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
@@ -57,10 +56,21 @@
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic",
     "workspaces:version": "lerna version ${VERSION} --no-git-tag-version --yes --exact",
-    "workspaces:publish": "yarn workspaces run publish:npm",
+    "workspaces:publish": "pnpm -r run publish:npm",
     "prepare": "husky",
     "eslintCheck": "eslint . --ext .tsx,.ts",
     "eslintFix": "eslint . --ext .tsx,.ts --fix",
     "prettier": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@geoman-io/leaflet-geoman-free": "2.13.1",
+    "@mantine/core": "^7.17.8",
+    "@mui/icons-material": "^5.18.0",
+    "@react-leaflet/core": "2.1.0",
+    "react-leaflet": "^4.2.1",
+    "i18next": "23.11.3",
+    "leaflet": "^1.9.4",
+    "react-i18next": "14.1.1",
+    "uuid": "^9.0.1"
   }
 }

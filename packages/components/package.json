@@ -22,27 +22,28 @@
     "dist"
   ],
   "devDependencies": {
-    "@komune-io/g2-forms": "0.5.0-alpha",
-    "@types/react": "^18.0.28",
-    "@types/react-dropzone": "^5.1.0"
+    "@komune-io/g2-forms": "workspace:*",
+    "@types/react": "catalog:dev-tools",
+    "@types/react-dropzone": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@mantine/core": "^7.7.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "@mantine/core": "catalog:ui-components"
   },
   "dependencies": {
-    "@komune-io/g2-notifications": "0.5.0-alpha",
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mantine/dropzone": "^7.7.0",
-    "@mantine/hooks": "^7.7.0",
-    "@mui/icons-material": "^5.15.14",
-    "@mui/lab": "5.0.0-alpha.122",
-    "react-dropzone-esm": "^15.0.1",
-    "react-i18next": "^14.1.0",
-    "react-router-dom": "^6.22.3"
+    "@komune-io/g2-notifications": "workspace:*",
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "@mantine/dropzone": "catalog:ui-components",
+    "@mantine/hooks": "catalog:ui-components",
+    "@mui/icons-material": "catalog:",
+    "@mui/lab": "catalog:ui-components",
+    "i18next": "catalog:",
+    "react-dropzone-esm": "catalog:forms",
+    "react-i18next": "catalog:",
+    "react-router-dom": "catalog:"
   }
 }

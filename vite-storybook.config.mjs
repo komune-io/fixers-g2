@@ -24,5 +24,19 @@ export default defineConfig({
   ],
   resolve: { alias },
   assetsInclude: ['**/*.md', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif'],
-  server: { fs: { allow: ['..'] } }
+  server: { fs: { allow: ['..'] } },
+  build: {
+    rollupOptions: {
+      external: (id) => {
+        // Don't externalize dependencies that Storybook needs to bundle
+        const externals = [
+          // Keep these as external (provided by Storybook runtime)
+          'react',
+          'react-dom',
+          'react/jsx-runtime'
+        ]
+        return externals.includes(id)
+      }
+    }
+  }
 })

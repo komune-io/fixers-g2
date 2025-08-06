@@ -21,24 +21,22 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-syntax-highlighter": "^15.5.6",
-    "@types/stringify-object": "^4.0.1"
+    "@types/react": "catalog:dev-tools",
+    "@types/react-syntax-highlighter": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "github-markdown-css": "^4.0.0",
-    "react-markdown": "^9.0.1",
-    "remark-gfm": "^4.0.0",
-    "rehype-raw": "^7.0.0",
-    "react-syntax-highlighter": "^15.5.0",
-    "rehype-sanitize": "^4.0.0"
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "github-markdown-css": "catalog:specialized",
+    "react-markdown": "catalog:specialized",
+    "remark-gfm": "catalog:specialized",
+    "rehype-raw": "catalog:specialized",
+    "react-syntax-highlighter": "catalog:specialized"
   }
 }
