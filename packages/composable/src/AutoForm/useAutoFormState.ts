@@ -16,7 +16,7 @@ export const autoformValuesToCommand = <COMMAND = any>(
     section.fields.forEach((field) => {
       const fieldValue = getIn(values, field.name)
       if (fieldValue != undefined) {
-        if (field.type === 'documentHandler') {
+        if (field.type === 'documentHandler' || field.type === 'dropPicture') {
           command.files.push({
             file: fieldValue,
             atrKey: field.name
