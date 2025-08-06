@@ -1,4 +1,4 @@
-import { ReactComponent } from './unCheckIcon.svg'
+import ReactComponent from './unCheckIcon.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
 export const UnCheckIcon = (props: SvgIconProps) => {

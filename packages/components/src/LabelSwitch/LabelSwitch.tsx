@@ -1,6 +1,6 @@
 import { Tab, Tabs, TabsProps } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import {
   ChangeEvent,
   CSSProperties,
@@ -10,7 +10,7 @@ import {
   useMemo
 } from 'react'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   indicator: {
     height: '100%',
     borderRadius: '20px',

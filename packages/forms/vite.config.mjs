@@ -17,11 +17,7 @@ export default defineConfig({
   plugins: [
     react(),
     svgr({
-      include: '**/*.svg',
-      svgrOptions: {
-        exportType: 'named',
-        namedExport: 'ReactComponent'
-      }
+      include: '**/*.svg'
     }),
     // Disable rollupTypes for forms package due to complex type resolution issues
     dts({ rollupTypes: false })

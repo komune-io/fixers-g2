@@ -13,7 +13,7 @@ import { DatePickerProps } from '../DatePicker'
 import { CheckBox, CheckBoxProps } from '../CheckBox'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { StackProps, Stack, styled, SxProps, Theme } from '@mui/material'
@@ -196,7 +196,7 @@ export interface FormBasicProps extends BasicProps {
   styles?: FormStyles
 }
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   fieldContainer: {
     gap: theme.spacing * 3
   }
@@ -342,7 +342,7 @@ const getInput = (
           value={
             !isNaN(date.getTime())
               ? date
-              : formState.getFieldProps(field.name).value ?? ''
+              : (formState.getFieldProps(field.name).value ?? '')
           }
           onChangeDate={(date) => {
             formState.setFieldValue(

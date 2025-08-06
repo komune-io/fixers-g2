@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "lib": ["DOM", "ES2021"],
-    "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "outDir": "dist",
     "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "module": "esnext",
+    "lib": ["DOM", "esnext", "ES2021"],
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "esModuleInterop": true,
-    "strict": true,
     "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   }
 }

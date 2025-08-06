@@ -21,12 +21,12 @@ import { CheckRounded, ClearRounded } from '@mui/icons-material'
 import { useInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { SearchIcon } from '../assets/icons'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   input: {
     width: '100%'
   },
@@ -497,7 +497,7 @@ export const TextField = forwardRef(
             )}
             style={styles?.helperText}
           >
-            {error ? errorMessage ?? helperText : helperText}
+            {error ? (errorMessage ?? helperText) : helperText}
           </FormHelperText>
         )}
       </div>

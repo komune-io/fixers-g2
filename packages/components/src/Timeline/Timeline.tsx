@@ -19,13 +19,13 @@ import {
 import { Typography } from '@mui/material'
 import {
   MergeMuiElementProps,
-  makeG2STyles,
+  makeG2Styles,
   BasicProps,
   useTheme
 } from '@komune-io/g2-themes'
 import { FilledArrow } from '../icons'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   dot: {
     background: theme.colors.secondary,
     position: 'relative',

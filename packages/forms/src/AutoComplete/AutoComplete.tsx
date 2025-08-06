@@ -21,14 +21,14 @@ import {
 } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { TextField, TextFieldProps } from '../TextField'
 import { CheckBox } from '../CheckBox'
 import { Chip, ChipProps } from '@komune-io/g2-components'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   list: {
     padding: '0px'
   }

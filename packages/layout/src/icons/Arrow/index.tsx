@@ -1,4 +1,4 @@
-import { ReactComponent } from './arrow-left.svg'
+import ReactComponent from './arrow-left.svg'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
 import { forwardRef, Ref } from 'react'
 

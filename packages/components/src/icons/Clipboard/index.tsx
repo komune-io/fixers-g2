@@ -1,4 +1,4 @@
-import { ReactComponent } from './clipboard-icon.svg'
+import ReactComponent from './clipboard-icon.svg'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
 import { useTheme } from '@komune-io/g2-themes'
 import { forwardRef, Ref } from 'react'

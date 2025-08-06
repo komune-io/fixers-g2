@@ -1,6 +1,6 @@
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
@@ -15,7 +15,7 @@ import {
 } from 'react'
 import { CloseRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   popper: {
     borderRadius: theme.borderRadius,
     background: 'white',

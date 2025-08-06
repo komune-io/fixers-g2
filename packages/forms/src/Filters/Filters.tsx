@@ -3,7 +3,7 @@ import { Action, Actions } from '@komune-io/g2-components'
 import { FilterSelectProps, FilterSelect } from '../FilterSelect'
 import { FilterTextFieldProps, FilterTextField } from '../FilterTextField'
 import { FilterDatePickerProps, FilterDatePicker } from '../FilterDatePicker'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
 import { Box, Stack, StackProps } from '@mui/material'
 import { cx } from '@emotion/css'
@@ -117,7 +117,7 @@ export interface FiltersBasicProps extends BasicProps {
   styles?: FiltersStyles
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   form: {
     display: 'flex',
     justifyContent: 'flex-end',

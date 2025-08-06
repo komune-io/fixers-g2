@@ -1,12 +1,12 @@
 import { Box, Paper, PaperProps, Typography } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CSSProperties, ForwardedRef, forwardRef, ReactNode } from 'react'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   root: {
     padding: `${theme.spacing * 1.5}px ${theme.spacing * 4}px`,
     display: 'inline-block',

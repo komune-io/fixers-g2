@@ -5,7 +5,7 @@ import { Box, Divider, Stack, StackProps } from '@mui/material'
 import { FormikProvider, useFormik } from 'formik'
 import { useFilterRenderProps, FilterComposableField } from './type'
 import { MergeReactElementProps, useIsOverflowing } from '@komune-io/g2-utils'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import {
   Action,
   ActionsWrapper,
@@ -110,7 +110,7 @@ export interface FiltersComposableBasicProps<
   withFormikProvider?: boolean
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   form: {
     display: 'flex',
     justifyContent: 'flex-start',

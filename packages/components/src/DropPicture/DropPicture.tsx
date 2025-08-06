@@ -13,12 +13,12 @@ import { Clear, AddPhotoAlternate } from '@mui/icons-material'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = makeG2STyles<{ height: string }>()((theme, { height }) => ({
+const useStyles = makeG2Styles<{ height: string }>()((theme, { height }) => ({
   root: {
     position: 'relative',
     width: '100%',

@@ -1,7 +1,7 @@
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import { DocsContainer } from '@storybook/addon-docs/blocks'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   markdownBody: {
     '& .sbdocs': {
       fontFamily: "'Montserrat', sans-serif",

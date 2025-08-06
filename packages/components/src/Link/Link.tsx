@@ -1,9 +1,9 @@
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import { ElementType, ReactNode } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   link: {
     opacity: '0.9',
     textDecoration: 'underline',

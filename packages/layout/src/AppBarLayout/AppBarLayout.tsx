@@ -5,11 +5,11 @@ import { IconButton } from '@mui/material'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 import { CSSProperties, ReactNode } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     zIndex: 1100
   },

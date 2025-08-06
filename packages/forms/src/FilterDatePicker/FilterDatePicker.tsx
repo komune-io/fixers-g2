@@ -16,7 +16,7 @@ import {
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import {
@@ -34,7 +34,7 @@ const dateFnsLocales = {
   enUS
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     position: 'relative',
     width: 'fit-content'

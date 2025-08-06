@@ -23,6 +23,7 @@
   "peerDependencies": {
     "@emotion/css": "catalog:",
     "@mui/material": "catalog:",
+    "@mui/system": "catalog:",
     "@tanstack/react-query": "catalog:state-management",
     "react": "catalog:",
     "react-dom": "catalog:"

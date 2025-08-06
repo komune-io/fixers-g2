@@ -16,10 +16,10 @@ import {
   AppStylePropsBase,
   AppStyleProps
 } from '../AppStyleProps'
-import { makeG2STyles } from '@komune-io/g2-themes'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
+import { makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles<{
+const useStyles = makeG2Styles<{
   styleProps: AppStylePropsBase
   muiTheme: MuiTheme
 }>()((theme, props) => ({

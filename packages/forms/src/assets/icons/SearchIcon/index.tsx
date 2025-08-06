@@ -1,4 +1,4 @@
-import { ReactComponent } from './search-icon.svg'
+import ReactComponent from './search-icon.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
 export const SearchIcon = (props: SvgIconProps) => {

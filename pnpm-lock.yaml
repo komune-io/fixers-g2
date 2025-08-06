@@ -15,6 +15,9 @@ catalogs:
     '@mui/material':
       specifier: 5.15.16
       version: 5.15.16
+    '@mui/system':
+      specifier: 5.18.0
+      version: 5.18.0
     i18next:
       specifier: 23.11.3
       version: 23.11.3
@@ -112,11 +115,11 @@ catalogs:
       specifier: ^4.0.0
       version: 4.0.0
     i18next-browser-languagedetector:
-      specifier: ^7.2.0
-      version: 7.2.2
+      specifier: 7.2.1
+      version: 7.2.1
     i18next-http-backend:
-      specifier: ^2.5.0
-      version: 2.7.3
+      specifier: 2.5.1
+      version: 2.5.1
     mermaid:
       specifier: ^10.9.0
       version: 10.9.3
@@ -189,7 +192,7 @@ catalogs:
     json-logic-js:
       specifier: ^2.0.5
       version: 2.0.5
-    lodash:
+    lodash-es:
       specifier: ^4.17.21
       version: 4.17.21
     qs:
@@ -440,6 +443,9 @@ importers:
       '@mui/material':
         specifier: 'catalog:'
         version: 5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/system':
+        specifier: 'catalog:'
+        version: 5.18.0(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
       '@tanstack/react-query':
         specifier: catalog:state-management
         version: 5.84.1(react@18.3.1)
@@ -541,6 +547,9 @@ importers:
       '@komune-io/g2-components':
         specifier: workspace:*
         version: link:../components
+      '@komune-io/g2-notifications':
+        specifier: workspace:*
+        version: link:../notifications
       '@komune-io/g2-themes':
         specifier: workspace:*
         version: link:../themes
@@ -951,10 +960,10 @@ importers:
         version: 23.11.3
       i18next-browser-languagedetector:
         specifier: catalog:specialized
-        version: 7.2.2
+        version: 7.2.1
       i18next-http-backend:
         specifier: catalog:specialized
-        version: 2.7.3(encoding@0.1.13)
+        version: 2.5.1(encoding@0.1.13)
       keycloak-js:
         specifier: catalog:forms
         version: 24.0.5
@@ -1100,7 +1109,7 @@ importers:
       i18next:
         specifier: 'catalog:'
         version: 23.11.3
-      lodash:
+      lodash-es:
         specifier: catalog:utilities
         version: 4.17.21
       notistack:
@@ -7607,16 +7616,16 @@ packages:
     engines: { node: '>=18' }
     hasBin: true
 
-  i18next-browser-languagedetector@7.2.2:
+  i18next-browser-languagedetector@7.2.1:
     resolution:
       {
-        integrity: sha512-6b7r75uIJDWCcCflmbof+sJ94k9UQO4X0YR62oUfqGI/GjCLVzlCwu8TFdRZIqVLzWbzNcmkmhfqKEr4TLz4HQ==
+        integrity: sha512-h/pM34bcH6tbz8WgGXcmWauNpQupCGr25XPp9cZwZInR9XHSjIFDYp1SIok7zSPsTOMxdvuLyu86V+g2Kycnfw==
       }
 
-  i18next-http-backend@2.7.3:
+  i18next-http-backend@2.5.1:
     resolution:
       {
-        integrity: sha512-FgZxrXdRA5u44xfYsJlEBL4/KH3f2IluBpgV/7riW0YW2VEyM8FzVt2XHAOi6id0Ppj7vZvCZVpp5LrGXnc8Ig==
+        integrity: sha512-+rNX1tghdVxdfjfPt0bI1sNg5ahGW9kA7OboG7b4t03Fp69NdDlRIze6yXhIbN8rbHxJ8IP4dzRm/okZ15lkQg==
       }
 
   i18next@23.11.3:
@@ -16998,11 +17007,11 @@ snapshots:
 
   husky@9.1.7: {}
 
-  i18next-browser-languagedetector@7.2.2:
+  i18next-browser-languagedetector@7.2.1:
     dependencies:
       '@babel/runtime': 7.28.2
 
-  i18next-http-backend@2.7.3(encoding@0.1.13):
+  i18next-http-backend@2.5.1(encoding@0.1.13):
     dependencies:
       cross-fetch: 4.0.0(encoding@0.1.13)
     transitivePeerDependencies:

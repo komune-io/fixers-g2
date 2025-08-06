@@ -1,8 +1,8 @@
 import { ChangeEvent, CSSProperties, ReactNode, useState } from 'react'
 import { AppBar, Tab, Tabs, styled } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   appBar: {
     background: 'transparent',
     boxShadow: 'none !important'

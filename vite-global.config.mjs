@@ -21,11 +21,7 @@ const getGlobalViteConfig = (packageDir) => {
     plugins: [
       react(),
       svgr({
-        include: '**/*.svg',
-        svgrOptions: {
-          exportType: 'named',
-          namedExport: 'ReactComponent'
-        }
+        include: '**/*.svg'
       }),
       dts({ rollupTypes: true })
     ],

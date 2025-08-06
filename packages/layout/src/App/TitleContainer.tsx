@@ -1,8 +1,8 @@
 import { Box, List, ListItem, ListItemText } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 import { CSSProperties } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   drawerSpacer: {
     '& img': {
       marginTop: '5px',

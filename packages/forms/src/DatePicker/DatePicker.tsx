@@ -16,7 +16,7 @@ import { useInputStyles } from '../style'
 import { FilledTextFieldProps as MuiTextFieldProps } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { fr, enUS } from 'date-fns/locale'
@@ -28,7 +28,7 @@ const dateFnsLocales = {
   enUS
 }
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   input: {
     width: '100%'
   },
@@ -228,7 +228,7 @@ const DatePickerBase = (
               className
             ),
             style,
-            helperText: error ? errorMessage ?? helperText : helperText,
+            helperText: error ? (errorMessage ?? helperText) : helperText,
             color: 'primary',
             InputProps: {
               disableUnderline: true,

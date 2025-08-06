@@ -19,7 +19,11 @@ export interface BasicProps {
 
 const { makeStyles } = createMakeStyles({ useTheme })
 
-export const makeG2STyles = makeStyles
+export const makeG2Styles = <Params = void,>() => {
+  return (styles: any): ((params?: Params) => any) => {
+    return makeStyles<Params>()(styles) as any
+  }
+}
 
 export type MergeMuiElementProps<MuiElement, P extends object = {}> = Omit<
   MuiElement,

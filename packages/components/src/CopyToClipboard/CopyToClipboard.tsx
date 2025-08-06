@@ -1,7 +1,7 @@
 import { IconButton, IconButtonProps } from '@mui/material'
 import { CheckRounded } from '@mui/icons-material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import {
   CSSProperties,
   ForwardedRef,
@@ -13,7 +13,7 @@ import { Clipboard } from '../icons'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   clipboardIcon: {
     width: '20px',
     height: '20px'

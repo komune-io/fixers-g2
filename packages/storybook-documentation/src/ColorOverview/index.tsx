@@ -1,8 +1,8 @@
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import { Typography } from '@mui/material'
 import { ReactNode } from 'react'
 
-const useStyles = makeG2STyles()(() => ({
+const useStyles = makeG2Styles()(() => ({
   card: {
     width: '150px',
     height: '150px',

@@ -1,5 +1,5 @@
 import { ToolsMenuProps, ToolsMenu } from '../ToolsMenu'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import { MenuItem } from '@komune-io/g2-components'
 import { ToolsPanel } from '../ToolsPanel'
 import { TitleContainer } from './TitleContainer'
@@ -8,7 +8,7 @@ import { AppLayout, AppLayoutProps } from '..'
 import { useMediaQuery } from '@mui/material'
 import { ReactNode } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   grow: {
     flexGrow: 1
   }

@@ -9,9 +9,9 @@ import {
   ListItem,
   List
 } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   profile: {
     boxShadow: 'none !important',
     background: 'transparent',

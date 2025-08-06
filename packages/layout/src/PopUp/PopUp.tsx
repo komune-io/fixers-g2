@@ -16,11 +16,11 @@ import { Action, Actions } from '@komune-io/g2-components'
 import {
   MergeMuiElementProps,
   BasicProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 import { CloseRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   paper: {
     borderRadius: '16px'
   },

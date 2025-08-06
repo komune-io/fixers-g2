@@ -1,11 +1,11 @@
 import ReactMarkdown from 'react-markdown'
 import { CodeHighlighter } from '../CodeHighlighter'
 import 'github-markdown-css'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import gfm from 'remark-gfm'
 import raw from 'rehype-raw'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   markdown: {
     fontSize: '14px',
     lineHeight: '22px',

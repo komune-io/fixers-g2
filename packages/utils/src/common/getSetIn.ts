@@ -1,4 +1,4 @@
-import { clone, toPath } from 'lodash'
+import { clone, toPath } from 'lodash-es'
 
 const isInteger = (obj: any): boolean => String(Math.floor(Number(obj))) === obj
 

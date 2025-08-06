@@ -24,7 +24,7 @@ import { SelectIcon } from '../assets/icons'
 import { useInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
@@ -63,7 +63,7 @@ export interface SelectStyles {
   menu?: CSSProperties
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   formcontrol: {
     width: '100%'
   },
@@ -447,7 +447,7 @@ export const Select = forwardRef(
             )}
             style={styles?.helperText}
           >
-            {error ? errorMessage ?? helperText : helperText}
+            {error ? (errorMessage ?? helperText) : helperText}
           </FormHelperText>
         )}
       </FormControl>

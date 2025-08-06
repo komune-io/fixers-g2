@@ -1,10 +1,10 @@
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 
 const darkGrey = '#323338'
 const textFieldGrey = '#C5C7D0'
 const disabledColor = '#E6E9EF'
 
-export const useInputStyles = makeG2STyles()((theme) => ({
+export const useInputStyles = makeG2Styles()((theme) => ({
   root: {
     position: 'relative'
   },

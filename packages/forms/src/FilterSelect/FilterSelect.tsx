@@ -22,7 +22,7 @@ import {
 import { KeyboardArrowDownRounded } from '@mui/icons-material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
@@ -54,7 +54,7 @@ export interface FilterSelectStyles {
   menu?: CSSProperties
 }
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   input: {
     '& .MuiInputLabel-outlined': {
       maxWidth: 'calc(100% - 50px)'

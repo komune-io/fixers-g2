@@ -1,9 +1,9 @@
 import { ForwardedRef, forwardRef } from 'react'
 import { Edit } from '../icons'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import { Button, ButtonProps } from './Button'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   icon: {
     width: '19px',
     height: '19px'

@@ -4,9 +4,9 @@ import { IconButton, Menu as MuiMenu } from '@mui/material'
 import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   menu: {
     maxWidth: '300px',
     maxHeight: '500px'

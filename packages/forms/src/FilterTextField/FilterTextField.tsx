@@ -17,13 +17,13 @@ import {
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { SearchIcon } from '../assets/icons'
 import { ClearRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     position: 'relative',
     width: 'fit-content'

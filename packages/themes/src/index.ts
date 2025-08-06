@@ -15,5 +15,5 @@ export type {
   ThemePermanentHeaderProps,
   ThemeContextProviderProps
 } from './ThemeContextProvider'
-export { makeG2STyles } from './Types'
+export { makeG2Styles } from './Types'
 export type { BasicProps, MergeMuiElementProps } from './Types'

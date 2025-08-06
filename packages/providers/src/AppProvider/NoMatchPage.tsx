@@ -3,14 +3,14 @@ import { Box, BoxProps, Typography } from '@mui/material'
 import { NotFoundIcon } from '../assets/NotFoundIcon'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { Button } from '@komune-io/g2-components'
 import { Link, LinkProps } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   notFoundIcon: {
     maxWidth: '400px',
     width: '80vw'

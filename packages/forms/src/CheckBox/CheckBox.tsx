@@ -18,13 +18,13 @@ import {
 } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CheckIcon, UnCheckIcon } from '../assets/icons'
 import { IndeterminateIcon } from '../assets/icons/IndeterminateIcon'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   base: {
     position: 'relative',
     width: 'fit-content'

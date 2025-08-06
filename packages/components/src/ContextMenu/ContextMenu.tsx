@@ -14,7 +14,7 @@ import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import {
   CSSProperties,
   forwardRef,
-  RefObject,
+  ForwardedRef,
   useCallback,
   useEffect,
   useMemo,
@@ -95,7 +95,7 @@ export type ContextMenuProps = MergeMuiElementProps<
 >
 
 export const ContextMenuBase = forwardRef<HTMLDivElement, ContextMenuProps>(
-  (props: ContextMenuProps, ref: RefObject<HTMLDivElement>) => {
+  (props: ContextMenuProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       menu,
       classes,

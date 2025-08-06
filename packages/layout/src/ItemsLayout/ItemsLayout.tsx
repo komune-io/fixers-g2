@@ -5,11 +5,11 @@ import {
   ListItemIcon,
   Grid
 } from '@mui/material'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
 import { CSSProperties, forwardRef, Ref } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   gridContainer: {
     display: 'flex',
     padding: '5px',

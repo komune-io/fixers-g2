@@ -12,12 +12,12 @@ import { CSSProperties, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 
 /* eslint-disable react/jsx-key */
 
-const useStyles = makeG2STyles<{ paddingLeft: number }>()(
+const useStyles = makeG2Styles<{ paddingLeft: number }>()(
   (theme, { paddingLeft }) => ({
     item: {
       paddingLeft: `${paddingLeft}px`,

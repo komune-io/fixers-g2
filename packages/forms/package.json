@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@komune-io/g2-components": "workspace:*",
+    "@komune-io/g2-notifications": "workspace:*",
     "@komune-io/g2-themes": "workspace:*",
     "@komune-io/g2-utils": "workspace:*",
     "@mantine/hooks": "catalog:ui-components",
