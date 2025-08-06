@@ -35,6 +35,10 @@ export type FormSection = {
    * The section conditions
    */
   conditions?: SectionCondition[]
+  /**
+   * The section properties can be used to add custom properties
+   */
+  properties?: any
 } & Pick<
   FormComposableBasicProps<{}>,
   'display' | 'gridColumnNumber' | 'orientation'
