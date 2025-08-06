@@ -12,7 +12,7 @@ on:
 
 jobs:
   dev:
-    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@0.23.0
+    uses: komune-io/fixers-gradle/.github/workflows/make-nodejs-workflow.yml@a245ec857278ff19f131a9e724facc64ee25d7d0
     permissions:
       contents: read
       packages: write
@@ -20,11 +20,13 @@ jobs:
       NPM_PKG_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NPM_PKG_NPMJS_TOKEN: ${{ secrets.NPM_PKG_NPMJS_TOKEN}}
     with:
-      with-docker-registry-login: false
+      with-publish-docker-registry-login: false
+      with-stage-docker-registry-login: false
+      with-promote-docker-registry-login: false
       on-tag: 'publish promote'
 
   docs:
-    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@0.23.0
+    uses: komune-io/fixers-gradle/.github/workflows/publish-storybook-workflow.yml@a245ec857278ff19f131a9e724facc64ee25d7d0
     permissions:
       contents: read
       packages: write
@@ -32,8 +34,7 @@ jobs:
       id-token: write
     with:
       make-file: 'Makefile_docs.mk'
-      storybook-dir: ''
-      storybook-static-dir-separator: ''
+      with-chromatic: true
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
