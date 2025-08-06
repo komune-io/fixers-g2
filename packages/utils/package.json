@@ -33,6 +33,6 @@
     "@tanstack/react-query": "catalog:state-management",
     "react-router-dom": "catalog:",
     "i18next": "catalog:",
-    "lodash-es": "catalog:utilities"
+    "lodash": "catalog:utilities"
   }
 }

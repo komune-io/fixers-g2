@@ -101,9 +101,9 @@ catalogs:
     leaflet:
       specifier: ^1.9.4
       version: 1.9.4
-    react-dropzone-esm:
-      specifier: ^15.0.1
-      version: 15.2.0
+    react-dropzone:
+      specifier: ^14.2.3
+      version: 14.3.8
     react-leaflet:
       specifier: ^4.2.1
       version: 4.2.1
@@ -189,7 +189,7 @@ catalogs:
     json-logic-js:
       specifier: ^2.0.5
       version: 2.0.5
-    lodash-es:
+    lodash:
       specifier: ^4.17.21
       version: 4.17.21
     qs:
@@ -391,9 +391,9 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 18.3.1(react@18.3.1)
-      react-dropzone-esm:
+      react-dropzone:
         specifier: catalog:forms
-        version: 15.2.0(react@18.3.1)
+        version: 14.3.8(react@18.3.1)
       react-i18next:
         specifier: 'catalog:'
         version: 14.1.1(i18next@23.11.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -662,9 +662,9 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 18.3.1(react@18.3.1)
-      react-dropzone-esm:
+      react-dropzone:
         specifier: catalog:forms
-        version: 15.2.0(react@18.3.1)
+        version: 14.3.8(react@18.3.1)
       react-i18next:
         specifier: 'catalog:'
         version: 14.1.1(i18next@23.11.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1054,6 +1054,9 @@ importers:
 
   packages/themes:
     dependencies:
+      '@komune-io/g2-utils':
+        specifier: workspace:*
+        version: link:../utils
       '@mantine/hooks':
         specifier: catalog:ui-components
         version: 7.17.8(react@18.3.1)
@@ -1097,7 +1100,7 @@ importers:
       i18next:
         specifier: 'catalog:'
         version: 23.11.3
-      lodash-es:
+      lodash:
         specifier: catalog:utilities
         version: 4.17.21
       notistack:

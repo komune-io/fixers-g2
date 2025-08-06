@@ -12,6 +12,7 @@ import {
   CSSProperties,
   ForwardedRef,
   forwardRef,
+  KeyboardEvent,
   ReactNode,
   useMemo
 } from 'react'
@@ -247,7 +248,7 @@ const TimelineBase = (
         }
         const isSelected = !!selectedCellId && selectedCellId === line.id
 
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: KeyboardEvent) => {
           if (event.key === 'Enter' && onSelectCell && !line.disabled) {
             onSelectCell(line)
           }

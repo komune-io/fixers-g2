@@ -85,7 +85,10 @@ type AuthService<
   /**
    * It will exececute the auth function by passing it the authenticated user and return the boolean result
    */
-  executeAuthFunction: (authFunction: AuthFunction, ...args) => isAuthorized
+  executeAuthFunction: (
+    authFunction: AuthFunction,
+    ...args: any[]
+  ) => isAuthorized
 } & RolesServices<Roles> &
   Additionals
 
@@ -254,7 +257,7 @@ function useAuth<
   )
 
   const executeAuthFunction = useCallback(
-    function (authFunction: AuthFunction, ...args) {
+    function (authFunction: AuthFunction, ...args: any[]) {
       const user = getUser()
       if (!user) return false
       return authFunction(user, ...args)
@@ -321,8 +324,12 @@ function useAuth<
       {} as AuthServiceAdditional<AdditionalServices>
     for (const serviceName in additionalServices) {
       const fn: AuthFnc = (params) =>
-        additionalServices[serviceName.toString()](keycloak, service, params)
-      object[serviceName.toString()] = fn
+        (additionalServices as any)[serviceName.toString()](
+          keycloak,
+          service,
+          params
+        )
+      ;(object as any)[serviceName.toString()] = fn
     }
     return object
   }, [additionalServices, keycloak, hasRole, roles, service])

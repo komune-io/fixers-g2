@@ -32,6 +32,7 @@
     "react-dom": "catalog:"
   },
   "dependencies": {
+    "@komune-io/g2-utils": "workspace:*",
     "@mantine/hooks": "catalog:ui-components",
     "ramda": "catalog:utilities",
     "tinycolor2": "catalog:utilities",

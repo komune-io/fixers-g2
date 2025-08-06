@@ -39,7 +39,7 @@
     "@mantine/hooks": "catalog:ui-components",
     "@mui/icons-material": "catalog:",
     "i18next": "catalog:",
-    "react-dropzone-esm": "catalog:forms",
+    "react-dropzone": "catalog:forms",
     "react-i18next": "catalog:",
     "uuid": "catalog:utilities"
   },

@@ -4,7 +4,7 @@ export type isAuthorized = boolean
 
 export type AuthFunction = <U extends AuthedUser>(
   authedUser: U,
-  ...args
+  ...args: any[]
 ) => isAuthorized
 
 export type Policies = Record<string, Record<string, AuthFunction>>

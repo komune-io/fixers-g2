@@ -69,7 +69,7 @@ export type ColumnGenerators<Data, ColumnType> = {
   tag: ColumnGenerator<TableCellTagProps, Data, ColumnType>
 }
 
-export const columnsGenerators = {
+export const columnsGenerators: any = {
   contact: getColumnGenerator<TableCellContactProps>(TableCellContact),
   date: getColumnGenerator<TableCellDateProps>(TableCellDate),
   link: getColumnGenerator<TableCellLinkProps>(TableCellLink),
@@ -101,7 +101,7 @@ export const ColumnFactory = <Data extends {} = {}>(
   if (Array.isArray(columns)) return columns
   const finalColumns: G2ColumnDef<Data>[] = []
   Object.keys(columns).forEach((key) => {
-    const column = columns[key]
+    const column = (columns as any)[key]
     column.id = column.id ?? key
     finalColumns.push(column)
   })
@@ -127,8 +127,8 @@ export const ColumnFactoryV1 = <Data extends {} = {}>(
   const columns: Column<Data>[] = []
 
   for (const key in columnsObject) {
-    const column = columnsObject[key]
-    column.id = Array.isArray(columnsObject) ? column.id : column.id ?? key
+    const column = (columnsObject as any)[key]
+    column.id = Array.isArray(columnsObject) ? column.id : (column.id ?? key)
     //@ts-ignore
     column.Cell = column.cell
     //@ts-ignore

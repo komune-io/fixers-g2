@@ -1,4 +1,10 @@
-import { CSSProperties, useCallback, ReactNode, useMemo } from 'react'
+import {
+  CSSProperties,
+  KeyboardEvent,
+  useCallback,
+  ReactNode,
+  useMemo
+} from 'react'
 import {
   Drawer,
   Theme as MuiTheme,
@@ -213,7 +219,7 @@ export const AppLayout = (props: AppLayoutProps) => {
   const defaultStyles = useStyles(stylesDependencies)
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Enter' && onToggle) {
         onToggle()
       }

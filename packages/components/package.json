@@ -42,7 +42,7 @@
     "@mui/icons-material": "catalog:",
     "@mui/lab": "catalog:ui-components",
     "i18next": "catalog:",
-    "react-dropzone-esm": "catalog:forms",
+    "react-dropzone": "catalog:forms",
     "react-i18next": "catalog:",
     "react-router-dom": "catalog:"
   }

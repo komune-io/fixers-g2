@@ -98,11 +98,9 @@ export const Stepper = (props: StepperProps) => {
             />
           )}
           <StepLabel
-            StepIconComponent={AvStepIcon}
-            StepIconProps={{
-              //@ts-ignore
-              activeColor: activeColor
-            }}
+            StepIconComponent={(props: StepIconProps) => (
+              <AvStepIcon {...props} activeColor={activeColor} />
+            )}
           >
             {step.label}
           </StepLabel>
@@ -214,8 +212,15 @@ export const Stepper = (props: StepperProps) => {
 
 const Mydiv = styled('div')({})
 
-function AvStepIcon(props: StepIconProps & { activeColor: ColorPalette }) {
-  const { active, completed, className, style, icon, activeColor } = props
+function AvStepIcon(props: StepIconProps & { activeColor?: ColorPalette }) {
+  const {
+    active,
+    completed,
+    className,
+    style,
+    icon,
+    activeColor = 'primary'
+  } = props
   return (
     <Mydiv
       className={className}
@@ -229,14 +234,16 @@ function AvStepIcon(props: StepIconProps & { activeColor: ColorPalette }) {
         height: '32px',
         ...(active
           ? {
-              background: (theme) => theme.palette[activeColor].main,
-              border: (theme) => `2px ${theme.palette[activeColor].main} solid`,
+              background: (theme: any) => theme.palette[activeColor].main,
+              border: (theme: any) =>
+                `2px ${theme.palette[activeColor].main} solid`,
               color: 'white'
             }
           : completed
             ? {
-                background: (theme) => theme.palette.success.main,
-                border: (theme) => `2px ${theme.palette.success.main} solid`,
+                background: (theme: any) => theme.palette.success.main,
+                border: (theme: any) =>
+                  `2px ${theme.palette.success.main} solid`,
                 color: 'white'
               }
             : {

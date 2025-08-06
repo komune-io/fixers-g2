@@ -132,7 +132,7 @@ export type AutoCompleteProps<T = any> = MergeMuiElementProps<
   Omit<MuiAutocompleteProps<T, undefined, undefined, undefined>, 'renderInput'>,
   AutoCompleteBasicProps<T>
 >
-const defaultEmpty = []
+const defaultEmpty: any[] = []
 const defaultFilterOptions = createFilterOptions()
 export const defaultGetOptionLabel =
   (options: any[], hasKey: boolean) => (option: any) => {
@@ -140,7 +140,7 @@ export const defaultGetOptionLabel =
       const founded = options.find((el) => el.key === option)?.label
       if (founded) return founded
     }
-    return typeof option === 'string' ? option : option.label ?? ''
+    return typeof option === 'string' ? option : (option.label ?? '')
   }
 
 const AutoCompleteBase = function <T>(

@@ -55,7 +55,7 @@ export const ThemeContextProvider = <T extends {} = {}>(
     theme ? mergeDeepRight(defaultTheme, theme as any) : defaultTheme
   )
 
-  const setPartialTheme = useCallback((partialTheme: Theme) => {
+  const setPartialTheme = useCallback((partialTheme: Partial<Theme>) => {
     setLocalTheme((oldLocalTheme) =>
       mergeDeepRight(oldLocalTheme, partialTheme as any)
     )

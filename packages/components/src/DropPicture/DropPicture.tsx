@@ -4,7 +4,8 @@ import {
   useCallback,
   forwardRef,
   ForwardedRef,
-  CSSProperties
+  CSSProperties,
+  KeyboardEvent
 } from 'react'
 import { FileRejection, DropzoneProps, useDropzone } from 'react-dropzone'
 import { Paper, Typography, Skeleton } from '@mui/material'
@@ -212,7 +213,7 @@ const DropPictureBase = (
   )
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Enter' && onRemovePicture) {
         onRemovePicture()
       }

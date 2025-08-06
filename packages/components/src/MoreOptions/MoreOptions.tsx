@@ -2,6 +2,7 @@ import {
   CSSProperties,
   ForwardedRef,
   forwardRef,
+  MouseEvent,
   useCallback,
   useState
 } from 'react'
@@ -77,20 +78,17 @@ const MoreOptionsBase = <T extends object = {}>(
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const defaultStyles = useStyles()
 
-  const handleClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      setAnchorEl(event.currentTarget)
-      onClick && onClick(event)
-    },
-    []
-  )
+  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+    onClick && onClick(event)
+  }, [])
 
   const close = useCallback(() => {
     setAnchorEl(null)
   }, [])
 
   const stopPropagation = useCallback(
-    (event: MouseEvent<HTMLElement, MouseEvent>) => event.stopPropagation(),
+    (event: MouseEvent<HTMLElement>) => event.stopPropagation(),
     []
   )
 

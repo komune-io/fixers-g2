@@ -19,14 +19,14 @@ import { mergeDeepWith, mergeDeepWithKey, concat } from 'ramda'
 const mergeHeaderContent = (key: string, l: any, r: any) => {
   if (key === 'content') {
     if (r.lentgh > l.length) {
-      return l.map((el: HeaderContent, index) => ({
+      return l.map((el: HeaderContent, index: number) => ({
         //@ts-ignore
         leftPart: concat(el.leftPart ?? [], r[index].leftPart ?? []),
         //@ts-ignore
         rightPart: concat(el.rightPart ?? [], r[index].rightPart ?? [])
       }))
     } else {
-      return r.map((el: HeaderContent, index) => ({
+      return r.map((el: HeaderContent, index: number) => ({
         //@ts-ignore
         leftPart: concat(el.leftPart ?? [], l[index].leftPart ?? []),
         //@ts-ignore

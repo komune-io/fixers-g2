@@ -29,7 +29,7 @@ export const Geoman = (props: GeomanProps) => {
       }
     })
     value && createLayersFromJson(value, map)
-  }, [value])
+  }, [value, context])
 
   useEffect(() => {
     const { map } = context
@@ -83,7 +83,7 @@ export const Geoman = (props: GeomanProps) => {
       map.pm.removeControls()
       // leafletContainer.pm.setGlobalOptions({ pmIgnore: true });
     }
-  }, [context])
+  }, [context, setValue, props.onCircleRemoved])
 
   return null
 }

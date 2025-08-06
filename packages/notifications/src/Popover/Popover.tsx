@@ -165,7 +165,10 @@ const PopoverBase = (
     }
   }, [closeOnClickAway, onClose, open])
 
-  const setArrowRef = useCallback((ref) => setArrow(ref), [])
+  const setArrowRef = useCallback(
+    (ref: HTMLDivElement | null) => setArrow(ref || undefined),
+    []
+  )
 
   const modifiers = useMemo(
     () => [

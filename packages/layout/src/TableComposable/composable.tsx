@@ -51,7 +51,7 @@ export const composableToColumns = <
         if (typeof path === 'string') {
           retrievedValue = getIn(row.original, path)
         } else if (typeof path === 'object' && Object.keys(path).length > 0) {
-          retrievedValue = Object.keys(path).reduce((acc, key) => {
+          retrievedValue = Object.keys(path).reduce((acc: any, key) => {
             acc[key] = getIn(row.original, path[key])
             return acc
           }, {})
