@@ -7,12 +7,15 @@ STORYBOOK_LATEST		:= ${STORYBOOK_NAME}:latest
 
 lint: lint-docker-storybook
 
-build: build-storybook
+build: build-storybook package-storybook
 
 test:
 	echo 'No Test'
 
-package: package-storybook
+stage: docker-storybook-stage
+
+promote: docker-storybook-promote
+
 
 # Storybook
 build-storybook:
@@ -24,5 +27,11 @@ lint-docker-storybook:
 
 package-storybook:
 	@docker build --platform=linux/amd64 -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
-	@docker push ${STORYBOOK_IMG}
 
+docker-storybook-stage:
+	@docker tag ${STORYBOOK_IMG} ghcr.io/komune-io/${STORYBOOK_IMG}
+	@docker push ghcr.io/komune-io/${STORYBOOK_IMG}
+
+docker-storybook-promote:
+	@docker tag ${STORYBOOK_IMG} docker.io/komune/${STORYBOOK_IMG}
+	@docker push docker.io/komune/${STORYBOOK_IMG}
