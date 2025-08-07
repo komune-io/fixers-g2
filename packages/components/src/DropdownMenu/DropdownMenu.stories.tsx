@@ -1,7 +1,4 @@
-import {
-  DropdownMenuProps,
-  DropdownMenu as AruiDropdownMenu
-} from './DropdownMenu'
+import { DropdownMenu as AruiDropdownMenu } from './DropdownMenu'
 import { Meta } from '@storybook/react-vite'
 import { ListRounded } from '@mui/icons-material'
 import { Link } from '@mui/material'

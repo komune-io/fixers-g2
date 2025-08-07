@@ -1,6 +1,9 @@
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material'
-import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2Styles } from '@komune-io/g2-themes'
+import {
+  BasicProps,
+  makeG2Styles,
+  MergeMuiElementProps
+} from '@komune-io/g2-themes'
 import { ElementType, ReactNode } from 'react'
 
 const useStyles = makeG2Styles()({

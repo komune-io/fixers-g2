@@ -169,7 +169,11 @@ export const App = {
         goto: () => {},
         label: 'dashboard',
         icon: (
-          <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
+          <img
+            alt='dashboard_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
         )
       },
       {
@@ -177,7 +181,11 @@ export const App = {
         goto: () => {},
         label: 'activities',
         icon: (
-          <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
+          <img
+            alt='activities_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
         )
       },
       {
@@ -185,7 +193,11 @@ export const App = {
         goto: () => {},
         label: 'application',
         icon: (
-          <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
+          <img
+            alt='application_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
         )
       }
     ],

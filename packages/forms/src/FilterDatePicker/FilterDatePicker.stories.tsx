@@ -17,14 +17,14 @@ const today = fixedDate
 
 export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
   render: (args: FilterDatePickerProps) => {
-    const [date, setSelectedDate] = useState<Date | undefined>(today)
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(today)
     const handleDateChange = (date?: Date) => {
       setSelectedDate(date)
     }
     return (
       <Box display='flex'>
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='From'
           onChangeDate={handleDateChange}
           onRemove={() => setSelectedDate(undefined)}
@@ -32,7 +32,7 @@ export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
           {...args}
         />
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='To'
           onChangeDate={handleDateChange}
           onRemove={() => setSelectedDate(undefined)}
@@ -55,12 +55,12 @@ export const FilterDatePicker: StoryObj<FilterDatePickerProps> = {
 export const FilterMuiDatePickerVariants: StoryFn<
   FilterDatePickerProps
 > = () => {
-  const [date, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
   return (
     <Box display='flex' justifyContent='space-around'>
       <Box display='flex' flexDirection='column'>
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='outlined primary'
           variant='outlined'
           color='primary'
@@ -69,7 +69,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
           style={{ margin: 10, width: 190 }}
         />
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='outlined secondary'
           variant='outlined'
           color='secondary'
@@ -78,7 +78,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
           style={{ margin: 10, width: 190 }}
         />
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='outlined default'
           variant='outlined'
           color='default'
@@ -89,7 +89,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
       </Box>
       <Box display='flex' flexDirection='column'>
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='filled primary'
           variant='filled'
           color='primary'
@@ -98,7 +98,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
           style={{ margin: 10, width: 190 }}
         />
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='filled secondary'
           variant='filled'
           color='secondary'
@@ -107,7 +107,7 @@ export const FilterMuiDatePickerVariants: StoryFn<
           style={{ margin: 10, width: 190 }}
         />
         <AruiFilterDatePicker
-          value={date}
+          value={selectedDate}
           label='filled default'
           variant='filled'
           color='default'
@@ -121,11 +121,11 @@ export const FilterMuiDatePickerVariants: StoryFn<
 }
 
 export const FilterDatePickerStatus: StoryFn<FilterDatePickerProps> = () => {
-  const [date, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
   return (
     <Box display='flex' flexDirection='column'>
       <AruiFilterDatePicker
-        value={date}
+        value={selectedDate}
         label='mui-picker disabled'
         disabled
         onChangeDate={(date) => setSelectedDate(date)}
@@ -133,7 +133,7 @@ export const FilterDatePickerStatus: StoryFn<FilterDatePickerProps> = () => {
         style={{ margin: 10, width: 180 }}
       />
       <AruiFilterDatePicker
-        value={date}
+        value={selectedDate}
         label='mui-picker english'
         locale='enUS'
         onChangeDate={(date) => setSelectedDate(date)}
