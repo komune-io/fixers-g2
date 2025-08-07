@@ -14,9 +14,9 @@ const today = fixedDate
 
 export const DatePicker: StoryObj<DatePickerProps> = {
   render: (args: DatePickerProps) => {
-    const [selectedDate, setSelecteddate] = useState<Date | undefined>(today)
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(today)
     const handleDateChange = (date?: Date) => {
-      setSelecteddate(date)
+      setSelectedDate(date)
     }
 
     console.log(selectedDate)
@@ -24,7 +24,7 @@ export const DatePicker: StoryObj<DatePickerProps> = {
       <AruiDatePicker
         value={selectedDate}
         onChangeDate={handleDateChange}
-        onRemove={() => setSelecteddate(undefined)}
+        onRemove={() => setSelectedDate(undefined)}
         {...args}
       />
     )
