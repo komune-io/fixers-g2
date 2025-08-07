@@ -29,7 +29,7 @@ const getGlobalViteConfig = (packageDir) => {
       lib: {
         entry: resolve(packageDir, 'src/index.ts'),
         formats: ['es', 'cjs'],
-        fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`
+        fileName: (format) => `index.${format === 'es' ? 'es.js' : 'cjs'}`
       },
       rollupOptions: {
         external: (id) => {
