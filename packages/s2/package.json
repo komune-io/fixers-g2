@@ -34,6 +34,7 @@
     "@komune-io/g2-themes": "workspace:*",
     "@komune-io/g2-utils": "workspace:*",
     "mermaid": "catalog:specialized",
+    "vis-data": "catalog:specialized",
     "vis-network": "catalog:specialized"
   }
 }
