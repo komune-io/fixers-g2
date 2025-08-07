@@ -23,6 +23,7 @@ export type BackFormSection = {
 }
 
 export type BackAutoFormData = {
+  label?: string
   sections: BackFormSection[]
   properties?: any
 }
