@@ -46,6 +46,10 @@ export type FormSection = {
 
 export type AutoFormData = {
   /**
+   * the label of the form
+   */
+  label?: string
+  /**
    * describe the type of display for the sections
    * @default "default"
    */
