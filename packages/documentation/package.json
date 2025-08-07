@@ -15,7 +15,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
@@ -35,8 +35,8 @@
     "@komune-io/g2-utils": "workspace:*",
     "github-markdown-css": "catalog:specialized",
     "react-markdown": "catalog:specialized",
-    "remark-gfm": "catalog:specialized",
+    "react-syntax-highlighter": "catalog:specialized",
     "rehype-raw": "catalog:specialized",
-    "react-syntax-highlighter": "catalog:specialized"
+    "remark-gfm": "catalog:specialized"
   }
 }

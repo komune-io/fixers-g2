@@ -16,7 +16,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"

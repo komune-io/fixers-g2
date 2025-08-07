@@ -16,18 +16,18 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
   ],
   "peerDependencies": {
     "@emotion/css": "catalog:",
+    "@mantine/core": "catalog:ui-components",
     "@mui/material": "catalog:",
     "@tanstack/react-query": "catalog:state-management",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "@mantine/core": "catalog:ui-components"
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@komune-io/g2-components": "workspace:*",

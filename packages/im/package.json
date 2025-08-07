@@ -16,7 +16,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
@@ -42,8 +42,8 @@
     "@komune-io/g2-themes": "workspace:*",
     "@komune-io/g2-utils": "workspace:*",
     "@mantine/hooks": "catalog:ui-components",
+    "formik": "catalog:forms",
     "i18next": "catalog:",
-    "react-i18next": "catalog:",
-    "formik": "catalog:forms"
+    "react-i18next": "catalog:"
   }
 }

@@ -16,7 +16,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
@@ -36,6 +36,7 @@
     "react-dom": "catalog:"
   },
   "dependencies": {
+    "@geoman-io/leaflet-geoman-free": "catalog:dev-tools",
     "@komune-io/g2-components": "workspace:*",
     "@komune-io/g2-notifications": "workspace:*",
     "@komune-io/g2-themes": "workspace:*",
@@ -43,7 +44,6 @@
     "@mantine/hooks": "catalog:ui-components",
     "@mui/icons-material": "catalog:",
     "@mui/x-date-pickers": "catalog:ui-components",
-    "@geoman-io/leaflet-geoman-free": "catalog:dev-tools",
     "date-fns": "catalog:forms",
     "formik": "catalog:forms",
     "geojson": "catalog:forms",

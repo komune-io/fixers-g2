@@ -16,7 +16,7 @@
     "packages/utils",
     "packages/webpack-components"
   ],
-  "npmClient": "yarn",
+  "npmClient": "pnpm",
   "tagVersionPrefix": "",
   "version": "independent"
 }

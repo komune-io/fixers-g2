@@ -16,7 +16,7 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "publish:npm": "npm publish --access public"
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
@@ -31,8 +31,8 @@
   "dependencies": {
     "@mantine/hooks": "catalog:ui-components",
     "@tanstack/react-query": "catalog:state-management",
-    "react-router-dom": "catalog:",
     "i18next": "catalog:",
-    "lodash-es": "catalog:utilities"
+    "lodash-es": "catalog:utilities",
+    "react-router-dom": "catalog:"
   }
 }
