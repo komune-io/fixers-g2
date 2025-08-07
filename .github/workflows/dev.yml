@@ -34,7 +34,7 @@ jobs:
       id-token: write
     with:
       make-file: 'Makefile_docs.mk'
-      with-chromatic: true
+      with-chromatic: false
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
