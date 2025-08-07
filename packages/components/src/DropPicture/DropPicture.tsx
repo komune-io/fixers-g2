@@ -18,7 +18,7 @@ const useStyles = makeG2STyles<{ height: string }>()((theme, { height }) => ({
   },
   dropZone: {
     width: '100%',
-    height: height,
+    height: 'calc(100% - 4px)',
     background: 'rgb(237, 237, 237)',
     border: 'dashed rgba(209,202,203,1) 2px',
     borderRadius: theme.borderRadius,
