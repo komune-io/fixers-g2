@@ -293,7 +293,7 @@ export const StandAloneAppLayout = (props: StandAloneAppLayoutProps) => {
         style={styles?.main}
         isMobile={isMobile}
         sx={{
-          bgcolor: (theme: any) =>
+          bgcolor: (theme: Theme) =>
             !g2Theme.bgColorOnMenu ? theme.palette.background.default : 'white',
           ...mainProps?.sx
         }}

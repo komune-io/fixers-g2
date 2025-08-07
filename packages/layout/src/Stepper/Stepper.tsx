@@ -234,8 +234,8 @@ function AvStepIcon(props: StepIconProps & { activeColor?: ColorPalette }) {
         height: '32px',
         ...(active
           ? {
-              background: (theme: any) => theme.palette[activeColor].main,
-              border: (theme: any) =>
+              background: (theme: Theme) => theme.palette[activeColor].main,
+              border: (theme: Theme) =>
                 `2px ${theme.palette[activeColor].main} solid`,
               color: 'white'
             }
