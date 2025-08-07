@@ -35,12 +35,20 @@ export type FormSection = {
    * The section conditions
    */
   conditions?: SectionCondition[]
+  /**
+   * The section properties can be used to add custom properties
+   */
+  properties?: any
 } & Pick<
   FormComposableBasicProps<{}>,
   'display' | 'gridColumnNumber' | 'orientation'
 >
 
 export type AutoFormData = {
+  /**
+   * the label of the form
+   */
+  label?: string
   /**
    * describe the type of display for the sections
    * @default "default"

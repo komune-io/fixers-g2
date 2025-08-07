@@ -10,18 +10,20 @@ export type BackFormField = {
   helperText?: string
   options?: Option[]
   conditions?: Condition[]
-  properties?: any
+  properties?: string | any
 }
 
 export type BackFormSection = {
   id: string
   label?: string
+  description?: string
   fields: BackFormField[]
   conditions?: SectionCondition[]
   properties?: any
 }
 
 export type BackAutoFormData = {
+  label?: string
   sections: BackFormSection[]
   properties?: any
 }
@@ -31,11 +33,13 @@ export const autoFormFormatter = (autoForm: BackAutoFormData): AutoFormData => {
     ...autoForm,
     sections: autoForm.sections.map((section) => ({
       ...section,
-      ...section.properties,
       fields: section.fields.map(
         ({ description, helperText, options, properties, ...other }) => {
-          const { fullRow, readOnly, defaultValue, ...otherProperties } =
-            properties ?? {}
+          const props =
+            (typeof properties === 'string'
+              ? JSON.parse(properties)
+              : properties) ?? {}
+          const { fullRow, readOnly, defaultValue, ...otherProperties } = props
           return {
             ...other,
             fullRow,
