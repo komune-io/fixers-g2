@@ -19,7 +19,7 @@ build: build-libs
 test:
 	echo 'No Test'
 
-publish:
+stage:
 	pnpm workspaces:publish
 
 promote:
