@@ -3,7 +3,6 @@
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune",
   "license": "Apache-2.0",
-  "version": "0.5.0-alpha",
   "description": "Utility package used in the g2 packages.",
   "private": false,
   "main": "dist/index.cjs",

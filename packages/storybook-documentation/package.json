@@ -1,6 +1,5 @@
 {
   "name": "@komune-io/g2-storybook-documentation",
-  "version": "0.5.0-alpha",
   "description": "Components for storybook documentation",
   "author": "Komune",
   "license": "Apache-2.0",
