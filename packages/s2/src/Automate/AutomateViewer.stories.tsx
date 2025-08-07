@@ -17,8 +17,13 @@ const Template: StoryFn<AutomateViewerBasicProps> = (
 }
 
 export const AutomateViewer = {
+  name: 'AutomateViewer',
+  parameters: {
+    chromatic: {
+      autoAcceptChanges: true
+    }
+  },
   render: Template,
-
   args: {
     transitions: [
       {
@@ -43,78 +48,83 @@ export const AutomateViewer = {
       }
     ],
     style: { width: '100%', height: '500px' }
-  },
-
-  name: 'AutomateViewer'
+  }
 }
 
-export const SsmViewer: StoryFn = () => {
-  const automate: SSM = {
-    name: 'DidS2',
-    version: undefined,
-    transitions: [
-      {
-        from: undefined,
-        to: {
-          name: 'Created',
-          position: 0
+export const SsmViewer = {
+  parameters: {
+    chromatic: {
+      autoAcceptChanges: true
+    }
+  },
+  render: () => {
+    const automate: SSM = {
+      name: 'DidS2',
+      version: undefined,
+      transitions: [
+        {
+          from: undefined,
+          to: {
+            name: 'Created',
+            position: 0
+          },
+          role: {
+            name: 'Admin'
+          },
+          action: {
+            name: 'DidCreateCommand'
+          }
         },
-        role: {
-          name: 'Admin'
+        {
+          from: {
+            name: 'Created',
+            position: 0
+          },
+          to: {
+            name: 'Actived',
+            position: 1
+          },
+          role: {
+            name: 'Owner'
+          },
+          action: {
+            name: 'DidAddPublicKeyCommand'
+          }
         },
-        action: {
-          name: 'DidCreateCommand'
+        {
+          from: {
+            name: 'Actived',
+            position: 1
+          },
+          to: {
+            name: 'Actived',
+            position: 1
+          },
+          role: {
+            name: 'Owner'
+          },
+          action: {
+            name: 'DidRevokeCommand'
+          }
+        },
+        {
+          from: {
+            name: 'Actived',
+            position: 1
+          },
+          to: {
+            name: 'Revoked',
+            position: 2
+          },
+          role: {
+            name: 'Owner'
+          },
+          action: {
+            name: 'DidRevokePublicKeyCommand'
+          }
         }
-      },
-      {
-        from: {
-          name: 'Created',
-          position: 0
-        },
-        to: {
-          name: 'Actived',
-          position: 1
-        },
-        role: {
-          name: 'Owner'
-        },
-        action: {
-          name: 'DidAddPublicKeyCommand'
-        }
-      },
-      {
-        from: {
-          name: 'Actived',
-          position: 1
-        },
-        to: {
-          name: 'Actived',
-          position: 1
-        },
-        role: {
-          name: 'Owner'
-        },
-        action: {
-          name: 'DidRevokeCommand'
-        }
-      },
-      {
-        from: {
-          name: 'Actived',
-          position: 1
-        },
-        to: {
-          name: 'Revoked',
-          position: 2
-        },
-        role: {
-          name: 'Owner'
-        },
-        action: {
-          name: 'DidRevokePublicKeyCommand'
-        }
-      }
-    ]
+      ]
+    }
+    return <AruiSsmViewer automate={automate}></AruiSsmViewer>
   }
-  return <AruiSsmViewer automate={automate}></AruiSsmViewer>
 }

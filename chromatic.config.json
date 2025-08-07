@@ -1,0 +1,16 @@
+{
+  "autoAcceptChanges": false,
+  "buildScriptName": "build-storybook",
+  "debug": false,
+  "exitOnceUploaded": false,
+  "exitZeroOnChanges": false,
+  "fileHashing": true,
+  "ignoreLastBuildOnBranch": "main",
+  "junitReport": false,
+  "onlyChanged": true,
+  "projectId": "Project:65ef8fa05df86902a315cfbd",
+  "skip": false,
+  "storybookBuildDir": "storybook-static",
+  "storybookConfigDir": ".storybook",
+  "zip": true
+}

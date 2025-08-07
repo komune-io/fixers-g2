@@ -23,7 +23,25 @@ export const parameters = {
       ]
     }
   },
-  viewMode: 'docs'
+  viewMode: 'docs',
+  chromatic: {
+    viewports: [320, 1200, 1920],
+    modes: {
+      mobile: {
+        viewport: 320
+      },
+      desktop: {
+        viewport: 1200
+      },
+      'desktop-wide': {
+        viewport: 1920
+      }
+    },
+    delay: 300,
+    pauseAnimationAtEnd: true,
+    diffThreshold: 0.2,
+    diffIncludeAntiAliasing: false
+  }
 }
 
 G2ConfigBuilder({

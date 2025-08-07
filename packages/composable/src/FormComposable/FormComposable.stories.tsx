@@ -28,6 +28,9 @@ export default {
     FormField: FormField
   },
   parameters: {
+    chromatic: {
+      autoAcceptChanges: true
+    },
     docs: {
       page: () => (
         <>

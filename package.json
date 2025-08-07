@@ -24,13 +24,14 @@
     "@mantine/core": "catalog:ui-components",
     "@mui/icons-material": "catalog:",
     "@react-leaflet/core": "catalog:dev-tools",
-    "react-leaflet": "catalog:forms",
     "i18next": "catalog:",
     "leaflet": "catalog:forms",
     "react-i18next": "catalog:",
+    "react-leaflet": "catalog:forms",
     "uuid": "catalog:utilities"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.0",
     "@emotion/css": "catalog:",
     "@emotion/react": "catalog:dev-tools",
     "@emotion/styled": "catalog:dev-tools",
