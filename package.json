@@ -22,6 +22,7 @@
   "dependencies": {
     "@geoman-io/leaflet-geoman-free": "catalog:dev-tools",
     "@mantine/core": "catalog:ui-components",
+    "@mantine/hooks": "catalog:ui-components",
     "@mui/icons-material": "catalog:",
     "@react-leaflet/core": "catalog:dev-tools",
     "i18next": "catalog:",

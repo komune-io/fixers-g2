@@ -243,14 +243,14 @@ catalogs:
       specifier: ^3.2.2
       version: 3.2.2
     '@mantine/core':
-      specifier: ^7.17.8
-      version: 7.17.8
+      specifier: 7.9.0
+      version: 7.9.0
     '@mantine/dropzone':
-      specifier: ^7.17.8
-      version: 7.17.8
+      specifier: 7.9.0
+      version: 7.9.0
     '@mantine/hooks':
-      specifier: ^7.17.8
-      version: 7.17.8
+      specifier: 7.9.0
+      version: 7.9.0
     '@mui/lab':
       specifier: 5.0.0-alpha.122
       version: 5.0.0-alpha.122
@@ -308,7 +308,10 @@ importers:
         version: 2.13.1(leaflet@1.9.4)
       '@mantine/core':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks':
+        specifier: catalog:ui-components
+        version: 7.9.0(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -450,13 +453,13 @@ importers:
         version: link:../utils
       '@mantine/core':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/dropzone':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/core@7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.8(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/core@7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.9.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -517,7 +520,7 @@ importers:
         version: link:../utils
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -639,7 +642,7 @@ importers:
         version: link:../utils
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -727,13 +730,13 @@ importers:
         version: link:../utils
       '@mantine/core':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/dropzone':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/core@7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.8(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/core@7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.9.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -855,7 +858,7 @@ importers:
         version: link:../utils
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/material':
         specifier: 'catalog:'
         version: 5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -953,7 +956,7 @@ importers:
         version: link:../documentation
       '@mantine/core':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/icons-material':
         specifier: 'catalog:'
         version: 5.18.0(@mui/material@5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.0.28)(react@18.3.1)
@@ -1029,7 +1032,7 @@ importers:
         version: link:../utils
       '@mantine/core':
         specifier: catalog:ui-components
-        version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.9.0(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material':
         specifier: 'catalog:'
         version: 5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1152,7 +1155,7 @@ importers:
         version: link:../utils
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@mui/material':
         specifier: 'catalog:'
         version: 5.15.16(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1186,7 +1189,7 @@ importers:
     dependencies:
       '@mantine/hooks':
         specifier: catalog:ui-components
-        version: 7.17.8(react@18.3.1)
+        version: 7.9.0(react@18.3.1)
       '@tanstack/react-query':
         specifier: catalog:state-management
         version: 5.84.1(react@18.3.1)
@@ -2129,26 +2132,26 @@ packages:
         integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==
       }
 
-  '@mantine/core@7.17.8':
+  '@mantine/core@7.9.0':
     resolution:
       {
-        integrity: sha512-42sfdLZSCpsCYmLCjSuntuPcDg3PLbakSmmYfz5Auea8gZYLr+8SS5k647doVu0BRAecqYOytkX2QC5/u/8VHw==
+        integrity: sha512-EhELO1uYq2s08H69h4BCcvE26mNLPaXUi6RAjApqBIynMcyJlmdluFtvGKFxjpgFZy3moeSYNrjEW//T0uTMZg==
       }
     peerDependencies:
-      '@mantine/hooks': 7.17.8
-      react: ^18.x || ^19.x
-      react-dom: ^18.x || ^19.x
+      '@mantine/hooks': 7.9.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
-  '@mantine/dropzone@7.17.8':
+  '@mantine/dropzone@7.9.0':
     resolution:
       {
-        integrity: sha512-c9WEArpP23E9tbRWqoznEY3bGPVntMuBKr3F2LQijgdpdALIzt6DYmwXu7gUajGX9Qg9NrCHenhvWLTYqKnRlA==
+        integrity: sha512-PYZnm/jGfSq3hQ5xgiz9G3fdgnpNg+ZY7nv1NlpvNn2a0XAeYnCCoZ87h6U7k6YHFU11ikc0w7b8ObhWPCyBtA==
       }
     peerDependencies:
-      '@mantine/core': 7.17.8
-      '@mantine/hooks': 7.17.8
-      react: ^18.x || ^19.x
-      react-dom: ^18.x || ^19.x
+      '@mantine/core': 7.9.0
+      '@mantine/hooks': 7.9.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   '@mantine/hooks@7.17.8':
     resolution:
@@ -2157,6 +2160,14 @@ packages:
       }
     peerDependencies:
       react: ^18.x || ^19.x
+
+  '@mantine/hooks@7.9.0':
+    resolution:
+      {
+        integrity: sha512-LKgyrlaIK0S/gcn/VDbhqLBZOYjvhXfVcH7rMs4MIBVD+wuRo2LvvAYe3cUfQbBCfmlpRjqvewwvsIYYsjSofQ==
+      }
+    peerDependencies:
+      react: ^18.2.0
 
   '@mdx-js/react@3.1.0':
     resolution:
@@ -4015,6 +4026,13 @@ packages:
     resolution:
       {
         integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+      }
+    engines: { node: '>=6' }
+
+  clsx@2.1.0:
+    resolution:
+      {
+        integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==
       }
     engines: { node: '>=6' }
 
@@ -7041,10 +7059,10 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
-  react-dropzone-esm@15.2.0:
+  react-dropzone-esm@15.0.1:
     resolution:
       {
-        integrity: sha512-pPwR8xWVL+tFLnbAb8KVH5f6Vtl397tck8dINkZ1cPMxHWH+l9dFmIgRWgbh7V7jbjIcuKXCsVrXbhQz68+dVA==
+        integrity: sha512-RdeGpqwHnoV/IlDFpQji7t7pTtlC2O1i/Br0LWkRZ9hYtLyce814S71h5NolnCZXsIN5wrZId6+8eQj2EBnEzg==
       }
     engines: { node: '>= 10.13' }
     peerDependencies:
@@ -7229,14 +7247,14 @@ packages:
     peerDependencies:
       react: ^16.8.3 || ^17.0.0-0 || ^18.0.0
 
-  react-textarea-autosize@8.5.9:
+  react-textarea-autosize@8.5.3:
     resolution:
       {
-        integrity: sha512-U1DGlIQN5AwgjTyOEnI1oCcMuEr1pv1qOtklB2l4nyMGbHzWrI0eFsYK0zos2YWqAolJyG0IWJaqWmWj5ETh0A==
+        integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==
       }
     engines: { node: '>=10' }
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   react-transition-group@4.4.5:
     resolution:
@@ -9051,29 +9069,47 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.4
 
-  '@mantine/core@7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mantine/core@7.9.0(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/hooks': 7.17.8(react@18.3.1)
-      clsx: 2.1.1
+      clsx: 2.1.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-number-format: 5.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-remove-scroll: 2.7.1(@types/react@18.0.28)(react@18.3.1)
-      react-textarea-autosize: 8.5.9(@types/react@18.0.28)(react@18.3.1)
+      react-textarea-autosize: 8.5.3(@types/react@18.0.28)(react@18.3.1)
       type-fest: 4.41.0
     transitivePeerDependencies:
       - '@types/react'
 
-  '@mantine/dropzone@7.17.8(@mantine/core@7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.8(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mantine/core@7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@mantine/core': 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mantine/hooks': 7.17.8(react@18.3.1)
+      '@floating-ui/react': 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.9.0(react@18.3.1)
+      clsx: 2.1.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-dropzone-esm: 15.2.0(react@18.3.1)
+      react-number-format: 5.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-remove-scroll: 2.7.1(@types/react@18.0.28)(react@18.3.1)
+      react-textarea-autosize: 8.5.3(@types/react@18.0.28)(react@18.3.1)
+      type-fest: 4.41.0
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@mantine/dropzone@7.9.0(@mantine/core@7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.9.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mantine/core': 7.9.0(@mantine/hooks@7.9.0(react@18.3.1))(@types/react@18.0.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.9.0(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-dropzone-esm: 15.0.1(react@18.3.1)
 
   '@mantine/hooks@7.17.8(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@mantine/hooks@7.9.0(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
@@ -10342,6 +10378,8 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clsx@1.2.1: {}
+
+  clsx@2.1.0: {}
 
   clsx@2.1.1: {}
 
@@ -12554,7 +12592,7 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-dropzone-esm@15.2.0(react@18.3.1):
+  react-dropzone-esm@15.0.1(react@18.3.1):
     dependencies:
       prop-types: 15.8.1
       react: 18.3.1
@@ -12682,7 +12720,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-textarea-autosize@8.5.9(@types/react@18.0.28)(react@18.3.1):
+  react-textarea-autosize@8.5.3(@types/react@18.0.28)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.2
       react: 18.3.1

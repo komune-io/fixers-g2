@@ -1,103 +1,47 @@
 packages:
-  - 'packages/*'
+  - packages/*
 
-# Default catalog for most common dependencies
 catalog:
-  react: ^18.2.0
-  react-dom: ^18.2.0
   '@emotion/css': ^11.11.2
-  i18next: 23.11.3
-  react-i18next: 14.1.1
-  react-router-dom: ^6.22.3
+  '@mui/icons-material': ^5.18.0
   '@mui/material': 5.15.16
   '@mui/system': 5.18.0
-  '@mui/icons-material': ^5.18.0
+  i18next: 23.11.3
+  react: ^18.2.0
+  react-dom: ^18.2.0
+  react-i18next: 14.1.1
+  react-router-dom: ^6.22.3
 
-# Named catalogs for specialized dependencies
 catalogs:
-  ui-components:
-    '@mantine/core': ^7.17.8
-    '@mantine/hooks': ^7.17.8
-    '@mantine/dropzone': ^7.17.8
-    '@mui/lab': 5.0.0-alpha.122
-    '@mui/x-date-pickers': ^6.19.8
-    notistack: 3.0.1
-    '@dnd-kit/core': ^6.1.0
-    '@dnd-kit/modifiers': ^7.0.0
-    '@dnd-kit/sortable': ^8.0.0
-    '@dnd-kit/utilities': ^3.2.2
-    '@tanstack/react-table': ^8.15.0
-    react-table: ^7.8.0
-
-  state-management:
-    '@tanstack/react-query': ^5.28.6
-    react-redux: ^7.2.4
-    redux: ^4.1.0
-
-  forms:
-    formik: ^2.4.5
-    react-dropzone: ^14.2.3
-    date-fns: ^3.6.0
-    leaflet: ^1.9.4
-    react-leaflet: ^4.2.1
-    geojson: ^0.5.0
-    '@axa-fr/oidc-client': ^7.25.14
-    '@axa-fr/react-oidc': ^7.20.1
-    keycloak-js: ^24.0.2
-  utilities:
-    ramda: ^0.29.1
-    lodash-es: ^4.17.21
-    lodash: ^4.17.21
-    qs: ^6.12.0
-    tinycolor2: ^1.6.0
-    clsx: ^2.1.1
-    uuid: ^9.0.1
-    spel2js: ^0.2.8
-    json-logic-js: ^2.0.5
-    tss-react: ^4.9.6
-
-  specialized:
-    mermaid: ^10.9.0
-    vis-data: ^7.1.9
-    vis-network: ^9.1.9
-    react-markdown: ^9.0.1
-    remark-gfm: ^4.0.0
-    rehype-raw: ^7.0.0
-    rehype-sanitize: ^4.0.0
-    react-syntax-highlighter: ^15.5.0
-    github-markdown-css: ^4.0.0
-    i18next-browser-languagedetector: 7.2.1
-    i18next-http-backend: 2.5.1
-
   dev-tools:
+    '@emotion/react': ^11.11.4
+    '@emotion/styled': ^11.11.0
+    '@geoman-io/leaflet-geoman-free': ^2.13.1
+    '@react-leaflet/core': ^2.1.0
     '@storybook/addon-docs': ^9.1.1
     '@storybook/addon-links': ^9.1.1
     '@storybook/react-vite': ^9.1.1
-    storybook: ^9.1.1
-    '@geoman-io/leaflet-geoman-free': ^2.13.1
-    '@types/react': ^18.0.28
     '@types/geojson': ^7946.0.10
-    '@types/leaflet': ^1.9.0
-    '@types/tinycolor2': ^1.4.3
-    '@types/mermaid': ^9.2.0
-    '@types/react-syntax-highlighter': ^15.5.6
-    '@types/stringify-object': ^4.0.1
-    '@types/react-dropzone': ^5.1.0
-    '@types/qs': ^6.9.7
     '@types/json-logic-js': ^2.0.8
-    '@types/uuid': ^8.3.4
-    '@types/ramda': ^0.29.12
-    '@types/react-redux': ^7.1.34
-    '@types/react-table': ^7.7.12
-    '@types/react-router-dom': ^5.3.3
-    '@types/redux': ^3.6.0
+    '@types/leaflet': ^1.9.0
     '@types/lodash-es': ^4.17.12
+    '@types/mermaid': ^9.2.0
+    '@types/qs': ^6.9.7
+    '@types/ramda': ^0.29.12
+    '@types/react': ^18.0.28
+    '@types/react-dropzone': ^5.1.0
+    '@types/react-redux': ^7.1.34
+    '@types/react-router-dom': ^5.3.3
+    '@types/react-syntax-highlighter': ^15.5.6
+    '@types/react-table': ^7.7.12
     '@types/react-transition-group': ^4.4.5
-    '@emotion/react': ^11.11.4
-    '@emotion/styled': ^11.11.0
-    '@vitejs/plugin-react': ^4.0.0
+    '@types/redux': ^3.6.0
+    '@types/stringify-object': ^4.0.1
+    '@types/tinycolor2': ^1.4.3
+    '@types/uuid': ^8.3.4
     '@typescript-eslint/eslint-plugin': ^7.2.0
     '@typescript-eslint/parser': ^7.2.0
+    '@vitejs/plugin-react': ^4.0.0
     chromatic: ^13.1.3
     cross-env: ^7.0.2
     eslint: ^8.57.0
@@ -105,14 +49,64 @@ catalogs:
     eslint-plugin-react: ^7.34.0
     eslint-plugin-storybook: ^0.8.0
     husky: ^9.0.11
+    jackspeak: ^2.1.1
     npm-run-all: ^4.1.5
     postcss: ^8.4.36
     prettier: ^3.2.5
     pretty-quick: ^4.0.0
     react-is: ^18.2.0
+    storybook: ^9.1.1
     typescript: ^5.4.2
     vite: ^5.0.0
     vite-plugin-dts: ^3.0.0
     vite-plugin-svgr: ^4.0.0
-    '@react-leaflet/core': ^2.1.0
-    jackspeak: ^2.1.1
+  forms:
+    '@axa-fr/oidc-client': ^7.25.14
+    '@axa-fr/react-oidc': ^7.20.1
+    date-fns: ^3.6.0
+    formik: ^2.4.5
+    geojson: ^0.5.0
+    keycloak-js: ^24.0.2
+    leaflet: ^1.9.4
+    react-dropzone: ^14.2.3
+    react-leaflet: ^4.2.1
+  specialized:
+    github-markdown-css: ^4.0.0
+    i18next-browser-languagedetector: 7.2.1
+    i18next-http-backend: 2.5.1
+    mermaid: ^10.9.0
+    react-markdown: ^9.0.1
+    react-syntax-highlighter: ^15.5.0
+    rehype-raw: ^7.0.0
+    rehype-sanitize: ^4.0.0
+    remark-gfm: ^4.0.0
+    vis-data: ^7.1.9
+    vis-network: ^9.1.9
+  state-management:
+    '@tanstack/react-query': ^5.28.6
+    react-redux: ^7.2.4
+    redux: ^4.1.0
+  ui-components:
+    '@dnd-kit/core': ^6.1.0
+    '@dnd-kit/modifiers': ^7.0.0
+    '@dnd-kit/sortable': ^8.0.0
+    '@dnd-kit/utilities': ^3.2.2
+    '@mantine/core': 7.9.0
+    '@mantine/dropzone': 7.9.0
+    '@mantine/hooks': 7.9.0
+    '@mui/lab': 5.0.0-alpha.122
+    '@mui/x-date-pickers': ^6.19.8
+    '@tanstack/react-table': ^8.15.0
+    notistack: 3.0.1
+    react-table: ^7.8.0
+  utilities:
+    clsx: ^2.1.1
+    json-logic-js: ^2.0.5
+    lodash: ^4.17.21
+    lodash-es: ^4.17.21
+    qs: ^6.12.0
+    ramda: ^0.29.1
+    spel2js: ^0.2.8
+    tinycolor2: ^1.6.0
+    tss-react: ^4.9.6
+    uuid: ^9.0.1
