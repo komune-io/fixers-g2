@@ -1,7 +1,7 @@
 import { Box, LinearProgress, BoxProps } from '@mui/material'
 import { cx } from '@emotion/css'
-import React from 'react'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
+import { CSSProperties, ReactNode } from 'react'
 
 interface LoadingClasses {
   iconContainer?: string
@@ -9,8 +9,8 @@ interface LoadingClasses {
 }
 
 interface LoadingStyles {
-  iconContainer?: React.CSSProperties
-  linearProgress?: React.CSSProperties
+  iconContainer?: CSSProperties
+  linearProgress?: CSSProperties
 }
 
 export interface LoadingBasicProps extends BasicProps {
@@ -21,7 +21,7 @@ export interface LoadingBasicProps extends BasicProps {
   /**
    * The icon of the application that will displayed in the middle of the splash screen
    */
-  icon: React.ReactNode
+  icon: ReactNode
   /**
    * The classes applied to the different part of the component
    */

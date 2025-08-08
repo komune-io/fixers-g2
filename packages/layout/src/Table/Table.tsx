@@ -7,7 +7,13 @@ import {
   Hooks,
   usePagination
 } from 'react-table'
-import React, { useEffect, useMemo, useCallback } from 'react'
+import {
+  CSSProperties,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useCallback
+} from 'react'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { CheckBox } from '@komune-io/g2-forms'
 import { Arrow } from '../icons'
@@ -43,18 +49,18 @@ export interface TableClasses {
 }
 
 export interface TableStyles {
-  table?: React.CSSProperties
-  tableHead?: React.CSSProperties
-  tableBody?: React.CSSProperties
-  tableFooter?: React.CSSProperties
-  tableHeaderRow?: React.CSSProperties
-  tableRow?: React.CSSProperties
-  tableFooterRow?: React.CSSProperties
-  tableCell?: React.CSSProperties
-  tableHeaderCell?: React.CSSProperties
-  tableFooterCell?: React.CSSProperties
-  rowHoveredComponentContainer?: React.CSSProperties
-  Pagination?: React.CSSProperties
+  table?: CSSProperties
+  tableHead?: CSSProperties
+  tableBody?: CSSProperties
+  tableFooter?: CSSProperties
+  tableHeaderRow?: CSSProperties
+  tableRow?: CSSProperties
+  tableFooterRow?: CSSProperties
+  tableCell?: CSSProperties
+  tableHeaderCell?: CSSProperties
+  tableFooterCell?: CSSProperties
+  rowHoveredComponentContainer?: CSSProperties
+  Pagination?: CSSProperties
 }
 
 export interface TableBasicProps<Data extends {}> extends BasicProps {
@@ -132,7 +138,7 @@ export interface TableBasicProps<Data extends {}> extends BasicProps {
   /**
    * The component to render in the table header
    */
-  header?: React.ReactNode
+  header?: ReactNode
   /**
    * Indicates if there shouldn't be a checkbox to check or uncheck all the rows on the current page at the same time
    * @default false
@@ -243,8 +249,8 @@ export const Table = <Data extends {}>(props: TableProps<Data>) => {
                       row.isExpanded && expandIconPosition === 'start'
                         ? 'rotate(-180deg)'
                         : row.isExpanded && expandIconPosition === 'end'
-                        ? 'rotate(180deg)'
-                        : '',
+                          ? 'rotate(180deg)'
+                          : '',
                     transition: '0.2s',
                     display: 'flex'
                   }}

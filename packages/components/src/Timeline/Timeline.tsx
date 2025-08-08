@@ -8,17 +8,24 @@ import {
   TimelineConnector,
   TimelineContent
 } from '@mui/lab'
-import React, { forwardRef, useMemo } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  KeyboardEvent,
+  ReactNode,
+  useMemo
+} from 'react'
 import { Typography } from '@mui/material'
 import {
   MergeMuiElementProps,
-  makeG2STyles,
+  makeG2Styles,
   BasicProps,
   useTheme
 } from '@komune-io/g2-themes'
 import { FilledArrow } from '../icons'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   dot: {
     background: theme.colors.secondary,
     position: 'relative',
@@ -134,9 +141,9 @@ export interface TimeLineCell {
   endTime?: string
   startDate?: number
   endDate?: number
-  content: React.ReactNode
-  startDot?: React.ReactNode
-  endDot?: React.ReactNode
+  content: ReactNode
+  startDot?: ReactNode
+  endDot?: ReactNode
   disabled?: boolean
 }
 
@@ -151,13 +158,13 @@ interface TimelineClasses {
 }
 
 interface TimelineStyles {
-  item?: React.CSSProperties
-  content?: React.CSSProperties
-  timeContainer?: React.CSSProperties
-  startDot?: React.CSSProperties
-  endDot?: React.CSSProperties
-  connector?: React.CSSProperties
-  separator?: React.CSSProperties
+  item?: CSSProperties
+  content?: CSSProperties
+  timeContainer?: CSSProperties
+  startDot?: CSSProperties
+  endDot?: CSSProperties
+  connector?: CSSProperties
+  separator?: CSSProperties
 }
 
 export interface TimelineBasicProps extends BasicProps {
@@ -205,7 +212,7 @@ export type TimelineProps = MergeMuiElementProps<
  */
 const TimelineBase = (
   props: TimelineProps,
-  ref?: React.ForwardedRef<HTMLUListElement>
+  ref?: ForwardedRef<HTMLUListElement>
 ) => {
   const {
     lines,
@@ -241,7 +248,7 @@ const TimelineBase = (
         }
         const isSelected = !!selectedCellId && selectedCellId === line.id
 
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: KeyboardEvent) => {
           if (event.key === 'Enter' && onSelectCell && !line.disabled) {
             onSelectCell(line)
           }

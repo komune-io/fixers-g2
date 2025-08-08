@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef, ForwardedRef, ReactElement, ReactNode } from 'react'
 import {
   Tooltip as MuiTooltip,
   TooltipProps as MuiTooltipProps
@@ -9,11 +9,11 @@ export interface TooltipProps extends Omit<MuiTooltipProps, 'title'> {
   /**
    * The element to tooltiped
    */
-  children: React.ReactElement<any, any>
+  children: ReactElement<any, any>
   /**
    * The text that will be displayed in the tooltip
    */
-  helperText: React.ReactNode
+  helperText: ReactNode
   /**
    * Indicates wether the tooltip is open or not. If open is undefined the openning of the tooltip
    * will be actionned by the hover on the given element.
@@ -23,10 +23,7 @@ export interface TooltipProps extends Omit<MuiTooltipProps, 'title'> {
   open?: boolean
 }
 
-const TooltipBase = (
-  props: TooltipProps,
-  ref: React.ForwardedRef<HTMLElement>
-) => {
+const TooltipBase = (props: TooltipProps, ref: ForwardedRef<HTMLElement>) => {
   const { children, helperText, classes, open, className, ...other } = props
 
   return (

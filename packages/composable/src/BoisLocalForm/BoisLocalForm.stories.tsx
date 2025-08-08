@@ -1,11 +1,10 @@
-import React from 'react'
-import { Meta } from '@storybook/react'
+import { Meta } from '@storybook/react-vite'
 import { Root } from './Root'
 
 export default {
   title: 'Composable/BoisLocalForm',
   component: Root
-} as Meta
+} as Meta<typeof Root>
 
 export const FiltersStory = () => {
   return <Root />

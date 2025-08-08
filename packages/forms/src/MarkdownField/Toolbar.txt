@@ -29,7 +29,7 @@ import {
   styled,
   toggleButtonGroupClasses
 } from '@mui/material'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { mergeRegister } from '@lexical/utils'
 import {
   CAN_REDO_COMMAND,

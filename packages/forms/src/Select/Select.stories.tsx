@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Select, Option, SelectBasicProps } from './Select'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { Box } from '@mui/material'
 import { SelectClasses, SelectStyles } from './docs'
 
@@ -39,103 +39,7 @@ export default {
       }
     }
   }
-} as Meta
-
-export const SelectStory: StoryFn<SelectBasicProps> = (
-  args: SelectBasicProps
-) => {
-  const [value, setvalue] = useState('')
-  const [values, setvalues] = useState([])
-  console.log(values)
-  return (
-    <Select
-      options={[]}
-      {...args}
-      startAdornment={<SortByAlphaRounded fontSize='small' />}
-      value={args.multiple ? undefined : value}
-      values={args.multiple ? values : undefined}
-      onChangeValue={(value) => setvalue(value)}
-      onChangeValues={(values) => setvalues(values)}
-      onRemove={() => {
-        setvalue('')
-        setvalues([])
-      }}
-      style={{ width: 350 }}
-    />
-  )
-}
-
-export const SelectSizes: StoryFn<SelectBasicProps> = () => {
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <Select
-        placeholder='small'
-        id='smallSelect'
-        value=''
-        options={options}
-        size='small'
-        style={{ width: 350, margin: 20 }}
-      />
-      <Select
-        placeholder='medium'
-        id='mediumSelect'
-        options={options}
-        size='medium'
-        style={{ width: 350, margin: 20 }}
-      />
-      <Select
-        placeholder='large'
-        id='largeSelect'
-        options={options}
-        size='large'
-        style={{ width: 350, margin: 20 }}
-      />
-    </Box>
-  )
-}
-
-export const SelectStates: StoryFn<SelectBasicProps> = () => {
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <Select
-        placeholder='select with error'
-        id='errorSelect'
-        options={options}
-        error
-        errorMessage='A custom error message'
-        style={{ width: 350, margin: 20 }}
-      />
-      <Select
-        placeholder='select disabled'
-        id='disabledSelect'
-        options={options}
-        disabled
-        style={{ width: 350, margin: 20 }}
-      />
-    </Box>
-  )
-}
-
-export const MultipleSelect: StoryFn<SelectBasicProps> = () => {
-  const [values, setvalues] = useState([])
-
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <Select
-        placeholder='multiple select'
-        id='multpileSelect'
-        multiple
-        options={options}
-        values={values}
-        onChangeValues={(values) => setvalues(values)}
-        onRemove={() => {
-          setvalues([])
-        }}
-        style={{ width: 350, margin: 20 }}
-      />
-    </Box>
-  )
-}
+} as Meta<typeof Select>
 
 const options: Option[] = [
   {
@@ -171,12 +75,117 @@ const options: Option[] = [
   }
 ]
 
-SelectStory.args = {
-  options: options,
-  placeholder: 'Choose a name'
+export const SelectStory: StoryObj<SelectBasicProps> = {
+  render: (args: SelectBasicProps) => {
+    const [value, setvalue] = useState('')
+    const [values, setvalues] = useState([])
+    console.log(values)
+    return (
+      <Select
+        options={[]}
+        {...args}
+        startAdornment={<SortByAlphaRounded fontSize='small' />}
+        value={args.multiple ? undefined : value}
+        values={args.multiple ? values : undefined}
+        onChangeValue={(value) => setvalue(value)}
+        onChangeValues={(values) => setvalues(values)}
+        onRemove={() => {
+          setvalue('')
+          setvalues([])
+        }}
+        style={{ width: 350 }}
+      />
+    )
+  },
+
+  args: {
+    options: options,
+    placeholder: 'Choose a name'
+  },
+
+  name: 'Select'
 }
 
-SelectStory.storyName = 'Select'
-SelectSizes.storyName = 'All size of the select'
-SelectStates.storyName = 'The select states'
-MultipleSelect.storyName = 'Multiple select'
+export const SelectSizes: StoryObj<SelectBasicProps> = {
+  render: () => {
+    return (
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <Select
+          placeholder='small'
+          id='smallSelect'
+          value=''
+          options={options}
+          size='small'
+          style={{ width: 350, margin: 20 }}
+        />
+        <Select
+          placeholder='medium'
+          id='mediumSelect'
+          options={options}
+          size='medium'
+          style={{ width: 350, margin: 20 }}
+        />
+        <Select
+          placeholder='large'
+          id='largeSelect'
+          options={options}
+          size='large'
+          style={{ width: 350, margin: 20 }}
+        />
+      </Box>
+    )
+  },
+
+  name: 'All size of the select'
+}
+
+export const SelectStates: StoryObj<SelectBasicProps> = {
+  render: () => {
+    return (
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <Select
+          placeholder='select with error'
+          id='errorSelect'
+          options={options}
+          error
+          errorMessage='A custom error message'
+          style={{ width: 350, margin: 20 }}
+        />
+        <Select
+          placeholder='select disabled'
+          id='disabledSelect'
+          options={options}
+          disabled
+          style={{ width: 350, margin: 20 }}
+        />
+      </Box>
+    )
+  },
+
+  name: 'The select states'
+}
+
+export const MultipleSelect: StoryObj<SelectBasicProps> = {
+  render: () => {
+    const [values, setvalues] = useState([])
+
+    return (
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <Select
+          placeholder='multiple select'
+          id='multpileSelect'
+          multiple
+          options={options}
+          values={values}
+          onChangeValues={(values) => setvalues(values)}
+          onRemove={() => {
+            setvalues([])
+          }}
+          style={{ width: 350, margin: 20 }}
+        />
+      </Box>
+    )
+  },
+
+  name: 'Multiple select'
+}

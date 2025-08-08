@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, InputLabel } from '@mui/material'
 import { cx } from '@emotion/css'
 import { DropPicture, DropPictureProps } from '@komune-io/g2-components'

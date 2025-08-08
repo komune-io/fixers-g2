@@ -5,7 +5,7 @@ import {
   MergeMuiElementProps,
   useTheme
 } from '@komune-io/g2-themes'
-import React, { forwardRef, useMemo } from 'react'
+import { forwardRef, ForwardedRef, useMemo } from 'react'
 
 export interface StatusTagBasicProps extends BasicProps {
   /**
@@ -36,7 +36,7 @@ export type StatusTagProps = MergeMuiElementProps<
 
 export const StatusTagBase = (
   props: StatusTagProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     label,

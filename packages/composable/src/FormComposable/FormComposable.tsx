@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useMemo } from 'react'
+import { CSSProperties, ComponentPropsWithRef, useMemo } from 'react'
 import { ContainerRenderer, ElementRenderersConfig } from '../ComposableRender'
 import { cx } from '@emotion/css'
 import { Stack, StackProps, styled, SxProps, Theme } from '@mui/material'
@@ -25,10 +25,10 @@ export interface FormComposableClasses {
 }
 
 export interface FormComposableStyles {
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
-  field?: React.CSSProperties
-  fieldsContainer?: React.CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
+  field?: CSSProperties
+  fieldsContainer?: CSSProperties
 }
 
 export type FormComposableActionsProps = Omit<ActionsWrapperProps, 'actions'>

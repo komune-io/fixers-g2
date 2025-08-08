@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 import { HeaderProps } from '../Header'
 import { ActionsProps } from '@komune-io/g2-components'
 
@@ -24,7 +24,7 @@ export const PageContext = createContext<
 >(pageDefaultContext)
 
 export interface PageContextProviderProps extends PageContextProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const PageContextProvider = (props: PageContextProviderProps) => {

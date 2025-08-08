@@ -1,6 +1,5 @@
 {
   "name": "@komune-io/g2-themes",
-  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune",
   "license": "Apache-2.0",
@@ -14,33 +13,28 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "publish:npm": "npm publish --access public"
+    "build": "vite build",
+    "lint": "eslint .",
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@types/ramda": "^0.29.11",
-    "@types/react": "^18.0.28"
+    "@types/ramda": "catalog:dev-tools",
+    "@types/react": "catalog:dev-tools",
+    "@types/tinycolor2": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
-    "@mantine/hooks": "^7.6.2",
-    "ramda": "^0.29.1",
-    "tinycolor2": "^1.6.0",
-    "tss-react": "^4.9.6"
+    "@komune-io/g2-utils": "workspace:*",
+    "@mantine/hooks": "catalog:ui-components",
+    "ramda": "catalog:utilities",
+    "tinycolor2": "catalog:utilities",
+    "tss-react": "catalog:utilities"
   }
 }

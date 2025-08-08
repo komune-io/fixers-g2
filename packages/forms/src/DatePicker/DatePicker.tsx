@@ -5,12 +5,18 @@ import {
   DateView
 } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
-import React, { forwardRef, useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useMemo
+} from 'react'
 import { useInputStyles } from '../style'
 import { FilledTextFieldProps as MuiTextFieldProps } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { fr, enUS } from 'date-fns/locale'
@@ -22,7 +28,7 @@ const dateFnsLocales = {
   enUS
 }
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   input: {
     width: '100%'
   },
@@ -41,8 +47,8 @@ export interface DatePickerClasses {
 }
 
 export interface DatePickerStyles {
-  input?: React.CSSProperties
-  helperText?: React.CSSProperties
+  input?: CSSProperties
+  helperText?: CSSProperties
 }
 
 export interface DatePickerBasicProps extends BasicProps {
@@ -126,7 +132,7 @@ export type DatePickerProps = MergeMuiElementProps<
 
 const DatePickerBase = (
   props: DatePickerProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     value,
@@ -222,7 +228,7 @@ const DatePickerBase = (
               className
             ),
             style,
-            helperText: error ? errorMessage ?? helperText : helperText,
+            helperText: error ? (errorMessage ?? helperText) : helperText,
             color: 'primary',
             InputProps: {
               disableUnderline: true,

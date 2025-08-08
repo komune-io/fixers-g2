@@ -1,10 +1,15 @@
-import React, {
+import {
   useCallback,
   useEffect,
   useState,
   forwardRef,
   useRef,
-  useMemo
+  useMemo,
+  CSSProperties,
+  ForwardedRef,
+  ReactNode,
+  ElementType,
+  ChangeEvent
 } from 'react'
 import {
   Button as MuiButton,
@@ -25,7 +30,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The class added to the root element of the component
    */
-  style?: React.CSSProperties
+  style?: CSSProperties
   /**
    * The id added to the root element of the component
    */
@@ -33,7 +38,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The event called when the button is clicked
    */
-  onClick?: (event: React.ChangeEvent<{}>) => void
+  onClick?: (event: ChangeEvent<{}>) => void
   /**
    * Define if the button is disabled or not
    *
@@ -49,7 +54,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The inner components
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The link to go to. Href has priority over onClick
    */
@@ -77,7 +82,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
    *
    * @default false
    */
-  icon?: React.ReactNode
+  icon?: ReactNode
   /**
    * Remove the default icon from the component
    */
@@ -92,7 +97,7 @@ export interface ButtonBasicProps<T = {}> extends BasicProps {
   /**
    * The element that will be placed in the root element (a button by default)
    */
-  component?: React.ElementType<any>
+  component?: ElementType<any>
   /**
    * The additional props of the root element
    */
@@ -105,8 +110,8 @@ export type ButtonProps<T = {}> = MergeMuiElementProps<
 >
 
 type refType<T> = T extends [{}]
-  ? React.ForwardedRef<HTMLAnchorElement>
-  : React.ForwardedRef<T>
+  ? ForwardedRef<HTMLAnchorElement>
+  : ForwardedRef<T>
 
 export const ButtonBase = function <T = {}>(
   props: ButtonProps<T>,
@@ -151,7 +156,7 @@ export const ButtonBase = function <T = {}>(
   }, [success, fail])
 
   const onClickMemoisied = useCallback(
-    async (event: React.ChangeEvent<{}>) => {
+    async (event: ChangeEvent<{}>) => {
       if (onClick) {
         setloading(true)
         await onClick(event)

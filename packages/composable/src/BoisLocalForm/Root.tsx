@@ -1,5 +1,5 @@
 import { Divider, Stack } from '@mui/material'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { DetailsForm } from './DetailsForm'
 import { useFormComposable } from '../FormComposable'
 import { DestinateForm, Product } from './DestinateForm'

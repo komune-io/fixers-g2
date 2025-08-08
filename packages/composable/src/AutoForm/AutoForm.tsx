@@ -1,5 +1,5 @@
 import { Stack, Typography, Divider } from '@mui/material'
-import React, { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import {
   FormComposable,
   FormComposableBasicProps,
@@ -62,7 +62,7 @@ export type AutoFormData = {
 
 export interface AutoFormProps extends UseAutoFormStateParams {
   formData?: AutoFormData
-  getFormActions?: (formState: FormComposableState) => React.ReactNode
+  getFormActions?: (formState: FormComposableState) => ReactNode
 }
 
 export const AutoForm = (props: AutoFormProps) => {

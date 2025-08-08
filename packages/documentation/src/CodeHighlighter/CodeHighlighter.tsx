@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css'
 import { Box, Typography } from '@mui/material'
 import { BasicProps } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import SyntaxHighlighter, {
   SyntaxHighlighterProps
 } from 'react-syntax-highlighter'

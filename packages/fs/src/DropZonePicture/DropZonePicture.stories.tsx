@@ -1,7 +1,5 @@
-import React from 'react'
 import { DropZonePicture as AruiDropZonePicture } from './DropZonePicture'
-import { Meta, StoryFn } from '@storybook/react'
-import { DropPictureProps } from '@komune-io/g2-components'
+import { Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Fs/DropZonePicture',
@@ -12,12 +10,8 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1014%3A942'
     }
   }
-} as Meta
+} as Meta<typeof AruiDropZonePicture>
 
-const Template: StoryFn<DropPictureProps> = (args: DropPictureProps) => (
-  <AruiDropZonePicture {...args} />
-)
-
-export const DropPicture = Template.bind({})
-
-DropPicture.storyName = 'DropPicture'
+export const DropPicture = {
+  name: 'DropPicture'
+}

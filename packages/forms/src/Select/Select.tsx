@@ -1,4 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  ReactNode,
+  useCallback,
+  useMemo,
+  SyntheticEvent
+} from 'react'
 import {
   Box,
   FormControl,
@@ -16,7 +24,7 @@ import { SelectIcon } from '../assets/icons'
 import { useInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { CheckBox } from '../CheckBox'
@@ -31,7 +39,7 @@ export type Option = {
    * The icon of the option only used for Select component.
    * If the option is selected and the select is not multiple the icon is displayed in the Select Component.
    */
-  icon?: React.ReactNode
+  icon?: ReactNode
   color?: string
 }
 
@@ -46,16 +54,16 @@ export interface SelectClasses {
 }
 
 export interface SelectStyles {
-  select?: React.CSSProperties
-  input?: React.CSSProperties
-  helperText?: React.CSSProperties
-  selectIcon?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  option?: React.CSSProperties
-  menu?: React.CSSProperties
+  select?: CSSProperties
+  input?: CSSProperties
+  helperText?: CSSProperties
+  selectIcon?: CSSProperties
+  clearIcon?: CSSProperties
+  option?: CSSProperties
+  menu?: CSSProperties
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   formcontrol: {
     width: '100%'
   },
@@ -193,8 +201,8 @@ export interface SelectBasicProps extends BasicProps {
 
 export type SelectProps = MergeMuiElementProps<MuiSelectProps, SelectBasicProps>
 
-export const Select = React.forwardRef(
-  (props: SelectProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const Select = forwardRef(
+  (props: SelectProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       value = '',
       values = [],
@@ -332,7 +340,7 @@ export const Select = React.forwardRef(
     }, [name, onRemove, value, classes?.input, styles?.input, id])
 
     const onCloseMemoized = useCallback(
-      (event: React.SyntheticEvent<Element, Event>) => {
+      (event: SyntheticEvent<Element, Event>) => {
         //@ts-ignore
         const valueClicked = event.currentTarget.dataset.value
         onRemove &&
@@ -439,7 +447,7 @@ export const Select = React.forwardRef(
             )}
             style={styles?.helperText}
           >
-            {error ? errorMessage ?? helperText : helperText}
+            {error ? (errorMessage ?? helperText) : helperText}
           </FormHelperText>
         )}
       </FormControl>

@@ -1,6 +1,6 @@
 import { Avatar, AvatarProps, Typography } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { stringToAvatarAttributs } from '@komune-io/g2-utils'
 
 export interface UserAvatarBasicProps extends BasicProps {

@@ -7,7 +7,13 @@ import {
   useFormWithPartialFields
 } from '@komune-io/g2-forms'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useCallback, useEffect, useMemo } from 'react'
+import {
+  CSSProperties,
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo
+} from 'react'
 import { UserId, UserUpdatePasswordCommand } from '../../Domain'
 import { FormikHelpers } from 'formik'
 import { validators } from '@komune-io/g2-utils'
@@ -20,7 +26,7 @@ export interface UserResetPasswordFormClasses {
 }
 
 export interface UserResetPasswordFormStyles {
-  form: React.CSSProperties
+  form: CSSProperties
 }
 
 export interface UserResetPasswordFormBasicProps extends BasicProps {
@@ -31,7 +37,7 @@ export interface UserResetPasswordFormBasicProps extends BasicProps {
   /**
    * The ref of the submit element
    */
-  SubmitButtonRef?: React.RefObject<HTMLElement | undefined>
+  SubmitButtonRef?: RefObject<HTMLElement | undefined>
   /**
    * The submit event
    * @param user command to reset a password

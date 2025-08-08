@@ -1,4 +1,13 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  ChangeEvent,
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useMemo
+} from 'react'
 import {
   InputAdornment,
   TextField as MuiTextField,
@@ -8,13 +17,13 @@ import {
 import { useFilterColorStyle, useFilterInputStyles } from '../style'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { SearchIcon } from '../assets/icons'
 import { ClearRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     position: 'relative',
     width: 'fit-content'
@@ -51,11 +60,11 @@ export interface FilterTextFieldClasses {
 }
 
 export interface FilterTextFieldStyles {
-  label?: React.CSSProperties
-  textfield?: React.CSSProperties
-  input?: React.CSSProperties
-  clearIcon?: React.CSSProperties
-  searchIcon?: React.CSSProperties
+  label?: CSSProperties
+  textfield?: CSSProperties
+  input?: CSSProperties
+  clearIcon?: CSSProperties
+  searchIcon?: CSSProperties
 }
 
 export interface FilterTextFieldBasicProps extends BasicProps {
@@ -110,7 +119,7 @@ export interface FilterTextFieldBasicProps extends BasicProps {
   /**
    * The icon of the input
    */
-  inputIcon?: React.ReactNode
+  inputIcon?: ReactNode
 
   /**
    * The event called when the value of the input is removed
@@ -148,8 +157,8 @@ export type FilterTextFieldProps = MergeMuiElementProps<
   FilterTextFieldBasicProps
 >
 
-export const FilterTextField = React.forwardRef(
-  (props: FilterTextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const FilterTextField = forwardRef(
+  (props: FilterTextFieldProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       className,
       error = false,
@@ -183,13 +192,13 @@ export const FilterTextField = React.forwardRef(
     })
 
     const onChangeMemoized = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
         onChange && onChange(e.target.value),
       [onChange]
     )
 
     const upHandler = useCallback(
-      (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
           event.currentTarget.blur()
           onSearch && onSearch()

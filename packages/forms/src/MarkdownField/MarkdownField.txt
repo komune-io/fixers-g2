@@ -1,6 +1,5 @@
 import { MarkdownViewer } from './MarkdownViewer'
 import { MarkdownEditor, MarkdownEditorProps } from './MarkdownEditor'
-import React from 'react'
 
 export interface MarkdownFieldProps extends MarkdownEditorProps {
   readOnly?: boolean

@@ -13,7 +13,7 @@ import {
   MergeMuiElementProps,
   useTheme as useG2Theme
 } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { CSSProperties, ReactNode, useMemo, SyntheticEvent } from 'react'
 
 export type HeaderTab = {
   key: string
@@ -34,11 +34,11 @@ interface HeaderClasses {
 }
 
 interface HeaderStyles {
-  contentContainer?: React.CSSProperties
-  lineContainer?: React.CSSProperties
-  leftPartContainer?: React.CSSProperties
-  rightPartContainer?: React.CSSProperties
-  tabs?: React.CSSProperties
+  contentContainer?: CSSProperties
+  lineContainer?: CSSProperties
+  leftPartContainer?: CSSProperties
+  rightPartContainer?: CSSProperties
+  tabs?: CSSProperties
 }
 
 export interface HeaderBasicProps extends BasicProps {
@@ -50,7 +50,7 @@ export interface HeaderBasicProps extends BasicProps {
   /**
    * The content of the header freely displayed.
    */
-  freeContent?: React.ReactNode
+  freeContent?: ReactNode
   /**
    * Provide this props if you want to have tabs in the header. It will disable the bottom padding and put the tabs instead.
    * @default []
@@ -63,10 +63,7 @@ export interface HeaderBasicProps extends BasicProps {
   /**
    * The event called when the tab changes
    */
-  onTabChange?: (
-    event: React.SyntheticEvent<Element, Event>,
-    value: any
-  ) => void
+  onTabChange?: (event: SyntheticEvent<Element, Event>, value: any) => void
   /**
    * Indicates whether or not to display the divider at the bottom of the header.
    * @true

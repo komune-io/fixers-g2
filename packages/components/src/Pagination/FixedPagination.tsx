@@ -1,6 +1,6 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
-import { useRef } from 'react'
-import React, { useCallback, useMemo } from 'react'
+import { ReactNode, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pagination } from './Pagination'
 
@@ -19,8 +19,8 @@ export type FixedPaginationProps = {
   pagination: OffsetPagination
   onOffsetChange?: (newPage: OffsetPagination) => void
   isLoading?: boolean
-  leftElement?: React.ReactNode
-  middleElement?: React.ReactNode
+  leftElement?: ReactNode
+  middleElement?: ReactNode
 }
 
 export const FixedPagination = (props: FixedPaginationProps) => {

@@ -1,13 +1,21 @@
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { ClickAwayListener, Popper, PopperProps } from '@mui/material'
-import React, { forwardRef, useCallback, useMemo, useState } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState
+} from 'react'
 import { CloseRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   popper: {
     borderRadius: theme.borderRadius,
     background: 'white',
@@ -95,15 +103,15 @@ interface PopoverClasses {
 }
 
 interface PopoverStyles {
-  closeIcon?: React.CSSProperties
-  arrow?: React.CSSProperties
+  closeIcon?: CSSProperties
+  arrow?: CSSProperties
 }
 
 export interface PopoverBasicProps extends BasicProps {
   /**
    * The children to be displayed in the popper
    */
-  children: React.ReactNode
+  children: ReactNode
   /**
    * Define ifthe popper is open or not
    *
@@ -134,7 +142,7 @@ export type PopoverProps = MergeMuiElementProps<PopperProps, PopoverBasicProps>
 
 const PopoverBase = (
   props: PopoverProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     children,
@@ -157,7 +165,10 @@ const PopoverBase = (
     }
   }, [closeOnClickAway, onClose, open])
 
-  const setArrowRef = useCallback((ref) => setArrow(ref), [])
+  const setArrowRef = useCallback(
+    (ref: HTMLDivElement | null) => setArrow(ref || undefined),
+    []
+  )
 
   const modifiers = useMemo(
     () => [

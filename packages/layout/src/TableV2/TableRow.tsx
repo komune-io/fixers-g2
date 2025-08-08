@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { ElementType, Fragment } from 'react'
 import { TableBaseProps } from './TableBase'
 import { useSortable } from '@dnd-kit/sortable'
 import { Row, flexRender } from '@tanstack/react-table'
@@ -16,8 +16,8 @@ import { Link } from 'react-router-dom'
 
 export interface TableRowProps<Data extends {}> extends TableBaseProps<Data> {
   row: Row<Data>
-  tableRowComponent: React.ElementType
-  tableCellComponent: React.ElementType<TableCellBaseProps>
+  tableRowComponent: ElementType
+  tableCellComponent: ElementType<TableCellBaseProps>
 }
 
 export const TableRow = <Data extends {}>(props: TableRowProps<Data>) => {

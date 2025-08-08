@@ -1,6 +1,5 @@
 {
   "name": "@komune-io/g2-layout",
-  "version": "0.5.0-alpha",
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune",
   "license": "Apache-2.0",
@@ -14,40 +13,42 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "publish:npm": "npm publish --access public"
+    "build": "vite build",
+    "lint": "eslint .",
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@komune-io/g2-documentation": "0.5.0-alpha",
-    "@types/react": "^18.0.28"
+    "@komune-io/g2-documentation": "workspace:*",
+    "@mantine/core": "catalog:ui-components",
+    "@mui/icons-material": "catalog:",
+    "@types/ramda": "catalog:dev-tools",
+    "@types/react": "catalog:dev-tools",
+    "@types/react-redux": "catalog:dev-tools",
+    "@types/react-table": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha",
-    "@komune-io/g2-forms": "0.5.0-alpha",
-    "@komune-io/g2-notifications": "0.5.0-alpha",
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mui/icons-material": "^5.15.14",
-    "@tanstack/react-table": "^8.15.0",
-    "@types/react-table": "^7.7.12",
-    "react-i18next": "^14.1.0",
-    "react-router-dom": "^6.22.3",
-    "react-table": "^7.8.0",
-    "@dnd-kit/core": "^6.1.0",
-    "@dnd-kit/modifiers": "^7.0.0",
-    "@dnd-kit/sortable": "^8.0.0",
-    "@dnd-kit/utilities": "^3.2.2"
+    "@dnd-kit/core": "catalog:ui-components",
+    "@dnd-kit/modifiers": "catalog:ui-components",
+    "@dnd-kit/sortable": "catalog:ui-components",
+    "@dnd-kit/utilities": "catalog:ui-components",
+    "@komune-io/g2-components": "workspace:*",
+    "@komune-io/g2-forms": "workspace:*",
+    "@komune-io/g2-notifications": "workspace:*",
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "@tanstack/react-table": "catalog:ui-components",
+    "clsx": "catalog:utilities",
+    "i18next": "catalog:",
+    "ramda": "catalog:utilities",
+    "react-i18next": "catalog:",
+    "react-router-dom": "catalog:",
+    "react-table": "catalog:ui-components"
   },
   "files": [
     "dist"

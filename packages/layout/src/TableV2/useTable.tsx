@@ -10,14 +10,14 @@ import {
   RowModel,
   Row
 } from '@tanstack/react-table'
-import React, { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 import { Arrow } from '../icons'
 import { useSortable } from '@dnd-kit/sortable'
 import { DragIndicator } from '@mui/icons-material'
 
 export type ColumnBase = {
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
   sortable?: boolean
 }
 

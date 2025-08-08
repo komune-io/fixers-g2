@@ -1,6 +1,5 @@
-import React from 'react'
 import { FilterButton, FilterButtonBasicProps } from './FilterButton'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 
 import { Box } from '@mui/material'
 
@@ -14,12 +13,15 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=2024%3A2001'
     }
   }
-} as Meta
+} as Meta<typeof FilterButton>
 
-export const FilterButtonStory: StoryFn<FilterButtonBasicProps> = (
-  args: FilterButtonBasicProps
-) => {
-  return <FilterButton {...args}>Filtrer</FilterButton>
+export const FilterButtonStory: StoryObj<FilterButtonBasicProps> = {
+  render: (args: FilterButtonBasicProps) => {
+    return <FilterButton {...args}>Filtrer</FilterButton>
+  },
+
+  args: {},
+  name: 'FilterButton'
 }
 
 export const FilterButtonVariants: StoryFn = () => {
@@ -50,7 +52,3 @@ export const FilterButtonVariants: StoryFn = () => {
     </Box>
   )
 }
-
-FilterButtonStory.args = {}
-
-FilterButtonStory.storyName = 'FilterButton'

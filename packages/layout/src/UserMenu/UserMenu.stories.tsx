@@ -1,14 +1,13 @@
-import React from 'react'
 import { UserMenu as AruiUserMenu, UserMenuProps } from './UserMenu'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import itemsLogo from '../assets/impactcity-logo-2.png'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { styles, classes } from './docs'
 import { Box, Typography } from '@mui/material'
 import LinkTo from '@storybook/addon-links/react'
@@ -21,7 +20,7 @@ export default {
       page: () => (
         <>
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -54,42 +53,44 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiUserMenu>
 
-export const UserMenu: StoryFn<UserMenuProps> = (args: UserMenuProps) => {
-  return (
-    <div style={{ width: '200px' }}>
-      <AruiUserMenu {...args} />
-    </div>
-  )
-}
-
-UserMenu.args = {
-  currentUser: {
-    givenName: 'John',
-    familyName: 'Doe',
-    role: 'Administrator'
+export const UserMenu: StoryObj<UserMenuProps> = {
+  render: (args: UserMenuProps) => {
+    return (
+      <div style={{ width: '200px' }}>
+        <AruiUserMenu {...args} />
+      </div>
+    )
   },
-  loggedMenu: [
-    {
-      key: 'dashboard',
-      goto: () => {},
-      label: 'dashboard',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'activities',
-      goto: () => {},
-      label: 'activities',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    },
-    {
-      key: 'application',
-      goto: () => {},
-      label: 'application',
-      icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
-    }
-  ]
-}
 
-UserMenu.storyName = 'UserMenu'
+  args: {
+    currentUser: {
+      givenName: 'John',
+      familyName: 'Doe',
+      role: 'Administrator'
+    },
+    loggedMenu: [
+      {
+        key: 'dashboard',
+        goto: () => {},
+        label: 'dashboard',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'activities',
+        goto: () => {},
+        label: 'activities',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      },
+      {
+        key: 'application',
+        goto: () => {},
+        label: 'application',
+        icon: <img style={{ width: '30px', height: '30px' }} src={itemsLogo} />
+      }
+    ]
+  },
+
+  name: 'UserMenu'
+}

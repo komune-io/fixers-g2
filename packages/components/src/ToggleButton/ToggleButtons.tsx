@@ -6,11 +6,18 @@ import {
   ToggleButtonGroupProps
 } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  FC,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useMemo
+} from 'react'
 
 export type ToggleOption = {
   key: string | number
-  content: React.ReactNode
+  content: ReactNode
 }
 
 interface ToggleButtonsClasses {
@@ -18,7 +25,7 @@ interface ToggleButtonsClasses {
 }
 
 interface ToggleButtonsStyles {
-  button?: React.CSSProperties
+  button?: CSSProperties
 }
 
 export interface ToggleButtonsBasicProps extends BasicProps {
@@ -38,14 +45,14 @@ export interface ToggleButtonsBasicProps extends BasicProps {
    * The event trigered when the toggle state changes and the prop `exclusive` is set to true
    */
   onChangeExclusive?: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: MouseEvent<HTMLElement>,
     key: string | number
   ) => void
   /**
    * The event trigered when the toggle state changes and the prop `exclusive` is set to false
    */
   onChangeNonExclusive?: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: MouseEvent<HTMLElement>,
     keys: (string | number)[]
   ) => void
   /**
@@ -63,59 +70,61 @@ export type ToggleButtonsProps = MergeMuiElementProps<
   ToggleButtonsBasicProps
 >
 
-export const ToggleButtons = styled((props: ToggleButtonsProps) => {
-  const {
-    onChangeExclusive,
-    onChangeNonExclusive,
-    options,
-    exclusive,
-    className,
-    value,
-    values = [],
-    classes,
-    styles,
-    ...other
-  } = props
+export const ToggleButtons: FC<ToggleButtonsProps> = styled(
+  (props: ToggleButtonsProps) => {
+    const {
+      onChangeExclusive,
+      onChangeNonExclusive,
+      options,
+      exclusive,
+      className,
+      value,
+      values = [],
+      classes,
+      styles,
+      ...other
+    } = props
 
-  const onChangeMemoized = useCallback(
-    (event: React.MouseEvent<HTMLElement, MouseEvent>, value: any) => {
-      if (exclusive) {
-        onChangeExclusive && onChangeExclusive(event, value)
-      } else {
-        onChangeNonExclusive && onChangeNonExclusive(event, value)
-      }
-    },
-    [exclusive, onChangeExclusive, onChangeNonExclusive]
-  )
+    const onChangeMemoized = useCallback(
+      (event: MouseEvent<HTMLElement>, value: any) => {
+        if (exclusive) {
+          onChangeExclusive && onChangeExclusive(event, value)
+        } else {
+          onChangeNonExclusive && onChangeNonExclusive(event, value)
+        }
+      },
+      [exclusive, onChangeExclusive, onChangeNonExclusive]
+    )
 
-  const buttons = useMemo(
-    () =>
-      options.map((option) => (
-        <ToggleButton
-          className={cx('AruiToggleButtons-button', classes?.button)}
-          style={styles?.button}
-          key={option.key}
-          value={option.key}
-        >
-          {option.content}
-        </ToggleButton>
-      )),
-    [options, classes?.button, styles?.button]
-  )
+    const buttons = useMemo(
+      () =>
+        options.map((option) => (
+          <ToggleButton
+            className={cx('AruiToggleButtons-button', classes?.button)}
+            style={styles?.button}
+            key={option.key}
+            value={option.key}
+          >
+            {option.content}
+          </ToggleButton>
+        )),
+      [options, classes?.button, styles?.button]
+    )
 
-  return (
-    <ToggleButtonGroup
-      color='primary'
-      className={cx('AruiToggleButtons-root', className)}
-      onChange={onChangeMemoized}
-      value={exclusive ? value : values}
-      exclusive={exclusive}
-      {...other}
-    >
-      {buttons}
-    </ToggleButtonGroup>
-  )
-})(({ theme }) => ({
+    return (
+      <ToggleButtonGroup
+        color='primary'
+        className={cx('AruiToggleButtons-root', className)}
+        onChange={onChangeMemoized}
+        value={exclusive ? value : values}
+        exclusive={exclusive}
+        {...other}
+      >
+        {buttons}
+      </ToggleButtonGroup>
+    )
+  }
+)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
     border: `2px solid ${theme.palette.primary.main}`,
     color: theme.palette.primary.main,

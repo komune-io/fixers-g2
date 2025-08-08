@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Timeline as AruiTimeline, TimelineBasicProps } from './Timeline'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Paper, Typography } from '@mui/material'
 import { Fastfood } from '@mui/icons-material'
 import { styles, classes, TimeLineCell } from './types'
@@ -42,9 +42,12 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiTimeline>
 
-const now = Date.now()
+// Fixed date for consistent story rendering
+const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+const now = fixedDate.getTime()
+
 const lines = [
   {
     id: 'cell-1',
@@ -132,12 +135,15 @@ const Template2: StoryFn = () => {
   return <AruiTimeline lines={lines} passedTimeLine></AruiTimeline>
 }
 
-export const Timeline = Template.bind({})
+export const Timeline = {
+  render: Template,
 
-export const passedTimeLine = Template2.bind({})
-
-Timeline.args = {
-  lines: lines
+  args: {
+    lines: lines
+  }
 }
 
-passedTimeLine.storyName = 'passed timeline'
+export const passedTimeLine = {
+  render: Template2,
+  name: 'passed timeline'
+}

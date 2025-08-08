@@ -1,4 +1,10 @@
-import React, { forwardRef, useMemo } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  ReactNode,
+  useMemo
+} from 'react'
 import {
   Box,
   Snackbar as MuiSnackbar,
@@ -7,7 +13,7 @@ import {
 } from '@mui/material'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import {
@@ -17,7 +23,7 @@ import {
   ReportProblemOutlined
 } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   root: {
     maxWidth: '600px',
     width: 'fit-content'
@@ -98,10 +104,10 @@ interface AlertClasses {
 }
 
 interface AlertStyles {
-  contentContainer?: React.CSSProperties
-  severityIndicator?: React.CSSProperties
-  severityIcon?: React.CSSProperties
-  closeIcon?: React.CSSProperties
+  contentContainer?: CSSProperties
+  severityIndicator?: CSSProperties
+  severityIcon?: CSSProperties
+  closeIcon?: CSSProperties
 }
 
 export type AlertSeverity = 'info' | 'warning' | 'success' | 'error'
@@ -110,11 +116,11 @@ export interface AlertBasicProps extends BasicProps {
   /**
    * The content displayed in the alert. It overrides the prop `message` if provided
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * Use this props if you only want to pass a string to the alert
    */
-  message?: React.ReactNode
+  message?: ReactNode
   /**
    * The event called when the user wants to close the alert
    */
@@ -155,7 +161,7 @@ export interface AlertBasicProps extends BasicProps {
 
 export type AlertProps = MergeMuiElementProps<MuiSnackbarProps, AlertBasicProps>
 
-const AlertBase = (props: AlertProps, ref: React.ForwardedRef<HTMLElement>) => {
+const AlertBase = (props: AlertProps, ref: ForwardedRef<HTMLElement>) => {
   const {
     children,
     onClose,

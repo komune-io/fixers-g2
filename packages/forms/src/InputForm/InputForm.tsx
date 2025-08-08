@@ -6,7 +6,14 @@ import {
   Theme,
   Typography
 } from '@mui/material'
-import React, { useMemo } from 'react'
+import {
+  CSSProperties,
+  ElementType,
+  ForwardedRef,
+  forwardRef,
+  ReactNode,
+  useMemo
+} from 'react'
 import {
   Select,
   SelectProps,
@@ -52,8 +59,8 @@ interface InputFormClasses {
 }
 
 interface InputFormStyles {
-  label?: React.CSSProperties
-  input?: React.CSSProperties
+  label?: CSSProperties
+  input?: CSSProperties
 }
 
 export type InputFormTypes =
@@ -69,15 +76,15 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
   /**
    * The label of the input
    */
-  label?: React.ReactNode
+  label?: ReactNode
   /**
    * The description of the input
    */
-  description?: React.ReactNode
+  description?: ReactNode
   /**
    * The caption of the input
    */
-  caption?: React.ReactNode
+  caption?: ReactNode
   /**
    * If true the input will be disabled and forced on type 'textfield'
    * @default false
@@ -107,7 +114,7 @@ export interface InputFormBasicProps<T extends InputFormTypes = 'textField'>
    * The element rendered in readOnly if the `readOnlyType` is `"customElement" | "customContainer"` your element need to use the prop
    * `value: string` and `valueKey?: SmartKey` if `readOnlyType="customElement"` and also `values: Option[]` if `readOnlyType="customContainer"`
    */
-  readOnlyElement?: React.ElementType
+  readOnlyElement?: ElementType
   /**
    * The limit of the chips displayed in the input when `readOnlyType` is `"chip"`.
    */
@@ -194,7 +201,7 @@ interface InputFormComponent {
     props: {
       inputType: T
     } & InputFormComponentProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>
+    ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element
 }
 
@@ -211,8 +218,8 @@ export type InputFormProps = InputFormBasicProps &
   }
 
 //@ts-ignore
-export const InputForm: InputFormComponent = React.forwardRef(
-  (props: Partial<InputFormProps>, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const InputForm: InputFormComponent = forwardRef(
+  (props: Partial<InputFormProps>, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       inputType = 'textField',
       readOnly = false,

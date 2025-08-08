@@ -1,6 +1,6 @@
 import { Box, Paper, PaperProps, useTheme } from '@mui/material'
 import { Actions, ActionsProps } from '@komune-io/g2-components'
-import React, { useMemo } from 'react'
+import { CSSProperties, ReactNode, useMemo } from 'react'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Header, HeaderProps } from '../Header'
 import { cx } from '@emotion/css'
@@ -11,15 +11,15 @@ interface SectionClasses {
 }
 
 interface SectionStyles {
-  overflowWrapper?: React.CSSProperties
-  contentContainer?: React.CSSProperties
+  overflowWrapper?: CSSProperties
+  contentContainer?: CSSProperties
 }
 
 export interface SectionBasicProps extends BasicProps {
   /**
    * the page content
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * the props passed to the header
    */

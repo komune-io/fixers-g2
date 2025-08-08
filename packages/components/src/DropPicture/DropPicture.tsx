@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useCallback, forwardRef } from 'react'
+import {
+  useState,
+  useEffect,
+  useCallback,
+  forwardRef,
+  ForwardedRef,
+  CSSProperties,
+  KeyboardEvent
+} from 'react'
 import { FileRejection, DropzoneProps, useDropzone } from 'react-dropzone'
 import { Paper, Typography, Skeleton } from '@mui/material'
 import { Clear, AddPhotoAlternate } from '@mui/icons-material'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = makeG2STyles<{ height: string }>()((theme, { height }) => ({
+const useStyles = makeG2Styles<{ height: string }>()((theme, { height }) => ({
   root: {
     position: 'relative',
     width: '100%',
@@ -92,12 +100,12 @@ interface DropPictureClasses {
 }
 
 interface DropPictureStyles {
-  image?: React.CSSProperties
-  tooltip?: React.CSSProperties
-  dropZone?: React.CSSProperties
-  addPictureIcon?: React.CSSProperties
-  errorMessage?: React.CSSProperties
-  clearIcon?: React.CSSProperties
+  image?: CSSProperties
+  tooltip?: CSSProperties
+  dropZone?: CSSProperties
+  addPictureIcon?: CSSProperties
+  errorMessage?: CSSProperties
+  clearIcon?: CSSProperties
 }
 
 export interface DropPictureBasicProps extends BasicProps {
@@ -164,7 +172,7 @@ export type DropPictureProps = MergeMuiElementProps<
 
 const DropPictureBase = (
   props: DropPictureProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     onPictureDropped,
@@ -205,7 +213,7 @@ const DropPictureBase = (
   )
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Enter' && onRemovePicture) {
         onRemovePicture()
       }

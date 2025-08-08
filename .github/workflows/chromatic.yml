@@ -1,0 +1,36 @@
+name: Chromatic Visual Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to test (leave empty for current branch)'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.branch || github.ref }}
+
+      - name: Initialize Node.js
+        uses: komune-io/fixers-gradle/.github/actions/nodejs@main
+        with:
+          base-dir: '' # or your project path
+
+      - name: Build Storybook
+        run: npm run build-storybook
+        working-directory: . # or your project path
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: 'build-storybook'

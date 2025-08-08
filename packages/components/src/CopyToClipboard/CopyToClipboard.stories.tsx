@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   CopyToClipboard as AruiCopyToClipboard,
   CopyToClipboardBasicProps
 } from './CopyToClipboard'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { styles, classes } from './docs'
 
 export default {
@@ -27,16 +26,16 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiCopyToClipboard>
 
-export const CopyToClipboard: StoryFn<CopyToClipboardBasicProps> = (
-  args: CopyToClipboardBasicProps
-) => {
-  return <AruiCopyToClipboard {...args} />
+export const CopyToClipboard: StoryObj<CopyToClipboardBasicProps> = {
+  render: (args: CopyToClipboardBasicProps) => {
+    return <AruiCopyToClipboard {...args} />
+  },
+
+  args: {
+    value: 'example'
+  },
+
+  name: 'CopyToClipboard'
 }
-
-CopyToClipboard.args = {
-  value: 'example'
-}
-
-CopyToClipboard.storyName = 'CopyToClipboard'

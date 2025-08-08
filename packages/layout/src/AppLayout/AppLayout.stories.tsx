@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AppLayout as AruiAppLayout, AppLayoutProps } from './AppLayout'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Link, Typography } from '@mui/material'
-import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import { styles, classes, StyleProps } from './types'
 import LinkTo from '@storybook/addon-links/react'
 
@@ -13,7 +13,7 @@ export default {
     docs: {
       page: () => (
         <>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -82,7 +82,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiAppLayout>
 
 const Template: StoryFn<AppLayoutProps> = (args: AppLayoutProps) => {
   const [open, setOpen] = useState(true)
@@ -90,22 +90,25 @@ const Template: StoryFn<AppLayoutProps> = (args: AppLayoutProps) => {
   return <AruiAppLayout {...args} open={open} onToggle={() => setOpen(!open)} />
 }
 
-export const AppLayout = Template.bind({})
-AppLayout.args = {
-  appBarContent: 'AppBar content',
-  drawerContent: 'Drawer content',
-  drawerProps: {
-    className: 'test'
-  },
-  appBar: {
-    height: 150
-  },
-  menu: {
-    width: 250
-  },
-  main: {
-    margin: '24px'
-  }
-}
+export const AppLayout = {
+  render: Template,
 
-AppLayout.storyName = 'AppLayout'
+  args: {
+    appBarContent: 'AppBar content',
+    drawerContent: 'Drawer content',
+    drawerProps: {
+      className: 'test'
+    },
+    appBar: {
+      height: 150
+    },
+    menu: {
+      width: 250
+    },
+    main: {
+      margin: '24px'
+    }
+  },
+
+  name: 'AppLayout'
+}

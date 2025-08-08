@@ -1,5 +1,4 @@
-import React from 'react'
-import { ReactComponent } from './IndeterminateIcon.svg'
+import ReactComponent from './IndeterminateIcon.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
 export const IndeterminateIcon = (props: SvgIconProps) => {

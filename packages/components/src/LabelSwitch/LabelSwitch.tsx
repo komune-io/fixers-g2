@@ -1,9 +1,16 @@
 import { Tab, Tabs, TabsProps } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2STyles } from '@komune-io/g2-themes'
-import React, { forwardRef, useCallback, useMemo } from 'react'
+import { makeG2Styles } from '@komune-io/g2-themes'
+import {
+  ChangeEvent,
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useMemo
+} from 'react'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   indicator: {
     height: '100%',
     borderRadius: '20px',
@@ -31,8 +38,8 @@ interface LabelSwitchClasses {
 }
 
 interface LabelSwitchStyles {
-  indicator?: React.CSSProperties
-  tab?: React.CSSProperties
+  indicator?: CSSProperties
+  tab?: CSSProperties
 }
 
 export interface Label {
@@ -71,7 +78,7 @@ export type LabelSwitchProps = MergeMuiElementProps<
 
 const LabelSwitchBase = (
   props: LabelSwitchProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
   const {
     labels,
@@ -88,7 +95,7 @@ const LabelSwitchBase = (
   const defaultStyles = useStyles()
 
   const handleChange = useCallback(
-    (_: React.ChangeEvent<{}>, newValue: string) => {
+    (_: ChangeEvent<{}>, newValue: string) => {
       onLabelChange && onLabelChange(newValue)
     },
     [onLabelChange]

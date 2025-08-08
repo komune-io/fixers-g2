@@ -1,6 +1,6 @@
 import { Link, LinkProps } from 'react-router-dom'
 import { Button, ButtonProps } from './Button'
-import React, { ForwardedRef, forwardRef } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 
 export interface LinkButtonProps
   extends Omit<ButtonProps, 'component, componentProps'> {

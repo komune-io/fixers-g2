@@ -121,7 +121,7 @@ export const extractNumberOrBooleanFromString = <
 ): T extends string[]
   ? (boolean | number | string)[]
   : boolean | number | string => {
-  const extract = (str): boolean | number | string => {
+  const extract = (str: string): boolean | number | string => {
     if (str === 'true') return true
     if (str === 'false') return false
     const num = Number(str)

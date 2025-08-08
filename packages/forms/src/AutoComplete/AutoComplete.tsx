@@ -1,4 +1,12 @@
 import {
+  ForwardedRef,
+  forwardRef,
+  HTMLAttributes,
+  SyntheticEvent,
+  useCallback,
+  useMemo
+} from 'react'
+import {
   AutocompleteRenderOptionState,
   createFilterOptions,
   FilterOptionsState,
@@ -11,17 +19,16 @@ import {
   AutocompleteGetTagProps,
   AutocompleteRenderInputParams
 } from '@mui/material'
-import React, { forwardRef, useCallback, useMemo } from 'react'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 import { TextField, TextFieldProps } from '../TextField'
 import { CheckBox } from '../CheckBox'
 import { Chip, ChipProps } from '@komune-io/g2-components'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   list: {
     padding: '0px'
   }
@@ -125,7 +132,7 @@ export type AutoCompleteProps<T = any> = MergeMuiElementProps<
   Omit<MuiAutocompleteProps<T, undefined, undefined, undefined>, 'renderInput'>,
   AutoCompleteBasicProps<T>
 >
-const defaultEmpty = []
+const defaultEmpty: any[] = []
 const defaultFilterOptions = createFilterOptions()
 export const defaultGetOptionLabel =
   (options: any[], hasKey: boolean) => (option: any) => {
@@ -133,12 +140,12 @@ export const defaultGetOptionLabel =
       const founded = options.find((el) => el.key === option)?.label
       if (founded) return founded
     }
-    return typeof option === 'string' ? option : option.label ?? ''
+    return typeof option === 'string' ? option : (option.label ?? '')
   }
 
 const AutoCompleteBase = function <T>(
   props: AutoCompleteProps<T>,
-  ref: React.ForwardedRef<HTMLElement>
+  ref: ForwardedRef<HTMLElement>
 ) {
   const {
     className,
@@ -180,7 +187,7 @@ const AutoCompleteBase = function <T>(
   const defaultStyles = useStyles()
 
   const onChangeMemoized = useCallback(
-    (_: React.SyntheticEvent<Element, Event>, value: T | T[] | null) => {
+    (_: SyntheticEvent<Element, Event>, value: T | T[] | null) => {
       if (Array.isArray(value) && onChangeValues) {
         //@ts-ignore
         if (hasKey && !getOptionLabel && !returnFullObject) {
@@ -237,7 +244,7 @@ const AutoCompleteBase = function <T>(
 
   const renderOption = useCallback(
     (
-      props: React.HTMLAttributes<HTMLLIElement>,
+      props: HTMLAttributes<HTMLLIElement>,
       option: T,
       { selected }: AutocompleteRenderOptionState
     ) => {

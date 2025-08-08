@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { PopUp as AruiPopUp, PopUpBasicProps } from './PopUp'
 import {
   ConfirmationPopUp as AruiConfirmationPopUp,
   ConfirmationPopUpBasicProps
 } from './ConfirmationPopUp'
-import { Meta, StoryFn } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { ArgsTable, Title, Primary, Stories } from '@storybook/addon-docs'
+import { StoryObj, Meta } from '@storybook/react-vite'
+import { action } from 'storybook/actions'
+import { ArgTypes, Title, Primary, Stories } from '@storybook/addon-docs/blocks'
 import { styles, classes, Action } from './types'
 import { Box, Typography } from '@mui/material'
 import imageHolder from '../assets/imageHolder.jpg'
@@ -23,11 +23,9 @@ export default {
         <>
           <Title>PopUp</Title>
           <Primary />
-          <ArgsTable components={{ AruiPopUp: AruiPopUp }} />
+          <ArgTypes of={AruiPopUp} />
           <Stories />
-          <ArgsTable
-            components={{ ConfirmationPopUp: AruiConfirmationPopUp }}
-          />
+          <ArgTypes of={AruiConfirmationPopUp} />
         </>
       )
     },
@@ -36,161 +34,166 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1014%3A390'
     }
   }
-} as Meta
+} as Meta<typeof AruiPopUp>
 
-export const PopUp: StoryFn<PopUpBasicProps> = (args: PopUpBasicProps) => {
-  const [open, setOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setOpen(!open)}>Open the popup</Button>
-      <AruiPopUp {...args} open={open} onClose={() => setOpen(!open)} />
-    </>
-  )
-}
+export const PopUp: StoryObj<PopUpBasicProps> = {
+  render: (args: PopUpBasicProps) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <>
+        <Button onClick={() => setOpen(!open)}>Open the popup</Button>
+        <AruiPopUp {...args} open={open} onClose={() => setOpen(!open)} />
+      </>
+    )
+  },
 
-export const alternativePopUp: StoryFn = () => {
-  const [open, setOpen] = useState(false)
-  const actions: PopUpAtion[] = [
-    {
-      label: 'continuer',
-      key: 'continuPopupButton',
-      onClick: () => setOpen(!open)
-    },
-    {
-      label: 'annuler',
-      key: 'cancelPopupButton',
-      onClick: () => setOpen(!open),
-      variant: 'text'
-    }
-  ]
-  return (
-    <>
-      <Button onClick={() => setOpen(!open)}>Open the popup</Button>
-      <AruiPopUp
-        open={open}
-        onClose={() => setOpen(!open)}
-        styles={{ actions: { flexDirection: 'column' } }}
-        actions={actions}
-      >
-        <Box display='flex' justifyContent='center'>
-          <img
-            src={imageHolder}
-            alt='image holder'
-            style={{ marginBottom: '10px' }}
-          />
-        </Box>
-        <Typography
-          variant='h4'
-          style={{ marginBottom: '15px' }}
-          align='center'
-        >
+  args: {
+    children: (
+      <>
+        <Typography variant='h4' style={{ marginBottom: '15px' }}>
           Popup title
         </Typography>
-        <Typography variant='body1' align='center'>
+        <Typography variant='body1'>
           This is a placeholer text just to show the default size and weight for
           body text typography in a popup.
         </Typography>
-      </AruiPopUp>
-    </>
-  )
-}
+      </>
+    ),
+    actions: [
+      {
+        label: 'annuler',
+        key: 'cancelPopupButton',
+        onClick: action('clicked on annuler'),
+        variant: 'text'
+      },
+      {
+        label: 'continuer',
+        key: 'continuPopupButton',
+        onClick: action('clicked on continuer')
+      }
+    ]
+  },
 
-export const ConfirmationPopUp: StoryFn<ConfirmationPopUpBasicProps> = (
-  args: ConfirmationPopUpBasicProps
-) => {
-  const [open, setOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setOpen(!open)}>Open the popup</Button>
-      <AruiConfirmationPopUp
-        {...args}
-        open={open}
-        onClose={() => setOpen(!open)}
-      />
-    </>
-  )
-}
-
-export const ConfirmationDeletionPopUp: StoryFn<ConfirmationPopUpBasicProps> = (
-  args: ConfirmationPopUpBasicProps
-) => {
-  const [open, setOpen] = useState(false)
-  return (
-    <>
-      <Button onClick={() => setOpen(!open)}>Open the popup</Button>
-      <AruiConfirmationPopUp
-        {...args}
-        open={open}
-        variant='deletion'
-        onClose={() => setOpen(!open)}
-      />
-    </>
-  )
-}
-
-PopUp.args = {
-  children: (
-    <>
-      <Typography variant='h4' style={{ marginBottom: '15px' }}>
-        Popup title
-      </Typography>
-      <Typography variant='body1'>
-        This is a placeholer text just to show the default size and weight for
-        body text typography in a popup.
-      </Typography>
-    </>
-  ),
-  actions: [
-    {
-      label: 'annuler',
-      key: 'cancelPopupButton',
-      onClick: action('clicked on annuler'),
-      variant: 'text'
+  argTypes: {
+    children: {
+      control: null
     },
-    {
-      label: 'continuer',
-      key: 'continuPopupButton',
-      onClick: action('clicked on continuer')
+    actions: {
+      table: {
+        type: {
+          summary: 'Action[]',
+          detail: Action
+        }
+      }
+    },
+    classes: {
+      table: {
+        type: {
+          summary: 'PopUpClasses',
+          detail: classes
+        }
+      }
+    },
+    styles: {
+      table: {
+        type: {
+          summary: 'PopUpStyles',
+          detail: styles
+        }
+      }
     }
-  ]
+  },
+
+  name: 'PopUp'
 }
 
-PopUp.argTypes = {
-  children: {
-    control: null
-  },
-  actions: {
-    table: {
-      type: {
-        summary: 'Action[]',
-        detail: Action
+export const alternativePopUp: StoryObj = {
+  render: () => {
+    const [open, setOpen] = useState(false)
+    const actions: PopUpAtion[] = [
+      {
+        label: 'continuer',
+        key: 'continuPopupButton',
+        onClick: () => setOpen(!open)
+      },
+      {
+        label: 'annuler',
+        key: 'cancelPopupButton',
+        onClick: () => setOpen(!open),
+        variant: 'text'
       }
-    }
+    ]
+    return (
+      <>
+        <Button onClick={() => setOpen(!open)}>Open the popup</Button>
+        <AruiPopUp
+          open={open}
+          onClose={() => setOpen(!open)}
+          styles={{ actions: { flexDirection: 'column' } }}
+          actions={actions}
+        >
+          <Box display='flex' justifyContent='center'>
+            <img
+              src={imageHolder}
+              alt='image holder'
+              style={{ marginBottom: '10px' }}
+            />
+          </Box>
+          <Typography
+            variant='h4'
+            style={{ marginBottom: '15px' }}
+            align='center'
+          >
+            Popup title
+          </Typography>
+          <Typography variant='body1' align='center'>
+            This is a placeholer text just to show the default size and weight
+            for body text typography in a popup.
+          </Typography>
+        </AruiPopUp>
+      </>
+    )
   },
-  classes: {
-    table: {
-      type: {
-        summary: 'PopUpClasses',
-        detail: classes
-      }
-    }
+
+  name: 'An alternative popup'
+}
+
+export const ConfirmationPopUp: StoryObj<ConfirmationPopUpBasicProps> = {
+  render: (args: ConfirmationPopUpBasicProps) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <>
+        <Button onClick={() => setOpen(!open)}>Open the popup</Button>
+        <AruiConfirmationPopUp
+          {...args}
+          open={open}
+          onClose={() => setOpen(!open)}
+        />
+      </>
+    )
   },
-  styles: {
-    table: {
-      type: {
-        summary: 'PopUpStyles',
-        detail: styles
-      }
+
+  args: {
+    strongConfirmation: true
+  },
+
+  name: 'ConfirmationPopUp'
+}
+
+export const ConfirmationDeletionPopUp: StoryObj<ConfirmationPopUpBasicProps> =
+  {
+    render: (args: ConfirmationPopUpBasicProps) => {
+      const [open, setOpen] = useState(false)
+      return (
+        <>
+          <Button onClick={() => setOpen(!open)}>Open the popup</Button>
+          <AruiConfirmationPopUp
+            {...args}
+            open={open}
+            variant='deletion'
+            onClose={() => setOpen(!open)}
+          />
+        </>
+      )
     }
   }
-}
-
-ConfirmationPopUp.args = {
-  strongConfirmation: true
-}
-
-PopUp.storyName = 'PopUp'
-
-alternativePopUp.storyName = 'An alternative popup'
-
-ConfirmationPopUp.storyName = 'ConfirmationPopUp'

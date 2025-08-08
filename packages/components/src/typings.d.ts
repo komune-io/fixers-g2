@@ -1,3 +1,5 @@
+import { FunctionComponent, SVGAttributes } from 'react'
+
 /**
  * Default CSS definition for typescript,
  * will be overridden with file-specific definitions by rollup
@@ -7,8 +9,7 @@ declare module '*.css' {
   export default content
 }
 
-interface SvgrComponent
-  extends React.FunctionComponent<React.SVGAttributes<SVGElement>> {}
+interface SvgrComponent extends FunctionComponent<SVGAttributes<SVGElement>> {}
 
 declare module '*.svg' {
   const svgUrl: string

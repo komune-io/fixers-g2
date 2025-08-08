@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   CodeHighlighter as AruiCodeHighlighter,
   CodeHighlighterProps
 } from './CodeHighlighter'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 const style = `export type darkStyles =
 | 'atomOneDark'
@@ -29,57 +28,57 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiCodeHighlighter>
 
-export const CodeHighlighter: StoryFn<CodeHighlighterProps> = (
-  args: CodeHighlighterProps
-) => <AruiCodeHighlighter {...args} />
+export const CodeHighlighter: StoryObj<CodeHighlighterProps> = {
+  args: {
+    code: `function test(arg: String) {
+      console.log(arg)
+    }`,
+    language: 'typescript',
+    title: 'Example'
+  },
 
-CodeHighlighter.args = {
-  code: `function test(arg: String) {
-    console.log(arg)
-  }`,
-  language: 'typescript',
-  title: 'Example'
+  name: 'CodeHighlighter'
 }
-CodeHighlighter.storyName = 'CodeHighlighter'
 
-export const objectHiglighter: StoryFn = () => (
-  <AruiCodeHighlighter
-    object={{
-      name: 'test',
-      age: 18,
-      do: (arg: string) => {
-        console.log(arg)
+export const objectHiglighter: StoryObj = {
+  render: () => (
+    <AruiCodeHighlighter
+      object={{
+        name: 'test',
+        age: 18,
+        do: (arg: string) => {
+          console.log(arg)
+        },
+        child: {
+          name: 'testChild',
+          age: 5
+        }
+      }}
+    />
+  ),
+
+  name: 'object highlighter'
+}
+
+export const httpDefinition: StoryObj<CodeHighlighterProps> = {
+  args: {
+    object: [
+      {
+        method: 'POST',
+        path: '/fileUpload',
+        url: '#fileUpload'
       },
-      child: {
-        name: 'testChild',
-        age: 5
+      {
+        method: 'DELETE',
+        path: '/fileDelete',
+        url: 'https://komune-io.github.io/fixers-g2'
       }
-    }}
-  />
-)
+    ],
+    language: 'http-definition',
+    title: 'Example'
+  },
 
-objectHiglighter.storyName = 'object highlighter'
-
-export const httpDefinition: StoryFn<CodeHighlighterProps> = (
-  args: CodeHighlighterProps
-) => <AruiCodeHighlighter {...args} />
-
-httpDefinition.args = {
-  object: [
-    {
-      method: 'POST',
-      path: '/fileUpload',
-      url: '#fileUpload'
-    },
-    {
-      method: 'DELETE',
-      path: '/fileDelete',
-      url: 'https://komune-io.github.io/fixers-g2'
-    }
-  ],
-  language: 'http-definition',
-  title: 'Example'
+  name: 'http definition'
 }
-httpDefinition.storyName = 'http definition'

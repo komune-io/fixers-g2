@@ -1,7 +1,6 @@
 import { IconButton, Stack, Typography } from '@mui/material'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { LocalPhoneRounded, MailRounded } from '@mui/icons-material'
-import React from 'react'
 import { stopPropagation } from '../TableCellLink/TableCellLink'
 
 export interface TableCellContactProps {

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
   AutomatedUserTable,
   AutomatedUserTableProps
@@ -11,28 +10,27 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 export default {
   title: 'IM/AutomatedUserTable',
   component: AutomatedUserTable
-} as Meta
+} as Meta<typeof AutomatedUserTable>
 
 const queryClient = new QueryClient()
 
-export const AutomatedUserTableStory: StoryFn<AutomatedUserTableProps> = (
-  args: AutomatedUserTableProps
-) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <KeycloakProvider>
-        <OidcSecure>
-          <Following {...args} />
-        </OidcSecure>
-      </KeycloakProvider>
-    </QueryClientProvider>
-  )
+export const AutomatedUserTableStory: StoryObj<AutomatedUserTableProps> = {
+  render: (args: AutomatedUserTableProps) => {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <KeycloakProvider>
+          <OidcSecure>
+            <Following {...args} />
+          </OidcSecure>
+        </KeycloakProvider>
+      </QueryClientProvider>
+    )
+  },
+
+  args: {},
+  name: 'AutomatedUserTable'
 }
 
 const Following = (args: AutomatedUserTableProps) => {
   return <AutomatedUserTable {...args} />
 }
-
-AutomatedUserTableStory.args = {}
-
-AutomatedUserTableStory.storyName = 'AutomatedUserTable'

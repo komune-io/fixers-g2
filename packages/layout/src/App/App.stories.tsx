@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { App as AruiApp, AppProps } from './App'
-import { Meta, StoryFn } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import { Meta, StoryFn } from '@storybook/react-vite'
+import { action } from 'storybook/actions'
 import {
   AccountCircle,
   Description,
@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material'
 import defaultLogo from '../assets/impactcity-logo-2.png'
 import { Box, Button, Typography } from '@mui/material'
-import { ArgsTable, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs'
+import { ArgTypes, PRIMARY_STORY, Subtitle } from '@storybook/addon-docs/blocks'
 import { styles, classes, StyleProps, MenuItem } from './types'
 import LinkTo from '@storybook/addon-links/react'
 import { AppLogoProps } from '../AppMenu'
@@ -22,7 +22,7 @@ export default {
     docs: {
       page: () => (
         <>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Box display='flex' flexDirection='column'>
             <Typography variant='body2' style={{ marginBottom: '5px' }}>
@@ -85,7 +85,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiApp>
 
 const Template: StoryFn<AppProps> = (args: AppProps) => {
   const [open, setOpen] = useState(true)
@@ -149,56 +149,77 @@ const profileMenu2 = {
   ]
 }
 
-export const App = Template.bind({})
-App.args = {
-  toolsMenuProps: [
-    {
-      menu: profileMenu,
-      display: 'list'
-    },
-    {
-      menu: profileMenu2,
-      display: 'list'
-    }
-  ],
-  menu: [
-    {
-      key: 'dashboard',
-      goto: () => {},
-      label: 'dashboard',
-      icon: <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
-    },
-    {
-      key: 'activities',
-      goto: () => {},
-      label: 'activities',
-      icon: <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
-    },
-    {
-      key: 'application',
-      goto: () => {},
-      label: 'application',
-      icon: <img style={{ width: '30px', height: '30px' }} src={defaultLogo} />
-    }
-  ],
-  title: 'Komune',
-  logo: {
-    src: defaultLogo,
-    onClick: () => window.alert('g2.Going somewhere')
-  } as AppLogoProps,
-  navBarContent: (
-    <div>
-      <Button onClick={action('clicked on Company')}>Company</Button>
-      <Button onClick={action('clicked on Dark mode')}>Dark mode</Button>
-    </div>
-  ),
-  drawerContent: 'Drawer content',
-  styleProps: {
-    appBar: {
-      background: 'white'
-    },
-    menu: {
-      background: 'white'
+export const App = {
+  render: Template,
+
+  args: {
+    toolsMenuProps: [
+      {
+        menu: profileMenu,
+        display: 'list'
+      },
+      {
+        menu: profileMenu2,
+        display: 'list'
+      }
+    ],
+    menu: [
+      {
+        key: 'dashboard',
+        goto: () => {},
+        label: 'dashboard',
+        icon: (
+          <img
+            alt='dashboard_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
+        )
+      },
+      {
+        key: 'activities',
+        goto: () => {},
+        label: 'activities',
+        icon: (
+          <img
+            alt='activities_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
+        )
+      },
+      {
+        key: 'application',
+        goto: () => {},
+        label: 'application',
+        icon: (
+          <img
+            alt='application_logo'
+            style={{ width: '30px', height: '30px' }}
+            src={defaultLogo}
+          />
+        )
+      }
+    ],
+    title: 'Komune',
+    logo: {
+      src: defaultLogo,
+      onClick: () => window.alert('g2.Going somewhere')
+    } as AppLogoProps,
+    navBarContent: (
+      <div>
+        <Button onClick={action('clicked on Company')}>Company</Button>
+        <Button onClick={action('clicked on Dark mode')}>Dark mode</Button>
+      </div>
+    ),
+    drawerContent: 'Drawer content',
+    styleProps: {
+      appBar: {
+        background: 'white'
+      },
+      menu: {
+        background: 'white'
+      }
     }
   }
 }

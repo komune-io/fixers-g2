@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from '@storybook/react'
-import React, { useState } from 'react'
+import { StoryObj, Meta } from '@storybook/react-vite'
+import { useState } from 'react'
 import { FilterTextField, FilterTextFieldProps } from './FilterTextField'
 import { FilterTextFieldClasses, FilterTextFieldStyles } from './docs'
 import { Box, Typography } from '@mui/material'
@@ -33,149 +33,161 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof FilterTextField>
 
-export const FilterTextFieldStory: StoryFn<FilterTextFieldProps> = (
-  args: FilterTextFieldProps
-) => {
-  const [value, setValue] = useState('')
-  return (
-    <FilterTextField
-      value={value}
-      onChange={setValue}
-      onRemove={() => setValue('')}
-      textFieldType='search'
-      {...args}
-    />
-  )
+export const FilterTextFieldStory: StoryObj<FilterTextFieldProps> = {
+  render: (args: FilterTextFieldProps) => {
+    const [value, setValue] = useState('')
+    return (
+      <FilterTextField
+        value={value}
+        onChange={setValue}
+        onRemove={() => setValue('')}
+        textFieldType='search'
+        {...args}
+      />
+    )
+  },
+
+  args: {
+    label: 'A Filter'
+  },
+
+  name: 'FilterTextField'
 }
 
-export const FilterTextFieldVariants: StoryFn<FilterTextFieldProps> = () => {
-  return (
-    <Box display='flex' justifyContent='space-around' alignItems='center'>
+export const FilterTextFieldVariants: StoryObj<FilterTextFieldProps> = {
+  render: () => {
+    return (
+      <Box display='flex' justifyContent='space-around' alignItems='center'>
+        <Box display='flex' flexDirection='column' alignItems='center'>
+          <FilterTextField
+            label='Primary outlined'
+            color='primary'
+            variant='outlined'
+            style={{ margin: 20, width: '180px' }}
+          />
+          <FilterTextField
+            label='Secondary outlined'
+            color='secondary'
+            variant='outlined'
+            style={{ margin: 20, width: '180px' }}
+          />
+          <FilterTextField
+            label='Default outlined'
+            color='default'
+            variant='outlined'
+            style={{ margin: 20, width: '180px' }}
+          />
+        </Box>
+        <Box display='flex' flexDirection='column' alignItems='center'>
+          <FilterTextField
+            label='Primary filled'
+            color='primary'
+            variant='filled'
+            style={{ margin: 20, width: '180px' }}
+          />
+          <FilterTextField
+            label='Secondary filled'
+            color='secondary'
+            variant='filled'
+            style={{ margin: 20, width: '180px' }}
+          />
+          <FilterTextField
+            label='Default filled'
+            color='default'
+            variant='filled'
+            style={{ margin: 20, width: '180px' }}
+          />
+        </Box>
+      </Box>
+    )
+  },
+
+  name: 'All the variants of the FilterTextField'
+}
+
+export const FilterTextFieldStates: StoryObj<FilterTextFieldProps> = {
+  render: () => {
+    return (
       <Box display='flex' flexDirection='column' alignItems='center'>
         <FilterTextField
-          label='Primary outlined'
-          color='primary'
+          label='outlined disabled'
           variant='outlined'
-          style={{ margin: 20, width: '180px' }}
+          disabled
+          style={{ width: 170, margin: 20 }}
         />
         <FilterTextField
-          label='Secondary outlined'
-          color='secondary'
-          variant='outlined'
-          style={{ margin: 20, width: '180px' }}
-        />
-        <FilterTextField
-          label='Default outlined'
-          color='default'
-          variant='outlined'
-          style={{ margin: 20, width: '180px' }}
+          label='filled disabled'
+          variant='filled'
+          disabled
+          style={{ width: 170, margin: 20 }}
         />
       </Box>
+    )
+  },
+
+  name: 'The FilterTextField states'
+}
+
+export const SerchFilterTextField: StoryObj<FilterTextFieldProps> = {
+  render: () => {
+    const [value, setValue] = useState('')
+    const [search, setSearch] = useState(undefined)
+
+    return (
       <Box display='flex' flexDirection='column' alignItems='center'>
         <FilterTextField
-          label='Primary filled'
-          color='primary'
-          variant='filled'
-          style={{ margin: 20, width: '180px' }}
-        />
-        <FilterTextField
-          label='Secondary filled'
+          label='Search filter'
+          value={value}
           color='secondary'
-          variant='filled'
-          style={{ margin: 20, width: '180px' }}
+          onChange={(value) => setValue(value)}
+          onSearch={() => setSearch(value)}
+          onRemove={() => setValue('')}
+          id='searchFilterTextField'
+          textFieldType='search'
+          style={{ margin: 20, width: 150 }}
         />
         <FilterTextField
-          label='Default filled'
-          color='default'
-          variant='filled'
-          style={{ margin: 20, width: '180px' }}
+          label='Search filter'
+          value={value}
+          variant='outlined'
+          onChange={(value) => setValue(value)}
+          onSearch={() => setSearch(value)}
+          onRemove={() => setValue('')}
+          id='searchFilterTextField'
+          textFieldType='search'
+          style={{ margin: 20, width: 150 }}
+        />
+        {search && <Typography>You searched: {search}</Typography>}
+      </Box>
+    )
+  },
+
+  name: 'The search type FilterTextField'
+}
+
+export const CustomIcon: StoryObj<FilterTextFieldProps> = {
+  render: () => {
+    return (
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <FilterTextField
+          inputIcon={<CreditCard />}
+          id='creditFilterTextField'
+          color='secondary'
+          label='Credit card'
+          style={{ width: 150, margin: 20 }}
+        />
+        <FilterTextField
+          inputIcon={'€'}
+          iconPosition='end'
+          label='The price'
+          id='paymentFilterTextField'
+          style={{ width: 150, margin: 20 }}
         />
       </Box>
-    </Box>
-  )
+    )
+  },
+
+  name: 'FilterTextFields with custom icon'
 }
-
-export const FilterTextFieldStates: StoryFn<FilterTextFieldProps> = () => {
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <FilterTextField
-        label='outlined disabled'
-        variant='outlined'
-        disabled
-        style={{ width: 170, margin: 20 }}
-      />
-      <FilterTextField
-        label='filled disabled'
-        variant='filled'
-        disabled
-        style={{ width: 170, margin: 20 }}
-      />
-    </Box>
-  )
-}
-
-export const SerchFilterTextField: StoryFn<FilterTextFieldProps> = () => {
-  const [value, setValue] = useState('')
-  const [search, setSearch] = useState(undefined)
-
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <FilterTextField
-        label='Search filter'
-        value={value}
-        color='secondary'
-        onChange={(value) => setValue(value)}
-        onSearch={() => setSearch(value)}
-        onRemove={() => setValue('')}
-        id='searchFilterTextField'
-        textFieldType='search'
-        style={{ margin: 20, width: 150 }}
-      />
-      <FilterTextField
-        label='Search filter'
-        value={value}
-        variant='outlined'
-        onChange={(value) => setValue(value)}
-        onSearch={() => setSearch(value)}
-        onRemove={() => setValue('')}
-        id='searchFilterTextField'
-        textFieldType='search'
-        style={{ margin: 20, width: 150 }}
-      />
-      {search && <Typography>You searched: {search}</Typography>}
-    </Box>
-  )
-}
-
-export const CustomIcon: StoryFn<FilterTextFieldProps> = () => {
-  return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <FilterTextField
-        inputIcon={<CreditCard />}
-        id='creditFilterTextField'
-        color='secondary'
-        label='Credit card'
-        style={{ width: 150, margin: 20 }}
-      />
-      <FilterTextField
-        inputIcon={'€'}
-        iconPosition='end'
-        label='The price'
-        id='paymentFilterTextField'
-        style={{ width: 150, margin: 20 }}
-      />
-    </Box>
-  )
-}
-
-FilterTextFieldStory.args = {
-  label: 'A Filter'
-}
-
-FilterTextFieldStory.storyName = 'FilterTextField'
-FilterTextFieldVariants.storyName = 'All the variants of the FilterTextField'
-SerchFilterTextField.storyName = 'The search type FilterTextField'
-FilterTextFieldStates.storyName = 'The FilterTextField states'
-CustomIcon.storyName = 'FilterTextFields with custom icon'

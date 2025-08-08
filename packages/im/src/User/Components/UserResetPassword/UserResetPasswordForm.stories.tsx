@@ -1,5 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react'
-import React from 'react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
   UserResetPasswordForm,
   UserResetPasswordFormProps
@@ -28,20 +27,21 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof UserResetPasswordForm>
 
-export const UserResetPasswordFormStory: StoryFn<UserResetPasswordFormProps> = (
-  args: UserResetPasswordFormProps
-) => {
-  return <UserResetPasswordForm {...args} />
-}
+export const UserResetPasswordFormStory: StoryObj<UserResetPasswordFormProps> =
+  {
+    render: (args: UserResetPasswordFormProps) => {
+      return <UserResetPasswordForm {...args} />
+    },
 
-UserResetPasswordFormStory.args = {
-  onSubmit: (cmd) => {
-    console.log(cmd)
-    return true
-  },
-  userId: 'userId'
-}
+    args: {
+      onSubmit: (cmd) => {
+        console.log(cmd)
+        return true
+      },
+      userId: 'userId'
+    },
 
-UserResetPasswordFormStory.storyName = 'UserResetPasswordForm'
+    name: 'UserResetPasswordForm'
+  }

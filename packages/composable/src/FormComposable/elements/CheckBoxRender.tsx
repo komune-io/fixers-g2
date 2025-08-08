@@ -1,5 +1,5 @@
 import { CheckBox, CheckBoxProps } from '@komune-io/g2-forms'
-import React, { useMemo } from 'react'
+import { ChangeEvent, useMemo } from 'react'
 import { FieldRenderProps } from '../type'
 import { ElementRendererFunction } from '../../ComposableRender'
 import { getValueSetup } from '../type/getValueSetup'
@@ -37,7 +37,7 @@ export const CheckBoxRender: ElementRendererFunction<CheckBoxRenderProps> = (
     <CheckBox
       checked={value}
       disabled={params?.disabled}
-      onChange={(_: React.ChangeEvent<HTMLInputElement>, value: boolean) => {
+      onChange={(_: ChangeEvent<HTMLInputElement>, value: boolean) => {
         onChangeHandler(value)
       }}
       {...params}

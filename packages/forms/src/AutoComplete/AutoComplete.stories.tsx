@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   AutoComplete as AruiAutoComplete,
   AutoCompleteBasicProps
 } from './AutoComplete'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 export default {
   title: 'Forms/AutoComplete',
@@ -13,7 +12,7 @@ export default {
       control: null
     }
   }
-} as Meta
+} as Meta<typeof AruiAutoComplete>
 
 interface Book {
   title: string
@@ -29,24 +28,24 @@ const books: Book[] = [
   { title: 'Impactosorus', author: 'Greg beatcoyn', id: 'b5' }
 ]
 
-export const AutoComplete: StoryFn<AutoCompleteBasicProps<Book>> = (
-  args: AutoCompleteBasicProps<Book>
-) => {
-  return (
-    <AruiAutoComplete<Book>
-      style={{
-        width: 500
-      }}
-      {...args}
-    />
-  )
-}
+export const AutoComplete: StoryObj<AutoCompleteBasicProps<Book>> = {
+  render: (args: AutoCompleteBasicProps<Book>) => {
+    return (
+      <AruiAutoComplete<Book>
+        style={{
+          width: 500
+        }}
+        {...args}
+      />
+    )
+  },
 
-AutoComplete.args = {
-  options: books,
-  id: 'test',
-  noOptionsText: 'Rechercher un livre',
-  getOptionLabel: (book) => book.title ?? ''
-}
+  args: {
+    options: books,
+    id: 'test',
+    noOptionsText: 'Rechercher un livre',
+    getOptionLabel: (book) => book.title ?? ''
+  },
 
-AutoComplete.storyName = 'AutoComplete'
+  name: 'AutoComplete'
+}

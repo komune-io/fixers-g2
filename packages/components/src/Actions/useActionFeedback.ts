@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 
 export interface ActionFeedback {
   success: boolean
@@ -7,7 +7,7 @@ export interface ActionFeedback {
 }
 
 export const useActionFeedback = (): ActionFeedback => {
-  const [feedback, setFeedback] = React.useState<boolean | undefined>(undefined)
+  const [feedback, setFeedback] = useState<boolean | undefined>(undefined)
   return {
     success: feedback !== undefined && feedback,
     fail: feedback !== undefined && !feedback,

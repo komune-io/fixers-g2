@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { RadioChoices, Choice, RadioChoicesBasicProps } from './RadioChoices'
-import { Meta, StoryFn } from '@storybook/react'
-import { Box } from '@mui/material'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { RadioChoicesClasses, RadioChoicesStyles } from './docs'
 
 export default {
@@ -32,21 +31,7 @@ export default {
       }
     }
   }
-} as Meta
-
-export const RadioChoicesStory: StoryFn<RadioChoicesBasicProps> = (
-  args: RadioChoicesBasicProps
-) => {
-  const [value, setvalue] = useState('')
-  return (
-    <RadioChoices
-      {...args}
-      value={value}
-      onChange={(value) => setvalue(value)}
-      style={{ width: 350 }}
-    />
-  )
-}
+} as Meta<typeof RadioChoices>
 
 const options: Choice[] = [
   {
@@ -79,11 +64,25 @@ const options: Choice[] = [
   }
 ]
 
-RadioChoicesStory.args = {
-  options: options
-}
+export const RadioChoicesStory: StoryObj<RadioChoicesBasicProps> = {
+  render: (args: RadioChoicesBasicProps) => {
+    const [value, setvalue] = useState('')
+    return (
+      <RadioChoices
+        {...args}
+        value={value}
+        onChange={(value) => setvalue(value)}
+        style={{ width: 350 }}
+      />
+    )
+  },
 
-RadioChoicesStory.storyName = 'RadioChoices'
+  args: {
+    options: options
+  },
+
+  name: 'RadioChoices'
+}
 
 export const withEditableLabel: StoryFn = () => {
   const [value, setvalue] = useState('')

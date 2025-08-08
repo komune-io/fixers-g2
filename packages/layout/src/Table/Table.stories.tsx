@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { useState } from 'react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Table as AruiTable, TableBasicProps } from './Table'
 
 import { Box, Button, Divider, Stack, Typography } from '@mui/material'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Title,
   Description,
   Primary,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import { customCellExample, classes, styles, Column, CellProps } from './types'
 import { Info } from '@mui/icons-material'
@@ -56,7 +56,7 @@ export default {
             it doesn't follow the html rule.
           </Description>
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Stories />
         </>
       )
@@ -80,7 +80,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiTable>
 
 interface Data {
   id: string
@@ -124,21 +124,6 @@ const data2: Data[] = [
   }
 ]
 
-export const Table: StoryFn<TableBasicProps<Data>> = (
-  args: TableBasicProps<Data>
-) => {
-  const [page, setPage] = useState<number>(1)
-  return (
-    <AruiTable
-      page={page}
-      totalPages={2}
-      onPageChange={(newPage) => setPage(newPage)}
-      {...args}
-      data={page === 1 ? data1 : data2}
-    />
-  )
-}
-
 const columns: Column<Data>[] = [
   {
     Header: 'Id',
@@ -163,21 +148,36 @@ const columns: Column<Data>[] = [
   }
 ]
 
-Table.args = {
-  columns: columns,
-  getRowId: (row) => row.id,
-  setSelectedRowIds: (ids) => console.log(ids),
-  isSelectableRow: (row) => row.index % 2 === 0,
-  renderSubComponent: (row) => (
-    <Box
-      sx={{
-        margin: 1
-      }}
-    >
-      <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
-    </Box>
-  ),
-  onRowClicked: (row) => console.log('cliked', row)
+export const Table: StoryObj<TableBasicProps<Data>> = {
+  render: (args: TableBasicProps<Data>) => {
+    const [page, setPage] = useState<number>(1)
+    return (
+      <AruiTable
+        page={page}
+        totalPages={2}
+        onPageChange={(newPage) => setPage(newPage)}
+        {...args}
+        data={page === 1 ? data1 : data2}
+      />
+    )
+  },
+
+  args: {
+    columns: columns,
+    getRowId: (row) => row.id,
+    setSelectedRowIds: (ids) => console.log(ids),
+    isSelectableRow: (row) => row.index % 2 === 0,
+    renderSubComponent: (row) => (
+      <Box
+        sx={{
+          margin: 1
+        }}
+      >
+        <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
+      </Box>
+    ),
+    onRowClicked: (row) => console.log('cliked', row)
+  }
 }
 
 export const theVariants: StoryFn = () => {
@@ -277,6 +277,9 @@ export const LoadingStates: StoryFn = () => {
 }
 
 export const NotificationList: StoryFn = () => {
+  const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+  const now = fixedDate.getTime()
+
   interface Notification {
     id: string
     message: string
@@ -287,22 +290,22 @@ export const NotificationList: StoryFn = () => {
     {
       id: '1',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 5 * 24 * 60 * 60 * 1000 // 5 days ago
     },
     {
       id: '2',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 3 * 24 * 60 * 60 * 1000 // 3 days ago
     },
     {
       id: '3',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 1 * 24 * 60 * 60 * 1000 // 1 day ago
     },
     {
       id: '4',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now + 1 * 24 * 60 * 60 * 1000 // 1 day in future
     }
   ]
 
@@ -559,7 +562,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '1',
       firstName: 'Jack',
       lastName: 'Burdon',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-10T14:00:00.000Z').getTime(),
       email: 'jack@burdon.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -568,7 +571,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '2',
       firstName: 'Alice',
       lastName: 'Brace',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-12T14:00:00.000Z').getTime(),
       email: 'alice@brace.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -577,7 +580,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '3',
       firstName: 'Henri',
       lastName: 'Rutelle',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-14T14:00:00.000Z').getTime(),
       email: 'heanri@rutelle.com',
       phone: '0610203040',
       city: 'Montpellier'

@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css'
 import { Box, Collapse, Typography } from '@mui/material'
-import React, { Fragment, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { HeaderGroup, IdType, TableProps, TableRowProps } from 'react-table'
 import { TableClasses, TableStyles } from './Table'
 import { Row } from './types'

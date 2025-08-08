@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css'
 import { Option } from '@komune-io/g2-forms'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { User } from '../../Domain'
 import { Stack, StackProps } from '@mui/material'
 import { useElementSize } from '@mantine/hooks'
@@ -56,7 +56,7 @@ export interface UserFactoryBasicProps
   /**
    * The nodes put at the bottom of the form
    */
-  formExtension?: React.ReactNode
+  formExtension?: ReactNode
   /**
    * The user id to provide if it's an updation
    */

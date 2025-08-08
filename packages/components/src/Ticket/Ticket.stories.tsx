@@ -1,6 +1,5 @@
-import React from 'react'
 import { Ticket as AruiTicket, TicketBasicProps } from './Ticket'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 
 import { Flight } from '@mui/icons-material'
 import { styles, classes } from './docs'
@@ -37,7 +36,7 @@ export default {
       control: null
     }
   }
-} as Meta
+} as Meta<typeof AruiTicket>
 
 const defaultArgs = {
   title: 'flights',
@@ -45,19 +44,27 @@ const defaultArgs = {
   icon: <Flight style={{ color: '#EDBA27', width: '50px', height: '50px' }} />
 }
 
-export const Ticket: StoryFn<TicketBasicProps> = (args: TicketBasicProps) => {
-  return (
-    <Box
-      display='flex'
-      justifyContent='center'
-      alignItems='center'
-      width='100%'
-      height='100%'
-      style={{ background: '#EEEEEE', padding: '30px' }}
-    >
-      <AruiTicket {...args} />
-    </Box>
-  )
+export const Ticket: StoryObj<TicketBasicProps> = {
+  render: (args: TicketBasicProps) => {
+    return (
+      <Box
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        width='100%'
+        height='100%'
+        style={{ background: '#EEEEEE', padding: '30px' }}
+      >
+        <AruiTicket {...args} />
+      </Box>
+    )
+  },
+
+  args: {
+    ...defaultArgs
+  },
+
+  name: 'Ticket'
 }
 
 export const TicketVariants: StoryFn = () => {
@@ -101,9 +108,3 @@ export const TicketOptions: StoryFn = () => {
     </Box>
   )
 }
-
-Ticket.args = {
-  ...defaultArgs
-}
-
-Ticket.storyName = 'Ticket'

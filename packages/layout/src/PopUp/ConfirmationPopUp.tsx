@@ -1,4 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import {
+  CSSProperties,
+  ChangeEvent,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState
+} from 'react'
 import { Typography } from '@mui/material'
 import { PopUp, PopUpProps } from './PopUp'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
@@ -12,8 +19,8 @@ interface ConfirmationPopUpClasses {
 }
 
 interface ConfirmationPopUpStyles {
-  strongConfirmationText?: React.CSSProperties
-  textField?: React.CSSProperties
+  strongConfirmationText?: CSSProperties
+  textField?: CSSProperties
 }
 
 export type ConfirmationPopUpVariant = 'validation' | 'deletion'
@@ -22,11 +29,11 @@ export interface ConfirmationPopUpBasicProps extends BasicProps {
   /**
    * The event called when the user request to close the pop-up
    */
-  onClose: (event: React.ChangeEvent<{}>) => void
+  onClose: (event: ChangeEvent<{}>) => void
   /**
    * The event called when the user request to confirm
    */
-  onConfirm: (event: React.ChangeEvent<{}>) => void
+  onConfirm: (event: ChangeEvent<{}>) => void
   /**
    * Define if the po-up is open
    *
@@ -36,7 +43,7 @@ export interface ConfirmationPopUpBasicProps extends BasicProps {
   /**
    * The content of the popup if `strongConfirmation` is false
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * If true the user will have to copy a word in a textField in order to confirm
    *
@@ -48,7 +55,7 @@ export interface ConfirmationPopUpBasicProps extends BasicProps {
    *
    * @default (<> Please confirm by typing the word: <strong>confirmation</strong> in the field below: </> )
    */
-  strongConfirmationText?: React.ReactNode
+  strongConfirmationText?: ReactNode
   /**
    * The text to write in the textfield in order to confirm
    *
@@ -129,7 +136,7 @@ export const ConfirmationPopUp = (props: ConfirmationPopUpProps) => {
   )
 
   const handleClose = useCallback(
-    (event: React.ChangeEvent<{}>) => {
+    (event: ChangeEvent<{}>) => {
       setValue('')
       onClose(event)
     },

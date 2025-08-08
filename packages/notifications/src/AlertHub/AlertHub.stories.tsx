@@ -1,9 +1,8 @@
-import React from 'react'
 import { AlertHub as AruiAlertHub, AlertHubProps } from './AlertHub'
-import { Meta, StoryFn } from '@storybook/react'
-
+import { StoryObj, Meta } from '@storybook/react-vite'
 import { useAlertHub } from './useAlertHub'
 import { Button } from '@komune-io/g2-components'
+import { Fragment } from 'react'
 
 export default {
   title: 'Notifications/AlertHub',
@@ -15,7 +14,7 @@ export default {
       url: 'https://www.figma.com/file/Ruq4cXc1frJJ5qVtLtnqje/SmartB-UI-kit?node-id=210%3A435'
     }
   }
-} as Meta
+} as Meta<typeof AruiAlertHub>
 
 function Example() {
   const { pushAlert } = useAlertHub()
@@ -29,19 +28,21 @@ function Example() {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Button onClick={handleClick}>Show snackbar</Button>
       <Button onClick={handleClickSuccess}>Show success snackbar</Button>
-    </React.Fragment>
+    </Fragment>
   )
 }
 
-export const AlertHub: StoryFn<AlertHubProps> = (args: AlertHubProps) => {
-  return (
-    <AruiAlertHub {...args}>
-      <Example />
-    </AruiAlertHub>
-  )
-}
+export const AlertHub: StoryObj<AlertHubProps> = {
+  render: (args: AlertHubProps) => {
+    return (
+      <AruiAlertHub {...args}>
+        <Example />
+      </AruiAlertHub>
+    )
+  },
 
-AlertHub.storyName = 'AlertHub'
+  name: 'AlertHub'
+}

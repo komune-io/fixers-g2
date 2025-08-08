@@ -1,5 +1,5 @@
 import { Skeleton, TableCell, TableRow, Typography } from '@mui/material'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 interface GroundedRowsLoadingProps {
   expectedSize: number

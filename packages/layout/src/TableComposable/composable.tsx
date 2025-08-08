@@ -1,7 +1,7 @@
 import { getIn } from '@komune-io/g2-utils'
 import { basicColumns, ComposableColumns } from '../ColumnFactory'
 import { ColumnBase, G2ColumnDef, UseTableOptions } from '../TableV2'
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 
 export interface TableComposable<
   Data extends {} = {},
@@ -51,10 +51,13 @@ export const composableToColumns = <
         if (typeof path === 'string') {
           retrievedValue = getIn(row.original, path)
         } else if (typeof path === 'object' && Object.keys(path).length > 0) {
-          retrievedValue = Object.keys(path).reduce((acc, key) => {
-            acc[key] = getIn(row.original, path[key])
-            return acc
-          }, {})
+          retrievedValue = Object.keys(path).reduce(
+            (acc: Record<string, any>, key) => {
+              acc[key] = getIn(row.original, path[key])
+              return acc
+            },
+            {}
+          )
         }
         const props: any = {
           ...properties,

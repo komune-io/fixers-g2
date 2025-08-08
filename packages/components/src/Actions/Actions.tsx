@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react'
+import { CSSProperties, ReactNode, useMemo } from 'react'
 import { Button, ButtonProps } from '../Buttons'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Stack, StackProps } from '@mui/material'
 import { cx } from '@emotion/css'
 
 export type Action = {
-  label: React.ReactNode
+  label: ReactNode
   key: string
   variant?: 'contained' | 'outlined' | 'text' | 'deletion' | 'cancellation'
   showIf?: () => boolean
@@ -16,7 +16,7 @@ export interface ActionsClasses {
 }
 
 export interface ActionsStyles {
-  button?: React.CSSProperties
+  button?: CSSProperties
 }
 
 export interface ActionsBasicProps extends BasicProps {
@@ -44,12 +44,12 @@ export const Actions = (props: ActionsProps) => {
                 color: 'error'
               }
             : variant === 'cancellation'
-            ? {
-                variant: 'text'
-              }
-            : {
-                variant: variant
-              }
+              ? {
+                  variant: 'text'
+                }
+              : {
+                  variant: variant
+                }
         return (
           <Button
             key={key}

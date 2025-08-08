@@ -1,4 +1,3 @@
-import React from 'react'
 import { TableCellTag, TableCellTagProps } from '../TableCellTag/TableCellTag'
 export interface TableCellChipProps
   extends Omit<TableCellTagProps, 'variant'> {}

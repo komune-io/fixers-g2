@@ -1,6 +1,5 @@
-import React from 'react'
-import { Loading as AruiLoading, LoadingBasicProps } from './Loading'
-import { Meta, StoryFn } from '@storybook/react'
+import { Loading as AruiLoading } from './Loading'
+import { Meta } from '@storybook/react-vite'
 import komune from '../assets/komune.png'
 import { styles, classes } from './types'
 
@@ -25,13 +24,10 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiLoading>
 
-const Template: StoryFn<LoadingBasicProps> = (args: LoadingBasicProps) => (
-  <AruiLoading {...args} />
-)
-
-export const Loading = Template.bind({})
-Loading.args = {
-  icon: <img src={komune} alt='komune logo' />
+export const Loading = {
+  args: {
+    icon: <img src={komune} alt='komune logo' />
+  }
 }

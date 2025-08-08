@@ -1,11 +1,11 @@
 import { Box } from '@mui/material'
-import { makeG2STyles } from '@komune-io/g2-themes'
-import React, { useCallback, useMemo } from 'react'
+import { makeG2Styles } from '@komune-io/g2-themes'
+import { useCallback, useMemo } from 'react'
 import SyntaxHighlighter, {
   SyntaxHighlighterProps
 } from 'react-syntax-highlighter'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     ' span:hover span': {
       filter: 'brightness(1.2)'

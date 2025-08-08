@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import { forwardRef, ReactNode, useCallback } from 'react'
 import {
   SnackbarProvider,
   useSnackbar,
@@ -7,9 +7,9 @@ import {
 } from 'notistack'
 import { Alert, AlertProps } from '../Alert/Alert'
 import { Grow } from '@mui/material'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 
-const useSytles = makeG2STyles()({
+const useSytles = makeG2Styles()({
   alert: {
     position: 'relative',
     left: 0,
@@ -23,7 +23,7 @@ export interface AlertHubProps extends SnackbarProviderProps {
   /**
    * The rest of the app inside the provider
    */
-  children: React.ReactNode
+  children: ReactNode
 }
 
 declare module 'notistack' {

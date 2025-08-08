@@ -5,7 +5,7 @@ import {
   TableV2,
   useTable
 } from '@komune-io/g2-layout'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Product } from './DestinateForm'
 import { IconButton, Typography } from '@mui/material'
 import { DeleteRounded } from '@mui/icons-material'

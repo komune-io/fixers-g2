@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { S2Automate, S2Transition } from './S2AutomateType'
 import { AutomateViewerProps, Transition, AutomateViewer } from '../Automate'
 

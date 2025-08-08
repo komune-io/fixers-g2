@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Node, Network, Edge } from 'vis-network'
-import { BasicProps, makeG2STyles, useTheme } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles, useTheme } from '@komune-io/g2-themes'
 import { MergeReactElementProps } from '@komune-io/g2-utils'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   container: {
     width: '100%',
     height: '100%',

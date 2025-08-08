@@ -1,4 +1,3 @@
-import React from 'react'
 import { AppBar as MuiAppBar } from '@mui/material'
 import { AppBarProps as MuiAppBarProps, Box, Toolbar } from '@mui/material'
 import { Menu } from '@mui/icons-material'
@@ -6,10 +5,11 @@ import { IconButton } from '@mui/material'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
+import { CSSProperties, ReactNode } from 'react'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   root: {
     zIndex: 1100
   },
@@ -28,12 +28,12 @@ interface AppBarLayoutClasses {
 }
 
 interface AppBarLayoutStyles {
-  menuIcon?: React.CSSProperties
-  toolBar?: React.CSSProperties
+  menuIcon?: CSSProperties
+  toolBar?: CSSProperties
 }
 
 export interface AppBarLayoutBasicProps extends BasicProps {
-  children?: React.ReactNode
+  children?: ReactNode
   show?: boolean
   classes?: AppBarLayoutClasses
   styles?: AppBarLayoutStyles

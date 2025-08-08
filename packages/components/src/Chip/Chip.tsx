@@ -1,6 +1,6 @@
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import { Chip as MuiChip, ChipProps as MuiChipProps } from '@mui/material'
-import React, { forwardRef } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 import { ClearRounded } from '@mui/icons-material'
 import { cx } from '@emotion/css'
 
@@ -28,7 +28,7 @@ export interface ChipBasicProps extends BasicProps {
 export type ChipProps = MergeMuiElementProps<MuiChipProps, ChipBasicProps>
 
 export const Chip = forwardRef(
-  (props: ChipProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  (props: ChipProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { sx, color = '#676879', bold = true, className, ...other } = props
     return (
       <MuiChip

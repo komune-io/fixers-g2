@@ -1,8 +1,8 @@
 import { Box, Divider } from '@mui/material'
-import React, { Fragment, useMemo } from 'react'
+import { Fragment, ReactNode, useMemo } from 'react'
 
 export interface DocsTableProps {
-  children: React.ReactNode
+  children: ReactNode
   /**
    * The number of column
    *

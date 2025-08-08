@@ -1,4 +1,11 @@
-import React, { forwardRef, useMemo } from 'react'
+import {
+  CSSProperties,
+  ChangeEvent,
+  forwardRef,
+  ForwardedRef,
+  ReactNode,
+  useMemo
+} from 'react'
 import {
   Dialog,
   DialogActions,
@@ -9,11 +16,11 @@ import { Action, Actions } from '@komune-io/g2-components'
 import {
   MergeMuiElementProps,
   BasicProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 import { CloseRounded } from '@mui/icons-material'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   paper: {
     borderRadius: '16px'
   },
@@ -46,10 +53,10 @@ interface PopUpClasses {
 }
 
 interface PopUpStyles {
-  content?: React.CSSProperties
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
-  closeIcon?: React.CSSProperties
+  content?: CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
+  closeIcon?: CSSProperties
 }
 
 export interface PopUpBasicProps extends BasicProps {
@@ -60,7 +67,7 @@ export interface PopUpBasicProps extends BasicProps {
   /**
    * The event called when the user request to close the pop-up
    */
-  onClose: (event: React.ChangeEvent<{}>) => void
+  onClose: (event: ChangeEvent<{}>) => void
   /**
    * The list of the actions that will be displayed at the bottom of the pop-up
    */
@@ -68,7 +75,7 @@ export interface PopUpBasicProps extends BasicProps {
   /**
    * The content that will be displayed in the body of the pop-up
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The classes applied to the different part of the component
    */
@@ -81,10 +88,7 @@ export interface PopUpBasicProps extends BasicProps {
 
 export type PopUpProps = MergeMuiElementProps<DialogProps, PopUpBasicProps>
 
-const PopUpBase = (
-  props: PopUpProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) => {
+const PopUpBase = (props: PopUpProps, ref: ForwardedRef<HTMLDivElement>) => {
   const {
     open,
     onClose,

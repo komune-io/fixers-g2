@@ -3,13 +3,13 @@ import {
   TableContainer as MuiTableContainer,
   TableContainerProps as MuiTableContainerProps
 } from '@mui/material'
-import React from 'react'
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
 import { LinkProps } from 'react-router-dom'
+import { ReactNode, ComponentType } from 'react'
 
 interface BasicTableContainerBasicProps {
   variant: 'grounded' | 'elevated'
-  children: React.ReactNode
+  children: ReactNode
   expandInElevatedRow?: boolean
   getRowLink?: (row: any) => LinkProps
 }
@@ -26,7 +26,9 @@ const BasicTableContainer = (props: BasicTableContainerProps) => {
   return <MuiTableContainer {...other}>{children}</MuiTableContainer>
 }
 
-export const TableContainer = styled(BasicTableContainer)((props) => {
+export const TableContainer: ComponentType<BasicTableContainerProps> = styled(
+  BasicTableContainer
+)((props: BasicTableContainerProps & { theme: any }) => {
   const { variant, theme, expandInElevatedRow, getRowLink } = props
   const comunStyles = {
     '& .AruiTable-actionColumn': {

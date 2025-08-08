@@ -2,7 +2,6 @@ import { Box, BoxProps, styled } from '@mui/material'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import React from 'react'
 
 export const MarkdownStyleContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'titlesTopLevel'

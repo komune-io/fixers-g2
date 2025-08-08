@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import {
   Filters,
   FiltersBasicProps,
   FiltersField,
   FiltersAction
 } from '../Filters'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 
 import { Typography } from '@mui/material'
 import { useEnhancedFilters } from './useEnhancedFilters'
@@ -28,32 +28,95 @@ export default {
       url: 'https://www.figma.com/file/kgphqh0uVhoXt8TK3LlkGj/G2-%2F-Design-System?node-id=1097%3A177'
     }
   }
-} as Meta
+} as Meta<typeof Filters>
 
 const queryClient = new QueryClient()
 
-export const EnhancedFiltersStory: StoryFn<FiltersBasicProps> = (
-  args: FiltersBasicProps
-) => {
-  interface Languages {
-    fr: string
-    en: string
+const fields: (FiltersField | 'spacer')[] = [
+  {
+    key: 'storybook-enhanced-filters-field-from',
+    name: 'from',
+    label: 'From',
+    type: 'datepicker',
+    datePickerProps: { variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-to',
+    name: 'to',
+    label: 'To',
+    type: 'datepicker',
+    datePickerProps: { variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-keyword',
+    name: 'keyword',
+    label: 'Keyword',
+    type: 'textfield',
+    textFieldProps: { textFieldType: 'search', variant: 'outlined' }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-fruits',
+    name: 'fruits',
+    label: 'Fruits',
+    type: 'select',
+    selectProps: {
+      options: [
+        { key: 'pomme', label: 'Pomme' },
+        { key: 'banane', label: 'Banane' },
+        { key: 'orange', label: 'Orange' },
+        { key: 'kiwi', label: 'Kiwi' },
+        { key: 'fraise', label: 'fraise' }
+      ],
+      variant: 'outlined',
+      multiple: true
+    }
+  },
+  {
+    key: 'storybook-enhanced-filters-field-country',
+    name: 'country',
+    label: 'Country',
+    type: 'select',
+    selectProps: {
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ],
+      variant: 'outlined'
+    }
   }
+]
 
-  const languages: Languages = {
-    fr: 'fr-FR',
-    en: 'en-US'
-  }
+export const EnhancedFiltersStory: StoryObj<FiltersBasicProps> = {
+  render: (args: FiltersBasicProps) => {
+    interface Languages {
+      fr: string
+      en: string
+    }
 
-  return (
-    <AruiAppProvider<Languages>
-      languages={languages}
-      loadingComponent={<Typography>Loading ...</Typography>}
-      queryClient={queryClient}
-    >
-      <Router args={args} />
-    </AruiAppProvider>
-  )
+    const languages: Languages = {
+      fr: 'fr-FR',
+      en: 'en-US'
+    }
+
+    return (
+      <AruiAppProvider<Languages>
+        languages={languages}
+        loadingComponent={<Typography>Loading ...</Typography>}
+        queryClient={queryClient}
+      >
+        <Router args={args} />
+      </AruiAppProvider>
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'EnhancedFilters'
 }
 
 const Router = (props) => {
@@ -125,66 +188,3 @@ const Example = (props) => {
     </>
   )
 }
-
-const fields: (FiltersField | 'spacer')[] = [
-  {
-    key: 'storybook-enhanced-filters-field-from',
-    name: 'from',
-    label: 'From',
-    type: 'datepicker',
-    datePickerProps: { variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-to',
-    name: 'to',
-    label: 'To',
-    type: 'datepicker',
-    datePickerProps: { variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-keyword',
-    name: 'keyword',
-    label: 'Keyword',
-    type: 'textfield',
-    textFieldProps: { textFieldType: 'search', variant: 'outlined' }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-fruits',
-    name: 'fruits',
-    label: 'Fruits',
-    type: 'select',
-    selectProps: {
-      options: [
-        { key: 'pomme', label: 'Pomme' },
-        { key: 'banane', label: 'Banane' },
-        { key: 'orange', label: 'Orange' },
-        { key: 'kiwi', label: 'Kiwi' },
-        { key: 'fraise', label: 'fraise' }
-      ],
-      variant: 'outlined',
-      multiple: true
-    }
-  },
-  {
-    key: 'storybook-enhanced-filters-field-country',
-    name: 'country',
-    label: 'Country',
-    type: 'select',
-    selectProps: {
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ],
-      variant: 'outlined'
-    }
-  }
-]
-
-EnhancedFiltersStory.args = {
-  fields: fields
-}
-
-EnhancedFiltersStory.storyName = 'EnhancedFilters'

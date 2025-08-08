@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  KeyboardEvent,
+  useCallback,
+  ReactNode,
+  useMemo
+} from 'react'
 import {
   Drawer,
   Theme as MuiTheme,
@@ -10,10 +16,10 @@ import {
   AppStylePropsBase,
   AppStyleProps
 } from '../AppStyleProps'
-import { makeG2STyles } from '@komune-io/g2-themes'
 import { AppBarLayout, AppBarLayoutProps } from '../AppBarLayout'
+import { makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles<{
+const useStyles = makeG2Styles<{
   styleProps: AppStylePropsBase
   muiTheme: MuiTheme
 }>()((theme, props) => ({
@@ -124,7 +130,7 @@ interface AppLayoutClasses {
 }
 
 interface AppLayoutStyles {
-  main?: React.CSSProperties
+  main?: CSSProperties
 }
 
 export interface AppLayoutProps {
@@ -143,11 +149,11 @@ export interface AppLayoutProps {
   /**
    * The content that will be displayed in the appBAr
    */
-  appBarContent?: React.ReactNode
+  appBarContent?: ReactNode
   /**
    * The application that has to be surrounded by the appbar and the drawer
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * Defined if the drawer is open or not
    */
@@ -167,7 +173,7 @@ export interface AppLayoutProps {
   /**
    * The content that will be displayed in the drawer
    */
-  drawerContent?: React.ReactNode
+  drawerContent?: ReactNode
   /**
    * The function that is called when the hamburger button is clicked
    */
@@ -213,7 +219,7 @@ export const AppLayout = (props: AppLayoutProps) => {
   const defaultStyles = useStyles(stylesDependencies)
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Enter' && onToggle) {
         onToggle()
       }

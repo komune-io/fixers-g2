@@ -8,16 +8,16 @@ import {
   ListProps
 } from '@mui/material'
 import { MenuItems } from './MenuItem'
-import React, { useCallback, useMemo } from 'react'
+import { CSSProperties, useCallback, useMemo } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
-  makeG2STyles
+  makeG2Styles
 } from '@komune-io/g2-themes'
 
 /* eslint-disable react/jsx-key */
 
-const useStyles = makeG2STyles<{ paddingLeft: number }>()(
+const useStyles = makeG2Styles<{ paddingLeft: number }>()(
   (theme, { paddingLeft }) => ({
     item: {
       paddingLeft: `${paddingLeft}px`,
@@ -64,8 +64,8 @@ interface MenuClasses {
 
 interface MenuStyles {
   item?: MenuItemStyles
-  icon?: React.CSSProperties
-  text?: React.CSSProperties
+  icon?: CSSProperties
+  text?: CSSProperties
 }
 
 interface MenuItemClasses {
@@ -75,9 +75,9 @@ interface MenuItemClasses {
 }
 
 interface MenuItemStyles {
-  root?: React.CSSProperties
-  icon?: React.CSSProperties
-  text?: React.CSSProperties
+  root?: CSSProperties
+  icon?: CSSProperties
+  text?: CSSProperties
 }
 
 interface MenuBasicProps extends BasicProps {

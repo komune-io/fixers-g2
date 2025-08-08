@@ -3,7 +3,6 @@
   "repository": "https://github.com/komune-io/fixers-g2.git",
   "author": "Komune",
   "license": "Apache-2.0",
-  "version": "0.5.0-alpha",
   "description": "Utility package used in the g2 packages.",
   "private": false,
   "main": "dist/index.cjs",
@@ -14,32 +13,25 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "publish:npm": "npm publish --access public"
+    "build": "vite build",
+    "lint": "eslint .",
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.28"
+    "@types/react": "catalog:dev-tools"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "notistack": "3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "notistack": "catalog:ui-components",
+    "react": "catalog:"
   },
   "dependencies": {
-    "@mantine/hooks": "^7.7.0",
-    "@tanstack/react-query": "^5.28.6",
-    "react-router-dom": "^6.22.3",
-    "i18next": "^23.10.1",
-    "lodash-es": "^4.17.21"
+    "@mantine/hooks": "catalog:ui-components",
+    "@tanstack/react-query": "catalog:state-management",
+    "i18next": "catalog:",
+    "lodash-es": "catalog:utilities",
+    "react-router-dom": "catalog:"
   }
 }

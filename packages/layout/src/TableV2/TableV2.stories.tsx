@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { useState } from 'react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { TableV2 as AruiTableV2, TableV2BasicProps } from './TableV2'
 import { G2ColumnDef, useTable } from './useTable'
 
@@ -13,7 +13,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 export default {
   title: 'Layout/TableV2',
   component: AruiTableV2
-} as Meta
+} as Meta<typeof AruiTableV2>
 
 interface Data {
   id: string
@@ -79,65 +79,70 @@ const columns: G2ColumnDef<Data>[] = [
   }
 ]
 
-export const TableV2: StoryFn<TableV2BasicProps<Data>> = (
-  args: TableV2BasicProps<Data>
-) => {
-  const [page, setPage] = useState<number>(1)
-  const [sort, setSort] = useState({})
-  const tableState = useTable({
-    data: page === 1 ? data1 : data2,
-    columns: columns,
-    enableExpanding: true,
-    enableRowSelection: true,
-    getRowId: (row) => row.id
-  })
-  return (
-    <AruiTableV2
-      page={page}
-      totalPages={2}
-      onPageChange={(newPage) => setPage(newPage)}
-      tableState={tableState}
-      onSortingChange={setSort}
-      sortState={sort}
-      {...args}
-    />
-  )
-}
-
-TableV2.args = {
-  renderSubComponent: (row) => (
-    <Box
-      sx={{
-        margin: 1
-      }}
-    >
-      <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
-    </Box>
-  ),
-  onRowClicked: (row) => console.log('cliked', row)
-}
-
-export const Draggable: StoryFn<TableV2BasicProps<Data>> = (
-  args: TableV2BasicProps<Data>
-) => {
-  const [data, setData] = useState(data1)
-  const tableState = useTable({
-    data: data,
-    columns: columns,
-    enableRowSelection: true,
-    enableDragging: true,
-    getRowId: (row) => row.id
-  })
-
-  const onDragRow = (oldRowId: string | number, newRowId: string | number) => {
-    console.log('drag end')
-    setData((old) => {
-      const oldIndex = old.findIndex((row) => row.id === oldRowId)
-      const newIndex = old.findIndex((row) => row.id === newRowId)
-      return arrayMove(data, oldIndex, newIndex)
+export const TableV2: StoryObj<TableV2BasicProps<Data>> = {
+  render: (args: TableV2BasicProps<Data>) => {
+    const [page, setPage] = useState<number>(1)
+    const [sort, setSort] = useState({})
+    const tableState = useTable({
+      data: page === 1 ? data1 : data2,
+      columns: columns,
+      enableExpanding: true,
+      enableRowSelection: true,
+      getRowId: (row) => row.id
     })
+    return (
+      <AruiTableV2
+        page={page}
+        totalPages={2}
+        onPageChange={(newPage) => setPage(newPage)}
+        tableState={tableState}
+        onSortingChange={setSort}
+        sortState={sort}
+        {...args}
+      />
+    )
+  },
+
+  args: {
+    renderSubComponent: (row) => (
+      <Box
+        sx={{
+          margin: 1
+        }}
+      >
+        <Typography>Hy, I'm the subcomponent of {row.original.name}</Typography>
+      </Box>
+    ),
+    onRowClicked: (row) => console.log('cliked', row)
   }
-  return <AruiTableV2 onDragRow={onDragRow} tableState={tableState} {...args} />
+}
+
+export const Draggable: StoryObj<TableV2BasicProps<Data>> = {
+  render: (args: TableV2BasicProps<Data>) => {
+    const [data, setData] = useState(data1)
+    const tableState = useTable({
+      data: data,
+      columns: columns,
+      enableRowSelection: true,
+      enableDragging: true,
+      getRowId: (row) => row.id
+    })
+
+    const onDragRow = (
+      oldRowId: string | number,
+      newRowId: string | number
+    ) => {
+      console.log('drag end')
+      setData((old) => {
+        const oldIndex = old.findIndex((row) => row.id === oldRowId)
+        const newIndex = old.findIndex((row) => row.id === newRowId)
+        return arrayMove(data, oldIndex, newIndex)
+      })
+    }
+    return (
+      <AruiTableV2 onDragRow={onDragRow} tableState={tableState} {...args} />
+    )
+  }
 }
 
 export const theVariants: StoryFn = () => {
@@ -235,6 +240,9 @@ export const LoadingStates: StoryFn = () => {
 }
 
 export const NotificationList: StoryFn = () => {
+  const fixedDate = new Date('2024-01-15T14:00:00.000Z')
+  const now = fixedDate.getTime()
+
   interface Notification {
     id: string
     message: string
@@ -245,22 +253,22 @@ export const NotificationList: StoryFn = () => {
     {
       id: '1',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 5 * 24 * 60 * 60 * 1000 // 5 days ago
     },
     {
       id: '2',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 3 * 24 * 60 * 60 * 1000 // 3 days ago
     },
     {
       id: '3',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now - 1 * 24 * 60 * 60 * 1000 // 1 day ago
     },
     {
       id: '4',
       message: 'Jean sent you a message',
-      date: Date.now()
+      date: now + 1 * 24 * 60 * 60 * 1000 // 1 day in future
     }
   ]
 
@@ -522,7 +530,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '1',
       firstName: 'Jack',
       lastName: 'Burdon',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-10T14:00:00.000Z').getTime(),
       email: 'jack@burdon.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -531,7 +539,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '2',
       firstName: 'Alice',
       lastName: 'Brace',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-12T14:00:00.000Z').getTime(),
       email: 'alice@brace.com',
       phone: '0610203040',
       city: 'Montpellier'
@@ -540,7 +548,7 @@ export const ColumnFactoryExample: StoryFn = () => {
       id: '3',
       firstName: 'Henri',
       lastName: 'Rutelle',
-      birthDate: Date.now(),
+      birthDate: new Date('2024-01-14T14:00:00.000Z').getTime(),
       email: 'heanri@rutelle.com',
       phone: '0610203040',
       city: 'Montpellier'

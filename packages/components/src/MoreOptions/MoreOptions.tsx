@@ -1,14 +1,21 @@
-import React, { forwardRef, useCallback, useState } from 'react'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  MouseEvent,
+  useCallback,
+  useState
+} from 'react'
 import { Menu as MuiMenu, IconButton, IconButtonProps } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
 import { MenuItem, Menu, MenuProps } from '../Menu'
 import {
   BasicProps,
-  makeG2STyles,
+  makeG2Styles,
   MergeMuiElementProps
 } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   menu: {
     maxWidth: '300px',
     maxHeight: '250px',
@@ -27,8 +34,8 @@ interface MoreOptionsClasses {
 }
 
 interface MoreOptionsStyles {
-  moreOptionsIcon?: React.CSSProperties
-  menu?: React.CSSProperties
+  moreOptionsIcon?: CSSProperties
+  menu?: CSSProperties
 }
 
 export interface MoreOptionsBasicProps<T = {}> extends BasicProps {
@@ -57,7 +64,7 @@ export type MoreOptionsProps<T> = MergeMuiElementProps<
 
 const MoreOptionsBase = <T extends object = {}>(
   props: MoreOptionsProps<T>,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>
 ) => {
   const {
     options,
@@ -71,21 +78,17 @@ const MoreOptionsBase = <T extends object = {}>(
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const defaultStyles = useStyles()
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      setAnchorEl(event.currentTarget)
-      onClick && onClick(event)
-    },
-    []
-  )
+  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+    onClick && onClick(event)
+  }, [])
 
   const close = useCallback(() => {
     setAnchorEl(null)
   }, [])
 
   const stopPropagation = useCallback(
-    (event: React.MouseEvent<HTMLElement, MouseEvent>) =>
-      event.stopPropagation(),
+    (event: MouseEvent<HTMLElement>) => event.stopPropagation(),
     []
   )
 

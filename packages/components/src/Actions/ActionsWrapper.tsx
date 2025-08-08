@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import { CSSProperties, FunctionComponent } from 'react'
 import {
   Actions,
   ActionsProps,
@@ -14,8 +14,8 @@ export interface ActionWrapperClasses extends ActionsClasses {
 }
 
 export interface ActionWrapperStyles extends ActionsStyles {
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
 }
 
 interface ActionsWrapperBasicProps extends BasicProps {

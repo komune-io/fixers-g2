@@ -1,96 +1,96 @@
-export { AppBarLayout, AppBarLayoutProps } from './AppBarLayout'
-export { AppLayout, AppLayoutProps } from './AppLayout'
-export { ToolsMenu, ToolsMenuProps } from './ToolsMenu'
-export { App, AppProps } from './App'
-export { AppStyleProps } from './AppStyleProps'
-export { TabsMenu, TabsMenuProps } from './TabsMenu'
-export { ItemsLayout, ItemsLayoutProps } from './ItemsLayout'
-export { ToolsPanel, ToolsPanelProps } from './ToolsPanel'
-export {
-  Page,
+export { AppBarLayout } from './AppBarLayout'
+export type { AppBarLayoutProps } from './AppBarLayout'
+export { AppLayout } from './AppLayout'
+export type { AppLayoutProps } from './AppLayout'
+export { ToolsMenu } from './ToolsMenu'
+export type { ToolsMenuProps } from './ToolsMenu'
+export { App } from './App'
+export type { AppProps } from './App'
+export type { AppStyleProps } from './AppStyleProps'
+export { TabsMenu } from './TabsMenu'
+export type { TabsMenuProps } from './TabsMenu'
+export { ItemsLayout } from './ItemsLayout'
+export type { ItemsLayoutProps } from './ItemsLayout'
+export { ToolsPanel } from './ToolsPanel'
+export type { ToolsPanelProps } from './ToolsPanel'
+export { Page, PageContextProvider, usePage, PageContext } from './Page'
+export type {
   PageProps,
-  PageContextProvider,
   PageContextProviderProps,
-  usePage,
-  PageContext,
   PageContextProps
 } from './Page'
-export {
-  PopUp,
+export { PopUp, ConfirmationPopUp } from './PopUp'
+export type {
   PopUpProps,
-  ConfirmationPopUp,
   ConfirmationPopUpProps,
   ConfirmationPopUpVariant
 } from './PopUp'
-export {
-  Table,
+export { Table } from './Table'
+export type {
   CellProps,
   Column,
   CompleteTableOptions,
   Row,
   TableProps
 } from './Table'
-export { AppMenu, AppLogoProps, AppMenuProps } from './AppMenu'
-export { UserMenu, UserMenuProps } from './UserMenu'
-export {
-  StandAloneAppLayout,
-  StandAloneAppLayoutProps
-} from './StandAloneAppLayout'
-export { Section, SectionProps } from './Section'
-export { Header, HeaderProps, HeaderContent, HeaderTab } from './Header'
+export { AppMenu } from './AppMenu'
+export type { AppLogoProps, AppMenuProps } from './AppMenu'
+export { UserMenu } from './UserMenu'
+export type { UserMenuProps } from './UserMenu'
+export { StandAloneAppLayout } from './StandAloneAppLayout'
+export type { StandAloneAppLayoutProps } from './StandAloneAppLayout'
+export { Section } from './Section'
+export type { SectionProps } from './Section'
+export { Header } from './Header'
+export type { HeaderProps, HeaderContent, HeaderTab } from './Header'
 export {
   ColumnFactory,
-  ColumnFactoryParams,
   ColumnFactoryV1,
+  TableCellContact,
+  TableCellDate,
+  TableCellLink,
+  TableCellNumber,
+  TableCellProfile,
+  TableCellText,
+  TableCellChip,
+  TableCellIconTag,
+  TableCellStatus,
+  TableCellTag,
+  basicColumns
+} from './ColumnFactory'
+export type {
+  ColumnFactoryParams,
   ColumnFactoryV1Params,
   ColumnGenerators,
-  TableCellContact,
   TableCellContactProps,
-  TableCellDate,
   TableCellDateProps,
-  TableCellLink,
   TableCellLinkProps,
-  TableCellNumber,
   TableCellNumberProps,
-  TableCellProfile,
   TableCellProfileProps,
-  TableCellText,
   TableCellTextProps,
-  TableCellChip,
   TableCellChipProps,
-  TableCellIconTag,
   TableCellIconTagProps,
-  TableCellStatus,
   TableCellStatusProps,
-  TableCellTag,
   TableCellTagProps,
   ComposableColumns,
-  basicColumns,
   BasicComposableColumns
 } from './ColumnFactory'
-export {
+export { TableV2, useTable } from './TableV2'
+export type {
   G2Row,
   G2ColumnDef,
-  TableV2,
   TableV2Props,
-  useTable,
   UseTableOptions,
   ColumnBase,
   SortOrder,
   TableState
 } from './TableV2'
-export {
+export { composableToColumns, useTableComposable } from './TableComposable'
+export type {
   ComposableColumn,
   ComposableColumnBase,
   TableComposable,
-  composableToColumns,
-  UseTableComposableOptions,
-  useTableComposable
+  UseTableComposableOptions
 } from './TableComposable'
-export {
-  SidePageStepper,
-  SidePageStepperProps,
-  StepItem,
-  Stepper,
-  StepperProps
-} from './Stepper'
+export { SidePageStepper, Stepper } from './Stepper'
+export type { StepItem, SidePageStepperProps, StepperProps } from './Stepper'

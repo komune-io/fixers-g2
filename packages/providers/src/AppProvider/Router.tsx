@@ -1,14 +1,14 @@
 import { MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
 import { Route, Routes, RoutesProps } from 'react-router-dom'
 import { NoMatchPage, NoMatchPageProps } from './NoMatchPage'
 import { Impersonate } from './Impersonate'
+import { ReactElement } from 'react'
 
 interface RouterBasicProps {
   /**
    * The component display by the root if the user is authorized and if the current route match the one you gave
    */
-  children?: React.ReactElement | React.ReactElement[]
+  children?: ReactElement | ReactElement[]
   /**
    * By default the noMatch redirection goes to the `NoMatchPage` component but you can override it with this prop
    *

@@ -1,5 +1,5 @@
 import { Skeleton } from '@mui/material'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 interface ElevatedRowsLoadingProps {
   expectedSize: number

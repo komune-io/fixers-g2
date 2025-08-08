@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { OidcConfiguration, OidcProvider } from '@axa-fr/react-oidc'
 import type { OidcProviderProps } from '@axa-fr/react-oidc/dist/OidcProvider'
 import { OidcClient } from '@axa-fr/oidc-client'

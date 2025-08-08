@@ -1,8 +1,8 @@
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 
 const darkGrey = '#BDBDBD'
 
-export const useFilterInputStyles = makeG2STyles()((theme) => ({
+export const useFilterInputStyles = makeG2Styles()((theme) => ({
   label: {
     color: '#323338',
     marginBottom: 0,

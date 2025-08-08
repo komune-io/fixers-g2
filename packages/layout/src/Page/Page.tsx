@@ -1,6 +1,6 @@
 import { Box, BoxProps, useTheme, useMediaQuery } from '@mui/material'
 import { Actions, ActionsProps } from '@komune-io/g2-components'
-import React, { useContext, useMemo, useState } from 'react'
+import { useContext, useMemo, useState, ReactNode } from 'react'
 import {
   BasicProps,
   MergeMuiElementProps,
@@ -19,14 +19,14 @@ import { mergeDeepWith, mergeDeepWithKey, concat } from 'ramda'
 const mergeHeaderContent = (key: string, l: any, r: any) => {
   if (key === 'content') {
     if (r.lentgh > l.length) {
-      return l.map((el: HeaderContent, index) => ({
+      return l.map((el: HeaderContent, index: number) => ({
         //@ts-ignore
         leftPart: concat(el.leftPart ?? [], r[index].leftPart ?? []),
         //@ts-ignore
         rightPart: concat(el.rightPart ?? [], r[index].rightPart ?? [])
       }))
     } else {
-      return r.map((el: HeaderContent, index) => ({
+      return r.map((el: HeaderContent, index: number) => ({
         //@ts-ignore
         leftPart: concat(el.leftPart ?? [], l[index].leftPart ?? []),
         //@ts-ignore
@@ -41,7 +41,7 @@ export interface PageBasicProps extends BasicProps {
   /**
    * the page content
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * the props passed to the header
    */

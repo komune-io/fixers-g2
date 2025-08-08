@@ -3,7 +3,15 @@ import {
   MergeMuiElementProps,
   useTheme
 } from '@komune-io/g2-themes'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import { Dropzone, DropzoneProps, MIME_TYPES } from '@mantine/dropzone'
 import { FileRejection } from 'react-dropzone'
 import { cx } from '@emotion/css'
@@ -42,7 +50,7 @@ export interface DocumentHandlerBasicProps extends BasicProps {
   /**
    * The label displayed on top of the document handler if wanted
    */
-  label?: React.ReactNode
+  label?: ReactNode
   /**
    * provide it if the file is already uploaded
    */
@@ -134,14 +142,11 @@ export const DocumentHandler = (props: DocumentHandlerProps) => {
   const dropzoneRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
 
-  const downHandler = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter') {
-        event.currentTarget.click()
-      }
-    },
-    []
-  )
+  const downHandler = useCallback((event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      event.currentTarget.click()
+    }
+  }, [])
 
   useEffect(() => {
     if (dropzoneRef.current) {

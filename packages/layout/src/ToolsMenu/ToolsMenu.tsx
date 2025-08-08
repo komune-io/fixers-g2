@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import { CSSProperties, MouseEvent, useState } from 'react'
 import { MenuItems } from '@komune-io/g2-components'
 import { IconButton, Menu as MuiMenu } from '@mui/material'
 import { ItemsLayout, Display, ItemsLayoutBasicProps } from '../ItemsLayout'
 import { TabsMenuProps } from '../TabsMenu'
 import { TabsMenu } from '../TabsMenu'
-import { BasicProps, makeG2STyles } from '@komune-io/g2-themes'
+import { BasicProps, makeG2Styles } from '@komune-io/g2-themes'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   menu: {
     maxWidth: '300px',
     maxHeight: '500px'
@@ -45,8 +45,8 @@ interface ToolsMenuClasses {
 }
 
 interface ToolsMenuStyles {
-  iconButton?: React.CSSProperties
-  menu?: React.CSSProperties
+  iconButton?: CSSProperties
+  menu?: CSSProperties
 }
 
 export interface ToolsMenuProps extends BasicProps {
@@ -96,7 +96,7 @@ export const ToolsMenu = (props: ToolsMenuProps) => {
   const open = Boolean(anchorEl)
   const defaultStyles = useStyles()
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {

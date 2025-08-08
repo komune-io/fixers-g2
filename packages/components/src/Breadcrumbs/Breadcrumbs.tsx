@@ -6,7 +6,7 @@ import {
   BreadcrumbsProps as MuiBreadcrumbsProps,
   Typography
 } from '@mui/material'
-import React, { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Link } from '../Link'
 import { MenuItem, useButtonMenu } from '../Menu'
@@ -17,8 +17,8 @@ interface BreadcrumbsClasses {
 }
 
 interface BreadcrumbsStyles {
-  link?: React.CSSProperties
-  currentPage?: React.CSSProperties
+  link?: CSSProperties
+  currentPage?: CSSProperties
 }
 
 export type Crumb = {

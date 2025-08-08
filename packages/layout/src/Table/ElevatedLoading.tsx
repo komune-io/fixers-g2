@@ -1,5 +1,4 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
-import React from 'react'
 import { ElevatedRowsLoading } from './ElevatedRowsLoading'
 
 interface ElevatedLoadingProps {

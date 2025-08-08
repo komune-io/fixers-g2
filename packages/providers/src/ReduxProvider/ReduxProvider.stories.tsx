@@ -1,6 +1,11 @@
 import { ReduxProvider as AruiReduxProvider } from './ReduxProvider'
-import { Meta, StoryFn } from '@storybook/react'
-import { ArgsTable, Title, Primary, Description } from '@storybook/addon-docs'
+import { StoryObj, Meta } from '@storybook/react-vite'
+import {
+  ArgTypes,
+  Title,
+  Primary,
+  Description
+} from '@storybook/addon-docs/blocks'
 import { CodeHighlighter } from '@komune-io/g2-documentation'
 import initRedux from './store'
 import { redux } from './docs'
@@ -20,16 +25,18 @@ export default {
           </Description>
           <CodeHighlighter code={redux} />
           <Primary />
-          <ArgsTable components={{ AruiReduxProvider: AruiReduxProvider }} />
+          <ArgTypes of={AruiReduxProvider} />
         </>
       )
     }
   }
-} as Meta
+} as Meta<typeof AruiReduxProvider>
 
-export const ReduxProvider: StoryFn = () => {
-  const { store } = initRedux()
-  return <AruiReduxProvider reduxStore={store}></AruiReduxProvider>
+export const ReduxProvider: StoryObj = {
+  render: () => {
+    const { store } = initRedux()
+    return <AruiReduxProvider reduxStore={store}></AruiReduxProvider>
+  },
+
+  name: 'ReduxProvider'
 }
-
-ReduxProvider.storyName = 'ReduxProvider'

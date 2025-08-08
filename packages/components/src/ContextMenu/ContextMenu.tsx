@@ -11,8 +11,10 @@ import {
   styled
 } from '@mui/material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React, {
+import {
+  CSSProperties,
   forwardRef,
+  ForwardedRef,
   useCallback,
   useEffect,
   useMemo,
@@ -61,8 +63,8 @@ interface ContextMenuClasses {
 
 interface ContextMenuStyles {
   item?: ItemStyles
-  paper?: React.CSSProperties
-  list?: React.CSSProperties
+  paper?: CSSProperties
+  list?: CSSProperties
 }
 
 export interface ContextMenuBasicProps extends BasicProps {
@@ -92,110 +94,109 @@ export type ContextMenuProps = MergeMuiElementProps<
   ContextMenuBasicProps
 >
 
-export const ContextMenuBase = (
-  props: ContextMenuProps,
-  ref: React.RefObject<HTMLDivElement>
-) => {
-  const {
-    menu,
-    classes,
-    styles,
-    onClose,
-    anchorEl,
-    open = false,
-    closeOnClickAway = true,
-    className,
-    ...other
-  } = props
-  const [currentItem, setCurrentItem] = useState<HTMLElement | undefined>(
-    undefined
-  )
-  const [selectedItem, setSelectedItem] = useState<MenuItems | undefined>(
-    undefined
-  )
-
-  useEffect(() => {
-    setCurrentItem(undefined)
-  }, [anchorEl])
-
-  const openPopper = !!anchorEl && open
-
-  const handleClickAway = useCallback(() => {
-    if (closeOnClickAway && onClose && openPopper) {
-      onClose()
-    }
-  }, [onClose, openPopper, closeOnClickAway])
-
-  const uiMenu = useMemo(
-    () =>
-      menu &&
-      menu.map((item) => (
-        <Item
-          onMouseEnter={(event) => {
-            if (item.items) {
-              setCurrentItem(event.currentTarget)
-              setSelectedItem(item)
-            } else {
-              setCurrentItem(undefined)
-            }
-          }}
-          isSelected={selectedItem?.key === item.key}
-          classes={classes}
-          styles={styles}
-          {...item}
-        />
-      )),
-    [classes, styles, menu, selectedItem]
-  )
-
-  const subMenu = useMemo(() => {
-    if (!!currentItem && !!selectedItem?.items && openPopper) {
-      return (
-        <ContextMenu
-          closeOnClickAway={false}
-          anchorEl={currentItem}
-          menu={selectedItem.items}
-          open={!!selectedItem && openPopper}
-          placement='right-start'
-        />
-      )
-    }
-    return undefined
-  }, [currentItem, selectedItem, openPopper])
-
-  const popper = (
-    <Popper
-      ref={ref}
-      open={openPopper}
-      anchorEl={anchorEl}
-      className={cx('AruiContextMenu-root', className)}
-      {...other}
-    >
-      <StyledPaper
-        className={cx('AruiContextMenu-paper', classes?.paper)}
-        style={styles?.paper}
-      >
-        <MenuList
-          className={cx('AruiContextMenu-list', classes?.list)}
-          style={styles?.list}
-        >
-          {uiMenu}
-        </MenuList>
-      </StyledPaper>
-      {subMenu}
-    </Popper>
-  )
-
-  if (!openPopper) return <> </>
-
-  if (closeOnClickAway && openPopper)
-    return (
-      <ClickAwayListener onClickAway={handleClickAway}>
-        {popper}
-      </ClickAwayListener>
+export const ContextMenuBase = forwardRef<HTMLDivElement, ContextMenuProps>(
+  (props: ContextMenuProps, ref: ForwardedRef<HTMLDivElement>) => {
+    const {
+      menu,
+      classes,
+      styles,
+      onClose,
+      anchorEl,
+      open = false,
+      closeOnClickAway = true,
+      className,
+      ...other
+    } = props
+    const [currentItem, setCurrentItem] = useState<HTMLElement | undefined>(
+      undefined
     )
-  return popper
-}
+    const [selectedItem, setSelectedItem] = useState<MenuItems | undefined>(
+      undefined
+    )
+
+    useEffect(() => {
+      setCurrentItem(undefined)
+    }, [anchorEl])
+
+    const openPopper = !!anchorEl && open
+
+    const handleClickAway = useCallback(() => {
+      if (closeOnClickAway && onClose && openPopper) {
+        onClose()
+      }
+    }, [onClose, openPopper, closeOnClickAway])
+
+    const uiMenu = useMemo(
+      () =>
+        menu &&
+        menu.map((item) => (
+          <Item
+            onMouseEnter={(event) => {
+              if (item.items) {
+                setCurrentItem(event.currentTarget)
+                setSelectedItem(item)
+              } else {
+                setCurrentItem(undefined)
+              }
+            }}
+            isSelected={selectedItem?.key === item.key}
+            classes={classes}
+            styles={styles}
+            {...item}
+          />
+        )),
+      [classes, styles, menu, selectedItem]
+    )
+
+    const subMenu = useMemo(() => {
+      if (!!currentItem && !!selectedItem?.items && openPopper) {
+        return (
+          <ContextMenu
+            closeOnClickAway={false}
+            anchorEl={currentItem}
+            menu={selectedItem.items}
+            open={!!selectedItem && openPopper}
+            placement='right-start'
+          />
+        )
+      }
+      return undefined
+    }, [currentItem, selectedItem, openPopper])
+
+    const popper = (
+      <Popper
+        ref={ref}
+        open={openPopper}
+        anchorEl={anchorEl}
+        className={cx('AruiContextMenu-root', className)}
+        {...other}
+      >
+        <StyledPaper
+          className={cx('AruiContextMenu-paper', classes?.paper)}
+          style={styles?.paper}
+        >
+          <MenuList
+            className={cx('AruiContextMenu-list', classes?.list)}
+            style={styles?.list}
+          >
+            {uiMenu}
+          </MenuList>
+        </StyledPaper>
+        {subMenu}
+      </Popper>
+    )
+
+    if (!openPopper) return <> </>
+
+    if (closeOnClickAway && openPopper)
+      return (
+        <ClickAwayListener onClickAway={handleClickAway}>
+          {popper}
+        </ClickAwayListener>
+      )
+    return popper
+  }
+)
 
 interface ItemClasses {
   root?: string
@@ -205,10 +206,10 @@ interface ItemClasses {
 }
 
 interface ItemStyles {
-  root?: React.CSSProperties
-  icon?: React.CSSProperties
-  text?: React.CSSProperties
-  arrow?: React.CSSProperties
+  root?: CSSProperties
+  icon?: CSSProperties
+  text?: CSSProperties
+  arrow?: CSSProperties
 }
 
 interface ItemBasicProps extends BasicProps {
@@ -218,58 +219,56 @@ interface ItemBasicProps extends BasicProps {
 
 type ItemProps = MergeMuiElementProps<ListItemProps, ItemBasicProps & MenuItems>
 
-const Item = forwardRef(
-  (props: ItemProps, ref: React.RefObject<HTMLElement>) => {
-    const {
-      goto,
-      icon,
-      label,
-      href,
-      onClick,
-      componentProps,
-      items,
-      component,
-      isSelected = false,
-      classes,
-      styles,
-      ...other
-    } = props
-    const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
+const Item = forwardRef<HTMLElement, ItemProps>((props, ref) => {
+  const {
+    goto,
+    icon,
+    label,
+    href,
+    onClick,
+    componentProps,
+    items,
+    component,
+    isSelected = false,
+    classes,
+    styles,
+    ...other
+  } = props
+  const onItemClick = useCallback(() => goto && !href && goto(), [goto, href])
 
-    return (
-      <ListItemButton
-        ref={ref}
-        component={component ? component : href ? 'a' : 'div'}
-        onClick={onItemClick}
-        href={href}
-        style={styles?.item?.root}
-        {...componentProps}
-        {...other}
-        className={classes?.item?.root}
-      >
-        {!!icon && (
-          <ListItemIcon
-            className={classes?.item?.icon}
-            style={styles?.item?.icon}
-          >
-            {icon}
-          </ListItemIcon>
-        )}
-        <ListItemText
-          primaryTypographyProps={{ color: 'inherit', variant: 'body2' }}
-          primary={label}
-          className={classes?.item?.text}
-          style={styles?.item?.text}
+  return (
+    <ListItemButton
+      ref={ref}
+      component={component ? component : href ? 'a' : 'div'}
+      onClick={onItemClick}
+      href={href}
+      style={styles?.item?.root}
+      {...componentProps}
+      {...other}
+      className={classes?.item?.root}
+    >
+      {!!icon && (
+        <ListItemIcon
+          className={classes?.item?.icon}
+          style={styles?.item?.icon}
+        >
+          {icon}
+        </ListItemIcon>
+      )}
+      <ListItemText
+        primaryTypographyProps={{ color: 'inherit', variant: 'body2' }}
+        primary={label}
+        className={classes?.item?.text}
+        style={styles?.item?.text}
+      />
+      {!!items && (
+        <RoundedArrow
+          className={cx('AruiContextMenu-arrow', classes?.item?.arrow)}
+          style={styles?.item?.arrow}
         />
-        {!!items && (
-          <RoundedArrow
-            className={cx('AruiContextMenu-arrow', classes?.item?.arrow)}
-            style={styles?.item?.arrow}
-          />
-        )}
-      </ListItemButton>
-    )
-  }
-)
+      )}
+    </ListItemButton>
+  )
+})
 
-export const ContextMenu = forwardRef(ContextMenuBase) as typeof ContextMenuBase
+export const ContextMenu = ContextMenuBase

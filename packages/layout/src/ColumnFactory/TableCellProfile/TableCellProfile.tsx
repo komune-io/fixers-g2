@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import { Presentation } from '@komune-io/g2-components'
-import React from 'react'
 
 export interface TableCellProfileProps {
   value?: {

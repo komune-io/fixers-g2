@@ -1,14 +1,13 @@
-import React from 'react'
 import { Form, FormAction, FormBasicProps, FormField } from './Form'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
   Description,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import LinkTo from '@storybook/addon-links/react'
 import { Typography } from '@mui/material'
 import { ActionDoc, FieldDoc, FormClasses, FormStyles, FormState } from './docs'
@@ -31,7 +30,7 @@ export default {
             We recommand using [Formik](https://formik.org/) even for complexe
             form.
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
@@ -121,71 +120,7 @@ export default {
       }
     }
   }
-} as Meta
-
-export const FormStory: StoryFn<FormBasicProps> = (args: FormBasicProps) => {
-  const formState = useForm({
-    fields: args.fields,
-    onSubmit: (values) => console.log(values)
-  })
-  const actions: FormAction[] = [
-    {
-      label: 'reset',
-      key: 'resetFiltersButton',
-      variant: 'text',
-      onClick: () => formState.resetForm()
-    },
-    {
-      label: 'validate',
-      key: 'validateFormButton',
-      type: 'submit'
-    }
-  ]
-  return (
-    <Form
-      {...args}
-      actions={actions}
-      formState={formState}
-      style={{ width: '500px' }}
-    />
-  )
-}
-
-export const FormCollumnButtonStory: StoryFn<FormBasicProps> = (
-  args: FormBasicProps
-) => {
-  const formState = useForm({
-    fields: args.fields,
-    onSubmit: (values) => console.log(values)
-  })
-  const actions: FormAction[] = [
-    {
-      label: 'reset',
-      key: 'resetFiltersButton',
-      variant: 'text',
-      onClick: () => formState.resetForm()
-    },
-    {
-      label: 'validate',
-      key: 'validateFormButton',
-      type: 'submit'
-    }
-  ]
-  return (
-    <Form
-      {...args}
-      actions={actions}
-      formState={formState}
-      style={{ width: '500px' }}
-      styles={{
-        actions: {
-          flexDirection: 'column',
-          justifyContent: 'flex-start'
-        }
-      }}
-    />
-  )
-}
+} as Meta<typeof Form>
 
 const fields: FormField[] = [
   {
@@ -249,13 +184,80 @@ const fields: FormField[] = [
   }
 ]
 
-FormStory.args = {
-  fields: fields
+export const FormStory: StoryObj<FormBasicProps> = {
+  render: (args: FormBasicProps) => {
+    const formState = useForm({
+      fields: args.fields,
+      onSubmit: (values) => console.log(values)
+    })
+    const actions: FormAction[] = [
+      {
+        label: 'reset',
+        key: 'resetFiltersButton',
+        variant: 'text',
+        onClick: () => formState.resetForm()
+      },
+      {
+        label: 'validate',
+        key: 'validateFormButton',
+        type: 'submit'
+      }
+    ]
+    return (
+      <Form
+        {...args}
+        actions={actions}
+        formState={formState}
+        style={{ width: '500px' }}
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Form'
 }
 
-FormStory.storyName = 'Form'
+export const FormCollumnButtonStory: StoryObj<FormBasicProps> = {
+  render: (args: FormBasicProps) => {
+    const formState = useForm({
+      fields: args.fields,
+      onSubmit: (values) => console.log(values)
+    })
+    const actions: FormAction[] = [
+      {
+        label: 'reset',
+        key: 'resetFiltersButton',
+        variant: 'text',
+        onClick: () => formState.resetForm()
+      },
+      {
+        label: 'validate',
+        key: 'validateFormButton',
+        type: 'submit'
+      }
+    ]
+    return (
+      <Form
+        {...args}
+        actions={actions}
+        formState={formState}
+        style={{ width: '500px' }}
+        styles={{
+          actions: {
+            flexDirection: 'column',
+            justifyContent: 'flex-start'
+          }
+        }}
+      />
+    )
+  },
 
-FormCollumnButtonStory.args = {
-  fields: fields
+  args: {
+    fields: fields
+  },
+
+  name: 'Form Column Button'
 }
-FormCollumnButtonStory.storyName = 'Form Column Button'

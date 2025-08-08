@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   DocumentHandler as AruiDocumentHandler,
   DocumentHandlerBasicProps
 } from './DocumentHandler'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react-vite'
 import { Box, Stack } from '@mui/material'
 import { useLocalDocumentHandler } from './useLocalDocumentHandler'
 import { useLocalStorageDocumentHandler } from './useLocalStorageDocumentHandler'
@@ -18,20 +17,30 @@ export default {
     }
   },
   argTypes: {}
-} as Meta
+} as Meta<typeof AruiDocumentHandler>
 
-export const DocumentHandler: StoryFn<DocumentHandlerBasicProps> = (
-  args: DocumentHandlerBasicProps
-) => (
-  <Box
-    sx={{
-      width: '500px',
-      height: '300px'
-    }}
-  >
-    <AruiDocumentHandler {...args} />
-  </Box>
-)
+export const DocumentHandler: StoryObj<DocumentHandlerBasicProps> = {
+  render: (args: DocumentHandlerBasicProps) => (
+    <Box
+      sx={{
+        width: '500px',
+        height: '300px'
+      }}
+    >
+      <AruiDocumentHandler {...args} />
+    </Box>
+  ),
+
+  args: {
+    label: 'Specifications.pdf',
+    onDelete: () => {},
+    onView: () => {},
+    onDownload: () => {},
+    fileTypesAllowed: ['pdf', 'jpeg', 'png']
+  },
+
+  name: 'DocumentHandler'
+}
 
 export const DocumentHandlerVariant: StoryFn = () => (
   <Stack
@@ -94,13 +103,3 @@ export const useLocalStorageDocumentHandlerExample: StoryFn = () => {
     </Box>
   )
 }
-
-DocumentHandler.args = {
-  label: 'Specifications.pdf',
-  onDelete: () => {},
-  onView: () => {},
-  onDownload: () => {},
-  fileTypesAllowed: ['pdf', 'jpeg', 'png']
-}
-
-DocumentHandler.storyName = 'DocumentHandler'

@@ -1,7 +1,7 @@
 import { WithElementParams } from '../../ComposableRender'
 import { FormComposableState } from './FormComposableState'
 import { FormComposableProps } from '../FormComposable'
-import { useEffect, useMemo } from 'react'
+import { ReactNode, useEffect, useMemo } from 'react'
 import {
   FormComposableField,
   OnChangeFnc,
@@ -27,7 +27,7 @@ export interface FieldRenderProps<TYPE extends string, PROPS>
 export interface FieldRender {
   key: string
   id: string
-  label?: React.ReactNode
+  label?: ReactNode
   name: string
   error: boolean
   errorMessage: string

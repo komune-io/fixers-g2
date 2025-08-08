@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { CSSProperties, useCallback, useMemo, useState } from 'react'
 import { FsFile } from '../../Domain'
 import { cx } from '@emotion/css'
 import {
@@ -27,11 +27,11 @@ export interface GalleryFactoryClasses {
 }
 
 export interface GalleryFactoryStyles {
-  image?: React.CSSProperties
-  imageContainer?: React.CSSProperties
-  closeButton?: React.CSSProperties
-  closeIcon?: React.CSSProperties
-  dropzone?: React.CSSProperties
+  image?: CSSProperties
+  imageContainer?: CSSProperties
+  closeButton?: CSSProperties
+  closeIcon?: CSSProperties
+  dropzone?: CSSProperties
 }
 
 export interface GalleryFactoryBasicProps extends BasicProps {

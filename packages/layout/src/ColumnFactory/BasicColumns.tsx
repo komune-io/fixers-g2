@@ -26,7 +26,7 @@ export const basicColumns = {
 }
 
 export type ComposableColumns<
-  columns extends Record<string, FunctionComponent>
+  columns extends Record<string, FunctionComponent<any>>
 > = {
   [K in keyof columns]: {
     type: K

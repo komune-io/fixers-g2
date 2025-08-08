@@ -6,40 +6,40 @@ clean:
 	-find ./packages/*/ -name "dist" -type d -exec rm -rf {} \;
 
 install:
-	@yarn install --frozen-lockfile --ignore-scripts
+	@pnpm install --frozen-lockfile
 
 lint: install
-	@yarn eslintCheck
+	@pnpm eslintCheck
 
 build-pre: install
-	VERSION=$(VERSION) yarn workspaces:version
+	VERSION=$(VERSION) pnpm workspaces:version
 
 build: build-libs
 
 test:
 	echo 'No Test'
 
-publish:
-	yarn workspaces:publish
+stage:
+	pnpm workspaces:publish
 
 promote:
-	yarn workspaces:publish
+	pnpm workspaces:publish
 
 build-libs: install
-	@yarn workspace @komune-io/g2-utils run build
-	@yarn workspace @komune-io/g2-themes run build
-	@yarn workspace @komune-io/g2-notifications run build
-	@yarn workspace @komune-io/g2-components run build
-	@yarn workspace @komune-io/g2-forms run build
-	@yarn workspace @komune-io/g2-documentation run build
-	@yarn workspace @komune-io/g2-layout run build
-	@yarn workspace @komune-io/g2-composable run build
-	@yarn workspace @komune-io/g2-providers run build
-	@yarn workspace @komune-io/g2-s2 run build
-	@yarn workspace @komune-io/g2-im run build
-	@yarn workspace @komune-io/g2-fs run build
-	@yarn workspace @komune-io/g2 run build
-	@yarn workspace @komune-io/g2-storybook-documentation run build
+	@pnpm --filter @komune-io/g2-utils run build
+	@pnpm --filter @komune-io/g2-themes run build
+	@pnpm --filter @komune-io/g2-notifications run build
+	@pnpm --filter @komune-io/g2-components run build
+	@pnpm --filter @komune-io/g2-forms run build
+	@pnpm --filter @komune-io/g2-documentation run build
+	@pnpm --filter @komune-io/g2-layout run build
+	@pnpm --filter @komune-io/g2-composable run build
+	@pnpm --filter @komune-io/g2-providers run build
+	@pnpm --filter @komune-io/g2-s2 run build
+	@pnpm --filter @komune-io/g2-im run build
+	@pnpm --filter @komune-io/g2-fs run build
+	@pnpm --filter @komune-io/g2 run build
+	@pnpm --filter @komune-io/g2-storybook-documentation run build
 
 .PHONY: version
 version:

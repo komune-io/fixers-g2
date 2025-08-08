@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import { useCallback, useEffect, useMemo } from 'react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Primary,
   Description,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import {
   FiltersComposableBasicProps,
   FiltersComposable
@@ -34,38 +34,99 @@ export default {
             This components is made to display a simple form using
             [Formik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Stories />
         </>
       )
     }
   }
-} as Meta
+} as Meta<typeof FiltersComposable>
 
 const queryClient = new QueryClient()
 
-export const FiltersStory: StoryFn<FiltersComposableBasicProps<any>> = (
-  args: FiltersComposableBasicProps<any>
-) => {
-  interface Languages {
-    fr: string
-    en: string
+const fields: FilterComposableField[] = [
+  {
+    name: 'from',
+    label: 'From',
+    type: 'datePicker'
+  },
+  {
+    name: 'to',
+    label: 'To',
+    type: 'datePicker'
+  },
+  {
+    name: 'spacer',
+    type: 'spacer'
+  },
+  {
+    name: 'keyword',
+    label: 'Keyword',
+    type: 'textField',
+    params: { textFieldType: 'search' },
+    mandatory: true
+  },
+  {
+    name: 'country',
+    label: 'Country',
+    type: 'select',
+    params: {
+      multiple: true,
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ]
+    }
+  },
+  {
+    name: 'countries',
+    label: 'Countries',
+    type: 'select',
+    params: {
+      multiple: true,
+      displaySelected: true,
+      options: [
+        { key: 'paris', label: 'Paris' },
+        { key: 'lyon', label: 'Lyon' },
+        { key: 'nice', label: 'Nice' },
+        { key: 'marseille', label: 'Marseille' },
+        { key: 'montpellier', label: 'Montpellier' }
+      ]
+    }
   }
+]
 
-  const languages: Languages = {
-    fr: 'fr-FR',
-    en: 'en-US'
-  }
+export const FiltersStory: StoryObj<FiltersComposableBasicProps<any>> = {
+  render: (args: FiltersComposableBasicProps<any>) => {
+    interface Languages {
+      fr: string
+      en: string
+    }
 
-  return (
-    <AruiAppProvider<Languages>
-      languages={languages}
-      loadingComponent={<Typography>Loading ...</Typography>}
-      queryClient={queryClient}
-    >
-      <Router {...args} />
-    </AruiAppProvider>
-  )
+    const languages: Languages = {
+      fr: 'fr-FR',
+      en: 'en-US'
+    }
+
+    return (
+      <AruiAppProvider<Languages>
+        languages={languages}
+        loadingComponent={<Typography>Loading ...</Typography>}
+        queryClient={queryClient}
+      >
+        <Router {...args} />
+      </AruiAppProvider>
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Filters'
 }
 
 const Router = (props) => {
@@ -184,64 +245,3 @@ const Example = (args: any) => {
     </>
   )
 }
-
-const fields: FilterComposableField[] = [
-  {
-    name: 'from',
-    label: 'From',
-    type: 'datePicker'
-  },
-  {
-    name: 'to',
-    label: 'To',
-    type: 'datePicker'
-  },
-  {
-    name: 'spacer',
-    type: 'spacer'
-  },
-  {
-    name: 'keyword',
-    label: 'Keyword',
-    type: 'textField',
-    params: { textFieldType: 'search' },
-    mandatory: true
-  },
-  {
-    name: 'country',
-    label: 'Country',
-    type: 'select',
-    params: {
-      multiple: true,
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ]
-    }
-  },
-  {
-    name: 'countries',
-    label: 'Countries',
-    type: 'select',
-    params: {
-      multiple: true,
-      displaySelected: true,
-      options: [
-        { key: 'paris', label: 'Paris' },
-        { key: 'lyon', label: 'Lyon' },
-        { key: 'nice', label: 'Nice' },
-        { key: 'marseille', label: 'Marseille' },
-        { key: 'montpellier', label: 'Montpellier' }
-      ]
-    }
-  }
-]
-
-FiltersStory.args = {
-  fields: fields
-}
-
-FiltersStory.storyName = 'Filters'

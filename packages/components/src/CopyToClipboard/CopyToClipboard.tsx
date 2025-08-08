@@ -1,13 +1,19 @@
 import { IconButton, IconButtonProps } from '@mui/material'
 import { CheckRounded } from '@mui/icons-material'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import { makeG2STyles } from '@komune-io/g2-themes'
-import React, { forwardRef, useCallback, useState } from 'react'
+import { makeG2Styles } from '@komune-io/g2-themes'
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  useCallback,
+  useState
+} from 'react'
 import { Clipboard } from '../icons'
 import { Tooltip } from '@komune-io/g2-notifications'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = makeG2STyles()((theme) => ({
+const useStyles = makeG2Styles()((theme) => ({
   clipboardIcon: {
     width: '20px',
     height: '20px'
@@ -26,9 +32,9 @@ interface CopyToClipboardClasses {
 }
 
 interface CopyToClipboardStyles {
-  tooltip?: React.CSSProperties
-  clipBoardIcon?: React.CSSProperties
-  successIcon?: React.CSSProperties
+  tooltip?: CSSProperties
+  clipBoardIcon?: CSSProperties
+  successIcon?: CSSProperties
 }
 
 export interface CopyToClipboardBasicProps extends BasicProps {
@@ -53,7 +59,7 @@ export type CopyToClipboardProps = MergeMuiElementProps<
 
 const CopyToClipboardBase = (
   props: CopyToClipboardProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>
 ) => {
   const { value, className, classes, styles, ...other } = props
   const [done, setDone] = useState(false)

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import React, { useCallback } from 'react'
+import { ChangeEvent, CSSProperties, useCallback } from 'react'
 import {
   Pagination as MuiPagination,
   PaginationProps as MuiPaginationProps
@@ -12,7 +12,7 @@ interface PaginationClasses {
 }
 
 interface PaginationStyles {
-  pagination?: React.CSSProperties
+  pagination?: CSSProperties
 }
 
 export interface PaginationBasicProps extends BasicProps {
@@ -57,7 +57,7 @@ export const Pagination = (props: PaginationProps) => {
   } = props
 
   const onChangePage = useCallback(
-    (_: React.ChangeEvent<unknown>, newPage: number) => {
+    (_: ChangeEvent<unknown>, newPage: number) => {
       if (page !== newPage) {
         onPageChange && onPageChange(newPage)
       }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { ElementFactory } from './ElementFactory'
 import { ElementRenderersConfig, WithElementParams } from './ElementRenderer'
 

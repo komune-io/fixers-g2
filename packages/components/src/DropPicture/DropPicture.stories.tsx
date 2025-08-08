@@ -1,9 +1,8 @@
-import React from 'react'
 import {
   DropPicture as AruiDropPicture,
   DropPictureBasicProps
 } from './DropPicture'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 import { styles, classes } from './types'
 import { Box } from '@mui/material'
 
@@ -34,7 +33,7 @@ export default {
       }
     }
   }
-} as Meta
+} as Meta<typeof AruiDropPicture>
 
 const Template: StoryFn<DropPictureBasicProps> = (
   args: DropPictureBasicProps
@@ -49,6 +48,7 @@ const Template: StoryFn<DropPictureBasicProps> = (
   </Box>
 )
 
-export const DropPicture = Template.bind({})
-
-DropPicture.storyName = 'DropPicture'
+export const DropPicture = {
+  render: Template,
+  name: 'DropPicture'
+}

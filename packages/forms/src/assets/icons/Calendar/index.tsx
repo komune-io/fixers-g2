@@ -1,5 +1,4 @@
-import React from 'react'
-import { ReactComponent } from './calendar.svg'
+import ReactComponent from './calendar.svg'
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
 export const Calendar = (props: SvgIconProps) => {

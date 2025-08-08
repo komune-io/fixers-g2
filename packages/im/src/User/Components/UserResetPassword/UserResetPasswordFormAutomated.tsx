@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
 import {
   UserId,

@@ -85,7 +85,10 @@ type AuthService<
   /**
    * It will exececute the auth function by passing it the authenticated user and return the boolean result
    */
-  executeAuthFunction: (authFunction: AuthFunction, ...args) => isAuthorized
+  executeAuthFunction: (
+    authFunction: AuthFunction,
+    ...args: any[]
+  ) => isAuthorized
 } & RolesServices<Roles> &
   Additionals
 
@@ -234,22 +237,18 @@ function useAuth<
     [tokenParsed]
   )
 
-  const getUser = useCallback(
-    // @ts-ignore
-    (): CommonUser | undefined => {
-      if (!isAuthenticated) return
-      return {
-        id: tokenParsed?.sub,
-        email: tokenParsed?.email,
-        memberOf: tokenParsed?.memberOf,
-        firstName: tokenParsed?.given_name,
-        lastName: tokenParsed?.family_name,
-        roles: tokenParsed?.realm_access?.roles,
-        fullName: tokenParsed?.name
-      }
-    },
-    [isAuthenticated, tokenParsed]
-  )
+  const getUser = useCallback((): AuthedUser | undefined => {
+    if (!isAuthenticated) return
+    return {
+      id: tokenParsed?.sub || '',
+      email: tokenParsed?.email || '',
+      memberOf: tokenParsed?.memberOf,
+      firstName: tokenParsed?.given_name || '',
+      lastName: tokenParsed?.family_name || '',
+      roles: tokenParsed?.realm_access?.roles || [],
+      fullName: tokenParsed?.name || ''
+    }
+  }, [isAuthenticated, tokenParsed])
 
   const isMemberOf = useCallback(
     (organizationId: string): boolean =>
@@ -258,7 +257,7 @@ function useAuth<
   )
 
   const executeAuthFunction = useCallback(
-    function (authFunction: AuthFunction, ...args) {
+    function (authFunction: AuthFunction, ...args: any[]) {
       const user = getUser()
       if (!user) return false
       return authFunction(user, ...args)
@@ -325,8 +324,12 @@ function useAuth<
       {} as AuthServiceAdditional<AdditionalServices>
     for (const serviceName in additionalServices) {
       const fn: AuthFnc = (params) =>
-        additionalServices[serviceName.toString()](keycloak, service, params)
-      object[serviceName.toString()] = fn
+        (additionalServices as any)[serviceName.toString()](
+          keycloak,
+          service,
+          params
+        )
+      ;(object as any)[serviceName.toString()] = fn
     }
     return object
   }, [additionalServices, keycloak, hasRole, roles, service])

@@ -1,8 +1,7 @@
-import { Route, RouteProps } from 'react-router-dom'
-import React from 'react'
-import { MergeMuiElementProps } from '@komune-io/g2-themes'
+import { Route } from 'react-router-dom'
 import { useAuth } from '../KeycloakProvider'
 import { NoMatchPage } from './NoMatchPage'
+import { ReactElement } from 'react'
 
 interface PrivateRouteBasicProps<Roles extends string = string> {
   /**
@@ -17,20 +16,33 @@ interface PrivateRouteBasicProps<Roles extends string = string> {
    * @default NoMatchPage
    */
   unauthorizedComponent?: JSX.Element
+  /**
+   * The component to render when authorized
+   */
+  element: ReactElement
+  /**
+   * The path for the route
+   */
+  path: string
 }
 
 export type PrivateRouteProps<Roles extends string = string> =
-  MergeMuiElementProps<RouteProps, PrivateRouteBasicProps<Roles>>
+  PrivateRouteBasicProps<Roles>
 
 export const PrivateRoute = <Roles extends string = string>(
   props: PrivateRouteProps<Roles>
 ): JSX.Element => {
-  const { roles, unauthorizedComponent, ...other } = props
+  const { roles, unauthorizedComponent, element, path } = props
   const { service } = useAuth<Roles>()
-  return service.hasRole(roles) ? (
-    //@ts-ignore
-    <Route {...other} />
-  ) : (
-    unauthorizedComponent || <NoMatchPage />
+
+  return (
+    <Route
+      path={path}
+      element={
+        service.hasRole(roles)
+          ? element
+          : unauthorizedComponent || <NoMatchPage />
+      }
+    />
   )
 }

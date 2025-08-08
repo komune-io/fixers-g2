@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import { Menu, MenuItem, Presentation } from '@komune-io/g2-components'
 import { BasicProps, MergeMuiElementProps } from '@komune-io/g2-themes'
-import React from 'react'
+import { CSSProperties } from 'react'
 
 interface UserMenuClasses {
   summary?: string
@@ -19,10 +19,10 @@ interface UserMenuClasses {
 }
 
 interface UserMenuStyles {
-  summary?: React.CSSProperties
-  details?: React.CSSProperties
-  presentation?: React.CSSProperties
-  menu?: React.CSSProperties
+  summary?: CSSProperties
+  details?: CSSProperties
+  presentation?: CSSProperties
+  menu?: CSSProperties
 }
 
 export interface UserMenuBasicProps extends BasicProps {

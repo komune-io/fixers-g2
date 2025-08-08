@@ -1,12 +1,12 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { CodeHighlighter } from '../CodeHighlighter'
 import 'github-markdown-css'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import gfm from 'remark-gfm'
 import raw from 'rehype-raw'
+import { Components } from 'react-markdown/lib'
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   markdown: {
     fontSize: '14px',
     lineHeight: '22px',
@@ -72,9 +72,8 @@ export interface MarkdownHighlighterProps {
   className?: string
 }
 
-const components = {
-  //@ts-ignore
-  code: ({ node, inline, className, children, ...props }) => {
+const components: Components = {
+  code: ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '')
     return !inline && match ? (
       <CodeHighlighter
@@ -88,10 +87,8 @@ const components = {
       </code>
     )
   },
-  mark: (object: any) => {
-    return (
-      <mark style={{ backgroundColor: object.color }}>{object.children}</mark>
-    )
+  mark: ({ color, children }: any) => {
+    return <mark style={{ backgroundColor: color }}>{children}</mark>
   }
 }
 
@@ -103,7 +100,6 @@ export const MarkdownHighlighter = (props: MarkdownHighlighterProps) => {
       className={cx(classes.markdown, 'markdown-body', className)}
       remarkPlugins={[[gfm, { singleTilde: false }]]}
       rehypePlugins={[raw]}
-      //@ts-ignore
       components={components}
     >
       {markdown}

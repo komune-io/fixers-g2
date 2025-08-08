@@ -5,7 +5,7 @@ import {
   Menu,
   MenuItem as MuiMenuItem
 } from '@mui/material'
-import React, { useCallback, useMemo, useState } from 'react'
+import { MouseEvent, useCallback, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MenuItem } from './MenuItem'
 
@@ -15,9 +15,9 @@ export interface useButtonMenuParams {
 
 export const useButtonMenu = (params: useButtonMenuParams) => {
   const { items } = params
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }, [])
 

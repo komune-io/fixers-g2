@@ -1,36 +1,34 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Actions as AruiActions, ActionsBasicProps } from './Actions'
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react-vite'
 
 export default {
   title: 'Components/Actions',
   component: AruiActions
-} as Meta
+} as Meta<typeof AruiActions>
 
-const Template: StoryFn<ActionsBasicProps> = (args: ActionsBasicProps) => (
-  <AruiActions {...args} />
-)
+export const Actions = {
+  args: {
+    // actions: [
+    //   {
+    //     key: 'action1',
+    //     label: 'Action1'
+    //   },
+    //   {
+    //     key: 'action2',
+    //     label: 'Cancel',
+    //     variant: 'cancellation'
+    //   },
+    //   {
+    //     key: 'action2',
+    //     label: 'Delete',
+    //     variant: 'deletion'
+    //   }
+    // ]
+  },
 
-export const Actions = Template.bind({})
-Actions.args = {
-  // actions: [
-  //   {
-  //     key: 'action1',
-  //     label: 'Action1'
-  //   },
-  //   {
-  //     key: 'action2',
-  //     label: 'Cancel',
-  //     variant: 'cancellation'
-  //   },
-  //   {
-  //     key: 'action2',
-  //     label: 'Delete',
-  //     variant: 'deletion'
-  //   }
-  // ]
+  name: 'Actions'
 }
-Actions.storyName = 'Actions'
 
 export const ActionsDisable: StoryFn<ActionsBasicProps> = () => {
   const [enable, setEnable] = useState(false)

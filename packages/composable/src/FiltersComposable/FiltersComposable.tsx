@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { CSSProperties, useCallback, useMemo, useState } from 'react'
 import { ContainerRenderer, ElementRenderersConfig } from '../ComposableRender'
 import { cx } from '@emotion/css'
 import { Box, Divider, Stack, StackProps } from '@mui/material'
 import { FormikProvider, useFormik } from 'formik'
 import { useFilterRenderProps, FilterComposableField } from './type'
 import { MergeReactElementProps, useIsOverflowing } from '@komune-io/g2-utils'
-import { makeG2STyles } from '@komune-io/g2-themes'
+import { makeG2Styles } from '@komune-io/g2-themes'
 import {
   Action,
   ActionsWrapper,
@@ -26,10 +26,10 @@ export interface FiltersComposableClasses {
 }
 
 export interface FiltersComposableStyles {
-  actions?: React.CSSProperties
-  button?: React.CSSProperties
-  field?: React.CSSProperties
-  fieldsContainer?: React.CSSProperties
+  actions?: CSSProperties
+  button?: CSSProperties
+  field?: CSSProperties
+  fieldsContainer?: CSSProperties
 }
 
 export type FiltersComposableActionsProps = Omit<ActionsWrapperProps, 'actions'>
@@ -110,7 +110,7 @@ export interface FiltersComposableBasicProps<
   withFormikProvider?: boolean
 }
 
-const useStyles = makeG2STyles()({
+const useStyles = makeG2Styles()({
   form: {
     display: 'flex',
     justifyContent: 'flex-start',

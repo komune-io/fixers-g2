@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   Filters,
   FiltersBasicProps,
   FiltersField,
   FiltersAction
 } from './Filters'
-import { Meta, StoryFn } from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react-vite'
 import {
-  ArgsTable,
+  ArgTypes,
   PRIMARY_STORY,
   Subtitle,
   Primary,
   Description,
   Stories
-} from '@storybook/addon-docs'
+} from '@storybook/addon-docs/blocks'
 import LinkTo from '@storybook/addon-links/react'
 import { Typography } from '@mui/material'
 import {
@@ -46,7 +46,7 @@ export default {
             If you want a complexe stack of filters you will have to create it
             by your self. We recommand using [Filtersik](https://formik.org/).
           </Description>
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={PRIMARY_STORY} />
           <Subtitle>References</Subtitle>
           <Typography variant='body2' style={{ marginBottom: '5px' }}>
             -{' '}
@@ -124,44 +124,7 @@ export default {
       }
     }
   }
-} as Meta
-
-export const FiltersStory: StoryFn<FiltersBasicProps> = (
-  args: FiltersBasicProps
-) => {
-  const formState = useFilters({
-    fields: args.fields,
-    onSubmit: (values) => {
-      console.log('submitted')
-      console.log(values)
-    }
-  })
-
-  const actions = useMemo(
-    (): FiltersAction[] => [
-      {
-        label: 'reset',
-        key: 'resetFiltersButton',
-        variant: 'text',
-        onClick: () => formState.resetForm()
-      },
-      {
-        label: 'execute',
-        key: 'executeFiltersButton'
-      }
-    ],
-    [formState.resetForm]
-  )
-
-  return (
-    <Filters
-      {...args}
-      formState={formState}
-      actions={actions}
-      actionsPosition='right'
-    />
-  )
-}
+} as Meta<typeof Filters>
 
 const fields: FiltersField[] = [
   {
@@ -207,8 +170,45 @@ const fields: FiltersField[] = [
   }
 ]
 
-FiltersStory.args = {
-  fields: fields
-}
+export const FiltersStory: StoryObj<FiltersBasicProps> = {
+  render: (args: FiltersBasicProps) => {
+    const formState = useFilters({
+      fields: args.fields,
+      onSubmit: (values) => {
+        console.log('submitted')
+        console.log(values)
+      }
+    })
 
-FiltersStory.storyName = 'Filters'
+    const actions = useMemo(
+      (): FiltersAction[] => [
+        {
+          label: 'reset',
+          key: 'resetFiltersButton',
+          variant: 'text',
+          onClick: () => formState.resetForm()
+        },
+        {
+          label: 'execute',
+          key: 'executeFiltersButton'
+        }
+      ],
+      [formState.resetForm]
+    )
+
+    return (
+      <Filters
+        {...args}
+        formState={formState}
+        actions={actions}
+        actionsPosition='right'
+      />
+    )
+  },
+
+  args: {
+    fields: fields
+  },
+
+  name: 'Filters'
+}

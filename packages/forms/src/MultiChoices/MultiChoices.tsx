@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo } from 'react'
+import {
+  CSSProperties,
+  forwardRef,
+  ForwardedRef,
+  useCallback,
+  useMemo
+} from 'react'
 import {
   FormHelperText,
   FormControl,
@@ -16,8 +22,8 @@ export interface MultiChoicesClasses {
 }
 
 export interface MultiChoicesStyles {
-  helperText?: React.CSSProperties
-  choice?: React.CSSProperties
+  helperText?: CSSProperties
+  choice?: CSSProperties
 }
 
 export interface MultiChoicesBasicProps extends BasicProps {
@@ -72,8 +78,8 @@ export type MultiChoicesProps = MergeMuiElementProps<
   MultiChoicesBasicProps
 >
 
-export const MultiChoices = React.forwardRef(
-  (props: MultiChoicesProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const MultiChoices = forwardRef(
+  (props: MultiChoicesProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       values = [],
       options = [],

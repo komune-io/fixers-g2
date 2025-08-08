@@ -1,6 +1,5 @@
 {
   "name": "@komune-io/g2-composable",
-  "version": "0.5.0-alpha",
   "description": "Composable components",
   "author": "Komune",
   "license": "Apache-2.0",
@@ -13,44 +12,42 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "publish:npm": "npm publish --access public"
+    "build": "vite build",
+    "lint": "eslint .",
+    "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "files": [
     "dist"
   ],
   "peerDependencies": {
-    "@emotion/css": "^11.11.2",
-    "@mui/material": "^5.15.14",
-    "@tanstack/react-query": "^5.28.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@emotion/css": "catalog:",
+    "@mui/material": "catalog:",
+    "@mui/system": "catalog:",
+    "@tanstack/react-query": "catalog:state-management",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
-    "@komune-io/g2-components": "0.5.0-alpha",
-    "@komune-io/g2-forms": "0.5.0-alpha",
-    "@komune-io/g2-layout": "0.5.0-alpha",
-    "@komune-io/g2-themes": "0.5.0-alpha",
-    "@komune-io/g2-utils": "0.5.0-alpha",
-    "@mantine/hooks": "^7.7.0",
-    "@mui/icons-material": "^5.15.14",
-    "formik": "^2.4.5",
-    "qs": "^6.12.0",
-    "ramda": "^0.29.1",
-    "react-i18next": "^14.1.0",
-    "react-router-dom": "^6.22.3",
-    "spel2js": "^0.2.8",
-    "json-logic-js": "^2.0.5"
+    "@komune-io/g2-components": "workspace:*",
+    "@komune-io/g2-forms": "workspace:*",
+    "@komune-io/g2-layout": "workspace:*",
+    "@komune-io/g2-themes": "workspace:*",
+    "@komune-io/g2-utils": "workspace:*",
+    "@mantine/hooks": "catalog:ui-components",
+    "@mui/icons-material": "catalog:",
+    "formik": "catalog:forms",
+    "i18next": "catalog:",
+    "json-logic-js": "catalog:utilities",
+    "qs": "catalog:utilities",
+    "ramda": "catalog:utilities",
+    "react-i18next": "catalog:",
+    "react-router-dom": "catalog:",
+    "spel2js": "catalog:utilities"
   },
   "devDependencies": {
-    "@komune-io/g2-providers": "0.5.0-alpha",
-    "@types/react": "^18.0.28",
-    "@types/qs": "^6.9.7",
-    "@types/json-logic-js": "^2.0.8"
+    "@komune-io/g2-providers": "workspace:*",
+    "@types/json-logic-js": "catalog:dev-tools",
+    "@types/qs": "catalog:dev-tools",
+    "@types/react": "catalog:dev-tools"
   }
 }

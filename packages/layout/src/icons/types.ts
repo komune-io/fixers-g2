@@ -1,6 +1,6 @@
-import React from 'react'
+import { ComponentPropsWithRef, ElementType } from 'react'
 
 export type MergeReactElementProps<
-  T extends React.ElementType,
+  T extends ElementType,
   P extends object = {}
-> = Omit<React.ComponentPropsWithRef<T>, keyof P> & P
+> = Omit<ComponentPropsWithRef<T>, keyof P> & P

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import { CSSProperties, useCallback, useState, useEffect } from 'react'
 import { FormProps } from '@komune-io/g2-forms'
 import { styled, Typography } from '@mui/material'
 import { Popover } from '@komune-io/g2-notifications'
@@ -30,8 +30,8 @@ export interface OrganizationFactoryClasses {
 }
 
 export interface OrganizationFactoryStyles {
-  dropPictureBox?: React.CSSProperties
-  infoPopover?: React.CSSProperties
+  dropPictureBox?: CSSProperties
+  infoPopover?: CSSProperties
 }
 
 export interface OrganizationFactoryBasicProps

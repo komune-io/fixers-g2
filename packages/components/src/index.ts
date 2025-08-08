@@ -1,12 +1,10 @@
-export {
+export { Actions, useActionFeedback, ActionsWrapper } from './Actions'
+export type {
   Action,
-  Actions,
   ActionsProps,
   ActionsStyles,
   ActionsClasses,
   ActionFeedback,
-  useActionFeedback,
-  ActionsWrapper,
   ActionsWrapperProps,
   ActionWrapperStyles,
   ActionWrapperClasses
@@ -16,46 +14,57 @@ export {
   BackButton,
   DeleteButton,
   EditButton,
-  ButtonProps,
-  LinkButton,
-  LinkButtonProps
+  LinkButton
 } from './Buttons'
-export { Timeline, TimelineProps, TimeLineCell } from './Timeline'
-export { Loading, LoadingProps } from './Loading'
-export {
-  Pagination,
-  PaginationProps,
-  FixedPagination,
-  FixedPaginationProps
-} from './Pagination'
-export { LabelSwitch, LabelSwitchProps, Label } from './LabelSwitch'
-export { Ticket, TicketProps } from './Ticket'
-export { CopyToClipboard, CopyToClipboardProps } from './CopyToClipboard'
-export { MoreOptions, MoreOptionsProps } from './MoreOptions'
-export { Link, LinkProps } from './Link'
-export {
-  Menu,
-  useButtonMenu,
+export type { ButtonProps, LinkButtonProps } from './Buttons'
+export { Timeline } from './Timeline'
+export type { TimelineProps, TimeLineCell } from './Timeline'
+export { Loading } from './Loading'
+export type { LoadingProps } from './Loading'
+export { Pagination, FixedPagination } from './Pagination'
+export type { PaginationProps, FixedPaginationProps } from './Pagination'
+export { LabelSwitch } from './LabelSwitch'
+export type { LabelSwitchProps, Label } from './LabelSwitch'
+export { Ticket } from './Ticket'
+export type { TicketProps } from './Ticket'
+export { CopyToClipboard } from './CopyToClipboard'
+export type { CopyToClipboardProps } from './CopyToClipboard'
+export { MoreOptions } from './MoreOptions'
+export type { MoreOptionsProps } from './MoreOptions'
+export { Link } from './Link'
+export type { LinkProps } from './Link'
+export { Menu, useButtonMenu } from './Menu'
+export type {
+  MenuProps,
   useButtonMenuParams,
   MenuItem,
-  MenuProps,
   MenuItems
 } from './Menu'
-export { ContextMenu, ContextMenuProps } from './ContextMenu'
-export { DropPicture, DropPictureProps, DropPictureError } from './DropPicture'
-export { ToggleButtons, ToggleOption, ToggleButtonsProps } from './ToggleButton'
-export { Presentation, PresentationProps } from './Presentation'
-export { UserAvatar, UserAvatarProps } from './UserAvatar'
-export { Chip, ChipProps } from './Chip'
+export { ContextMenu } from './ContextMenu'
+export type { ContextMenuProps } from './ContextMenu'
+export { DropPicture } from './DropPicture'
+export type { DropPictureProps, DropPictureError } from './DropPicture'
+export { ToggleButtons } from './ToggleButton'
+export type { ToggleOption, ToggleButtonsProps } from './ToggleButton'
+export { Presentation } from './Presentation'
+export type { PresentationProps } from './Presentation'
+export { UserAvatar } from './UserAvatar'
+export type { UserAvatarProps } from './UserAvatar'
+export { Chip } from './Chip'
+export type { ChipProps } from './Chip'
 export {
   DocumentHandler,
-  DropError,
-  DropzoneChildren,
   useLocalDocumentHandler,
   useLocalStorageDocumentHandler,
+  DropzoneChildren
+} from './DocumentHandler'
+export type {
+  DropError,
   DocumentHandlerProps,
   LocalDocumentHandler,
   LocalStorageDocumentHandler
 } from './DocumentHandler'
-export { Breadcrumbs, BreadcrumbsProps, Crumb } from './Breadcrumbs'
-export { DropdownMenu, DropdownMenuProps } from './DropdownMenu'
+export { Breadcrumbs } from './Breadcrumbs'
+export type { BreadcrumbsProps, Crumb } from './Breadcrumbs'
+export { DropdownMenu } from './DropdownMenu'
+export type { DropdownMenuProps } from './DropdownMenu'
