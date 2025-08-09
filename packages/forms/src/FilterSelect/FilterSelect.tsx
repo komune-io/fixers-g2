@@ -130,6 +130,13 @@ export interface FilterSelectBasicProps extends BasicProps {
   label?: string
 
   /**
+   * The placeholder text when no option is selected
+   *
+   * @default ''
+   */
+  placeholder?: string
+
+  /**
    * The value selected
    *
    * @default ''
