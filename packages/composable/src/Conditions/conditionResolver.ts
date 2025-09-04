@@ -5,7 +5,7 @@ import { AdditionalOperation, RulesLogic, apply } from 'json-logic-js'
 export interface ConditionBase {
   type: string
   expression?: string
-  logic?: RulesLogic<AdditionalOperation>
+  logic?: RulesLogic<AdditionalOperation> | string
 }
 
 export interface DisplayCondition extends ConditionBase {
@@ -37,6 +37,9 @@ export const evalCondition = (
   properLocals.now = Date.now()
   properLocals.currentYear = new Date().getFullYear()
   if (condition.logic) {
+    if (typeof condition.logic === 'string') {
+      return apply(JSON.parse(condition.logic), properLocals)
+    }
     return apply(condition.logic, properLocals)
   }
   if (condition.expression) {
