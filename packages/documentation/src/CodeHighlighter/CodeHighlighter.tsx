@@ -1,7 +1,7 @@
 import { cx } from '@emotion/css'
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { BasicProps } from '@komune-io/g2-themes'
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import SyntaxHighlighter, {
   SyntaxHighlighterProps
 } from 'react-syntax-highlighter'
@@ -12,6 +12,8 @@ import {
 import a11yDark from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark'
 import a11yLight from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-light'
 import { HttpDefinitionHighlighter } from '../HttpDefinitionHighlighter'
+import { useClipboard } from '@mantine/hooks'
+import { useTranslation } from 'react-i18next'
 
 export type Sytles =
   | 'a11y-dark'
@@ -53,6 +55,11 @@ export interface CodeHighlighterProps
    * the title displayed in an header above the component
    */
   title?: string
+  /**
+   * Whether the code block is copiable
+   * @default true
+   */
+  copiable?: boolean
 }
 
 export const CodeHighlighter = (props: CodeHighlighterProps) => {
@@ -66,12 +73,22 @@ export const CodeHighlighter = (props: CodeHighlighterProps) => {
     className,
     id,
     language = 'typescript',
+    copiable = true,
     ...other
   } = props
+  const clipboard = useClipboard({ timeout: 1000 })
+  const { t } = useTranslation()
+
   const formatedObject = useMemo(() => {
     if (!object) return
     return JSON.stringify(object, undefined, 2)
   }, [object])
+
+  const toHighlight = code ?? formatedObject ?? children
+
+  const copyToClipboard = useCallback(() => {
+    clipboard.copy(toHighlight)
+  }, [clipboard.copy, toHighlight])
 
   const selectedStyle = useMemo(
     () => highlightStyleMap.get(highlightStyle),
@@ -96,11 +113,11 @@ export const CodeHighlighter = (props: CodeHighlighterProps) => {
             language={language}
             style={selectedStyle}
           >
-            {code ?? formatedObject ?? children}
+            {toHighlight}
           </SyntaxHighlighter>
         )
     }
-  }, [language, code, formatedObject, children, selectedStyle])
+  }, [language, toHighlight, selectedStyle])
 
   return (
     <Box
@@ -142,6 +159,28 @@ export const CodeHighlighter = (props: CodeHighlighterProps) => {
         </Box>
       )}
       {body}
+      {copiable && (
+        <Button
+          onClick={copyToClipboard}
+          variant='outlined'
+          sx={{
+            position: 'absolute',
+            bottom: 16,
+            right: 16,
+            borderRadius: 1,
+            color: clipboard.copied ? 'white' : '#E5DADA',
+            borderColor: clipboard.copied ? 'success.main' : '#E5DADA',
+            bgcolor: clipboard.copied ? 'success.main' : undefined,
+            p: 0.5,
+            '&:hover': {
+              bgcolor: clipboard.copied ? 'success.main' : undefined,
+              borderColor: clipboard.copied ? 'success.main' : '#E5DADA'
+            }
+          }}
+        >
+          {clipboard.copied ? t('g2.copied') : t('g2.copy')}
+        </Button>
+      )}
     </Box>
   )
 }
