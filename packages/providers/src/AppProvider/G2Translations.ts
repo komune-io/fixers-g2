@@ -85,7 +85,9 @@ export const G2Translations = {
       title: 'Titre',
       text: 'Texte',
       pageNotFound: 'Page introuvable',
-      goBackHome: "Retourner à l'accueil"
+      goBackHome: "Retourner à l'accueil",
+      copied: 'Copié',
+      copy: 'Copier'
     },
     http: {
       '600': "{{errorMessage}} à cause d'un problème de connexion",
@@ -208,7 +210,9 @@ export const G2Translations = {
       title: 'Title',
       text: 'Text',
       pageNotFound: 'Page not found',
-      goBackHome: 'Go back to home'
+      goBackHome: 'Go back to home',
+      copied: 'Copied',
+      copy: 'Copy'
     },
     http: {
       '600': '{{errorMessage}} due to a network issue',
@@ -329,7 +333,9 @@ export const G2Translations = {
     title: 'Título',
     text: 'Texto',
     pageNotFound: 'Página no encontrada',
-    goBackHome: 'Volver a inicio'
+    goBackHome: 'Volver a inicio',
+    copied: 'Copiado',
+    copy: 'Copiar'
   },
   http: {
     '600': '{{errorMessage}} debido a un problema de red',
