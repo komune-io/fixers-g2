@@ -38,6 +38,8 @@ export const evalCondition = (
   properLocals.currentYear = new Date().getFullYear()
   if (condition.logic) {
     if (typeof condition.logic === 'string') {
+      console.log(JSON.parse(condition.logic))
+      console.log(apply(JSON.parse(condition.logic), properLocals))
       return apply(JSON.parse(condition.logic), properLocals)
     }
     return apply(condition.logic, properLocals)
