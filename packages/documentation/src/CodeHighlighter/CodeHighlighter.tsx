@@ -124,6 +124,7 @@ export const CodeHighlighter = (props: CodeHighlighterProps) => {
       style={style}
       className={cx('AruiCodeHighlighter-root', className)}
       sx={{
+        position: 'relative',
         '& pre': {
           borderRadius: '8px',
           border: '1px solid #EEEEEE',
