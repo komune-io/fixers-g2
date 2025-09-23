@@ -17,10 +17,13 @@ export const autoformValuesToCommand = <COMMAND = any>(
       const fieldValue = getIn(values, field.name)
       if (fieldValue != undefined) {
         if (field.type === 'documentHandler' || field.type === 'dropPicture') {
-          command.files.push({
-            file: fieldValue,
-            atrKey: field.name
-          })
+          // string value for files means it's a url, not a new file
+          if (typeof fieldValue !== "string") {
+            command.files.push({
+              file: fieldValue,
+              atrKey: field.name
+            })
+          }
         } else {
           command.command = setIn(command.command, field.name, fieldValue)
         }
