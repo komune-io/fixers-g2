@@ -66,8 +66,8 @@ export interface AutoFormProps extends UseAutoFormStateParams {
 }
 
 export const AutoForm = (props: AutoFormProps) => {
-  const { formData, getFormActions, ...autoFormStateParams } = props
-
+  const { getFormActions, ...autoFormStateParams } = props
+  const formData = autoFormStateParams.formData
   const sectionsType = formData?.sectionsType ?? 'default'
 
   const formState = useAutoFormState(autoFormStateParams)
