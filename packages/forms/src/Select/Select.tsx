@@ -208,7 +208,12 @@ export const Select = React.forwardRef(
       id,
       error = false,
       errorMessage = '',
-      onRemove,
+      onRemove = !props.required
+        ? () => {
+            onChangeValue && onChangeValue('')
+            onChangeValues && onChangeValues([])
+          }
+        : undefined,
       disabled = false,
       classes,
       styles,
