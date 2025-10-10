@@ -470,7 +470,11 @@ export const TextField = React.forwardRef(
                 'AruiTextfield-input',
                 classes?.input
               ),
-              ...InputProps
+              ...InputProps,
+              inputProps: {
+                ...InputProps?.inputProps,
+                onWheel: (e) => e.currentTarget.blur()
+              }
             }}
             multiline={multiline}
           />
