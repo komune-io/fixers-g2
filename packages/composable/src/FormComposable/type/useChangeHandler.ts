@@ -11,7 +11,12 @@ export const useChangeHandler = <T>(
 ) => {
   return useCallback(
     async (value: T) => {
-      const defValue = !isNaN(Number(value)) ? Number(value) : value
+      const isEmptyString = typeof value === 'string' && value.trim() !== ''
+      const defValue =
+        (isEmptyString || typeof value !== 'string') && !isNaN(Number(value))
+          ? Number(value)
+          : value
+
       if (onValueChange) {
         onValueChange(defValue, formState)
       } else {
