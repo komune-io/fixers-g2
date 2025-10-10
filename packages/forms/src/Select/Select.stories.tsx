@@ -148,7 +148,7 @@ const options: Option[] = [
     icon: <ContentCut fontSize='small' />
   },
   {
-    key: 3,
+    key: '3',
     label: 'test3',
     icon: <ContentCopy fontSize='small' />
   },

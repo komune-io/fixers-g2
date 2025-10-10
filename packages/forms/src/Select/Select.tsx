@@ -244,12 +244,13 @@ export const Select = React.forwardRef(
     )
 
     const optionsMap = useMemo(
-      () => new Map<SmartKey, Option>(options.map((el) => [el.key, el])),
+      () =>
+        new Map<SmartKey, Option>(options.map((el) => [el.key.toString(), el])),
       [options]
     )
 
     const currentOption = useMemo(
-      () => (value ? optionsMap.get(value) : undefined),
+      () => (value ? optionsMap.get(value.toString()) : undefined),
       [value, optionsMap]
     )
 
@@ -263,12 +264,12 @@ export const Select = React.forwardRef(
         }
         if (Array.isArray(selected) && selected.length > 0) {
           return selected
-            .map((el) => optionsMap.get(el)?.label)
+            .map((el) => optionsMap.get(el.toString())?.label)
             .filter((el) => el !== undefined)
             .join(', ')
         }
         if (!Array.isArray(selected)) {
-          return optionsMap.get(selected)?.label
+          return optionsMap.get(selected.toString())?.label
         }
         return ''
       },
