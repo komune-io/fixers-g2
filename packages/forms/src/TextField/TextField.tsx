@@ -235,6 +235,7 @@ export const TextField = React.forwardRef(
       validated = false,
       onSearch,
       InputProps,
+      inputProps,
       noCheckOrClearIcon = false,
       multiline = false,
       searchLoading = false,
@@ -472,6 +473,7 @@ export const TextField = React.forwardRef(
               ),
               ...InputProps,
               inputProps: {
+                ...inputProps,
                 ...InputProps?.inputProps,
                 onWheel: (e) => e.currentTarget.blur()
               }
