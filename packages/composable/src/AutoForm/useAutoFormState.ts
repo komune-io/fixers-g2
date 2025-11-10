@@ -18,7 +18,7 @@ export const autoformValuesToCommand = <COMMAND = any>(
       if (fieldValue != undefined) {
         if (field.type === 'documentHandler' || field.type === 'dropPicture') {
           // string value for files means it's a url, not a new file
-          if (typeof fieldValue !== "string") {
+          if (typeof fieldValue !== 'string') {
             command.files.push({
               file: fieldValue,
               atrKey: field.name
@@ -62,7 +62,7 @@ export const useAutoFormState = (params: UseAutoFormStateParams) => {
     let initialValuesCopy = { ...formData?.initialValues, ...initialValues }
     formData?.sections.forEach((section) =>
       section.fields.forEach((field) => {
-        if (field.type === 'documentHandler') {
+        if (field.type === 'documentHandler' || field.type === 'dropPicture') {
           const fieldValue = getIn(initialValuesCopy, field.name)
           if (fieldValue && downloadDocument) {
             initialValuesCopy = setIn(
